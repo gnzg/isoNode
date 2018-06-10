@@ -14,8 +14,8 @@ const drawMap = (tileGraphics, map) => {
   let tileW = 48;
 
   // mapX and mapY are offsets to make sure we can position the map as we want.
-  let mapX = 80;
-  let mapY = 80;
+  let mapX = 40;
+  let mapY = 280;
 
   let drawTile;
 

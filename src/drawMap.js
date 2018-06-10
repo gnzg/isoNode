@@ -1,7 +1,13 @@
 const drawMap = (tileGraphics, map) => {
 
-  // create the canvas context
-  let ctx = document.getElementById('main').getContext('2d');
+  // set size of canvas
+  let canvas = document.getElementById('main');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  // create the 2d canvas context
+  let ctx = canvas.getContext('2d');
+
 
   // Set as your tile pixel sizes, alter if you are using larger tiles.
   let tileH = 48;

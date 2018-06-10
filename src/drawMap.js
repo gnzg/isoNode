@@ -4,12 +4,12 @@ const drawMap = (tileGraphics, map) => {
   let ctx = document.getElementById('main').getContext('2d');
 
   // Set as your tile pixel sizes, alter if you are using larger tiles.
-  let tileH = 52;
-  let tileW = 52;
+  let tileH = 48;
+  let tileW = 48;
 
   // mapX and mapY are offsets to make sure we can position the map as we want.
-  let mapX = 76;
-  let mapY = 52;
+  let mapX = 80;
+  let mapY = 80;
 
   let drawTile;
 

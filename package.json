@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "Node.js version of isoJS",
   "main": "index.js",
-  "dependencies": {},
+  "dependencies": {
+    "clean-webpack-plugin": "^0.1.19",
+    "html-webpack-plugin": "^3.2.0"
+  },
   "devDependencies": {
     "webpack": "^4.12.0",
     "webpack-cli": "^3.0.3",
@@ -11,7 +14,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --config ./webpack.development.config.js --watch"
+    "start": "webpack-dev-server --config ./webpack.config.js",
+    "watch": "webpack --watch"
   },
   "keywords": [],
   "author": "",

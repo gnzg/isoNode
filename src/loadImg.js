@@ -1,26 +1,25 @@
-const drawMap = () => {
+import drawMap from './drawMap';
 
-  // create the canvas context
-  let ctx = document.getElementById('main').getContext('2d');
+const loadImg = (tileGraphicsToLoad, map) => {
+  let tileGraphics = [];
 
-  // Set as your tile pixel sizes, alter if you are using larger tiles.
-  let tileH = 25;
-  let tileW = 52;
+  // Images to be loaded and used.
+  // Tutorial Note: As water is loaded first it will be represented by a 0 on the map and land will be a 1.
+   let tileGraphicsLoaded = 0;
 
-  // mapX and mapY are offsets to make sure we can position the map as we want.
-  let mapX = 76;
-  let mapY = 52;
-
-  let drawTile;
-
-  // loop through our map and draw out the image represented by the number.
-  for (let i = 0; i < map.length; i++) {
-    for (let j = 0; j < map[i].length; j++) {
-      drawTile = map[i][j];
-      // Draw the represented image number, at the desired X & Y coordinates followed by the graphic width and height.
-      ctx.drawImage(tileGraphics[drawTile], (i - j) * tileH + mapX, (i + j) * tileH / 2 + mapY);
+  for (let i = 0; i < tileGraphicsToLoad.length; i++) {
+    tileGraphics[i] = new Image();
+    tileGraphics[i].src = tileGraphicsToLoad[i];
+    tileGraphics[i].onload = function() {
+      //console.log('loaded asset');
+      // Once the image is loaded increment the loaded graphics count and check if all images are ready.
+      tileGraphicsLoaded++;
+      if (tileGraphicsLoaded === tileGraphicsToLoad.length) {
+        drawMap(tileGraphics, map);
+      }
     }
   }
+
 };
 
-module.exports = drawMap;
+export default loadImg;

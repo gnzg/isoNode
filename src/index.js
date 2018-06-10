@@ -1,26 +1,29 @@
-const drawMap = () => {
+import loadImg from './loadImg';
 
-  // create the canvas context
-  let ctx = document.getElementById('main').getContext('2d');
+// Create the isometric scope.
+// Tutorial Note: Wrapping all our code within a function this way means all
+// our variables and functions don't become globals. This prevents conflicts if you're using other scripts.
+const isometric = () => {
+  console.log('hello');
+  // Two Dimensional Array storing our isometric map layout. Each number represents a tile.
+  let map = [
+    [1, 0, 0, 0],
+   [1, 0, 0, 1],
+   // [0, 0, 1, 1],
+  //  [1, 1, 1, 1]
+  ];
 
-  // Set as your tile pixel sizes, alter if you are using larger tiles.
-  let tileH = 25;
-  let tileW = 52;
+  let tileGraphicsToLoad = ["./src/water.png", "./src/land.png"];
 
-  // mapX and mapY are offsets to make sure we can position the map as we want.
-  let mapX = 76;
-  let mapY = 52;
+  function init() {
+    // Remove Event Listener and load images.
+    //isometric.removeEventListener('load', init);
+    loadImg(tileGraphicsToLoad, map);
+  };
 
-  let drawTile;
-
-  // loop through our map and draw out the image represented by the number.
-  for (let i = 0; i < map.length; i++) {
-    for (let j = 0; j < map[i].length; j++) {
-      drawTile = map[i][j];
-      // Draw the represented image number, at the desired X & Y coordinates followed by the graphic width and height.
-      ctx.drawImage(tileGraphics[drawTile], (i - j) * tileH + mapX, (i + j) * tileH / 2 + mapY);
-    }
-  }
+  // Add Event Listener to detect when page has fully loaded.
+  //isometric.addEventListener('load', init, false);
+  init();
 };
 
-module.exports = drawMap;
+isometric();

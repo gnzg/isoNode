@@ -1,30 +1,47 @@
 import loadImg from './loadImg';
+import loadRects from './loadRects';
 // Create the isometric scope.
 // Tutorial Note: Wrapping all our code within a function this way means all
 // our variables and functions don't become globals. This prevents conflicts if you're using other scripts.
 const isometric = () => {
-  // Two Dimensional Array storing our isometric map layout. Each number represents a tile.
-  let map = [
-    [1, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 1, 0, 0, 0, 0, 0],
-    [0, 0, 1, 1, 1, 1, 0, 1, 0],
-    [0, 1, 1, 1, 1, 1, 1, 1, 0],
-    [0, 1, 1, 1, 1, 1, 1, 1, 0],
-    [1, 1, 1, 1, 1, 1, 1, 0, 0]
-  ];
+  let env = {
+    // Two Dimensional Array storing our isometric map layout. Each number represents a tile.
+    map: [
+      [1, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 1, 0, 0, 0, 0, 0],
+      [0, 0, 1, 1, 1, 1, 0, 1, 0],
+      [0, 1, 1, 1, 1, 1, 1, 1, 0],
+      [0, 1, 1, 1, 1, 1, 1, 1, 0],
+      [1, 1, 1, 1, 1, 1, 1, 0, 0]
+    ],
+    tileGraphicsToLoad: [
+      "./src/water.png",
+      "./src/land.png"
+    ],
 
-  let tileGraphicsToLoad = ["./src/water.png", "./src/land.png"];
+    // Set as your tile pixel sizes, alter if you are using larger tiles.
+    tileH: 48,
+    tileW: 48,
 
-  /*function init() {
-    // Remove Event Listener and load images.
-    //isometric.removeEventListener('load', init);
-    loadImg(tileGraphicsToLoad, map);
-  };*/
+    // mapX and mapY are offsets to make sure we can position the map as we want.
+    mapX: 40,
+    mapY: 280,
 
-  // Add Event Listener to detect when page has fully loaded.
-  //isometric.addEventListener('load', init, false);
-  // init();
-  loadImg(tileGraphicsToLoad, map);
+  };
+
+  // set size of canvas
+  let canvas = document.getElementById('main');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  // create the 2d canvas context
+  let ctx = canvas.getContext('2d');
+  ctx.setTransform(-1, 0.5, 1, 0.5, 200, -80);
+  env.ctx = ctx;
+// to load images
+loadImg(env);
+
+// alternative: render the map based on colored rectangles
+// loadRects(tileGraphicsToLoad, map);
 
 };
 

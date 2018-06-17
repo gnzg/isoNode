@@ -39,14 +39,14 @@ const renderMap = (env) => {
         ctx.stroke();
 
         // x axis
-        /*
         ctx.setTransform(1, 0.5, 0, 1, 480, -30);
         ctx.beginPath();
         ctx.lineWidth="1";
         ctx.strokeStyle="white";
-        ctx.rect(j * tileW + mapX, i * tileH + mapY, tileW, tileH);
-        ctx.fillRect(j * tileW + mapX, i * tileH + mapY, tileW, tileH);
-        ctx.stroke(); */
+        // we only care about 1st cell at the beginning of a row
+        if (j === 0) {
+          ctx.fillRect(i * tileW + mapX, j * tileH + mapY, tileW, tileH);
+        }
       }
     }
   }

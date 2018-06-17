@@ -10,24 +10,43 @@ const renderMap = (env) => {
       if (mode === 'images') {
         ctx.drawImage(tileGraphics[drawTile], j * tileW + mapX, i * tileH + mapY);
       } else {
-        ctx.setTransform(-1, 0.5, 1, 0.5, 200, -80);
+        ctx.setTransform(1, -0.5, 1, 0.5, 200, 150);
         ctx.beginPath();
         ctx.lineWidth="1";
         ctx.strokeStyle=rectColors[drawTile];
+        ctx.strokeStyle="white";
         ctx.fillStyle= rectColors[drawTile];
         ctx.rect(j * tileW + mapX, i * tileH + mapY, tileW, tileH);
         ctx.fillRect(j * tileW + mapX, i * tileH + mapY, tileW, tileH);
         ctx.stroke();
         // draw all three visible sides of the rectangle
-        ctx.setTransform(-1, 0.5, -0.25, 1, 350, -140);
+
+        // z axis
+        ctx.setTransform(1, -0.5, 0, 1, 527, 35);
         ctx.beginPath();
         ctx.lineWidth="1";
         ctx.strokeStyle="white";
-        ctx.rect(j * tileW + mapX+15, i * tileH + mapY, tileW, tileH);
-        ctx.fillRect(j * tileW + mapX+15, i * tileH + mapY, tileW, tileH);
+        if (i === 0) {
+          ctx.fillRect(j * tileW + mapX, i * tileH + mapY, tileW, tileH);
+        }
+        else if (i === 1) {
+          ctx.fillRect(j * tileW + mapX + tileW, i * tileH + mapY + 2/tileW, tileW, tileH);
+        }
+        else if (i >= 2) {
+          ctx.fillRect(j * tileW + mapX + i * tileW, i * tileH + mapY - 2/tileW, tileW, tileH);
+        }
+        // ctx.fillRect(j * tileW + mapX, i * tileH + mapY, tileW, tileH);
         ctx.stroke();
 
-
+        // x axis
+        /*
+        ctx.setTransform(1, 0.5, 0, 1, 480, -30);
+        ctx.beginPath();
+        ctx.lineWidth="1";
+        ctx.strokeStyle="white";
+        ctx.rect(j * tileW + mapX, i * tileH + mapY, tileW, tileH);
+        ctx.fillRect(j * tileW + mapX, i * tileH + mapY, tileW, tileH);
+        ctx.stroke(); */
       }
     }
   }

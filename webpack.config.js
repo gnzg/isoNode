@@ -1,33 +1,62 @@
-const path = require("path");
+const webpack = require('webpack');
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
-const config = {
-  entry: {
-    index: './src/index.js'
-  },
+module.exports = {
+  entry: [
+    './src/index.js'
+  ],
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: __dirname + '/dist',
+    publicPath: '/',
     filename: 'main.js'
   },
-  devServer: {
-    contentBase: './dist',
-    hot: true
-  },
-  mode: 'development',
   node: {
     __dirname: false
   },
+  mode: 'development',
   module: {
     rules: [
       {
-        test: /\.css$/,
-        use: [ 'style-loader', 'css-loader' ]
+        test: /\.jsx?$/,
+        loader: 'babel-loader',
+        exclude: /(node_modules)/,
+        query: {
+          presets: ['es2015', 'stage-0', 'react'],
+          plugins: ['transform-decorators-legacy', 'transform-class-properties']
+        }
       },
       {
-        test: /\.less$/,
-        use: 'less-loader'
+        test: /\.css$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          "css-loader"
+        ],
+        include: path.join(__dirname, 'src')
       }
     ]
-  }
+  },
+  devServer: {
+    contentBase: path.resolve(__dirname, 'dist'),
+    inline: true,
+    hot: true
+  },
+  plugins: [
+    /* hot module replacement */
+    new webpack.HotModuleReplacementPlugin(),
+    new HtmlWebpackPlugin({
+      template: './index.html'
+    }),
+    new MiniCssExtractPlugin({
+      // Options similar to the same options in webpackOptions.output
+      // both options are optional
+      filename: "[name].css",
+      chunkFilename: "[id].css"
+    }),
+    new CopyWebpackPlugin([
+      {from:'src/images',to:'images'}
+    ])
+  ]
 };
-
-module.exports = config;

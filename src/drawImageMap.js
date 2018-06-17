@@ -1,6 +1,8 @@
-import drawMap from './drawMap';
+import renderImageMap from './renderImageMap';
 
-const loadImg = (env) => {
+// load images and pass array of images down to renderImageMap
+
+const drawImageMap = (env) => {
   let { tileGraphicsToLoad, map, ctx } = env;
   let tileGraphics = [];
   let tileGraphicsLoaded = 0;
@@ -15,11 +17,11 @@ const loadImg = (env) => {
 
       // if done loading
       if (tileGraphicsLoaded === tileGraphicsToLoad.length) {
-        drawMap({tileGraphics, ...env});
+        renderImageMap({tileGraphics, ...env});
       }
     }
   }
 
 };
 
-export default loadImg;
+export default drawImageMap;

@@ -1,5 +1,5 @@
-import loadImg from './loadImg';
-import loadRects from './loadRects';
+import drawImageMap from './drawImageMap';
+
 // Create the isometric scope.
 // Tutorial Note: Wrapping all our code within a function this way means all
 // our variables and functions don't become globals. This prevents conflicts if you're using other scripts.
@@ -14,11 +14,16 @@ const isometric = () => {
       [0, 1, 1, 1, 1, 1, 1, 1, 0],
       [1, 1, 1, 1, 1, 1, 1, 0, 0]
     ],
+    rectColors: [
+      '#336699',
+      '#006600'
+    ],
     tileGraphicsToLoad: [
       "./src/water.png",
       "./src/land.png"
     ],
-
+    // draw map based on images or colored rects
+    mode: 'rects',
     // Set as your tile pixel sizes, alter if you are using larger tiles.
     tileH: 48,
     tileW: 48,
@@ -36,12 +41,11 @@ const isometric = () => {
   // create the 2d canvas context
   let ctx = canvas.getContext('2d');
   ctx.setTransform(-1, 0.5, 1, 0.5, 200, -80);
-  env.ctx = ctx;
-// to load images
-loadImg(env);
 
-// alternative: render the map based on colored rectangles
-// loadRects(tileGraphicsToLoad, map);
+  env.ctx = ctx;
+
+  // draw map
+  drawImageMap(env);
 
 };
 

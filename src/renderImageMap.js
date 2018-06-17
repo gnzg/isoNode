@@ -1,4 +1,4 @@
-const renderImageMap = (env) => {
+const renderMap = (env) => {
   let drawTile;
   let { tileGraphics, map, tileW, tileH, mapX, mapY, ctx, mode, rectColors } = env;
   // loop through our map and draw out the image represented by the number.
@@ -22,4 +22,4 @@ const renderImageMap = (env) => {
   }
 };
 
-export default renderImageMap;
+export default renderMap;

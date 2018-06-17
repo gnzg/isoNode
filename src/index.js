@@ -1,4 +1,4 @@
-import drawImageMap from './drawImageMap';
+import drawMap from './drawMap';
 
 // Create the isometric scope.
 // Tutorial Note: Wrapping all our code within a function this way means all
@@ -42,10 +42,11 @@ const isometric = () => {
   let ctx = canvas.getContext('2d');
   ctx.setTransform(-1, 0.5, 1, 0.5, 200, -80);
 
+  // add canvas object to env to allow passing it down
   env.ctx = ctx;
 
   // draw map
-  drawImageMap(env);
+  drawMap(env);
 
 };
 

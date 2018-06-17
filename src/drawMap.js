@@ -2,7 +2,7 @@ import renderImageMap from './renderImageMap';
 
 // load images and pass array of images down to renderImageMap
 
-const drawImageMap = (env) => {
+const drawMap = (env) => {
   let { tileGraphicsToLoad, map, ctx } = env;
   let tileGraphics = [];
   let tileGraphicsLoaded = 0;
@@ -24,4 +24,4 @@ const drawImageMap = (env) => {
 
 };
 
-export default drawImageMap;
+export default drawMap;

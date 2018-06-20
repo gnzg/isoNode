@@ -38,6 +38,7 @@ const renderMap = (env) => {
         ctx.fillRect(mapX + j * tileW + i * tileW, mapY + i * tileH - 2/tileW, tileW, tileH);
 
         // x axis
+        if (j === 0) ctx.globalCompositeOperation = 'source-over';
         ctx.setTransform(1, 0.5, 0, 1, 480, 5);
         ctx.beginPath();
         ctx.lineWidth="1";
@@ -47,6 +48,7 @@ const renderMap = (env) => {
         ctx.rect(mapX + i * tileW + tileW * j, mapY - j * tileH, tileW, tileH);
         ctx.stroke();
         ctx.fillRect(mapX + i * tileW + tileW * j, mapY - j * tileH, tileW, tileH);
+
 
       }
     }

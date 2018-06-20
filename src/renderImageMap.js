@@ -1,6 +1,6 @@
 const renderMap = (env) => {
   let drawTile;
-  let { tileGraphics, map, tileW, tileH, mapX, mapY, ctx, mode, rectColors } = env;
+  let { tileGraphics, map, tileW, tileH, mapX, mapY, ctx, mode, rectColors, rectShadowColors } = env;
   // loop through our map and draw out the image represented by the number.
   for (let i = 0; i < map.length; i++) {
     for (let j = 0; j < map[i].length; j++) {
@@ -10,43 +10,40 @@ const renderMap = (env) => {
       if (mode === 'images') {
         ctx.drawImage(tileGraphics[drawTile], j * tileW + mapX, i * tileH + mapY);
       } else {
-        ctx.setTransform(1, -0.5, 1, 0.5, 200, 150);
+
+        ctx.globalCompositeOperation = 'source-over';
+
+        // draw all three visible sides of the rectangle
+
+        ctx.setTransform(1, -0.5, 1, 0.5, 200, 185);
         ctx.beginPath();
         ctx.lineWidth="1";
         ctx.strokeStyle=rectColors[drawTile];
-        ctx.strokeStyle="white";
+        ctx.strokeStyle="black";
         ctx.fillStyle= rectColors[drawTile];
-        ctx.rect(j * tileW + mapX, i * tileH + mapY, tileW, tileH);
+        ctx.rect(mapX + j * tileW, mapY + i * tileH, tileW, tileH);
         ctx.fillRect(j * tileW + mapX, i * tileH + mapY, tileW, tileH);
         ctx.stroke();
-        // draw all three visible sides of the rectangle
+
+        ctx.globalCompositeOperation = 'destination-over';
 
         // z axis
-        ctx.setTransform(1, -0.5, 0, 1, 527, 35);
+        ctx.setTransform(1, -0.5, 0, 1, 527, 70);
         ctx.beginPath();
         ctx.lineWidth="1";
-        ctx.strokeStyle="white";
-        if (i === 0) {
-          ctx.fillRect(j * tileW + mapX, i * tileH + mapY, tileW, tileH);
-        }
-        else if (i === 1) {
-          ctx.fillRect(j * tileW + mapX + tileW, i * tileH + mapY + 2/tileW, tileW, tileH);
-        }
-        else if (i >= 2) {
-          ctx.fillRect(j * tileW + mapX + i * tileW, i * tileH + mapY - 2/tileW, tileW, tileH);
-        }
-        // ctx.fillRect(j * tileW + mapX, i * tileH + mapY, tileW, tileH);
-        ctx.stroke();
+        ctx.fillStyle= rectShadowColors[drawTile];
+        ctx.fillRect(mapX + j * tileW + i * tileW, mapY + i * tileH - 2/tileW, tileW, tileH);
+        ctx.fillStyle= rectColors[drawTile];
 
         // x axis
-        ctx.setTransform(1, 0.5, 0, 1, 480, -30);
+        ctx.setTransform(1, 0.5, 0, 1, 480, 5);
         ctx.beginPath();
         ctx.lineWidth="1";
-        ctx.strokeStyle="white";
-        // we only care about 1st cell at the beginning of a row
-        if (j === 0) {
-          ctx.fillRect(i * tileW + mapX, j * tileH + mapY, tileW, tileH);
-        }
+        ctx.fillStyle= rectShadowColors[drawTile];
+        // if we only care about first element of each row, set a conditional to j===0
+        ctx.fillRect(mapX + i * tileW + tileW * j, mapY - j * tileH,
+        tileW, tileH);
+
       }
     }
   }

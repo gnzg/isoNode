@@ -1,5 +1,6 @@
 const renderMap = (env) => {
   let drawTile;
+  let strokeStyle = '#222';
   let { tileGraphics, map, tileW, tileH, mapX, mapY, ctx, mode, rectColors, rectShadowColors } = env;
   // loop through our map and draw out the image represented by the number.
   for (let i = 0; i < map.length; i++) {
@@ -18,8 +19,7 @@ const renderMap = (env) => {
         ctx.setTransform(1, -0.5, 1, 0.5, 200, 185);
         ctx.beginPath();
         ctx.lineWidth="1";
-        ctx.strokeStyle=rectColors[drawTile];
-        ctx.strokeStyle="black";
+        ctx.strokeStyle= strokeStyle;
         ctx.fillStyle= rectColors[drawTile];
         ctx.rect(mapX + j * tileW, mapY + i * tileH, tileW, tileH);
         ctx.fillRect(j * tileW + mapX, i * tileH + mapY, tileW, tileH);
@@ -31,18 +31,22 @@ const renderMap = (env) => {
         ctx.setTransform(1, -0.5, 0, 1, 527, 70);
         ctx.beginPath();
         ctx.lineWidth="1";
+        ctx.strokeStyle= strokeStyle;
         ctx.fillStyle= rectShadowColors[drawTile];
+        ctx.rect(mapX + j * tileW + i * tileW, mapY + i * tileH - 2/tileW, tileW, tileH);
+        ctx.stroke();
         ctx.fillRect(mapX + j * tileW + i * tileW, mapY + i * tileH - 2/tileW, tileW, tileH);
-        ctx.fillStyle= rectColors[drawTile];
 
         // x axis
         ctx.setTransform(1, 0.5, 0, 1, 480, 5);
         ctx.beginPath();
         ctx.lineWidth="1";
+        ctx.strokeStyle= strokeStyle;
         ctx.fillStyle= rectShadowColors[drawTile];
         // if we only care about first element of each row, set a conditional to j===0
-        ctx.fillRect(mapX + i * tileW + tileW * j, mapY - j * tileH,
-        tileW, tileH);
+        ctx.rect(mapX + i * tileW + tileW * j, mapY - j * tileH, tileW, tileH);
+        ctx.stroke();
+        ctx.fillRect(mapX + i * tileW + tileW * j, mapY - j * tileH, tileW, tileH);
 
       }
     }

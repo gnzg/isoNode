@@ -1,6 +1,6 @@
 const renderMap = (env) => {
   let drawTile;
-  let strokeStyle = '#aaa';
+  let strokeStyle = '#333';
   let enableStroke = true;
   let { tileGraphics, map, tileW, tileH, mapX, mapY, ctx, mode, rectColors, rectShadowColors } = env;
   // loop through our map and draw out the image represented by the number.
@@ -13,9 +13,9 @@ const renderMap = (env) => {
         ctx.drawImage(tileGraphics[drawTile], j * tileW + mapX, i * tileH + mapY);
       } else if (drawTile !== 0) {
 
-        // draw all three visible sides of the rectangle
+        // draw all three visible sides of the rectaspect
 
-        // right angle
+        // right aspect
         ctx.globalCompositeOperation = 'source-over';
         ctx.setTransform(1, -0.5, 0, 1, 527, 70);
         ctx.beginPath();
@@ -26,10 +26,12 @@ const renderMap = (env) => {
         enableStroke && ctx.stroke();
         ctx.fillRect(mapX + j * tileW + i * tileW, mapY + i * tileH - 2/tileW, tileW, tileH);
 
-        // left angle
+        // left aspect
         // was the previous element an empty tile? if so, change z-index of left side of current tile
         ctx.globalCompositeOperation = map[i][j-1] === 0 ? 'source-over' : 'destination-over';
-        ctx.globalCompositeOperation = j === 0 ? 'source-over' : 'destination-over';
+        // for the first cell in the row, always send left aspect forward
+        j === 0 ? ctx.globalCompositeOperation = 'source-over' : '';
+
         ctx.setTransform(1, 0.5, 0, 1, 480, 5);
         ctx.beginPath();
         ctx.lineWidth="1";

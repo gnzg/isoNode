@@ -29,6 +29,7 @@ const renderMap = (env) => {
         // left angle
         // was the previous element an empty tile? if so, change z-index of left side of current tile
         ctx.globalCompositeOperation = map[i][j-1] === 0 ? 'source-over' : 'destination-over';
+        ctx.globalCompositeOperation = j === 0 ? 'source-over' : 'destination-over';
         ctx.setTransform(1, 0.5, 0, 1, 480, 5);
         ctx.beginPath();
         ctx.lineWidth="1";

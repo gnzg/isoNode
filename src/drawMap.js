@@ -17,13 +17,13 @@ const drawMap = (env) => {
 
       // if done loading
       if (tileGraphicsLoaded === tileGraphicsToLoad.length) {
-        setInterval(()=>{
-          mapY += 50;
-          console.log(mapY);
-          if (mapY >= 700) mapY=0;
+        //setInterval(()=>{
+         // mapY += 48;
+          //console.log(mapY);
+          //if (mapY >= 1500) mapY=0;
           renderMap({tileGraphics, ...env, mapY});
-          console.log('asdasd');
-        }, 200);
+          //console.log('asdasd');
+       // }, 200);
       }
     }
   }

@@ -20,21 +20,23 @@ const renderMap = (env) => {
 
         // right
         ctx.globalCompositeOperation = 'source-over';
-        ctx.setTransform(1, -0.5, 0, 1, mapX+487, mapY-210);
+        ctx.setTransform(1, -0.5, 0, 1, mapX+243, mapY-105);
         ctx.beginPath();
         ctx.lineWidth="1";
         ctx.strokeStyle= strokeStyle;
         ctx.fillStyle= rectShadowColors[drawTile];
         ctx.rect(mapX + j * tileW + i * tileW, mapY + i * tileH, tileW, tileH);
         enableStroke && ctx.stroke();
-        ctx.fillRect(mapX + j * tileW + i * tileW, mapY + i * tileH, tileW, tileH);
+        ctx.fillRect(mapX + (j + i) * tileW,
+                     mapY + i * tileH,
+          tileW, tileH);
 
         // left
         // was the previous element an empty tile? if so, change z-index of left side of current tile
         ctx.globalCompositeOperation = map[i][j-1] === 0 ? 'source-over' : 'destination-over';
         // for the first cell in the row, always send left aspect forward
         j === 0 ? ctx.globalCompositeOperation = 'source-over' : '';
-        ctx.setTransform(1, 0.5, 0, 1, mapX+440, mapY-186);
+        ctx.setTransform(1, 0.5, 0, 1, mapX+220, mapY-93);
         ctx.beginPath();
         ctx.lineWidth="1";
         ctx.strokeStyle= strokeStyle;
@@ -42,21 +44,24 @@ const renderMap = (env) => {
         // if we only care about first element of each row, set a conditional to j===0
         // ctx.rect(mapX + j * tileW + i * tileW), mapY - j * tileH, tileW, tileH);
         enableStroke && ctx.stroke();
-        ctx.fillRect(mapX + j * tileW + i * tileW,
-                     mapY - j * tileH - mapX - tileH, tileW, tileH);
+        ctx.fillRect(mapX + (j + i) * tileW,
+                     mapY - j * tileH - mapX - tileH,
+          tileW, tileH);
 
         // top
         ctx.globalCompositeOperation = 'source-over';
-        ctx.setTransform(1, -0.5, 1, 0.5, mapX+160, mapY-95);
+        ctx.setTransform(1, -0.5, 1, 0.5, mapX+198, mapY+8);
         ctx.beginPath();
         ctx.lineWidth="1";
         ctx.strokeStyle= strokeStyle;
         ctx.fillStyle= rectColors[drawTile];
-        ctx.rect(mapX + j * tileW, mapY + i * tileH, tileW, tileH);
-        ctx.fillRect(mapX + j * tileW - mapX/2,
-                     mapY + i * tileH - 5*mapY/tileH,
-                     tileW, tileH);
+        ctx.rect(mapX + j * tileW + tileW - mapY + 4.665*tileH,
+          mapY + i * tileH - 4.725*tileH,
+          tileW, tileH);
         enableStroke && ctx.stroke();
+        ctx.fillRect(mapX + j * tileW + tileW - mapY + 4.665*tileH,
+                     mapY + i * tileH - 4.725*tileH,
+                     tileW, tileH);
         // debugger;
       }
     }

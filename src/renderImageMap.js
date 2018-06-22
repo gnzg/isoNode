@@ -15,36 +15,35 @@ const renderMap = (env) => {
 
         // draw all three visible sides of the rectaspect
 
-        // right aspect
+        // right
         ctx.globalCompositeOperation = 'source-over';
-        ctx.setTransform(1, -0.5, 0, 1, 527, 70);
+        ctx.setTransform(1, -0.5, 0, 1, mapX+487, mapY-210);
         ctx.beginPath();
         ctx.lineWidth="1";
         ctx.strokeStyle= strokeStyle;
         ctx.fillStyle= rectShadowColors[drawTile];
-        ctx.rect(mapX + j * tileW + i * tileW, mapY + i * tileH - 2/tileW, tileW, tileH);
+        ctx.rect(mapX + j * tileW + i * tileW, mapY + i * tileH, tileW, tileH);
         enableStroke && ctx.stroke();
-        ctx.fillRect(mapX + j * tileW + i * tileW, mapY + i * tileH - 2/tileW, tileW, tileH);
+        ctx.fillRect(mapX + j * tileW + i * tileW, mapY + i * tileH, tileW, tileH);
 
-        // left aspect
+        // left
         // was the previous element an empty tile? if so, change z-index of left side of current tile
         ctx.globalCompositeOperation = map[i][j-1] === 0 ? 'source-over' : 'destination-over';
         // for the first cell in the row, always send left aspect forward
         j === 0 ? ctx.globalCompositeOperation = 'source-over' : '';
-
-        ctx.setTransform(1, 0.5, 0, 1, 480, 5);
+        ctx.setTransform(1, 0.5, 0, 1, mapX+440, mapY-186);
         ctx.beginPath();
         ctx.lineWidth="1";
         ctx.strokeStyle= strokeStyle;
         ctx.fillStyle= rectShadowColors[drawTile];
         // if we only care about first element of each row, set a conditional to j===0
-        ctx.rect(mapX + i * tileW + tileW * j, mapY - j * tileH, tileW, tileH);
+        // ctx.rect(mapX + j * tileW + i * tileW), mapY - j * tileH, tileW, tileH);
         enableStroke && ctx.stroke();
-        ctx.fillRect(mapX + i * tileW + tileW * j, mapY - j * tileH, tileW, tileH);
+        ctx.fillRect(mapX + j * tileW + i * tileW, mapY - j * tileH - mapX - tileH, tileW, tileH);
 
         // top
         ctx.globalCompositeOperation = 'source-over';
-        ctx.setTransform(1, -0.5, 1, 0.5, 200, 185);
+        ctx.setTransform(1, -0.5, 1, 0.5, mapX+160, mapY-95);
         ctx.beginPath();
         ctx.lineWidth="1";
         ctx.strokeStyle= strokeStyle;

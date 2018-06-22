@@ -41,8 +41,8 @@ const isometric = () => {
     tileW: 48,
 
     // mapX and mapY are offsets to make sure we can position the map as we want.
-    mapX: -48,
-    mapY: 280,
+    mapX: 0,
+    mapY: 480,
 
   };
 

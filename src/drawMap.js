@@ -1,9 +1,9 @@
-import renderImageMap from './renderImageMap';
+import renderMap from './renderMap';
 
 // load images and pass array of images down to renderImageMap
 
 const drawMap = (env) => {
-  let { tileGraphicsToLoad, map, ctx } = env;
+  let { tileGraphicsToLoad, map, ctx, mapY } = env;
   let tileGraphics = [];
   let tileGraphicsLoaded = 0;
 
@@ -17,7 +17,13 @@ const drawMap = (env) => {
 
       // if done loading
       if (tileGraphicsLoaded === tileGraphicsToLoad.length) {
-        renderImageMap({tileGraphics, ...env});
+        setInterval(()=>{
+          mapY += 50;
+          console.log(mapY);
+          if (mapY >= 700) mapY=0;
+          renderMap({tileGraphics, ...env, mapY});
+          console.log('asdasd');
+        }, 200);
       }
     }
   }

@@ -3,6 +3,9 @@ const renderMap = (env) => {
   let strokeStyle = '#333';
   let enableStroke = true;
   let { tileGraphics, map, tileW, tileH, mapX, mapY, ctx, mode, rectColors, rectShadowColors } = env;
+
+  ctx.clearRect(-1000, -1000,  4000,  4000);
+
   // loop through our map and draw out the image represented by the number.
   for (let i = 0; i < map.length; i++) {
     for (let j = 0; j < map[i].length; j++) {
@@ -39,7 +42,8 @@ const renderMap = (env) => {
         // if we only care about first element of each row, set a conditional to j===0
         // ctx.rect(mapX + j * tileW + i * tileW), mapY - j * tileH, tileW, tileH);
         enableStroke && ctx.stroke();
-        ctx.fillRect(mapX + j * tileW + i * tileW, mapY - j * tileH - mapX - tileH, tileW, tileH);
+        ctx.fillRect(mapX + j * tileW + i * tileW,
+                     mapY - j * tileH - mapX - tileH, tileW, tileH);
 
         // top
         ctx.globalCompositeOperation = 'source-over';
@@ -49,11 +53,14 @@ const renderMap = (env) => {
         ctx.strokeStyle= strokeStyle;
         ctx.fillStyle= rectColors[drawTile];
         ctx.rect(mapX + j * tileW, mapY + i * tileH, tileW, tileH);
-        ctx.fillRect(j * tileW + mapX, i * tileH + mapY, tileW, tileH);
+        ctx.fillRect(mapX + j * tileW - mapX/2,
+                     mapY + i * tileH - 5*mapY/tileH,
+                     tileW, tileH);
         enableStroke && ctx.stroke();
         // debugger;
       }
     }
+    console.log('qwewqe');
   }
 };
 

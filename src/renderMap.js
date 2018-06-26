@@ -25,11 +25,9 @@ const renderMap = (env) => {
         ctx.lineWidth="1";
         ctx.strokeStyle= strokeStyle;
         ctx.fillStyle= rectShadowColors[drawTile];
-        ctx.rect(mapX + j * tileW + i * tileW, mapY + i * tileH, tileW, tileH);
+        ctx.rect(mapX + (j + i) * tileW, mapY + i * tileW, tileW, tileH+96);
         enableStroke && ctx.stroke();
-        ctx.fillRect(mapX + (j + i) * tileW,
-                     mapY + i * tileH,
-          tileW, tileH);
+        ctx.fillRect(mapX + (j + i) * tileW, mapY + i * tileW, tileW, tileH+96);
 
         // left
         // was the previous element an empty tile? if so, change z-index of left side of current tile
@@ -42,11 +40,9 @@ const renderMap = (env) => {
         ctx.strokeStyle= strokeStyle;
         ctx.fillStyle= rectShadowColors[drawTile];
         // if we only care about first element of each row, set a conditional to j===0
-        // ctx.rect(mapX + j * tileW + i * tileW), mapY - j * tileH, tileW, tileH);
+        ctx.rect(mapX + (j + i) * tileW, mapY - j * tileW - mapX - tileW, tileW, tileH+96);
         enableStroke && ctx.stroke();
-        ctx.fillRect(mapX + (j + i) * tileW,
-                     mapY - j * tileH - mapX - tileH,
-          tileW, tileH);
+        ctx.fillRect(mapX + (j + i) * tileW, mapY - j * tileW - mapX - tileW, tileW, tileH+96);
 
         // top
         ctx.globalCompositeOperation = 'source-over';
@@ -55,12 +51,12 @@ const renderMap = (env) => {
         ctx.lineWidth="1";
         ctx.strokeStyle= strokeStyle;
         ctx.fillStyle= rectColors[drawTile];
-        ctx.rect(mapX + j * tileW + tileW - mapY + 4.665*tileH,
-          mapY + i * tileH - 4.725*tileH,
+        ctx.rect(mapX + j * tileW + tileW - mapY + 4.665*tileW,
+          mapY + i * tileW - 4.725*tileW,
           tileW, tileH);
         enableStroke && ctx.stroke();
-        ctx.fillRect(mapX + j * tileW + tileW - mapY + 4.665*tileH,
-                     mapY + i * tileH - 4.725*tileH,
+        ctx.fillRect(mapX + j * tileW + tileW - mapY + 4.665*tileW,
+                     mapY + i * tileW - 4.725*tileW,
                      tileW, tileH);
         // debugger;
       }

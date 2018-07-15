@@ -3,20 +3,29 @@ const renderMap = (env) => {
   let strokeStyle = '#333';
   let enableStroke = true;
   let { tileGraphics, map, tileW, tileH, mapX, mapY, ctx, mode, rectColors, rectShadowColors } = env;
+  let tileElevation = 100;
+  let fillColor;
 
+  // clear entire canvas
   ctx.clearRect(-1000, -1000,  4000,  4000);
 
   // loop through our map and draw out the image represented by the number.
   for (let i = 0; i < map.length; i++) {
     for (let j = 0; j < map[i].length; j++) {
       drawTile = map[i][j];
+      fillColor = rectShadowColors[drawTile];
+
+      if (i === 1 && j === 0) {tileElevation = 50; fillColor = 'red'; } else { tileElevation = 100; fillColor = rectShadowColors[drawTile]; }
 
       // two modes are possible, image-based, or rects
       if (mode === 'images') {
         ctx.drawImage(tileGraphics[drawTile], j * tileW + mapX, i * tileH + mapY);
-      } else if (drawTile !== 0) {
+      }
+      // if not an empty tile, draw it
+      else if (drawTile !== 0) {
 
-        // draw all three visible sides of the rectaspect
+        // draw all three visible sides of the rect aspect
+
 
         // right
         ctx.globalCompositeOperation = 'source-over';
@@ -24,10 +33,10 @@ const renderMap = (env) => {
         ctx.beginPath();
         ctx.lineWidth="1";
         ctx.strokeStyle= strokeStyle;
-        ctx.fillStyle= rectShadowColors[drawTile];
-        ctx.rect(mapX + (j + i) * tileW, mapY + i * tileW, tileW, tileH+128);
+        ctx.fillStyle= fillColor;
+        ctx.rect(mapX + (j + i) * tileW, mapY + i * tileW, tileW, tileH+tileElevation);
         enableStroke && ctx.stroke();
-        ctx.fillRect(mapX + (j + i) * tileW, mapY + i * tileW, tileW, tileH+128);
+        ctx.fillRect(mapX + (j + i) * tileW, mapY + i * tileW, tileW, tileH+tileElevation);
 
         // left
         // was the previous element an empty tile? if so, change z-index of left side of current tile
@@ -38,11 +47,11 @@ const renderMap = (env) => {
         ctx.beginPath();
         ctx.lineWidth="1";
         ctx.strokeStyle= strokeStyle;
-        ctx.fillStyle= rectShadowColors[drawTile];
+        ctx.fillStyle= fillColor;
         // if we only care about first element of each row, set a conditional to j===0
-        ctx.rect(mapX + (j + i) * tileW, mapY - j * tileW - mapX - tileW, tileW, tileH+128);
+        ctx.rect(mapX + (j + i) * tileW, mapY - j * tileW - mapX - tileW, tileW, tileH+tileElevation);
         enableStroke && ctx.stroke();
-        ctx.fillRect(mapX + (j + i) * tileW, mapY - j * tileW - mapX - tileW, tileW, tileH+128);
+        ctx.fillRect(mapX + (j + i) * tileW, mapY - j * tileW - mapX - tileW, tileW, tileH+tileElevation);
 
         // top
         ctx.globalCompositeOperation = 'source-over';
@@ -50,7 +59,8 @@ const renderMap = (env) => {
         ctx.beginPath();
         ctx.lineWidth="1";
         ctx.strokeStyle= strokeStyle;
-        ctx.fillStyle= rectColors[drawTile];
+        // return corresponding top color based on position of fillColor in rectShadowColors[]
+        ctx.fillStyle= rectColors[rectShadowColors.indexOf(fillColor)];
         ctx.rect(mapX + j * tileW + tileW - mapY + 4.665*tileW,
           mapY + i * tileW - 4.725*tileW,
           tileW, tileH);
@@ -61,7 +71,7 @@ const renderMap = (env) => {
         // debugger;
       }
     }
-    console.log('qwewqe');
+    // console.log('qwewqe');
   }
 };
 

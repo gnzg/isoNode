@@ -2,20 +2,22 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>isoNode</title>
     <style>
         body {
+            position:absolute;
             padding: 0;
             margin: 0;
-        }
-        canvas {
             background: #1a1a1a;
+            overflow: hidden;
         }
     </style>
     <!-- <link rel="stylesheet" href="styles.css" /> -->
 </head>
 <body>
-    <canvas id="main"></canvas>
+    <div id="canvas-div" style="position:absolute; top: 0px; left:0px;">
+        <canvas id="main"></canvas>
+    </div>
     <script src="main.js"></script>
 </body>
 </html>

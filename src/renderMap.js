@@ -15,7 +15,7 @@ const renderMap = (env) => {
       drawTile = map[i][j];
       fillColor = rectShadowColors[drawTile];
 
-      if (i === 1 && j === 0) {tileElevation = 50; fillColor = 'red'; } else { tileElevation = 100; fillColor = rectShadowColors[drawTile]; }
+      if (i === 0 && j === 0) {tileElevation = 50; fillColor = 'red'; } else { tileElevation = 100; fillColor = rectShadowColors[drawTile]; }
 
       // two modes are possible, image-based, or rects
       if (mode === 'images') {

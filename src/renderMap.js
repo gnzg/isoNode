@@ -3,8 +3,12 @@ const renderMap = (env) => {
   let strokeStyle = '#333';
   let enableStroke = true;
   let { tileGraphics, map, tileW, tileH, mapX, mapY, ctx, mode, rectColors, rectShadowColors } = env;
-  let tileElevation = 100;
+  let tileYheight = 4;
+  let tileYoffset = 0;
   let fillColor;
+  let outlineWidth = 1;
+
+  // TODO: Add prevalance of elevated tiles if they rise above other tiles
 
   // clear entire canvas
   ctx.clearRect(-1000, -1000,  4000,  4000);
@@ -15,7 +19,7 @@ const renderMap = (env) => {
       drawTile = map[i][j];
       fillColor = rectShadowColors[drawTile];
 
-      if (i === 0 && j === 0) {tileElevation = 50; fillColor = 'red'; } else { tileElevation = 100; fillColor = rectShadowColors[drawTile]; }
+      if (i === 0 && j === 0) {tileYoffset = env.tileH + 4; fillColor = 'red'; } else { tileYoffset = 0; fillColor = rectShadowColors[drawTile]; }
 
       // two modes are possible, image-based, or rects
       if (mode === 'images') {
@@ -26,17 +30,25 @@ const renderMap = (env) => {
 
         // draw all three visible sides of the rect aspect
 
-
         // right
         ctx.globalCompositeOperation = 'source-over';
-        ctx.setTransform(1, -0.5, 0, 1, mapX+243, mapY-105);
+        ctx.setTransform(1, -0.5, 0, 1, mapX+244, mapY-105);
         ctx.beginPath();
-        ctx.lineWidth="1";
+        ctx.lineWidth=outlineWidth;
         ctx.strokeStyle= strokeStyle;
         ctx.fillStyle= fillColor;
-        ctx.rect(mapX + (j + i) * tileW, mapY + i * tileW, tileW, tileH+tileElevation);
+        ctx.rect( mapX + (j + i) * tileW,
+                  mapY + i * tileW-tileYoffset,
+                  tileW,
+                  tileH+tileYheight
+                  );
         enableStroke && ctx.stroke();
-        ctx.fillRect(mapX + (j + i) * tileW, mapY + i * tileW, tileW, tileH+tileElevation);
+        // fill
+        ctx.fillRect(mapX + (j + i) * tileW,
+                    mapY + i * tileW-tileYoffset,
+                    tileW,
+                    tileH+tileYheight
+                    );
 
         // left
         // was the previous element an empty tile? if so, change z-index of left side of current tile
@@ -45,29 +57,43 @@ const renderMap = (env) => {
         j === 0 ? ctx.globalCompositeOperation = 'source-over' : '';
         ctx.setTransform(1, 0.5, 0, 1, mapX+220, mapY-93);
         ctx.beginPath();
-        ctx.lineWidth="1";
+        ctx.lineWidth=outlineWidth;
         ctx.strokeStyle= strokeStyle;
         ctx.fillStyle= fillColor;
         // if we only care about first element of each row, set a conditional to j===0
-        ctx.rect(mapX + (j + i) * tileW, mapY - j * tileW - mapX - tileW, tileW, tileH+tileElevation);
+        // draw outlines
+        ctx.rect( mapX + (j + i) * tileW,
+                  mapY - j * tileW - mapX - tileW-tileYoffset,
+                  tileW,
+                  tileH+tileYheight
+                );
         enableStroke && ctx.stroke();
-        ctx.fillRect(mapX + (j + i) * tileW, mapY - j * tileW - mapX - tileW, tileW, tileH+tileElevation);
-
+        // fill 
+        ctx.fillRect(mapX + (j + i) * tileW,
+                    mapY - j * tileW - mapX - tileW-tileYoffset,
+                    tileW, tileH+tileYheight
+                    );
         // top
         ctx.globalCompositeOperation = 'source-over';
         ctx.setTransform(1, -0.5, 1, 0.5, mapX+198, mapY+8);
         ctx.beginPath();
-        ctx.lineWidth="1";
+        ctx.lineWidth=outlineWidth;
         ctx.strokeStyle= strokeStyle;
         // return corresponding top color based on position of fillColor in rectShadowColors[]
         ctx.fillStyle= rectColors[rectShadowColors.indexOf(fillColor)];
-        ctx.rect(mapX + j * tileW + tileW - mapY + 4.665*tileW,
-          mapY + i * tileW - 4.725*tileW,
-          tileW, tileH);
+        // draw outlines        
+        ctx.rect(mapX + j * tileW + tileW - mapY + 4.665*tileW+tileYoffset,
+                 mapY + i * tileW - 4.725*tileW-tileYoffset,
+                 tileW,
+                 tileH
+                );
         enableStroke && ctx.stroke();
-        ctx.fillRect(mapX + j * tileW + tileW - mapY + 4.665*tileW,
-                     mapY + i * tileW - 4.725*tileW,
-                     tileW, tileH);
+        // fill
+        ctx.fillRect(mapX + j * tileW + tileW - mapY + 4.665*tileW+tileYoffset,
+                     mapY + i * tileW - 4.725*tileW-tileYoffset,
+                     tileW,
+                     tileH
+                    );
         // debugger;
       }
     }

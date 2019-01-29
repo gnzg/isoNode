@@ -3,5 +3,6 @@ IsoNode is based roughly on jsISO but made to be much more configurable and adap
 
 ![isoNode](https://github.com/gnzg/isoNode/blob/master/example.png?raw=true)
 
-#[Run isoNode]
+# Run isoNode #
+
 To run isoNode simply do 'npm run build' and 'npm run start' 

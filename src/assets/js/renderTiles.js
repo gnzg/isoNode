@@ -19,7 +19,7 @@ const renderMap = (env) => {
       drawTile = map[i][j];
       fillColor = rectShadowColors[drawTile];
 
-      if (i === 0 && j === 0) {tileYoffset = env.tileH + 4; fillColor = 'red'; } else { tileYoffset = 0; fillColor = rectShadowColors[drawTile]; }
+      if (i === 0 && j === 0) {tileYoffset = env.tileH + 4; fillColor = 'red'; tileYheight=32; } else { tileYheight= 4; tileYoffset = 0; fillColor = rectShadowColors[drawTile]; }
 
       // two modes are possible, image-based, or rects
       if (mode === 'images') {

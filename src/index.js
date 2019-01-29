@@ -13,15 +13,15 @@ let env = {
   map: map,
   rectColors: [
     'empty',
-    '#336699',
-    '#006600',
+    '#096dff',
+    '#8dee03',
     '#29a36e',
     'salmon'
   ],
   rectShadowColors: [
     'empty',
-    '#23476b',
-    '#004100',
+    '#0d49a9',
+    '#04b807',
     '#1c6e4a',
     'red'
   ],

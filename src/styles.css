@@ -1,0 +1,8 @@
+body {
+    position:absolute;
+    padding: 0;
+    margin: 0;
+    background: #8f8f8f;
+    background-image: linear-gradient(to bottom right, blue, purple);
+    overflow: hidden;
+}

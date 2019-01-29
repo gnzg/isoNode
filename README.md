@@ -10,4 +10,4 @@ tileYoffset - determines position of tile along the y-axis
 
 
 ![Run isoNode]
-To run isoNode simply do 'npm run start' 
+To run isoNode simply do 'npm run build' and 'npm run start' 

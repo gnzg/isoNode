@@ -18,20 +18,20 @@ const renderMap = (env) => {
   // loop through our map and draw out the image represented by the number.
   // iterator k draws the map across the y axis
   for (let k = 0; k < 9; k++) { 
-    /*if (k === 0) {
+    if (k === 0) {
       tempMap = waterWorld;
-    } else if (k === 1) {*/
+    } else if (k === 1) {
           tempMap = map;
-    /*} 
+    } 
       else {
         tempMap = [];
-      }*/
-      tileYoffset = 24*k;
+      }
+      tileYoffset = 28*k;
       // iterator i draws a row across the z axis
-      for (let i = 0; i < map[i].length; i++) {
+      for (let i = 0; i < tempMap.length; i++) {
         // iterator j draws a row across the x axis
         // map[i].length
-        for (let j = 0; j < map[i].length; j++) {
+        for (let j = 0; j < tempMap[i].length; j++) {
           drawTile = tempMap[i][j];
           fillColor = rectShadowColors[drawTile];
           
@@ -94,7 +94,7 @@ const renderMap = (env) => {
             );
             
             // left
-            if (j === 0 || map[i][j-1] === 0) {
+            if (j === 0 || tempMap[i][j-1] === 0) {
               ctx.globalCompositeOperation = 'source-over';
             } else {
               ctx.globalCompositeOperation = 'destination-over';

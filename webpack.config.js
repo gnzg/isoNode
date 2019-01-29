@@ -17,12 +17,14 @@ module.exports = {
         },
       },
       {
-        test: /\.(sa|sc|c)ss$/,
-        use: [
-          { loader: 'css-loader' },
-          { loader: 'postcss-loader' },
-          { loader: 'sass-loader' }
-        ],
+        test: /\.scss$/,
+        use:  [ 
+          'style-loader',
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'postcss-loader',
+          'sass-loader'
+        ]
       },
       {
         test: /\.html$/,
@@ -46,12 +48,11 @@ module.exports = {
       filename: "./index.html"
     }),
     new webpack.HotModuleReplacementPlugin(),
-    new MiniCssExtractPlugin({
-      filename: devMode ? '[name].css' : '[name].[hash].css',
-      chunkFilename: devMode ? '[id].css' : '[id].[hash].css'
-    }),
     new CopyWebpackPlugin([
       {from:'src/assets/images',to:'images'}
-    ])
+    ]),
+    new MiniCssExtractPlugin({
+      filename: 'style.[contenthash].css',
+    }),
   ]
 };

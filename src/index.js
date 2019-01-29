@@ -1,5 +1,6 @@
 import drawMap from './assets/js/drawMap';
 import { map, tileElevation } from './assets/js/map';
+import './styles.scss';
 
 let centerCanvas = () => {
   let centered = 0;

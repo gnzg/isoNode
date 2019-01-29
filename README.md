@@ -1,13 +1,13 @@
 ### IsoNode ###
-A Node.js tweaked-up port of isoJS, a project dedicated to bringing sleek isometric graphics to your browser of choice.
+IsoNode is based roughly on jsISO but made to be much more configurable and adapted to a more timely development framework with npm hot-reloading, and webpack 4. 
 
-![isoNode in action](https://github.com/gnzg/isoNode/blob/master/example.png?raw=true "isoNode in action")
+[isoNode in action](https://github.com/gnzg/isoNode/blob/master/example.png?raw=true "isoNode in action")
 
 
-![Tile parameters]
+[Tile parameters]
 tileYsize - determines size of tile along the y-axis
 tileYoffset - determines position of tile along the y-axis
 
 
-![Run isoNode]
+[Run isoNode]
 To run isoNode simply do 'npm run build' and 'npm run start' 

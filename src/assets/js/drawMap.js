@@ -1,6 +1,4 @@
-import renderMap from './renderMap';
-
-// load images and pass array of images down to renderImageMap
+import renderTiles from './renderTiles';
 
 const drawMap = (env) => {
   let { tileGraphicsToLoad, map, ctx, mapY } = env;
@@ -14,14 +12,13 @@ const drawMap = (env) => {
       //console.log('loaded asset');
       // Once the image is loaded increment the loaded graphics count and check if all images are ready.
       tileGraphicsLoaded++;
-
       // if done loading
       if (tileGraphicsLoaded === tileGraphicsToLoad.length) {
         //setInterval(()=>{
          // mapY += 48;
           //console.log(mapY);
           //if (mapY >= 1500) mapY=0;
-          renderMap({tileGraphics, ...env, mapY});
+          renderTiles({tileGraphics, ...env, mapY});
           //console.log('asdasd');
        // }, 200);
       }

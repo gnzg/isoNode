@@ -1,54 +1,15 @@
-import drawMap from './drawMap';
+import drawMap from './assets/js/drawMap';
+import { map, tileElevation } from './assets/js/map';
 
 let centerCanvas = () => {
   let centered = 0;
-  centered = -Math.sqrt(Math.pow(env.tileH, 2)*Math.pow(env.tileH, 2))/2+window.innerWidth/4; // -96 was ok
+  centered = -Math.sqrt(Math.pow(env.tileH, 2)*Math.pow(env.tileH, 2))/2+window.innerWidth/4;
   return centered;
 };
 
-window.addEventListener("DOMContentLoaded", function(event) {
-  //alert(Math.sqrt(Math.pow(env.tileH, 2)*Math.pow(env.tileH, 2))/4);
-  let centeredCanvasContent = centerCanvas();
-  //alert(centeredCanvasContent);
-  document.querySelector("#canvas-div").setAttribute("style", `position: absolute; left:0px; top:0px; width:${window.innerWidth}px`);
-  env.mapX = centeredCanvasContent;
-  drawMap(env);
-
-  window.addEventListener("resize", function(event) {
-    if (document.readyState === "complete" || document.readyState === "loaded") {
-      document.querySelector("#canvas-div").setAttribute("style", `position: absolute; left:0px; top:0px; width:${window.innerWidth}px`);
-      env.mapX = centerCanvas();
-      console.log(env.mapX);
-      // draw map
-      drawMap(env);
-    }
-  });
-});
-
-
-
-// Create the isometric scope.
-// Tutorial Note: Wrapping all our code within a function this way means all
-// our variables and functions don't become globals. This prevents conflicts if you're using other scripts.
 let env = {
-  // Two Dimensional Array storing our isometric map layout. Each number represents a tile.
-  map: [
-    [1, 0, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0],
-    [1, 1, 0, 1, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0],
-    [0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 0],
-    [0, 1, 1, 1, 0, 2, 2, 2, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-    [0, 1, 0, 2, 0, 2, 2, 2, 1, 1, 2, 2, 2, 0, 1, 1, 1, 1, 1, 1],
-    [0, 0, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1],
-    [0, 1, 1, 1, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1],
-    [0, 1, 1, 1, 1, 2, 2, 2, 1, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1],
-    [1, 1, 1, 1, 1, 2, 2, 2, 1, 1, 1, 2, 1, 0, 1, 1, 1, 1, 1, 1],
-    [2, 1, 1, 1, 2, 2, 2, 2, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1],
-    [0, 0, 1, 2, 2, 2, 2, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1],
-    [0, 1, 1, 1, 2, 2, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0],
-    [0, 1, 1, 1, 1, 2, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0],
-    [0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1, 1, 0, 1, 0, 0],
-    [0, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 1]
-  ],
+  // The isometric map. Each item represents a row, each number in a row a tile.
+  map: map,
   rectColors: [
     'empty',
     '#336699',
@@ -58,7 +19,7 @@ let env = {
   ],
   rectShadowColors: [
     'empty',
-    '#274d74',
+    '#23476b',
     '#004100',
     '#1c6e4a',
     'red'
@@ -86,7 +47,24 @@ canvas.height = window.innerHeight;
 // create the 2d canvas context
 let ctx = canvas.getContext('2d');
 
-
 // add canvas object to env to use it within drawMap
 env.ctx = ctx;
 
+window.addEventListener("DOMContentLoaded", function(event) {
+  //alert(Math.sqrt(Math.pow(env.tileH, 2)*Math.pow(env.tileH, 2))/4);
+  let centeredCanvasContent = centerCanvas();
+  //alert(centeredCanvasContent);
+  document.querySelector("#canvas-div").setAttribute("style", `position: absolute; left:0px; top:0px; width:${window.innerWidth}px`);
+  env.mapX = centeredCanvasContent;
+  drawMap(env);
+
+  window.addEventListener("resize", function(event) {
+    if (document.readyState === "complete" || document.readyState === "loaded") {
+      document.querySelector("#canvas-div").setAttribute("style", `position: absolute; left:0px; top:0px; width:${window.innerWidth}px`);
+      env.mapX = centerCanvas();
+      console.log(env.mapX);
+      // draw map
+      drawMap(env);
+    }
+  });
+});

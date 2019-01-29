@@ -3,7 +3,7 @@ const renderMap = (env) => {
   let drawTile;
   let strokeStyle = '#333';
   let enableStroke = true;
-  let { tileGraphics, map, waterWorld, tileYHeightMap, tileW, tileH, mapX, mapY, ctx, mode, rectColors, rectShadowColors } = env;
+  let { tileGraphics, map, waterWorld, tileW, tileH, mapX, mapY, ctx, mode, rectColors, rectShadowColors } = env;
   let tileYheight = 4;
   let tileYoffset = 0;
   let fillColor;

@@ -1,5 +1,5 @@
 import drawMap from './assets/js/drawMap';
-import { map, tileYHeightMap, waterWorld } from './assets/js/map';
+import { map, waterWorld } from './assets/js/map';
 import './assets/scss/styles.scss';
 
 let centerCanvas = () => {
@@ -11,7 +11,6 @@ let centerCanvas = () => {
 let env = {
   // The isometric map. Each item represents a row, each number in a row a tile.
   map: map,
-  tileYHeightMap: tileYHeightMap,
   waterWorld: waterWorld,
   rectColors: [
     'empty',

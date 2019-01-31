@@ -14,8 +14,8 @@ export default class Tile {
         this.waterWorld = waterWorld;
         this.rectColors = rectColors;
         this.fillColor = 'white';
-        this.outlineWidth = 1;
-        this.strokeStyle = '#333';
+        this.outlineWidth = 0.5;
+        this.strokeStyle = '#666';
         this.enableStroke = true;
         this.tileYheight = 4;
         this.map = map;
@@ -33,7 +33,7 @@ export default class Tile {
         // if tile is non-zero, draw it
         if (this.tempMap.length > 0 && this.tempMap[this.i][this.j] !== 0) {
 
-            this.tileYoffset = 48 * this.k;
+            this.tileYoffset = 52 * this.k;
             //alert(this.tempMap[0]);
             this.fillColor = this.rectShadowColors[this.tempMap[this.i][this.j]];
             // top

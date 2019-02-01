@@ -1,4 +1,4 @@
-import drawMap from './assets/js/drawMap';
+import renderTiles from './assets/js/renderTiles';
 import { map, waterWorld } from './assets/js/map';
 import './assets/scss/styles.scss';
 
@@ -53,20 +53,32 @@ let ctx = canvas.getContext('2d');
 env.ctx = ctx;
 
 window.addEventListener("DOMContentLoaded", function(event) {
-  //alert(Math.sqrt(Math.pow(env.tileH, 2)*Math.pow(env.tileH, 2))/4);
   let centeredCanvasContent = centerCanvas();
   //alert(centeredCanvasContent);
   document.querySelector("#canvas-div").setAttribute("style", `position: absolute; left:0px; top:0px; width:${window.innerWidth}px`);
   env.mapX = centeredCanvasContent;
-  drawMap(env);
+  renderTiles(env);
+});
+window.addEventListener("resize", function(event) {
+  if (document.readyState === "complete" || document.readyState === "loaded") {
+    document.querySelector("#canvas-div").setAttribute("style", `position: absolute; left:0px; top:0px; width:${window.innerWidth}px`);
+    env.mapX = centerCanvas();
+    console.log(env.mapX);
+    // draw map
+    renderTiles(env);
+  }
+});
+canvas.addEventListener('mousemove', e => {
+  //get position of canvas relative to body
+  let canvasBounds = canvas.getBoundingClientRect();
+  let mousePosX = e.pageX - canvasBounds.left;
+  let mousePosY = e.pageY - canvasBounds.top;
 
-  window.addEventListener("resize", function(event) {
-    if (document.readyState === "complete" || document.readyState === "loaded") {
-      document.querySelector("#canvas-div").setAttribute("style", `position: absolute; left:0px; top:0px; width:${window.innerWidth}px`);
-      env.mapX = centerCanvas();
-      console.log(env.mapX);
-      // draw map
-      drawMap(env);
-    }
-  });
+// hit logic goes here
+// a hit causes a change in the map array
+// update map array
+
+// draw new tile map based on updated map array
+  env.map[1][5] = 2;
+  renderTiles(env);
 });

@@ -6,3 +6,7 @@ IsoNode is based roughly on jsISO but made to be much more configurable and adap
 ### Run isoNode ###
 
 To run isoNode simply do 'npm run build' and 'npm run start' 
+
+### License ###
+
+isoNode is licensed under GNU AGPLv3.

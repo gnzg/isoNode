@@ -102,5 +102,8 @@ export default class Tile {
             this.tileW, this.tileW+this.tileYheight
             );
         } 
+    } // end of Tile.prototype.draw
+    isHit(x,y) {
+        return (x >= this.x && x <= this.x + this.width && y >= this.y && y <= this.y + this.height);
     }
 }

@@ -16,7 +16,7 @@ export default class Tile {
         this.fillColor = 'white';
         this.outlineWidth = 0.5;
         this.strokeStyle = '#666';
-        this.enableStroke = false;
+        this.enableStroke = true;
         this.tileYheight = 4;
         this.map = map;
         this.tempMap = [];

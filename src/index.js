@@ -73,6 +73,7 @@ canvas.addEventListener('mousemove', e => {
   let canvasBounds = canvas.getBoundingClientRect();
   let mousePosX = e.pageX - canvasBounds.left;
   let mousePosY = e.pageY - canvasBounds.top;
+  console.log('mousePosX',mousePosX, 'mousePosY', mousePosY);
 
 // hit logic goes here
 // a hit causes a change in the map array

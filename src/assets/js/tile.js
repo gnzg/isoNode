@@ -16,7 +16,7 @@ export default class Tile {
         this.fillColor = 'white';
         this.outlineWidth = 0.5;
         this.strokeStyle = '#666';
-        this.enableStroke = true;
+        this.enableStroke = false;
         this.tileYheight = 4;
         this.map = map;
         this.tempMap = [];
@@ -45,22 +45,26 @@ export default class Tile {
             // return corresponding top color based on position of fillColor in rectShadowColors[]
             ctx.fillStyle= this.rectColors[this.rectShadowColors.indexOf(this.fillColor)];
             // draw outlines        
-            ctx.rect(this.mapX + this.j * this.tileW + this.tileW - this.mapY + 4.665*this.tileW+this.tileYoffset,
-                this.mapY + this.i * this.tileW - 4.725*this.tileW-this.tileYoffset,
+            ctx.rect(this.mapX + this.j * this.tileW + this.tileW - this.mapY +this.tileYoffset,
+                this.mapY + this.i * this.tileW - this.tileYoffset,
                 this.tileW,
                 this.tileW
             );
             this.enableStroke && ctx.stroke();
             // fill
-            ctx.fillRect(this.mapX + this.j * this.tileW + this.tileW - this.mapY + 4.665*this.tileW+this.tileYoffset,
-                this.mapY + this.i * this.tileW - 4.725*this.tileW-this.tileYoffset,
+            ctx.fillRect(this.mapX + this.j * this.tileW + this.tileW - this.mapY +this.tileYoffset,
+                this.mapY + this.i * this.tileW - this.tileYoffset,
                 this.tileW,
                 this.tileW
             );
-                 
+            this.k === 0 && this.i === 0 && this.j === 5 && console.log(
+                'x', this.mapX + this.j * this.tileW + this.tileW - this.mapY +this.tileYoffset,
+                'y', this.mapY + this.i * this.tileW - this.tileYoffset
+                );
+            
             // right
             ctx.globalCompositeOperation = 'source-over';
-            ctx.setTransform(1, -0.5, 0, 1, this.mapX+236, this.mapY-113);
+            ctx.setTransform(1, -0.5, 0, 1, this.mapX+238, this.mapY);
             ctx.beginPath();
             ctx.lineWidth=this.outlineWidth;
             ctx.strokeStyle= this.strokeStyle;
@@ -77,14 +81,14 @@ export default class Tile {
             this.tileW,
             this.tileW+this.tileYheight
             );
-      
+            
             // left
             if (this.j === 0 || this.tempMap[this.i][this.j-1] === 0) {
                 ctx.globalCompositeOperation = 'source-over';
             } else {
                 ctx.globalCompositeOperation = 'destination-over';
             }
-            ctx.setTransform(1, 0.5, 0, 1, this.mapX+212, this.mapY-101);
+            ctx.setTransform(1, 0.5, 0, 1, this.mapX+214, this.mapY+12);
             ctx.beginPath();
             ctx.lineWidth=this.outlineWidth;
             ctx.strokeStyle= this.strokeStyle;
@@ -101,6 +105,7 @@ export default class Tile {
             this.mapY - this.j * this.tileW - this.mapX - this.tileW-this.tileYoffset,
             this.tileW, this.tileW+this.tileYheight
             );
+            
         } 
     } // end of Tile.prototype.draw
     isHit(x,y) {

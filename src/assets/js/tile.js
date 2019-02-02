@@ -55,10 +55,10 @@ export default class Tile {
             // left
             ctx.globalCompositeOperation = 'destination-over';
             ctx.beginPath();
-            ctx.moveTo(this.tileW*this.i+this.mapX+this.tileW*this.j, this.mapY-this.tileW*this.j*0.5+this.tileW*this.i+this.tileW*1.5);
-            ctx.lineTo(this.tileW*this.i+this.mapX+this.tileW*this.j, this.mapY-this.tileW*this.j*0.5+this.tileW*this.i+this.tileW+this.tileW*1.75);
-            ctx.lineTo(this.tileW*this.i+this.mapX+this.tileW*this.j+this.tileW, this.mapY-this.tileW*this.j*0.5+this.tileW*this.i+this.tileW+this.tileW*1.75+this.tileW*0.5);
-            ctx.lineTo(this.tileW*this.i+this.mapX+this.tileW*this.j+this.tileW, this.mapY-this.tileW*this.j*0.5+this.tileW*this.i+this.tileW*1.5+this.tileW*0.5);
+            ctx.moveTo(this.tileW*this.i+this.mapX+this.tileW*this.j, this.mapY-this.tileW*this.j*0.5+this.tileW*this.i+this.tileW*1.5-this.i*this.tileW*0.5);
+            ctx.lineTo(this.tileW*this.i+this.mapX+this.tileW*this.j, this.mapY-this.tileW*this.j*0.5+this.tileW*this.i+this.tileW+this.tileW*1.75-this.i*this.tileW*0.5);
+            ctx.lineTo(this.tileW*this.i+this.mapX+this.tileW*this.j+this.tileW, this.mapY-this.tileW*this.j*0.5+this.tileW*this.i+this.tileW+this.tileW*1.75+this.tileW*0.5-this.i*this.tileW*0.5);
+            ctx.lineTo(this.tileW*this.i+this.mapX+this.tileW*this.j+this.tileW, this.mapY-this.tileW*this.j*0.5+this.tileW*this.i+this.tileW*1.5+this.tileW*0.5-this.i*this.tileW*0.5);
             ctx.closePath();  
             ctx.fillStyle= this.fillColor;
             ctx.fill();

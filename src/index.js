@@ -60,12 +60,13 @@ window.addEventListener("DOMContentLoaded", function(event) {
   renderTiles(env);
 });
 window.addEventListener("resize", function(event) {
-  if (document.readyState === "complete" || document.readyState === "loaded") {
+  // TODO
+  /*if (document.readyState === "complete" || document.readyState === "loaded") {
     document.querySelector("#canvas-div").setAttribute("style", `position: absolute; left:0px; top:0px; width:${window.innerWidth}px`);
     env.mapX = centerCanvas();
     // draw map
     renderTiles(env);
-  }
+  }*/
 });
 canvas.addEventListener('click', e => {
   //get position of canvas relative to body

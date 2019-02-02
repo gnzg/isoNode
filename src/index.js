@@ -38,7 +38,7 @@ let env = {
   tileW: 24,
 
   // mapX and mapY are offsets to make sure we can position the map as we want.
-  mapX: 100,
+  mapX: 300,
   mapY: 350
 };
 
@@ -68,7 +68,11 @@ window.addEventListener("resize", function(event) {
     renderTiles(env);
   }*/
 });
+let stillRunning = false;
 canvas.addEventListener('click', e => {
+  if (stillRunning) return;
+
+  stillRunning = true;
   //get position of canvas relative to body
   let canvasBounds = canvas.getBoundingClientRect();
   let mousePosX = e.pageX - canvasBounds.left;
@@ -81,6 +85,15 @@ canvas.addEventListener('click', e => {
 
 // draw new tile map based on updated map array
   //env.map[1][5] = 2;
-
-  //renderTiles(env);
+  let x = 100;
+  let interval = setInterval(() => {
+    console.log(x);
+    x = x*0.98; 
+    env.tileW = 24*x/100;
+    renderTiles(env);
+    if (x <20) {
+      clearInterval(interval);
+      stillRunning = false;
+    }
+  },20);
 });

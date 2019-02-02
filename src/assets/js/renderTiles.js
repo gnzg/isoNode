@@ -8,13 +8,14 @@ const renderMap = (env) => {
   // clear entire canvas
   ctx.clearRect(-1000, -1000,  4000,  4000);
   
+
   // loop through our map and draw out the image represented by the number.
   // iterator k draws the map across the y axis
-  for (let k = 0; k < 9; k++) { 
+  for (let k = 0; k < 1; k++) { 
       // iterator i draws a row across the z axis
-      for (let i = 0; i < map.length; i++) {
+      for (let i = 0; i < 1; i++) { //map.length
         // iterator j draws a row across the x axis
-        for (let j = 0; j < map[i].length; j++) {
+        for (let j = 0; j < 4 ; j++) { // map[i].length
             // draw all three visible sides of the rect aspect
             
             let mapTile = new Tile({
@@ -27,11 +28,11 @@ const renderMap = (env) => {
               map:map,
               rectColors:rectColors,
               rectShadowColors:rectShadowColors,
-              waterWorld:waterWorld
+              waterWorld:waterWorld,
             });
 
             mapTile.draw(ctx);
-            
+
         }
       }
     };

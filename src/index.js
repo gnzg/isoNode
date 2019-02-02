@@ -39,7 +39,7 @@ let env = {
 
   // mapX and mapY are offsets to make sure we can position the map as we want.
   mapX: 0,
-  mapY: 300,
+  mapY: 250
 };
 
 // set size of canvas
@@ -63,23 +63,23 @@ window.addEventListener("resize", function(event) {
   if (document.readyState === "complete" || document.readyState === "loaded") {
     document.querySelector("#canvas-div").setAttribute("style", `position: absolute; left:0px; top:0px; width:${window.innerWidth}px`);
     env.mapX = centerCanvas();
-    console.log(env.mapX);
     // draw map
     renderTiles(env);
   }
 });
-canvas.addEventListener('mousemove', e => {
+canvas.addEventListener('click', e => {
   //get position of canvas relative to body
   let canvasBounds = canvas.getBoundingClientRect();
   let mousePosX = e.pageX - canvasBounds.left;
   let mousePosY = e.pageY - canvasBounds.top;
   console.log('mousePosX',mousePosX, 'mousePosY', mousePosY);
-
+// TODO
 // hit logic goes here
 // a hit causes a change in the map array
 // update map array
 
 // draw new tile map based on updated map array
-  env.map[1][5] = 2;
-  renderTiles(env);
+  //env.map[1][5] = 2;
+
+  //renderTiles(env);
 });

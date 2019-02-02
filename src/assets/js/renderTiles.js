@@ -11,7 +11,7 @@ const renderMap = (env) => {
 
   // loop through our map and draw out the image represented by the number.
   // iterator k draws the map across the y axis
-  for (let k = 0; k < 1; k++) { 
+  for (let k = 0; k < 9; k++) { 
       // iterator i draws a row across the z axis
       for (let i = 0; i < map.length; i++) { //map.length
         // iterator j draws a row across the x axis

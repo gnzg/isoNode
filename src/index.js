@@ -38,8 +38,8 @@ let env = {
   tileW: 24,
 
   // mapX and mapY are offsets to make sure we can position the map as we want.
-  mapX: 0,
-  mapY: 250
+  mapX: 100,
+  mapY: 350
 };
 
 // set size of canvas

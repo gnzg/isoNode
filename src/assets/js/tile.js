@@ -48,10 +48,10 @@ export default class Tile {
             ctx.lineTo(this.tileW*this.i+this.tileW+this.mapX+this.tileW*this.j, this.tileW*2+this.mapY-this.tileW*this.j*0.5+this.tileW*this.i*0.5);
             ctx.lineTo(this.tileW*this.i+this.tileW-this.tileW+this.mapX+this.tileW*this.j, this.tileW*1.5+this.mapY-this.tileW*this.j*0.5+this.tileW*this.i*0.5);
             ctx.closePath();
-            
             // return corresponding top color based on position of fillColor in rectShadowColors[]
             ctx.fillStyle= this.rectColors[this.rectShadowColors.indexOf(this.fillColor)];
             ctx.fill();
+
             // left
             ctx.globalCompositeOperation = 'destination-over';
             ctx.beginPath();
@@ -62,7 +62,7 @@ export default class Tile {
             ctx.closePath();  
             ctx.fillStyle= this.fillColor;
             ctx.fill();
-           /*
+
             // right
             if (this.j === 0 || this.tempMap[this.i][this.j-1] === 0) {
                 ctx.globalCompositeOperation = 'destination-over';
@@ -70,14 +70,14 @@ export default class Tile {
                 ctx.globalCompositeOperation = 'source-over';
             }
             ctx.beginPath();
-            ctx.moveTo(this.tileW*this.i+this.tileW+this.mapX+this.tileW*this.j+this.tileW, this.mapX + this.tileW*this.j + this.tileW*this.j);
-            ctx.lineTo(this.tileW*this.i+this.tileW+this.mapX+this.tileW*this.j+this.tileW, this.mapY+this.tileW*this.i);
-            ctx.lineTo(this.tileW*this.i+this.tileW+this.mapX+this.tileW*this.j-this.tileW + this.tileW, this.mapY+this.tileW*this.i+this.tileW*0.5);
-            ctx.lineTo(this.tileW*this.i+this.tileW+this.mapX+this.tileW*this.j-this.tileW + this.tileW, this.mapX + this.tileW*this.j + this.tileW*this.j+this.tileW*0.5);
+            ctx.moveTo(this.tileW*this.i+this.mapX+this.tileW*this.j+this.tileW*2, this.mapY-this.tileW*this.j*0.5+this.tileW*this.i+this.tileW*1.5-this.i*this.tileW*0.5);
+            ctx.lineTo(this.tileW*this.i+this.mapX+this.tileW*this.j+this.tileW*2, this.mapY-this.tileW*this.j*0.5+this.tileW*this.i+this.tileW+this.tileW*1.75-this.i*this.tileW*0.5);
+            ctx.lineTo(this.tileW*this.i+this.mapX+this.tileW*this.j+this.tileW, this.mapY-this.tileW*this.j*0.5+this.tileW*this.i+this.tileW+this.tileW*1.75+this.tileW*0.5-this.i*this.tileW*0.5);
+            ctx.lineTo(this.tileW*this.i+this.mapX+this.tileW*this.j+this.tileW, this.mapY-this.tileW*this.j*0.5+this.tileW*this.i+this.tileW*1.5+this.tileW*0.5-this.i*this.tileW*0.5);
             ctx.closePath(); 
             ctx.fillStyle= this.fillColor;
             ctx.fill();
-            */
+            
         } 
     } // end of Tile.prototype.draw
     /* isHit(event) {

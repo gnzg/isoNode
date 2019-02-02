@@ -15,7 +15,7 @@ const renderMap = (env) => {
       // iterator i draws a row across the z axis
       for (let i = 0; i < 1; i++) { //map.length
         // iterator j draws a row across the x axis
-        for (let j = 0; j < 4 ; j++) { // map[i].length
+        for (let j = 0; j < map[i].length ; j++) { // map[i].length
             // draw all three visible sides of the rect aspect
             
             let mapTile = new Tile({

@@ -44,10 +44,10 @@ export default class Tile {
             ctx.globalCompositeOperation = 'source-over';
             //ctx.setTransform(1, -0.5, 1, 0.5, this.mapX+190, this.mapY);
             ctx.beginPath();
-            ctx.moveTo(this.tileW+this.mapX+this.tileW*this.j, this.tileW+this.mapY-this.tileW*this.j*0.5);
-            ctx.lineTo(this.tileW*2+this.mapX+this.tileW*this.j, this.tileW*1.5+this.mapY-this.tileW*this.j*0.5);
-            ctx.lineTo(this.tileW+this.mapX+this.tileW*this.j, this.tileW*2+this.mapY-this.tileW*this.j*0.5);
-            ctx.lineTo(this.tileW-this.tileW+this.mapX+this.tileW*this.j, this.tileW*1.5+this.mapY-this.tileW*this.j*0.5);
+            ctx.moveTo(this.tileW*this.i+this.tileW+this.mapX+this.tileW*this.j, this.tileW+this.mapY-this.tileW*this.j*0.5+this.tileW*this.i*0.5);
+            ctx.lineTo(this.tileW*this.i+this.tileW*2+this.mapX+this.tileW*this.j, this.tileW*1.5+this.mapY-this.tileW*this.j*0.5+this.tileW*this.i*0.5);
+            ctx.lineTo(this.tileW*this.i+this.tileW+this.mapX+this.tileW*this.j, this.tileW*2+this.mapY-this.tileW*this.j*0.5+this.tileW*this.i*0.5);
+            ctx.lineTo(this.tileW*this.i+this.tileW-this.tileW+this.mapX+this.tileW*this.j, this.tileW*1.5+this.mapY-this.tileW*this.j*0.5+this.tileW*this.i*0.5);
             ctx.closePath();
             
             ctx.lineWidth=this.outlineWidth;

@@ -48,11 +48,11 @@ export default class Tile {
             this.topYsegment = this.c + this.topYfactor - this.tileYoffset;
             this.fillColor = this.rectShadowColors[this.tempMap[this.i][this.j]];
 
-            if (this.k === 1 && this.i === 4 && this.j === 3) {
-                ctx.fillStyle= '#FF14AE';
-            } else {
+            // if (this.k === 1 && this.i === 4 && this.j === 3) {
+            //     ctx.fillStyle= '#FF14AE';
+            // } else {
                 ctx.fillStyle= this.rectColors[this.rectShadowColors.indexOf(this.fillColor)];
-            }
+            //}
             
             // top
             ctx.globalCompositeOperation = 'source-over';

@@ -30,6 +30,6 @@ export let floatText = (ctx,text) => {
       ctx.fillText(text, 25, 35);
       fade-=0.1;  
       if (fade <= 0) clearInterval(timeOut);
-    },100);
+    },25);
   },2000);
 };

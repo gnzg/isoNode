@@ -40,8 +40,6 @@ let env = {
 
 // set size of canvas
 let canvas = document.getElementById('main');
-canvas.width = env.winWidth = window.innerWidth;
-canvas.height = env.winHeight = window.innerHeight;
 // create the 2d canvas context
 let ctx = canvas.getContext('2d');
 
@@ -49,10 +47,14 @@ let ctx = canvas.getContext('2d');
 env.ctx = ctx;
 
 window.addEventListener("DOMContentLoaded", function(event) {
+  canvas.width = env.winWidth = window.innerWidth;
+  canvas.height = env.winHeight = window.innerHeight;
   env.mapX = centerCanvas(env);
   renderTiles(env);
 });
 window.addEventListener("resize", function(event) {
+  canvas.width = env.winWidth = window.innerWidth;
+  canvas.height = env.winHeight = window.innerHeight;
   env.mapX = centerCanvas(env);
   renderTiles(env);
 });

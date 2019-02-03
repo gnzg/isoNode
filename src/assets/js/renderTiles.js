@@ -1,7 +1,7 @@
 import Tile from './tile';
 
 const renderMap = (env) => {
-
+  
   let { tileGraphics, map, waterWorld, tileW, tileH, mapX, mapY, ctx, mode, rectColors, rectShadowColors } = env;
   // TODO: Add prevalance of elevated tiles if they rise above other tiles
   

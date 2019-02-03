@@ -1,6 +1,6 @@
 import renderTiles from './assets/js/renderTiles';
 import { map, waterWorld } from './assets/js/map';
-import {centerCanvas} from './assets/js/utils';
+import {centerCanvas, rotateMap} from './assets/js/utils';
 import './assets/scss/styles.scss';
 
 let env = {
@@ -26,10 +26,7 @@ let env = {
     "./images/water.png",
     "./images/land.png"
   ],
-  // draw map based on images or colored rects
-  mode: 'rects',
   // Set as your tile pixel sizes, alter if you are using larger tiles.
-  tileH: 24,
   tileW: 24,
   // mapX and mapY are offsets to make sure we can position the map as we want.
   mapX: 0,
@@ -60,11 +57,18 @@ window.addEventListener("resize", function(event) {
 });
 let stillRunning = false;
 canvas.addEventListener('click', e => {
-    //get position of canvas relative to body
-    let canvasBounds = canvas.getBoundingClientRect();
-    let mousePosX = e.pageX - canvasBounds.left;
-    let mousePosY = e.pageY - canvasBounds.top;
-  console.log('mousePosX',mousePosX, 'mousePosY', mousePosY);
+  //get position of canvas relative to body
+  let canvasBounds = canvas.getBoundingClientRect();
+  let mousePosX = e.pageX - canvasBounds.left;
+  let mousePosY = e.pageY - canvasBounds.top;
+  // console.log('mousePosX',mousePosX, 'mousePosY', mousePosY);
+
+  env.map = rotateMap(map);
+  env.waterWorld = rotateMap(waterWorld);
+
+  renderTiles(env);
+  // prevent bubbling
+  e.stopImmediatePropagation();
 
   /*
   if (stillRunning) return;

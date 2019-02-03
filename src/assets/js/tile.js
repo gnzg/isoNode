@@ -33,8 +33,13 @@ export default class Tile {
         } else {
             this.tempMap = [];
         }
+        //console.log('this.i', this.i, 'this.tempMap[this.i]', this.tempMap[this.i]);
+
         // if tile is non-zero, draw it
-        if (this.tempMap.length > 0 && this.tempMap[this.i][this.j] !== 0) {
+        if (this.tempMap.length > 0 && 
+            this.tempMap[this.i] !== undefined && 
+            this.tempMap[this.i][this.j] !== 0
+            ) {
             
             this.tileYoffset = this.tileW * this.k*1.25;
             this.c = this.mapY-this.tileW*this.j*0.5;

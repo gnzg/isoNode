@@ -1,8 +1,8 @@
 import Tile from './tile';
 
-const renderMap = (env) => {
+const renderTiles = (env) => {
   
-  let { tileGraphics, map, waterWorld, tileW, tileH, mapX, mapY, ctx, mode, rectColors, rectShadowColors } = env;
+  let { map, waterWorld, tileW, mapX, mapY, ctx, rectColors, rectShadowColors } = env;
   // TODO: Add prevalance of elevated tiles if they rise above other tiles
   
   // clear entire canvas
@@ -13,9 +13,9 @@ const renderMap = (env) => {
   // iterator k draws the map across the y axis
   for (let k = 0; k < 9; k++) { 
       // iterator i draws a row across the z axis
-      for (let i = 0; i < map.length; i++) { //map.length
+      for (let i = 0; i < map.length; i++) {
         // iterator j draws a row across the x axis
-        for (let j = 0; j < map[i].length; j++) { // map[i].length
+        for (let j = 0; j < map[i].length; j++) { 
             // draw all three visible sides of the rect aspect
             
             let mapTile = new Tile({
@@ -36,5 +36,6 @@ const renderMap = (env) => {
         }
       }
     };
+    console.log('i', map.length, 'j', map[0].length);
   }
-  export default renderMap;
+  export default renderTiles;

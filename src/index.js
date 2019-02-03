@@ -1,12 +1,7 @@
 import renderTiles from './assets/js/renderTiles';
 import { map, waterWorld } from './assets/js/map';
+import {centerCanvas} from './assets/js/utils';
 import './assets/scss/styles.scss';
-
-let centerCanvas = () => {
-  let centered = 0;
-  centered = -Math.sqrt(Math.pow(env.tileH, 2)*Math.pow(env.tileH, 2))/2+window.innerWidth/4;
-  return centered;
-};
 
 let env = {
   // The isometric map. Each item represents a row, each number in a row a tile.
@@ -36,16 +31,17 @@ let env = {
   // Set as your tile pixel sizes, alter if you are using larger tiles.
   tileH: 24,
   tileW: 24,
-
   // mapX and mapY are offsets to make sure we can position the map as we want.
-  mapX: 300,
-  mapY: 350
+  mapX: 0,
+  mapY: 350,
+  winWidth: 0,
+  winHeight: 0
 };
 
 // set size of canvas
 let canvas = document.getElementById('main');
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+canvas.width = env.winWidth = window.innerWidth;
+canvas.height = env.winHeight = window.innerHeight;
 // create the 2d canvas context
 let ctx = canvas.getContext('2d');
 
@@ -53,9 +49,7 @@ let ctx = canvas.getContext('2d');
 env.ctx = ctx;
 
 window.addEventListener("DOMContentLoaded", function(event) {
-  let centeredCanvasContent = centerCanvas();
-  //alert(centeredCanvasContent);
-  document.querySelector("#canvas-div").setAttribute("style", `position: absolute; left:0px; top:0px; width:${window.innerWidth}px`);
+  let centeredCanvasContent = centerCanvas(env);
   env.mapX = centeredCanvasContent;
   renderTiles(env);
 });

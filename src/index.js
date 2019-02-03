@@ -61,33 +61,22 @@ window.addEventListener("DOMContentLoaded", function(event) {
 });
 window.addEventListener("resize", function(event) {
   // TODO
-  /*if (document.readyState === "complete" || document.readyState === "loaded") {
-    document.querySelector("#canvas-div").setAttribute("style", `position: absolute; left:0px; top:0px; width:${window.innerWidth}px`);
-    env.mapX = centerCanvas();
-    // draw map
-    renderTiles(env);
-  }*/
 });
 let stillRunning = false;
 canvas.addEventListener('click', e => {
+    //get position of canvas relative to body
+    let canvasBounds = canvas.getBoundingClientRect();
+    let mousePosX = e.pageX - canvasBounds.left;
+    let mousePosY = e.pageY - canvasBounds.top;
+  console.log('mousePosX',mousePosX, 'mousePosY', mousePosY);
+
+  /*
   if (stillRunning) return;
 
   stillRunning = true;
-  //get position of canvas relative to body
-  let canvasBounds = canvas.getBoundingClientRect();
-  let mousePosX = e.pageX - canvasBounds.left;
-  let mousePosY = e.pageY - canvasBounds.top;
-  console.log('mousePosX',mousePosX, 'mousePosY', mousePosY);
-// TODO
-// hit logic goes here
-// a hit causes a change in the map array
-// update map array
-
-// draw new tile map based on updated map array
-  //env.map[1][5] = 2;
   let x = 100;
   let interval = setInterval(() => {
-    console.log(x);
+    //console.log(x);
     x = x*0.98; 
     env.tileW = 24*x/100;
     renderTiles(env);
@@ -96,4 +85,9 @@ canvas.addEventListener('click', e => {
       stillRunning = false;
     }
   },20);
+  */
+
+  // draw new tile map based on updated map array
+  //env.map[1][5] = 2;
+  //renderTiles(env);
 });

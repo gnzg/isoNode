@@ -1,6 +1,6 @@
 import renderTiles from './assets/js/renderTiles';
 import { map, waterWorld } from './assets/js/map';
-import {centerCanvas, rotateMap} from './assets/js/utils';
+import {centerCanvas, rotateMap, floatText} from './assets/js/utils';
 import './assets/scss/styles.scss';
 
 let env = {
@@ -48,6 +48,7 @@ window.addEventListener("DOMContentLoaded", function(event) {
   canvas.height = env.winHeight = window.innerHeight;
   env.mapX = centerCanvas(env);
   renderTiles(env);
+  floatText(ctx, "Click for a 180 degree rotation");
 });
 window.addEventListener("resize", function(event) {
   canvas.width = env.winWidth = window.innerWidth;
@@ -71,6 +72,7 @@ canvas.addEventListener('click', e => {
   e.stopImmediatePropagation();
 
   /*
+  TODO: Zooming logic
   if (stillRunning) return;
 
   stillRunning = true;
@@ -86,6 +88,8 @@ canvas.addEventListener('click', e => {
     }
   },20);
   */
+
+  // TODO: tile hit detection
 
   // draw new tile map based on updated map array
   //env.map[1][5] = 2;

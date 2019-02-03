@@ -45,8 +45,6 @@ export default class Tile {
 
             if (this.k === 1 && this.i === 4 && this.j === 3) {
                 ctx.fillStyle= '#FF14AE';
-                console.log(this.tileW*this.i + this.tileW-this.tileW + this.mapX + this.tileW*this.j, this.d + this.topYsegment);
-                console.log(this.tileW*this.i + this.tileW*2+this.mapX + this.tileW*this.j, this.d + this.topYsegment);
             } else {
                 ctx.fillStyle= this.rectColors[this.rectShadowColors.indexOf(this.fillColor)];
             }

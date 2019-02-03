@@ -49,12 +49,12 @@ let ctx = canvas.getContext('2d');
 env.ctx = ctx;
 
 window.addEventListener("DOMContentLoaded", function(event) {
-  let centeredCanvasContent = centerCanvas(env);
-  env.mapX = centeredCanvasContent;
+  env.mapX = centerCanvas(env);
   renderTiles(env);
 });
 window.addEventListener("resize", function(event) {
-  // TODO
+  env.mapX = centerCanvas(env);
+  renderTiles(env);
 });
 let stillRunning = false;
 canvas.addEventListener('click', e => {

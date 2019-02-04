@@ -6,39 +6,45 @@ export let centerCanvas = ({winWidth, winHeight, map, tileW}) => {
   return centered;
 };
 
-export let rotateMap = (map, tempDegree) => {
-  let rotatedMap = [];
-  let degree = tempDegree < 270 ? tempDegree + 90 : 90;
+export let rotateMap = (maps, tempDegree) => {
+  let degree = tempDegree < 270 ? tempDegree + 90 : 0;
+  let rotatedMaps = [];
   console.log('degree', degree);
-  if (degree === 0 || degree === 270) {
-    for(let i=0; i < map.length; i++) {
-      rotatedMap.push([]); // dummy fill
-      for(let j=0; j < map[i].length; j++) {
-        map[i] && rotatedMap[i].push(map[i][j]);
+  for (let n = 0; n < maps.length; n++) {
+  let rotatedMap = [];
+    if (degree === 0) {
+      for(let i=0; i < maps[n].length; i++) {
+        rotatedMap.push([]); // dummy fill
+        for(let j=0; j < maps[n][i].length; j++) {
+          maps[n][i] && rotatedMap[i].push(maps[n][i][j]);
+        }
       }
     }
-  }
-  else if (degree === 90) {
-    for(let i=0; i < map[0].length; i++) { 
-      rotatedMap.push([]); // dummy fill
-      for(let j=0; j < map.length; j++) {
-        map[j] && rotatedMap[i].push(map[j][i]);
-      }
-      rotatedMap[i].reverse();
-    }
-  }
-  else if (degree === 180) {
-    //if (degree === 90 ) map.reverse();
-    for(let i=0; i < map[0].length; i++) {
-      rotatedMap.push([]); // dummy fill
-      for(let j=0; j < map.length; j++) {
-        map[j] && rotatedMap[i].push(map[j][i]);
+    else if (degree === 90) {
+      for(let i=0; i < maps[n][0].length; i++) { 
+        rotatedMap.push([]); // dummy fill
+        for(let j=0; j < maps[n].length; j++) {
+          maps[n][j] && rotatedMap[i].push(maps[n][j][i]);
+        }
+        rotatedMap[i].reverse();
       }
     }
-    rotatedMap.reverse();
+    else if (degree === 180) {
+      for(let i=0; i < maps[n].length; i++) {
+        rotatedMap.push([]); // dummy fill
+        for(let j=0; j < maps[n][i].length; j++) {
+          maps[n][i] && rotatedMap[i].push(maps[n][i][j]);
+        }
+        rotatedMap[i].reverse();
+      }
+      rotatedMap.reverse();
+    }
+    else if (degree === 270) {
+      
+    }
+    rotatedMaps.push(rotatedMap);
   }
- 
-  return {rotatedMap, degree};
+  return {rotatedMaps, degree};
 };
 
 export let floatText = (ctx,text) => {

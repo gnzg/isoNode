@@ -11,7 +11,7 @@ const renderTiles = (env) => {
   if (map[0] !== undefined) {
     // loop through our map and draw out the image represented by the number.
     // iterator k draws the map across the y axis
-    for (let k = 1; k < 2; k++) { 
+    for (let k = 0; k < 9; k++) { 
         // iterator i draws a row across the z axis
         for (let i = 0; i < map.length; i++) {
           // iterator j draws a row across the x axis

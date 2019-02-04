@@ -66,10 +66,10 @@ canvas.addEventListener('click', e => {
   // let mousePosY = e.pageY - canvasBounds.top;
   // console.log('mousePosX',mousePosX, 'mousePosY', mousePosY);
 
-  let rotatedState = rotateMap(map, env.rotationDegree);
-  env.map = rotatedState.rotatedMap;
+  let rotatedState = rotateMap([map, waterWorld], env.rotationDegree);
+  env.map = rotatedState.rotatedMaps[0];
+  env.waterWorld = rotatedState.rotatedMaps[1];
   env.rotationDegree = rotatedState.degree;
-  //env.waterWorld = rotateMap(waterWorld, env.rotationDegree).rotatedMap;
 
   renderTiles(env);
   // prevent bubbling

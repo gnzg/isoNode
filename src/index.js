@@ -32,8 +32,11 @@ let env = {
   mapX: 0,
   mapY: 350,
   winWidth: 0,
-  winHeight: 0
+  winHeight: 0,
+  rotationDegree: 0
 };
+
+//let stillRunning = false;
 
 // set size of canvas
 let canvas = document.getElementById('main');
@@ -56,16 +59,17 @@ window.addEventListener("resize", function(event) {
   env.mapX = centerCanvas(env);
   renderTiles(env);
 });
-let stillRunning = false;
 canvas.addEventListener('click', e => {
   //get position of canvas relative to body
-  let canvasBounds = canvas.getBoundingClientRect();
-  let mousePosX = e.pageX - canvasBounds.left;
-  let mousePosY = e.pageY - canvasBounds.top;
+  // let canvasBounds = canvas.getBoundingClientRect();
+  // let mousePosX = e.pageX - canvasBounds.left;
+  // let mousePosY = e.pageY - canvasBounds.top;
   // console.log('mousePosX',mousePosX, 'mousePosY', mousePosY);
 
-  env.map = rotateMap(map);
-  env.waterWorld = rotateMap(waterWorld);
+  let rotatedState = rotateMap(map, env.rotationDegree);
+  env.map = rotatedState.rotatedMap;
+  env.rotationDegree = rotatedState.degree;
+  //env.waterWorld = rotateMap(waterWorld, env.rotationDegree).rotatedMap;
 
   renderTiles(env);
   // prevent bubbling

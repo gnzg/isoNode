@@ -40,7 +40,13 @@ export let rotateMap = (maps, tempDegree) => {
       rotatedMap.reverse();
     }
     else if (degree === 270) {
-      
+      for(let i=0; i < maps[n][0].length; i++) {
+        rotatedMap.push([]); // dummy fill
+        for(let j=0; j < maps[n].length; j++) {
+          maps[n][j] && rotatedMap[i].push(maps[n][j][i]);
+        }
+      }
+      rotatedMap.reverse();
     }
     rotatedMaps.push(rotatedMap);
   }

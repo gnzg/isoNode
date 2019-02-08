@@ -61,7 +61,7 @@ window.addEventListener("resize", function(event) {
   renderTiles(env);
 });
 
-// rotate canvas
+// rotate or move canvas
 window.addEventListener("keydown", e => {
   if(e.keyCode === 82) {
     //get position of canvas relative to body
@@ -78,5 +78,19 @@ window.addEventListener("keydown", e => {
     renderTiles(env);
     // prevent bubbling
     e.stopImmediatePropagation();
+  } else if (e.keyCode === 39) {
+    // right arrow key
+    // move across x axis to the right
+    let currentPos = env.mapX;
+    let inc = 0.05;
+    let drawFrequency = setInterval(() => {
+      if (env.mapX < 526) {
+        inc += 0.035
+        env.mapX += (1/inc);
+        renderTiles(env);
+      } else {
+        clearInterval(drawFrequency);
+      }
+    },20);
   }
 });

@@ -68,3 +68,5 @@ export let floatText = (ctx,text) => {
     },25);
   },2000);
 };
+
+

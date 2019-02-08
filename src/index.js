@@ -46,12 +46,13 @@ let ctx = canvas.getContext('2d');
 // add canvas object to env to use it within drawMap
 env.ctx = ctx;
 
+
 window.addEventListener("DOMContentLoaded", function(event) {
   canvas.width = env.winWidth = window.innerWidth;
   canvas.height = env.winHeight = window.innerHeight;
   env.mapX = centerCanvas(env);
   renderTiles(env);
-  floatText(ctx, "Click for a 180 degree rotation");
+  floatText(ctx, "Rotate canvas with R key");
 });
 window.addEventListener("resize", function(event) {
   canvas.width = env.winWidth = window.innerWidth;
@@ -59,43 +60,23 @@ window.addEventListener("resize", function(event) {
   env.mapX = centerCanvas(env);
   renderTiles(env);
 });
-canvas.addEventListener('click', e => {
-  //get position of canvas relative to body
-  // let canvasBounds = canvas.getBoundingClientRect();
-  // let mousePosX = e.pageX - canvasBounds.left;
-  // let mousePosY = e.pageY - canvasBounds.top;
-  // console.log('mousePosX',mousePosX, 'mousePosY', mousePosY);
 
-  let rotatedState = rotateMap([map, waterWorld], env.rotationDegree);
-  env.map = rotatedState.rotatedMaps[0];
-  env.waterWorld = rotatedState.rotatedMaps[1];
-  env.rotationDegree = rotatedState.degree;
+// rotate canvas
+window.addEventListener("keydown", e => {
+  if(e.keyCode === 82) {
+    //get position of canvas relative to body
+    // let canvasBounds = canvas.getBoundingClientRect();
+    // let mousePosX = e.pageX - canvasBounds.left;
+    // let mousePosY = e.pageY - canvasBounds.top;
+    // console.log('mousePosX',mousePosX, 'mousePosY', mousePosY);
 
-  renderTiles(env);
-  // prevent bubbling
-  e.stopImmediatePropagation();
+    let rotatedState = rotateMap([map, waterWorld], env.rotationDegree);
+    env.map = rotatedState.rotatedMaps[0];
+    env.waterWorld = rotatedState.rotatedMaps[1];
+    env.rotationDegree = rotatedState.degree;
 
-  /*
-  TODO: Zooming logic
-  if (stillRunning) return;
-
-  stillRunning = true;
-  let x = 100;
-  let interval = setInterval(() => {
-    //console.log(x);
-    x = x*0.98; 
-    env.tileW = 24*x/100;
     renderTiles(env);
-    if (x <20) {
-      clearInterval(interval);
-      stillRunning = false;
-    }
-  },20);
-  */
-
-  // TODO: tile hit detection
-
-  // draw new tile map based on updated map array
-  //env.map[1][5] = 2;
-  //renderTiles(env);
+    // prevent bubbling
+    e.stopImmediatePropagation();
+  }
 });

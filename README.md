@@ -1,5 +1,5 @@
 # IsoNode #
-IsoNode is based roughly on jsISO but made to be much more configurable and adapted to a more timely development framework with npm, hot-reloading, and webpack 4. 
+IsoNode is inspired by jsISO but has a dedicated state management engine as a single source of truth for easy scale up. It offers map rotation, zoom and a modular, easy to work with object-oriented approach as well as the comfort of a more timely development framework. 
 
 ![isoNode](https://github.com/gnzg/isoNode/blob/master/example.png?raw=true)
 

@@ -1,5 +1,5 @@
 export default {
-  itens: [
+  items: [
     'foo',
     'foo2'
   ]

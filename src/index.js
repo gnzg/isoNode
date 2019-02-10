@@ -108,4 +108,7 @@ window.addEventListener("keydown", e => {
   }
 });
 
-
+window.addEventListener('mouseup', e => {
+  store.dispatch('addItem', 'foofoo');
+  e.stopImmediatePropagation();
+})

@@ -10,10 +10,6 @@ import './assets/scss/styles.scss';
 import canvasWrapper from './assets/js/components/canvasWrapper';
 
 // TODO: create a tile map in a single file
-  
-let env = {
-  
-};
 
 const canvasWrapperInstance = new canvasWrapper();
 canvasWrapperInstance.render();
@@ -29,16 +25,15 @@ canvasWrapperInstance.render();
 //let canvas = document.getElementById('main');
 
 // create the 2d canvas context
-let ctx = canvas.getContext('2d');
+//let ctx = canvas.getContext('2d');
 
 // add canvas object to env to use it within drawMap
-env.ctx = ctx;
+//env.ctx = ctx;
 
 window.addEventListener("DOMContentLoaded", function(event) {
-  
-  env.mapX = centerCanvas(env);
-  renderTiles(env);
-  floatText(ctx, "Rotate canvas with R key");
+  //renderTiles(env);
+  //floatText(ctx, "Rotate canvas with R key");
+  //env.mapX = centerCanvas(env);
 });
 /*
 

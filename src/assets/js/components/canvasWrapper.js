@@ -12,7 +12,6 @@ export default class canvasWrapper extends Component {
     });
   }
   render() {
-    console.log('store.state.env', store.state.env);
 
     this.element.width = window.innerWidth;
     this.element.height = window.innerHeight;

@@ -1,5 +1,3 @@
-import { centerCanvas } from "../utils";
-
 export default {
   addItem(context, payload) {
     context.commit('addItem', payload);
@@ -9,5 +7,8 @@ export default {
   },
   centerCanvas(context) {
     context.commit('centerCanvas');
+  },
+  rotateMap(context) {
+    context.commit('rotateMap');
   }
 };

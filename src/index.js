@@ -20,10 +20,13 @@ window.addEventListener("resize", function(event) {
   canvasWrapperInstance.render();
 });
 
-/*
 // rotate or move canvas
 window.addEventListener("keydown", e => {
   if(e.keyCode === 82) {
+    store.dispatch('rotateMap');
+    canvasWrapperInstance.render();
+/*
+
     //get position of canvas relative to body
     // let canvasBounds = canvas.getBoundingClientRect();
     // let mousePosX = e.pageX - canvasBounds.left;
@@ -31,13 +34,14 @@ window.addEventListener("keydown", e => {
     // console.log('mousePosX',mousePosX, 'mousePosY', mousePosY);
 
     let rotatedState = rotateMap([map, waterWorld], env.rotationDegree);
+    
+
     env.map = rotatedState.rotatedMaps[0];
     env.waterWorld = rotatedState.rotatedMaps[1];
     env.rotationDegree = rotatedState.degree;
 
     renderTiles(env);
     // prevent bubbling
-    e.stopImmediatePropagation();
   } else if (e.keyCode === 39) {
     // right arrow key
     // move across x axis to the right
@@ -53,9 +57,11 @@ window.addEventListener("keydown", e => {
         clearInterval(drawFrequency);
       }
     },20);
+    */
   }
 });
 
+/*
 window.addEventListener('mouseup', e => {
   store.dispatch('addItem', 'foofoo');
   e.stopImmediatePropagation();

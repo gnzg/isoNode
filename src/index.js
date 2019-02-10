@@ -1,5 +1,5 @@
 import renderTiles from './assets/js/renderTiles';
-import {rotateMap, floatText} from './assets/js/utils';
+import {floatText} from './assets/js/utils';
 import store from './assets/js/store/index'; 
 
 import './assets/scss/styles.scss';
@@ -12,6 +12,7 @@ const canvasWrapperInstance = new canvasWrapper();
 window.addEventListener("DOMContentLoaded", function(event) {
   canvasWrapperInstance.render();
   store.dispatch('centerCanvas');
+  floatText(store.state.env.ctx, 'Press R to rotate the canvas');
 });
 window.addEventListener("resize", function(event) {
   store.state.env.winWidth = window.innerWidth;
@@ -26,21 +27,12 @@ window.addEventListener("keydown", e => {
     store.dispatch('rotateMap');
     canvasWrapperInstance.render();
 /*
-
     //get position of canvas relative to body
     // let canvasBounds = canvas.getBoundingClientRect();
     // let mousePosX = e.pageX - canvasBounds.left;
     // let mousePosY = e.pageY - canvasBounds.top;
     // console.log('mousePosX',mousePosX, 'mousePosY', mousePosY);
 
-    let rotatedState = rotateMap([map, waterWorld], env.rotationDegree);
-    
-
-    env.map = rotatedState.rotatedMaps[0];
-    env.waterWorld = rotatedState.rotatedMaps[1];
-    env.rotationDegree = rotatedState.degree;
-
-    renderTiles(env);
     // prevent bubbling
   } else if (e.keyCode === 39) {
     // right arrow key
@@ -60,10 +52,3 @@ window.addEventListener("keydown", e => {
     */
   }
 });
-
-/*
-window.addEventListener('mouseup', e => {
-  store.dispatch('addItem', 'foofoo');
-  e.stopImmediatePropagation();
-})
-*/

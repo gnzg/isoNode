@@ -33,8 +33,8 @@ export default {
     // mapX and mapY are offsets to make sure we can position the map as we want.
     mapX: 0,
     mapY: 350,
-    winWidth: 0,
-    winHeight: 0,
+    winWidth: window.innerWidth,
+    winHeight: window.innerHeight,
     rotationDegree: 0
   }
 };

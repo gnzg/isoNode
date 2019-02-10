@@ -12,14 +12,12 @@ export default class canvasWrapper extends Component {
     });
   }
   render() {
-    //let ctx = this.element.getContext('2d');
-    // add ctx to store
     console.log('store.state.env', store.state.env);
-
-    renderTiles(store.state.env);
 
     this.element.width = window.innerWidth;
     this.element.height = window.innerHeight;
+
+    renderTiles(store.state.env);
 
     this.element.innerHTML = `<canvas>Browser does not support canvas.</canvas>`;
   }

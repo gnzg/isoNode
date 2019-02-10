@@ -1,10 +1,3 @@
-export let centerCanvas = ({winWidth, winHeight, map, tileW}) => {
-  let centered = 0;
-  let mapCenter = map.length/2 *tileW*2.3;
-  centered = winWidth/2-mapCenter;
-  return centered;
-};
-
 export let rotateMap = (maps, tempDegree) => {
   let degree = tempDegree < 270 ? tempDegree + 90 : 0;
   let rotatedMaps = [];

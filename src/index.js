@@ -2,47 +2,28 @@ import renderTiles from './assets/js/renderTiles';
 import {centerCanvas, rotateMap, floatText} from './assets/js/utils';
 import store from './assets/js/store/index'; 
 
-// import Count from './assets/js/components/count.js';
-// import List from './assets/js/components/list.js';
-// import Status from './assets/js/components/status.js';
-
 import './assets/scss/styles.scss';
 import canvasWrapper from './assets/js/components/canvasWrapper';
 
 // TODO: create a tile map in a single file
 
 const canvasWrapperInstance = new canvasWrapper();
-canvasWrapperInstance.render();
 
 //let stillRunning = false;
 
-
-// const formElement = document.querySelector('.js-form');
-// const inputElement = document.querySelector('#new-item-field');
-
-
-// set size of canvas
-//let canvas = document.getElementById('main');
-
-// create the 2d canvas context
-//let ctx = canvas.getContext('2d');
-
-// add canvas object to env to use it within drawMap
-//env.ctx = ctx;
-
 window.addEventListener("DOMContentLoaded", function(event) {
-  //renderTiles(env);
-  //floatText(ctx, "Rotate canvas with R key");
+  canvasWrapperInstance.render();
   //env.mapX = centerCanvas(env);
+  store.dispatch('centerCanvas');
 });
-/*
 
 window.addEventListener("resize", function(event) {
-  canvas.width = env.winWidth = window.innerWidth;
-  canvas.height = env.winHeight = window.innerHeight;
-  env.mapX = centerCanvas(env);
-  renderTiles(env);
+  store.state.env.winWidth = window.innerWidth;
+  store.state.env.winHeight = window.innerHeight;
+  store.dispatch('centerCanvas');
+  canvasWrapperInstance.render();
 });
+/*
 // rotate or move canvas
 window.addEventListener("keydown", e => {
   if(e.keyCode === 82) {

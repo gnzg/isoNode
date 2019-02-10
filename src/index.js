@@ -1,11 +1,9 @@
 import renderTiles from './assets/js/renderTiles';
-import {centerCanvas, rotateMap, floatText} from './assets/js/utils';
+import {rotateMap, floatText} from './assets/js/utils';
 import store from './assets/js/store/index'; 
 
 import './assets/scss/styles.scss';
 import canvasWrapper from './assets/js/components/canvasWrapper';
-
-// TODO: create a tile map in a single file
 
 const canvasWrapperInstance = new canvasWrapper();
 
@@ -13,16 +11,15 @@ const canvasWrapperInstance = new canvasWrapper();
 
 window.addEventListener("DOMContentLoaded", function(event) {
   canvasWrapperInstance.render();
-  //env.mapX = centerCanvas(env);
   store.dispatch('centerCanvas');
 });
-
 window.addEventListener("resize", function(event) {
   store.state.env.winWidth = window.innerWidth;
   store.state.env.winHeight = window.innerHeight;
   store.dispatch('centerCanvas');
   canvasWrapperInstance.render();
 });
+
 /*
 // rotate or move canvas
 window.addEventListener("keydown", e => {

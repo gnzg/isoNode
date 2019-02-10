@@ -8,6 +8,7 @@ import store from './assets/js/store/index';
 // import Status from './assets/js/components/status.js';
 
 import './assets/scss/styles.scss';
+import canvasWrapper from './assets/js/components/canvasWrapper';
 
 // TODO: create a tile map in a single file
   
@@ -112,3 +113,6 @@ window.addEventListener('mouseup', e => {
   store.dispatch('addItem', 'foofoo');
   e.stopImmediatePropagation();
 })
+
+const canvasWrapperInstance = new canvasWrapper();
+canvasWrapperInstance.render();

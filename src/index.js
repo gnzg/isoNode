@@ -1,8 +1,16 @@
 import renderTiles from './assets/js/renderTiles';
 import { map, waterWorld } from './assets/js/map';
 import {centerCanvas, rotateMap, floatText} from './assets/js/utils';
+import store from './assets/js/store/index'; 
+
+// import Count from './assets/js/components/count.js';
+// import List from './assets/js/components/list.js';
+// import Status from './assets/js/components/status.js';
+
 import './assets/scss/styles.scss';
 
+// TODO: create a tile map in a single file
+  
 let env = {
   // The isometric map. Each item represents a row, each number in a row a tile.
   map: map,
@@ -21,7 +29,6 @@ let env = {
     '#1c6e4a',
     'red'
   ],
-  // TODO: create a tile map in a single file
   tileGraphicsToLoad: [
     "./images/water.png",
     "./images/land.png"
@@ -37,6 +44,11 @@ let env = {
 };
 
 //let stillRunning = false;
+
+
+// const formElement = document.querySelector('.js-form');
+// const inputElement = document.querySelector('#new-item-field');
+
 
 // set size of canvas
 let canvas = document.getElementById('main');
@@ -89,8 +101,11 @@ window.addEventListener("keydown", e => {
         env.mapX += (1/inc);
         renderTiles(env);
       } else {
+        console.log('cleared interval.');
         clearInterval(drawFrequency);
       }
     },20);
   }
 });
+
+

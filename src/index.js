@@ -5,7 +5,7 @@ import store from './assets/js/store/index';
 import './assets/scss/styles.scss';
 import canvasWrapper from './assets/js/components/canvasWrapper';
 
-const canvasWrapperInstance = new canvasWrapper();
+const canvasWrapperInstance = new canvasWrapper('main');
 
 window.addEventListener("DOMContentLoaded", function(event) {
   canvasWrapperInstance.render();
@@ -37,7 +37,7 @@ window.addEventListener("keydown", e => {
     let currentPos = store.state.env.mapX;
     let inc = 0.05;
     let drawFrequency = setInterval(() => {
-      if (store.state.env.mapX < 526) {
+      if (store.state.env.mapX < 526) { // TODO
         inc += 0.035
         store.state.env.mapX += (1/inc);
         canvasWrapperInstance.render();

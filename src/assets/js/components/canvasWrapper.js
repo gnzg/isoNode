@@ -5,10 +5,10 @@ import renderTiles from '../renderTiles';
 // creating an instance of Component, and equipping it with a store instance
 
 export default class canvasWrapper extends Component {
-  constructor() {
+  constructor(elementId) {
     super({
       store,
-      element: document.querySelector('#main')
+      element: document.getElementById(elementId)
     });
   }
   render() {

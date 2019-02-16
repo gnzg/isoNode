@@ -76,6 +76,7 @@ export default {
       let inc = 0.05;
       // save posX at beginning of event
       let startingPosX = state.env.mapX;
+      let startingPosY = state.env.mapY;
       // if not running, initiate interval
         let drawFrequency = setInterval(() => {
           inc += 0.035;
@@ -85,10 +86,21 @@ export default {
               break;
             case 65:
               state.env.mapX -= (1/inc);
+              break;
+            case 83:
+            state.env.mapY += (1/inc);
+            break;
+            case 87:
+            state.env.mapY -= (1/inc);
+            break;  
           }
           this.renderTiles(state);
-          if (state.env.mapX > (startingPosX+100) || state.env.mapX < (startingPosX-100)) {
-            console.log('cleared interval.');
+          if (state.env.mapX > startingPosX+100 ||
+              state.env.mapX < startingPosX-100 ||
+              state.env.mapY > startingPosY+100 ||
+              state.env.mapY < startingPosY-100
+          ) {
+            //console.log('cleared interval.');
             clearInterval(drawFrequency);
             state.cooldown = false;
           }

@@ -95,6 +95,7 @@ export default {
             break;  
           }
           this.renderTiles(state);
+          // per cooldown only one kind of movement is possible
           if (state.env.mapX > startingPosX+100 ||
               state.env.mapX < startingPosX-100 ||
               state.env.mapY > startingPosY+100 ||

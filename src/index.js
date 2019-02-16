@@ -19,19 +19,19 @@ window.addEventListener("resize", () => {
 // Rotate or move canvas on key down
 window.addEventListener("keydown", e => {
   if(e.keyCode === 82) {
+    // r key
     store.dispatch('rotateMap');
     canvasWrapperInstance.render();
-    /*
-    //get position of canvas relative to body
-    // let canvasBounds = canvas.getBoundingClientRect();
-    // let mousePosX = e.pageX - canvasBounds.left;
-    // let mousePosY = e.pageY - canvasBounds.top;
-    // console.log('mousePosX',mousePosX, 'mousePosY', mousePosY);
-    */
-  } else if (e.keyCode === 39 || e.keyCode === 68) {
-    console.log('eventListener is there', window);
-    // right arrow key
-    // move across x axis to the right
-    store.dispatch('moveToRight');
+  } else if (
+    e.keyCode === 37 ||
+    e.keyCode === 38 ||
+    e.keyCode === 39 ||
+    e.keyCode === 40 ||
+    e.keyCode === 68 ||
+    e.keyCode === 65 ||
+    e.keyCode === 87 ||
+    e.keyCode === 83
+    ) {
+    store.dispatch('moveMap', e.keyCode);
   }
 });

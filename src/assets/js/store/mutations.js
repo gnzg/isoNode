@@ -10,7 +10,7 @@ export default {
     return state;
   },
   centerCanvas(state) {
-    console.log('resized! Centering canvas...');
+    console.log('Window resized! Centering canvas...');
     let centered = 0;
     let mapCenter = state.env.map.length/2 *state.env.tileW*2.3;
     state.env.mapX = state.env.winWidth/2-mapCenter;
@@ -68,31 +68,31 @@ export default {
 
       return state;
   },
-  moveToRight(state) {
+  moveMap(state, payload) {
     // allow mutation to take place only once cooldown is over
     if (state.cooldown === false) {
       state.cooldown = true;
+      // acceleration
       let inc = 0.05;
       // save posX at beginning of event
       let startingPosX = state.env.mapX;
-      let drawFrequency = null;
       // if not running, initiate interval
-      if (typeof drawFrequency != "number") {
         let drawFrequency = setInterval(() => {
           inc += 0.035;
-          state.env.mapX += (1/inc);
-          this.renderTiles(state); //TODO
-          if (state.env.mapX > (startingPosX+100)) {
+          switch (payload) {
+            case 68:
+              state.env.mapX += (1/inc);
+              break;
+            case 65:
+              state.env.mapX -= (1/inc);
+          }
+          this.renderTiles(state);
+          if (state.env.mapX > (startingPosX+100) || state.env.mapX < (startingPosX-100)) {
             console.log('cleared interval.');
             clearInterval(drawFrequency);
             state.cooldown = false;
           }
         },20);
-      // if already running, delete interval
-      } else {  
-        clearInterval(drawFrequency);
-        state.cooldown = false;
-      }
     }
   },
   renderTiles(state) {

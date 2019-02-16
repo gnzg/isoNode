@@ -11,8 +11,8 @@ export default {
   rotateMap(context) {
     context.commit('rotateMap');
   },
-  moveToRight(context) {
-    context.commit('moveToRight');
+  moveMap(context, payload) {
+    context.commit('moveMap', payload);
   },
   renderTiles(context) {
     context.commit('renderTiles');

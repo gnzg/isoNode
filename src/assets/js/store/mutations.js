@@ -65,17 +65,19 @@ export default {
       // major TODO
       state.env.map = rotatedMaps[0];
       state.env.waterWorld = rotatedMaps[1];
-
+      
       return state;
   },
   moveMap(state, payload) {
     // allow mutation to take place only once cooldown is over
+    // also, make sure an instance of drawFrequency is not running 
     if (state.cooldown === false) {
       state.cooldown = true;
       // acceleration
       let inc = 0.05;
       // save posX at beginning of event
       let startingPosX = state.env.mapX;
+      console.log('startingPosX', startingPosX);
       let startingPosY = state.env.mapY;
       // if not running, initiate interval
         let drawFrequency = setInterval(() => {
@@ -88,23 +90,23 @@ export default {
               state.env.mapX -= (1/inc);
               break;
             case 83:
-            state.env.mapY += (1/inc);
-            break;
+              state.env.mapY += (1/inc);
+              break;
             case 87:
-            state.env.mapY -= (1/inc);
-            break;  
+              state.env.mapY -= (1/inc);
+              break;  
           }
-          this.renderTiles(state);
           // per cooldown only one kind of movement is possible
           if (state.env.mapX > startingPosX+100 ||
               state.env.mapX < startingPosX-100 ||
               state.env.mapY > startingPosY+100 ||
               state.env.mapY < startingPosY-100
           ) {
-            //console.log('cleared interval.');
+            console.log('cleared interval');
             clearInterval(drawFrequency);
             state.cooldown = false;
           }
+          this.renderTiles(state);
         },20);
     }
   },

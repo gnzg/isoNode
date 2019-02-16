@@ -6,7 +6,6 @@ import './assets/scss/styles.scss';
 const canvasWrapperInstance = new canvasWrapper('main');
 
 window.addEventListener("DOMContentLoaded", () => {
-  canvasWrapperInstance.render();
   store.dispatch('centerCanvas');
   floatText(store.state.ctx, 'Press R to rotate the canvas');
 });
@@ -14,14 +13,13 @@ window.addEventListener("resize", () => {
   store.state.env.winWidth = window.innerWidth;
   store.state.env.winHeight = window.innerHeight;
   store.dispatch('centerCanvas');
-  canvasWrapperInstance.render();
 });
 // Rotate or move canvas on key down
 window.addEventListener("keydown", e => {
   if(e.keyCode === 82) {
     // r key
     store.dispatch('rotateMap');
-    canvasWrapperInstance.render();
+    console.log('mapX', store.state.env.mapX);
   } else if (
     e.keyCode === 37 ||
     e.keyCode === 38 ||
@@ -33,5 +31,7 @@ window.addEventListener("keydown", e => {
     e.keyCode === 83
     ) {
     store.dispatch('moveMap', e.keyCode);
+    // no friggin' event bubbling
+    e.stopImmediatePropagation();
   }
 });

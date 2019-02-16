@@ -69,34 +69,40 @@ export default {
       return state;
   },
   moveToRight(state) {
-    let inc = 0.05;
-    // save posX at beginning of event
-    let startingPosX = state.env.mapX;
-    let drawFrequency = null;
-    // if not running, initiate interval
-    if (typeof drawFrequency != "number") {
-      let drawFrequency = setInterval(() => {
-        inc += 0.035;
-        state.env.mapX += (1/inc);
-        this.renderTiles(state); //TODO
-        if (state.env.mapX > (startingPosX+100)) {
-          console.log('cleared interval.');
-          clearInterval(drawFrequency);
-        }
-      },20);
-    // if already running, delete interval
-    } else {  
-      clearInterval(drawFrequency);
+    // allow mutation to take place only once cooldown is over
+    if (state.cooldown === false) {
+      state.cooldown = true;
+      let inc = 0.05;
+      // save posX at beginning of event
+      let startingPosX = state.env.mapX;
+      let drawFrequency = null;
+      // if not running, initiate interval
+      if (typeof drawFrequency != "number") {
+        let drawFrequency = setInterval(() => {
+          inc += 0.035;
+          state.env.mapX += (1/inc);
+          this.renderTiles(state); //TODO
+          if (state.env.mapX > (startingPosX+100)) {
+            console.log('cleared interval.');
+            clearInterval(drawFrequency);
+            state.cooldown = false;
+          }
+        },20);
+      // if already running, delete interval
+      } else {  
+        clearInterval(drawFrequency);
+        state.cooldown = false;
+      }
     }
   },
   renderTiles(state) {
+  let ctx = state.ctx;
   let {
     map,
     waterWorld,
     tileW,
     mapX,
     mapY,
-    ctx,
     rectColors,
     rectShadowColors
   } = state.env;

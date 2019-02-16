@@ -8,7 +8,7 @@ const canvasWrapperInstance = new canvasWrapper('main');
 window.addEventListener("DOMContentLoaded", () => {
   canvasWrapperInstance.render();
   store.dispatch('centerCanvas');
-  floatText(store.state.env.ctx, 'Press R to rotate the canvas');
+  floatText(store.state.ctx, 'Press R to rotate the canvas');
 });
 window.addEventListener("resize", () => {
   store.state.env.winWidth = window.innerWidth;
@@ -28,7 +28,8 @@ window.addEventListener("keydown", e => {
     // let mousePosY = e.pageY - canvasBounds.top;
     // console.log('mousePosX',mousePosX, 'mousePosY', mousePosY);
     */
-  } else if (e.keyCode === 39) {
+  } else if (e.keyCode === 39 || e.keyCode === 68) {
+    console.log('eventListener is there', window);
     // right arrow key
     // move across x axis to the right
     store.dispatch('moveToRight');

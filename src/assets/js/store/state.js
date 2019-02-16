@@ -1,8 +1,9 @@
 import { map, waterWorld } from '../map';
 
 export default {
+  ctx: document.querySelector('#main').getContext('2d'),
+  cooldown: false,
   env: {
-    ctx: document.querySelector('#main').getContext('2d'),
     // The isometric map. Each item represents a row, each number in a row a tile.
     map: map,
     waterWorld: waterWorld,

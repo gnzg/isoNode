@@ -1,6 +1,5 @@
 import Component from '../lib/component';
 import store from '../store';
-import renderTiles from '../renderTiles';
 
 // creating an instance of Component, and equipping it with a store instance
 
@@ -16,7 +15,7 @@ export default class canvasWrapper extends Component {
     this.element.width = window.innerWidth;
     this.element.height = window.innerHeight;
 
-    renderTiles(store.state.env);
+    store.dispatch('renderTiles');
 
     this.element.innerHTML = `<canvas>Browser does not support canvas.</canvas>`;
   }

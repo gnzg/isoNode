@@ -10,5 +10,11 @@ export default {
   },
   rotateMap(context) {
     context.commit('rotateMap');
+  },
+  moveToRight(context) {
+    context.commit('moveToRight');
+  },
+  renderTiles(context) {
+    context.commit('renderTiles');
   }
 };

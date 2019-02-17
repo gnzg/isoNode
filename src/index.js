@@ -19,7 +19,6 @@ window.addEventListener("keydown", e => {
   if(e.keyCode === 82) {
     // r key
     store.dispatch('rotateMap');
-    console.log('mapX', store.state.env.mapX);
   } else if (
     e.keyCode === 37 ||
     e.keyCode === 38 ||

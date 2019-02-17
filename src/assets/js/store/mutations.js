@@ -14,6 +14,7 @@ export default {
     let centered = 0;
     let mapCenter = state.env.map.length/2 *state.env.tileW*2.3;
     state.env.mapX = state.env.winWidth/2-mapCenter;
+    state.env.mapY = state.env.winHeight/2;
     return state;
   },
   rotateMap(state) {
@@ -77,7 +78,6 @@ export default {
       let inc = 0.05;
       // save posX at beginning of event
       let startingPosX = state.env.mapX;
-      console.log('startingPosX', startingPosX);
       let startingPosY = state.env.mapY;
       // if not running, initiate interval
         let drawFrequency = setInterval(() => {

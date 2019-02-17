@@ -31,7 +31,7 @@ window.addEventListener("keydown", e => {
     e.keyCode === 83
     ) {
     store.dispatch('moveMap', e.keyCode);
-    // no friggin' event bubbling
-    e.stopImmediatePropagation();
   }
+  // no friggin' event bubbling
+  e.stopImmediatePropagation();
 });

@@ -83,16 +83,20 @@ export default {
         let drawFrequency = setInterval(() => {
           inc += 0.035;
           switch (payload) {
-            case 68,39:
+            case 68:
+            case 39:
               state.env.mapX += (1/inc);
               break;
-            case 65,37:
+            case 65:
+            case 37:
               state.env.mapX -= (1/inc);
               break;
-            case 83,40:
+            case 83:
+            case 40:
               state.env.mapY += (1/inc);
               break;
-            case 87,38:
+            case 87:
+            case 38:
               state.env.mapY -= (1/inc);
               break;  
           }

@@ -1,6 +1,6 @@
-import {floatText} from './assets/js/utils';
-import store from './assets/js/store/index'; 
-import canvasWrapper from './assets/js/components/canvasWrapper';
+import {floatText} from './utils';
+import store from './store/index';
+import canvasWrapper from './components/canvasWrapper';
 import './assets/scss/styles.scss';
 
 const canvasWrapperInstance = new canvasWrapper('main');

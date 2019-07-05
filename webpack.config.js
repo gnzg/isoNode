@@ -39,7 +39,8 @@ module.exports = {
   },
   devServer: {
     contentBase: './dist',
-    hot: true
+    hot: true,
+    port: 1234,
   },
   plugins: [
     /* hot module replacement */

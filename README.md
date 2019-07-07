@@ -5,7 +5,7 @@ IsoNode is inspired by jsISO but has a dedicated state management engine as a si
 
 ## Run isoNode
 
-First build isoNode via`npm run build`. Then run it via `npm start`. The dev server will then be available via the specified port (default is 1234). 
+First build isoNode via `npm run build`. Then run it via `npm start`. The dev server will then be available via the specified port (default is 1234). 
 
 ## License
 

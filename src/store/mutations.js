@@ -80,29 +80,6 @@ const handleKeyDown = (state, payload) => {
   let startingPosY = state.env.mapY;
   // if not running, initiate interval
   if (state.keyMap[82]) {
-    //alert('r key pressed');
-    // let drawFrequency = setInterval(() => {
-    /*switch (payload) {
-     case 68: // right arrow key, d
-     case 39: 
-       state.env.mapX += inc;
-       break;
-     case 65: // left arrow key, a
-     case 37:
-       state.env.mapX -= inc;
-       break;
-     case 83: // arrow down key, s
-     case 40:
-       state.env.mapY += inc;
-       break;
-     case 87: // arrow up key, w
-     case 38:
-       state.env.mapY -= inc;
-       break;
-     case 82: // r key
-       rotateMap(state);
-       break;
-   }*/
    rotateMap(state);
    renderTiles(state);
   }

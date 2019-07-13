@@ -8,7 +8,9 @@ test('Add an item to our homebrew store', () => {
 test('Should rotate the ground map', () => {
   let beforeRotationX = store.state.env.map[0].length;
   let beforeRotationZ = store.state.env.map.length;
-  store.dispatch('rotateMap', store.state);
+  let currentKeyMap = store.state.keyMap;
+  currentKeyMap[82] = true;
+  store.dispatch('handleKeyDown', currentKeyMap);
   let afterRotationX = store.state.env.map[0].length;
   let afterRotationZ = store.state.env.map.length;
   expect(beforeRotationX === afterRotationZ &&

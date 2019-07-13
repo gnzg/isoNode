@@ -1,7 +1,7 @@
 export default class Tile {
 
     // Tile object
-    // draws itself in all three isometric aspects, i.e. top, left and right
+    // draws three isometric aspects, i.e. top, left and right
 
     constructor({ x, y, tileW, fill, i, j, k, mapX, mapY, rectColors, rectShadowColors, map, waterWorld}) {
         this.x = x || 0;

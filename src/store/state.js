@@ -1,4 +1,4 @@
-import { map, waterWorld } from '../map';
+import { map, waterWorld } from '../maps';
 
 export default {
   ctx: document.querySelector('#main').getContext('2d'),

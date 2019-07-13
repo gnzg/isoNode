@@ -104,17 +104,18 @@ const handleKeyDown = (state, payload) => {
        break;
    }*/
    rotateMap(state);
+   renderTiles(state);
   }
-  if (state.env.mapX > startingPosX + inc * 5 ||
-    state.env.mapX < startingPosX - inc * 5 ||
-    state.env.mapY > startingPosY + inc * 5 ||
-    state.env.mapY < startingPosY - inc * 5 ||
-    state.keyMap[82] === false
-  ) {
-    //alert('r key is up');
-    //clearInterval(drawFrequency);
-  }
-  renderTiles(state);
+  let drawFrequency = setInterval(() => {
+    if (state.keyMap[68]) {
+      state.env.mapX += inc;
+    }
+    if (state.keyMap[68] === false) {
+      //alert('r key is up');
+      clearInterval(drawFrequency);
+    }
+    renderTiles(state);
+  }, 20);
 }
 const renderTiles = state => {
   let ctx = state.ctx;

@@ -34,6 +34,7 @@ window.addEventListener("keydown", e => {
     store.dispatch('handleKeyDown', store.state.keyMap);
   }
   // no friggin' event bubbling
+  e.stopImmediatePropagation();
 });
 window.addEventListener("keyup", e => {
   //alert('asdasd');
@@ -41,4 +42,5 @@ window.addEventListener("keyup", e => {
   if (e.keyCode in store.state.keyMap) keyMapState[e.keyCode] = false;
   //alert('r is:', store.state.keyMap[82]);
   store.dispatch('handleKeyDown', keyMapState);
+  e.stopImmediatePropagation();
 });

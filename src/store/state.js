@@ -1,7 +1,7 @@
 import { map, waterWorld } from '../maps';
 
 export default {
-  ctx: document.querySelector('#main').getContext('2d'),
+  ctx: document.querySelector('#main') ? document.querySelector('#main').getContext('2d') : null,
   cooldown: false,
   env: {
     // The isometric map. Each item represents a row, each number in a row a tile.
@@ -33,5 +33,6 @@ export default {
     winWidth: window.innerWidth,
     winHeight: window.innerHeight,
     rotationDegree: 0
-  }
+  },
+  misc: []
 };

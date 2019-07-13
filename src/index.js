@@ -10,8 +10,8 @@ window.addEventListener("DOMContentLoaded", () => {
   floatText(store.state.ctx, 'Press R to rotate the canvas');
 });
 window.addEventListener("resize", () => {
-  store.state.env.winWidth = window.innerWidth;
-  store.state.env.winHeight = window.innerHeight;
+  store.state.env.winWidth = window.innerWidth; // TODO
+  store.state.env.winHeight = window.innerHeight; // TODO
   store.dispatch('centerCanvas');
 });
 // Rotate or move canvas on key down

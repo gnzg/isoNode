@@ -39,7 +39,7 @@
     "webpack-dev-server": "^3.1.14"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "start": "webpack-dev-server --config ./webpack.config.js",
     "watch": "webpack --watch",
     "build": "webpack"

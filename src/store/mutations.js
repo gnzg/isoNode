@@ -1,7 +1,7 @@
 import Tile from '../tile';
 
 const addItem = (state, payload) => {
-  state.items.push(payload);
+  state.misc.push(payload);
   return state;
 }
 const addEnvProp = (state, payload) => {

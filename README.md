@@ -10,7 +10,7 @@ First build isoNode via `npm run build`. Then run it via `npm start`. The dev se
 ### Features
 
 <ul>
-<li>Multi-key map navigation, currently A,W,S,D keys are the default navigation keys.</li>
+<li>Multi-key map navigation. Currently A,W,S,D keys are the default navigation keys.</li>
 
 <li>Map rotation via the R key.</li>
 </ul>

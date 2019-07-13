@@ -75,29 +75,29 @@ export default {
     if (state.cooldown === false) {
       state.cooldown = true;
       // acceleration
-      let inc = 0.05;
+      let inc = 20;
       // save posX at beginning of event
       let startingPosX = state.env.mapX;
       let startingPosY = state.env.mapY;
       // if not running, initiate interval
         let drawFrequency = setInterval(() => {
-          inc += 0.035;
+          
           switch (payload) {
             case 68:
             case 39:
-              state.env.mapX += (1/inc);
+              state.env.mapX += inc;
               break;
             case 65:
             case 37:
-              state.env.mapX -= (1/inc);
+              state.env.mapX -= inc;
               break;
             case 83:
             case 40:
-              state.env.mapY += (1/inc);
+              state.env.mapY += inc;
               break;
             case 87:
             case 38:
-              state.env.mapY -= (1/inc);
+              state.env.mapY -= inc;
               break;  
           }
           // per cooldown only one kind of movement is possible

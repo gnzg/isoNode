@@ -96,7 +96,6 @@ const handleKeyDown = (state, payload) => {
 
     if (state.keyMap[68] === false) {
       //alert('r key is up');
-      
     }
     if (!state.keyMap[68] && !state.keyMap[65] &&
         !state.keyMap[87] && !state.keyMap[83]) {

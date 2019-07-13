@@ -8,11 +8,8 @@ export default {
   centerCanvas(context) {
     context.commit('centerCanvas');
   },
-  rotateMap(context) {
-    context.commit('rotateMap');
-  },
-  moveMap(context, payload) {
-    context.commit('moveMap', payload);
+  handleKeyDown(context, payload) {
+    context.commit('handleKeyDown', payload);
   },
   renderTiles(context) {
     context.commit('renderTiles');

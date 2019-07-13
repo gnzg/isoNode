@@ -34,5 +34,17 @@ export default {
     winHeight: window.innerHeight,
     rotationDegree: 0
   },
-  misc: []
+  misc: [],
+  // keep map of pressed keys
+  keyMap: { 
+      68: false,
+      39: false,
+      65: false,
+      37: false,
+      83: false,
+      40: false,
+      87: false,
+      38: false,
+      82: false
+  }
 };

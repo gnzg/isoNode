@@ -68,50 +68,53 @@ const rotateMap = state => {
 
   return state;
 }
-const moveMap = (state, payload) => {
+const handleKeyDown = (state, payload) => {
   //this = me;
   // allow mutation to take place only once cooldown is over
   // also, make sure an instance of drawFrequency is not running 
-  if (state.cooldown === false) {
-    state.cooldown = true;
-    // acceleration
-    let inc = 20;
-    // save posX at beginning of event
-    let startingPosX = state.env.mapX;
-    let startingPosY = state.env.mapY;
-    // if not running, initiate interval
-    let drawFrequency = setInterval(() => {
-      switch (payload) {
-        case 68:
-        case 39:
-          state.env.mapX += inc;
-          break;
-        case 65:
-        case 37:
-          state.env.mapX -= inc;
-          break;
-        case 83:
-        case 40:
-          state.env.mapY += inc;
-          break;
-        case 87:
-        case 38:
-          state.env.mapY -= inc;
-          break;
-      }
-      // per cooldown only one kind of movement is possible
-      if (state.env.mapX > startingPosX + 100 ||
-        state.env.mapX < startingPosX - 100 ||
-        state.env.mapY > startingPosY + 100 ||
-        state.env.mapY < startingPosY - 100
-      ) {
-        console.log('cleared interval');
-        clearInterval(drawFrequency);
-        state.cooldown = false;
-      }
-      renderTiles(state);
-    }, 20);
+
+  // acceleration
+  let inc = 10;
+  // save posX at beginning of event
+  let startingPosX = state.env.mapX;
+  let startingPosY = state.env.mapY;
+  // if not running, initiate interval
+  if (state.keyMap[82]) {
+    //alert('r key pressed');
+    // let drawFrequency = setInterval(() => {
+    /*switch (payload) {
+     case 68: // right arrow key, d
+     case 39: 
+       state.env.mapX += inc;
+       break;
+     case 65: // left arrow key, a
+     case 37:
+       state.env.mapX -= inc;
+       break;
+     case 83: // arrow down key, s
+     case 40:
+       state.env.mapY += inc;
+       break;
+     case 87: // arrow up key, w
+     case 38:
+       state.env.mapY -= inc;
+       break;
+     case 82: // r key
+       rotateMap(state);
+       break;
+   }*/
+   rotateMap(state);
   }
+  if (state.env.mapX > startingPosX + inc * 5 ||
+    state.env.mapX < startingPosX - inc * 5 ||
+    state.env.mapY > startingPosY + inc * 5 ||
+    state.env.mapY < startingPosY - inc * 5 ||
+    state.keyMap[82] === false
+  ) {
+    //alert('r key is up');
+    //clearInterval(drawFrequency);
+  }
+  renderTiles(state);
 }
 const renderTiles = state => {
   let ctx = state.ctx;
@@ -161,4 +164,4 @@ const renderTiles = state => {
   }
 }
 
-module.exports = {rotateMap, centerCanvas, addEnvProp, addItem, moveMap, renderTiles};
+module.exports = { rotateMap, centerCanvas, addEnvProp, addItem, handleKeyDown, renderTiles };

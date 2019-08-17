@@ -44,3 +44,7 @@ window.addEventListener("keyup", e => {
   store.dispatch('handleKeyDown', keyMapState);
   e.stopImmediatePropagation();
 });
+
+window.addEventListener("mousemove", e => {
+  console.log(e.clientX);
+})

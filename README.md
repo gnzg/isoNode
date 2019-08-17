@@ -5,7 +5,7 @@ IsoNode is inspired by jsISO but has a dedicated state management engine as a si
 
 ### Install
 
-Install all dependencies via `npm install`.
+Install all dependencies via `npm install`. Remove `package-lock.json` if reinstalling depedencies.
 
 ### Run isoNode
 

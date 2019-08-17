@@ -46,5 +46,5 @@ window.addEventListener("keyup", e => {
 });
 
 window.addEventListener("mousemove", e => {
-  console.log(e.clientX);
+  //console.log(e.clientX);
 })

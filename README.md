@@ -3,9 +3,13 @@ IsoNode is inspired by jsISO but has a dedicated state management engine as a si
 
 ![isoNode](https://github.com/gnzg/isoNode/blob/master/example.png?raw=true)
 
+### Install
+
+Install all dependencies via `npm install`.
+
 ### Run isoNode
 
-First build isoNode via `npm run build`. Then run it via `npm start`. The dev server will then be available via port 1234. 
+Build isoNode via `npm run build`. Then run it via `npm start`. The dev server will then be available via port 1234. 
 
 ### Features
 

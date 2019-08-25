@@ -1,12 +1,11 @@
-import { map, waterWorld } from '../maps';
+import maps from '../maps';
 
 export default {
   ctx: document.querySelector('#main') ? document.querySelector('#main').getContext('2d') : null,
   cooldown: false,
   env: {
     // The isometric map. Each item represents a row, each number in a row a tile.
-    map: map,
-    waterWorld: waterWorld,
+    maps: maps,
     rectColors: [
       'empty',
       '#096dff',

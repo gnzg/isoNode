@@ -1,4 +1,4 @@
-import {floatText} from './utils';
+import { floatText } from './utils';
 import store from './store/index';
 import canvasWrapper from './components/canvasWrapper';
 import './assets/scss/styles.scss';
@@ -46,5 +46,5 @@ window.addEventListener("keyup", e => {
 });
 
 window.addEventListener("mousemove", e => {
-  console.log('x:', e.clientX, 'y:', e.clientX);
+  //console.log('x:', e.clientX, 'y:', e.clientX);
 })

@@ -14,23 +14,27 @@ let floatText = (ctx,text) => {
   },2000);
 };
 
-let draw = (ctx, map, mapX, mapY, tileW, i, j, k, rectColors, rectShadowColors) => {
-
+let draw = (ctx, maps, mapX, mapY, tileW, i, j, k, rectColors, rectShadowColors) => {
+    console.log('draw()');
     this.i = i;
     this.j = j;
     this.k = k;
     this.tileW = tileW;
     this.mapX = mapX;
     this.mapY = mapY;
-    this.map = map;
+    this.maps = maps;
     this.rectColors = rectColors;
     this.rectShadowColors = rectShadowColors;
-
-
-   if (this.k === 1) {
-      this.tempMap = this.map;
+     
+  if (this.k === 0) {
+    // Waterworld
+    this.tempMap = maps[`${Object.keys(maps)[0]}`];
+  }  
+  else if (this.k === 1) {
+    // ground level 1
+    this.tempMap = maps[`${Object.keys(maps)[1]}`];
   } else {
-      this.tempMap = [];
+    this.tempMap = [];
   }
   //console.log('this.i', this.i, 'this.tempMap[this.i]', this.tempMap[this.i]);
 

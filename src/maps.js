@@ -33,4 +33,4 @@ let waterWorld = [
   [0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0]
 ];
 
-module.exports = {map, waterWorld};
+module.exports = {waterWorld, map};

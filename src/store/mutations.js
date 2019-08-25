@@ -11,8 +11,9 @@ export default {
   },
   centerCanvas(state) {
     console.log('Window resized! Centering canvas...');
-    let centered = 0;
-    let mapCenter = state.env.map.length / 2 * state.env.tileW * 2.3;
+    // referring to the biggest map, i.e. in our case maps.waterWorld
+    // console.log(state.env.maps.waterWorld.length);
+    let mapCenter = state.env.maps.waterWorld.length / 2 * state.env.tileW * 2.3;
     state.env.mapX = state.env.winWidth / 2 - mapCenter;
     state.env.mapY = state.env.winHeight / 2;
     return state;
@@ -109,7 +110,7 @@ export default {
     if (state.ctx) {
       let ctx = state.ctx;
       let {
-        map,
+        maps,
         tileW,
         mapX,
         mapY,
@@ -121,14 +122,17 @@ export default {
       // clear entire canvas
       ctx.clearRect(-1000, -1000, 4000, 4000);
 
-      if (map[0] !== undefined) {
+      if (maps !== undefined) {
+        console.log('renderTiles()');
         // loop through our map and draw out the image represented by the number.
         // iterator k draws the map across the y axis
-        for (let k = 0; k < 9; k++) {
+        for (let k = 0; k <= Object.keys(maps).length-1; k++) {
+          let currentMap = Object.keys(maps)[k];
+          console.log('currentMap', currentMap);
           // iterator i draws a row across the z axis
-          for (let i = 0; i < map.length; i++) {
+          for (let i = 0; i < maps[`${Object.keys(maps)[k]}`].length; i++) {
             // iterator j draws a row across the x axis
-            for (let j = 0; j < map[i].length; j++) {
+            for (let j = 0; j < maps[`${Object.keys(maps)[k]}`][i].length; j++) {
               // draw all three visible sides of the rect aspect
 
               
@@ -136,15 +140,17 @@ export default {
               // as opposed to configure tile, draw map
               // 1) write a map object; 2) draw the map
 
-              draw(ctx, map, mapX, mapY, tileW, i, j, k, rectColors, rectShadowColors);
+              draw(ctx, maps, mapX, mapY, tileW, i, j, k, rectColors, rectShadowColors);
             }
           }
         };
         // console.log('i', map.length, 'j', map[0].length);
+      } else {
+        console.error("no maps object found!");
       }
     }
     else {
-      console.warn('No ctx object found!');
+      console.error('No ctx object found!');
     }
   }
 };

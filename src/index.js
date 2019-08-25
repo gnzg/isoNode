@@ -16,10 +16,11 @@ window.addEventListener("resize", () => {
 });
 // Rotate or move canvas on key(s) down
 window.addEventListener("keydown", e => {
-  if (e.keyCode in store.state.keyMap) store.state.keyMap[e.keyCode] = true;
-  
+  e.stopImmediatePropagation();
+  if (e.keyCode in store.state.keyMap) {
+    store.state.keyMap[e.keyCode] = true;
+  }
   //console.log(store.state.keyMap[68], store.state.keyMap[87]);
-
   if (
     e.keyCode === 37 ||
     e.keyCode === 38 ||
@@ -34,17 +35,16 @@ window.addEventListener("keydown", e => {
     store.dispatch('handleKeyDown', store.state.keyMap);
   }
   // no friggin' event bubbling
-  e.stopImmediatePropagation();
 });
 window.addEventListener("keyup", e => {
+  e.stopImmediatePropagation();
   //alert('asdasd');
   let keyMapState = store.state.keyMap;
   if (e.keyCode in store.state.keyMap) keyMapState[e.keyCode] = false;
   //alert('r is:', store.state.keyMap[82]);
   store.dispatch('handleKeyDown', keyMapState);
-  e.stopImmediatePropagation();
 });
 
 window.addEventListener("mousemove", e => {
-  //console.log(e.clientX);
+  console.log('x:', e.clientX, 'y:', e.clientX);
 })

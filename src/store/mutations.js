@@ -1,4 +1,5 @@
 import Tile from '../tile';
+import { draw } from '../utils';
 export default {
 
   addItem(state, payload) {
@@ -110,7 +111,6 @@ export default {
       let ctx = state.ctx;
       let {
         map,
-        waterWorld,
         tileW,
         mapX,
         mapY,
@@ -132,21 +132,12 @@ export default {
             for (let j = 0; j < map[i].length; j++) {
               // draw all three visible sides of the rect aspect
 
-              let mapTile = new Tile({
-                i: i,
-                j: j,
-                k: k,
-                tileW: tileW,
-                mapX: mapX,
-                mapY: mapY,
-                map: map,
-                rectColors: rectColors,
-                rectShadowColors: rectShadowColors,
-                waterWorld: waterWorld,
-              });
+              
+              // configure tile, draw map only then
+              // as opposed to configure tile, draw map
+              // 1) write a map object; 2) draw the map
 
-              mapTile.draw(ctx);
-
+              draw(ctx, map, mapX, mapY, tileW, i, j, k, rectColors, rectShadowColors);
             }
           }
         };

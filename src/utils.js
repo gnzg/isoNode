@@ -26,7 +26,8 @@ let draw = (ctx, map, mapX, mapY, tileW, i, j, k, rectColors, rectShadowColors) 
     this.rectColors = rectColors;
     this.rectShadowColors = rectShadowColors;
 
-  if (this.k === 1) {
+
+   if (this.k === 1) {
       this.tempMap = this.map;
   } else {
       this.tempMap = [];

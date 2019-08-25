@@ -1,4 +1,3 @@
-import Tile from '../tile';
 import { draw } from '../utils';
 export default {
 
@@ -70,7 +69,7 @@ export default {
 
     return state;
   },
-  handleKeyDown(state, payload) {
+  handleKeyDown(state) {
     //this = me;
     // allow mutation to take place only once cooldown is over
     // also, make sure an instance of drawFrequency is not running 

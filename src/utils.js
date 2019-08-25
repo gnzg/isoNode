@@ -15,7 +15,6 @@ let floatText = (ctx,text) => {
 };
 
 let draw = (ctx, maps, mapX, mapY, tileW, i, j, k, rectColors, rectShadowColors) => {
-    console.log('draw()');
     this.i = i;
     this.j = j;
     this.k = k;

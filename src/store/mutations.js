@@ -20,44 +20,48 @@ export default {
   },
   rotateMap(state) {
     let tempDegree = 0;
-    let maps = [state.env.map, state.env.waterWorld];
+    let maps = state.env.maps;
     let degree = tempDegree < 270 ? tempDegree + 90 : 0;
     let rotatedMaps = [];
     console.log('degree', degree);
-    for (let n = 0; n < maps.length; n++) {
+    for (let n = 0; n < Object.keys(maps).length-1; n++) {
       let rotatedMap = [];
+      let currentMap = maps[Object.keys(maps)[n]];
+      console.log('All maps', Object.keys(maps));
+      console.log('currentMap', maps[Object.keys(maps)[n]]);
       if (degree === 0) {
-        for (let i = 0; i < maps[n].length; i++) {
+        for (let i = 0; i < currentMap.length; i++) {
           rotatedMap.push([]); // dummy fill
-          for (let j = 0; j < maps[n][i].length; j++) {
-            maps[n][i] && rotatedMap[i].push(maps[n][i][j]);
+          for (let j = 0; j < currentMap[i].length; j++) {
+            currentMap[i] && rotatedMap[i].push(currentMap[i][j]);
           }
         }
       }
       else if (degree === 90) {
-        for (let i = 0; i < maps[n][0].length; i++) {
+        console.log('currentMap length', currentMap[0].length);
+        for (let i = 0; i < currentMap[0].length; i++) {
           rotatedMap.push([]); // dummy fill
-          for (let j = 0; j < maps[n].length; j++) {
-            maps[n][j] && rotatedMap[i].push(maps[n][j][i]);
+          for (let j = 0; j < currentMap.length; j++) {
+            currentMap[j] && rotatedMap[i].push(currentMap[j][i]);
           }
           rotatedMap[i].reverse();
         }
       }
       else if (degree === 180) {
-        for (let i = 0; i < maps[n].length; i++) {
+        for (let i = 0; i < currentMap.length; i++) {
           rotatedMap.push([]); // dummy fill
-          for (let j = 0; j < maps[n][i].length; j++) {
-            maps[n][i] && rotatedMap[i].push(maps[n][i][j]);
+          for (let j = 0; j < currentMap[i].length; j++) {
+            currentMap[i] && rotatedMap[i].push(currentMap[i][j]);
           }
           rotatedMap[i].reverse();
         }
         rotatedMap.reverse();
       }
       else if (degree === 270) {
-        for (let i = 0; i < maps[n][0].length; i++) {
+        for (let i = 0; i < currentMap[0].length; i++) {
           rotatedMap.push([]); // dummy fill
-          for (let j = 0; j < maps[n].length; j++) {
-            maps[n][j] && rotatedMap[i].push(maps[n][j][i]);
+          for (let j = 0; j < currentMap.length; j++) {
+            currentMap[j] && rotatedMap[i].push(currentMap[j][i]);
           }
         }
         rotatedMap.reverse();
@@ -82,6 +86,7 @@ export default {
     let startingPosY = state.env.mapY;
     // if not running, initiate interval
     if (state.keyMap[82]) {
+      console.log('Pressed R, rotating map...');
       this.rotateMap(state);
       this.renderTiles(state);
     }
@@ -123,12 +128,10 @@ export default {
       ctx.clearRect(-1000, -1000, 4000, 4000);
 
       if (maps !== undefined) {
-        console.log('renderTiles()');
         // loop through our map and draw out the image represented by the number.
         // iterator k draws the map across the y axis
         for (let k = 0; k <= Object.keys(maps).length-1; k++) {
           let currentMap = Object.keys(maps)[k];
-          console.log('currentMap', currentMap);
           // iterator i draws a row across the z axis
           for (let i = 0; i < maps[`${Object.keys(maps)[k]}`].length; i++) {
             // iterator j draws a row across the x axis

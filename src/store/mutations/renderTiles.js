@@ -1,4 +1,4 @@
-import { draw } from './utils';
+import { draw } from '../../utils';
 
 export default function renderTiles (state) {
     if (state.ctx) {
@@ -27,11 +27,7 @@ export default function renderTiles (state) {
             for (let j = 0; j < maps[`${Object.keys(maps)[k]}`][i].length; j++) {
               // draw all three visible sides of the rect aspect
 
-              
-              // configure tile, draw map only then
-              // as opposed to configure tile, draw map
-              // 1) write a map object; 2) draw the map
-
+              // logic whether to draw or not to draw shapes is defined in draw()
               draw(ctx, maps, mapX, mapY, tileW, i, j, k, rectColors, rectShadowColors);
             }
           }

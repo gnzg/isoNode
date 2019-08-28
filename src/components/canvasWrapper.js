@@ -11,12 +11,10 @@ export default class canvasWrapper extends Component {
     });
   }
   render() {
-
     this.element.width = window.innerWidth;
     this.element.height = window.innerHeight;
     console.log('Welcome...');
     store.dispatch('renderTiles');
-
     this.element.innerHTML = `<canvas>Browser does not support canvas.</canvas>`;
   }
 }

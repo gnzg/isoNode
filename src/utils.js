@@ -38,7 +38,9 @@ let draw = (ctx, maps, mapX, mapY, tileW, i, j, k, rectColors, rectShadowColors)
   //console.log('this.i', this.i, 'this.tempMap[this.i]', this.tempMap[this.i]);
 
   // if tile is non-zero, draw it
-  if (this.tempMap.length > 0 &&
+  if (
+    this.tempMap !== undefined &&
+    this.tempMap.length > 0 &&
     this.tempMap[this.i] !== undefined &&
     this.tempMap[this.i][this.j] !== 0
   ) {
@@ -69,10 +71,8 @@ let draw = (ctx, maps, mapX, mapY, tileW, i, j, k, rectColors, rectShadowColors)
     ctx.fill();
 
     // left
-    // draw only if NOT preceeded by a tile, or if first tile
-    //alert('j is ' + this.j);
-    //alert('current tile code is ' + this.tempMap[this.i][this.j+1]);
-    if (this.tempMap[this.i][this.j-1] !== 1 || this.j === 0) {
+    // draw only if NOT preceeded by a tile on the z axis, or if first tile
+    if (this.tempMap[this.i][this.j - 1] !== 1 || this.j === 0) {
       ctx.globalCompositeOperation = 'destination-over';
       if (this.j === 0) ctx.globalCompositeOperation = 'source-over';
       if (this.j - 1 >= 0 && this.tempMap[this.i][this.j - 1] === 0) ctx.globalCompositeOperation = 'source-over';
@@ -87,16 +87,20 @@ let draw = (ctx, maps, mapX, mapY, tileW, i, j, k, rectColors, rectShadowColors)
     } //else alert('not drawing left shape!');
 
     // right
-    ctx.globalCompositeOperation = 'source-over';
-    if (this.i < this.tempMap.length - 1 && this.tempMap[this.i + 1][this.j] !== 0) ctx.globalCompositeOperation = 'destination-over';
-    ctx.beginPath();
-    ctx.moveTo(this.tileW * this.i + this.mapX + this.tileW * this.j + this.tileW * 2, this.c + this.tileW * this.i + this.d - this.i * this.tileW * 0.5 - this.tileYoffset);
-    ctx.lineTo(this.tileW * this.i + this.mapX + this.tileW * this.j + this.tileW * 2, this.c + this.tileW * this.i + this.tileW + this.tileW * 1.75 - this.i * this.tileW * 0.5 - this.tileYoffset);
-    ctx.lineTo(this.tileW * this.i + this.mapX + this.tileW * this.j + this.tileW, this.c + this.tileW * this.i + this.tileW + this.tileW * 1.75 + this.tileW * 0.5 - this.i * this.tileW * 0.5 - this.tileYoffset);
-    ctx.lineTo(this.tileW * this.i + this.mapX + this.tileW * this.j + this.tileW, this.c + this.tileW * this.i + this.d + this.tileW * 0.5 - this.i * this.tileW * 0.5 - this.tileYoffset);
-    ctx.closePath();
-    ctx.fillStyle = this.fillColor;
-    ctx.fill();
+    // draw only if NOT preceeded by a tile on the x axis, or if iterating over the last row across the z axis
+    if (this.tempMap[this.i+1] !== undefined && this.tempMap[this.i+1][this.j] !== 1 ||
+      this.i === this.tempMap.length-1) {
+      ctx.globalCompositeOperation = 'source-over';
+      if (this.i < this.tempMap.length - 1 && this.tempMap[this.i + 1][this.j] !== 0) ctx.globalCompositeOperation = 'destination-over';
+      ctx.beginPath();
+      ctx.moveTo(this.tileW * this.i + this.mapX + this.tileW * this.j + this.tileW * 2, this.c + this.tileW * this.i + this.d - this.i * this.tileW * 0.5 - this.tileYoffset);
+      ctx.lineTo(this.tileW * this.i + this.mapX + this.tileW * this.j + this.tileW * 2, this.c + this.tileW * this.i + this.tileW + this.tileW * 1.75 - this.i * this.tileW * 0.5 - this.tileYoffset);
+      ctx.lineTo(this.tileW * this.i + this.mapX + this.tileW * this.j + this.tileW, this.c + this.tileW * this.i + this.tileW + this.tileW * 1.75 + this.tileW * 0.5 - this.i * this.tileW * 0.5 - this.tileYoffset);
+      ctx.lineTo(this.tileW * this.i + this.mapX + this.tileW * this.j + this.tileW, this.c + this.tileW * this.i + this.d + this.tileW * 0.5 - this.i * this.tileW * 0.5 - this.tileYoffset);
+      ctx.closePath();
+      ctx.fillStyle = this.fillColor;
+      ctx.fill();
+    }
   }
 } // end of Tile.prototype.draw
 

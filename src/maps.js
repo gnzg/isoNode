@@ -1,3 +1,6 @@
+// Each item in the map array represents a single row across the z axis
+// Each 0th element in a map array item represents a single row across the x axis
+
 let map = [
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],

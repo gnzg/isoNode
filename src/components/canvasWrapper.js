@@ -7,14 +7,12 @@ export default class canvasWrapper extends Component {
   constructor(elementId) {
     super({
       store,
-      element: document.getElementById(elementId)
+      element: document.getElementById(elementId),
     });
   }
   render() {
     this.element.width = window.innerWidth;
     this.element.height = window.innerHeight;
-    console.log('Welcome...');
-    store.dispatch('renderTiles');
     this.element.innerHTML = `<canvas>Browser does not support canvas.</canvas>`;
   }
 }

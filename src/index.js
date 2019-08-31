@@ -5,14 +5,17 @@ import './assets/scss/styles.scss';
 
 const canvasWrapperInstance = new canvasWrapper('main');
 
-window.addEventListener("DOMContentLoaded", () => {
+window.addEventListener("DOMContentLoaded", e => {
+  e.stopImmediatePropagation();
   store.dispatch('centerCanvas');
+  store.dispatch('renderTiles');
   floatText(store.state.ctx, 'Press R to rotate the canvas');
 });
 window.addEventListener("resize", () => {
   store.state.env.winWidth = window.innerWidth; // TODO
   store.state.env.winHeight = window.innerHeight; // TODO
   store.dispatch('centerCanvas');
+  store.dispatch('renderTiles');
 });
 // Rotate or move canvas on key(s) down
 window.addEventListener("keydown", e => {

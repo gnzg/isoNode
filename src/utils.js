@@ -104,5 +104,4 @@ let draw = (ctx, maps, mapX, mapY, tileW, i, j, k, rectColors, rectShadowColors)
   }
 } // end of Tile.prototype.draw
 
-
 module.exports = { floatText, draw };

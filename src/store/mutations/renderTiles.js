@@ -1,7 +1,9 @@
 import { draw } from '../../utils';
 
 export default function renderTiles (state) {
-    if (state.ctx) {
+  
+
+  if (state.ctx) {
       let ctx = state.ctx;
       let {
         maps,

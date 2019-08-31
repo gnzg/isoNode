@@ -9,7 +9,7 @@ Install all dependencies via `npm install`. Remove `package-lock.json` if reinst
 
 ### Run isoNode
 
-Build isoNode via `npm run build`. Then run it via `npm start`. The dev server will then be available via port 1234. 
+Build isoNode via `npm run build`. Then run it via `npm start`. The dev server will then be available via `localhost:1234`. 
 
 ### Features
 
@@ -18,6 +18,11 @@ Build isoNode via `npm run build`. Then run it via `npm start`. The dev server w
 
 <li>Map rotation via the R key.</li>
 </ul>
+
+### Misc observations
+
+Multi-level isometric maps do not seem to be a thing when looking back at many 2000s cRPG titles. I must wonder why.
+
 
 ### License
 

@@ -88,7 +88,7 @@ let draw = (ctx, maps, mapX, mapY, tileW, i, j, k, rectColors, rectShadowColors)
       ctx.closePath();
       ctx.fillStyle = this.fillColor;
       ctx.fill();
-    } //else alert('not drawing left shape!');
+    }
 
     // right
     // draw only if NOT preceeded by a tile on the x axis, or if iterating over the last row across the z axis
@@ -106,6 +106,6 @@ let draw = (ctx, maps, mapX, mapY, tileW, i, j, k, rectColors, rectShadowColors)
       ctx.fill();
     }
   }
-} // end of Tile.prototype.draw
+}
 
 module.exports = { floatText, draw };

@@ -7,18 +7,18 @@ export default {
     // The isometric map. Each item represents a row, each number in a row a tile.
     maps: maps,
     rectColors: [
-      'empty',
-      '#096dff',
-      '#8dee03',
-      '#29a36e',
+      '000000',  // dummy
+      '#096dff', // water
+      '#8dee03', // vegetation
+      '#a3f742', // arid vegetation
       'salmon'
     ],
     rectShadowColors: [
-      'empty',
-      '#0d49a9',
-      '#04b807',
-      '#1c6e4a',
-      'red'
+      '000000',
+      '#0d49a9', // water sides
+      '#04b807', // vegetation sides
+      '#91d611', // arid vegetation sides
+      'salmon'
     ],
     tileGraphicsToLoad: [
       "./images/water.png",

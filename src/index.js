@@ -6,24 +6,25 @@ import './assets/scss/styles.scss';
 const canvasWrapperInstance = new canvasWrapper('main');
 
 window.addEventListener("DOMContentLoaded", e => {
+  // no friggin' event bubbling
   e.stopImmediatePropagation();
   store.dispatch('centerCanvas');
   store.dispatch('renderTiles');
   floatText(store.state.ctx, 'Press R to rotate the canvas');
 });
 window.addEventListener("resize", () => {
-  store.state.env.winWidth = window.innerWidth; // TODO
-  store.state.env.winHeight = window.innerHeight; // TODO
+  store.state.env.winWidth = window.innerWidth;
+  store.state.env.winHeight = window.innerHeight;
   store.dispatch('centerCanvas');
   store.dispatch('renderTiles');
 });
 // Rotate or move canvas on key(s) down
 window.addEventListener("keydown", e => {
+  // no friggin' event bubbling
   e.stopImmediatePropagation();
   if (e.keyCode in store.state.keyMap) {
     store.state.keyMap[e.keyCode] = true;
   }
-  //console.log(store.state.keyMap[68], store.state.keyMap[87]);
   if (
     e.keyCode === 37 ||
     e.keyCode === 38 ||
@@ -37,14 +38,11 @@ window.addEventListener("keydown", e => {
     ) {
     store.dispatch('handleKeyDown', store.state.keyMap);
   }
-  // no friggin' event bubbling
 });
 window.addEventListener("keyup", e => {
   e.stopImmediatePropagation();
-  //alert('asdasd');
   let keyMapState = store.state.keyMap;
   if (e.keyCode in store.state.keyMap) keyMapState[e.keyCode] = false;
-  //alert('r is:', store.state.keyMap[82]);
   store.dispatch('handleKeyDown', keyMapState);
 });
 

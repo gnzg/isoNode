@@ -32,6 +32,10 @@ let draw = (ctx, maps, mapX, mapY, tileW, i, j, k, rectColors, rectShadowColors)
   else if (this.k === 1) {
     // ground level 1
     this.tempMap = maps[`${Object.keys(maps)[1]}`];
+  }
+  else if (this.k === 2) {
+    // ground level 2
+    this.tempMap = maps[`${Object.keys(maps)[2]}`];
   } else {
     this.tempMap = [];
   }
@@ -88,8 +92,8 @@ let draw = (ctx, maps, mapX, mapY, tileW, i, j, k, rectColors, rectShadowColors)
 
     // right
     // draw only if NOT preceeded by a tile on the x axis, or if iterating over the last row across the z axis
-    if (this.tempMap[this.i+1] !== undefined && this.tempMap[this.i+1][this.j] !== 1 ||
-      this.i === this.tempMap.length-1) {
+    if (this.tempMap[this.i + 1] !== undefined && this.tempMap[this.i + 1][this.j] !== 1 ||
+      this.i === this.tempMap.length - 1) {
       ctx.globalCompositeOperation = 'source-over';
       if (this.i < this.tempMap.length - 1 && this.tempMap[this.i + 1][this.j] !== 0) ctx.globalCompositeOperation = 'destination-over';
       ctx.beginPath();

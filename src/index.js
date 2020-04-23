@@ -4,14 +4,8 @@ import canvasWrapper from './components/canvasWrapper';
 import './assets/scss/styles.scss';
 
 const canvasWrapperInstance = new canvasWrapper('main');
+let hint = new Object;
 
-window.addEventListener("DOMContentLoaded", e => {
-  // no friggin' event bubbling
-  e.stopImmediatePropagation();
-  store.dispatch('centerCanvas');
-  store.dispatch('renderTiles');
-  floatText(store.state.ctx, 'Press R to rotate the canvas');
-});
 window.addEventListener("resize", () => {
   store.state.env.winWidth = window.innerWidth;
   store.state.env.winHeight = window.innerHeight;
@@ -36,16 +30,28 @@ window.addEventListener("keydown", e => {
     e.keyCode === 83 ||
     e.keyCode === 82
     ) {
-    store.dispatch('handleKeyDown', store.state.keyMap);
-  }
-});
-window.addEventListener("keyup", e => {
-  e.stopImmediatePropagation();
-  let keyMapState = store.state.keyMap;
-  if (e.keyCode in store.state.keyMap) keyMapState[e.keyCode] = false;
-  store.dispatch('handleKeyDown', keyMapState);
-});
-
-window.addEventListener("mousemove", e => {
-  //console.log('x:', e.clientX, 'y:', e.clientX);
-})
+      store.dispatch('handleKeyDown', store.state.keyMap);
+    }
+  });
+  
+  window.addEventListener("keyup", e => {
+    e.stopImmediatePropagation();
+    let keyMapState = store.state.keyMap;
+    if (e.keyCode in store.state.keyMap) keyMapState[e.keyCode] = false;
+    store.dispatch('handleKeyUp', keyMapState);
+    hint.hide();
+  });
+  
+  window.addEventListener("mousemove", e => {
+    //console.log('x:', e.clientX, 'y:', e.clientX);
+  })
+  
+  // main initialization
+  window.addEventListener("DOMContentLoaded", e => {
+    // no friggin' event bubbling
+    e.stopImmediatePropagation();
+    store.dispatch('centerCanvas');
+    store.dispatch('renderTiles');
+    hint = new floatText(store.state.ctx, 'Press R to rotate the canvas');
+    setTimeout(() => { hint.display(); }, 3000);
+  });

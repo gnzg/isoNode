@@ -1,7 +1,7 @@
 {
   "name": "isoNode",
   "version": "1.0.0",
-  "description": "Node.js version of isoJS",
+  "description": "Isometric game map building engine inspired by isoJS",
   "main": "index.js",
   "dependencies": {
     "autoprefixer": "^9.6.1",

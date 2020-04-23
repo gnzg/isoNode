@@ -11,12 +11,13 @@ export default function renderTiles (state) {
         mapX,
         mapY,
         rectColors,
-        rectShadowColors
+        rectShadowColors,
+        clearArea
       } = state.env;
       // TODO: Add prevalance of elevated tiles if they rise above other tiles
 
       // clear entire canvas
-      ctx.clearRect(-1000, -1000, 4000, 4000);
+      ctx.clearRect(...clearArea);
 
       if (maps !== undefined) {
         // loop through our map and draw out the image represented by the number.

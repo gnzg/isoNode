@@ -31,7 +31,8 @@ export default {
     mapY: 350,
     winWidth: window.innerWidth,
     winHeight: window.innerHeight,
-    rotationDegree: 0
+    rotationDegree: 0,
+    clearArea: [-1000, 50, 4000, 4000]            // Area to clear relative to the canvas
   },
   misc: [],
   // keep map of pressed keys

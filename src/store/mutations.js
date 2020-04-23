@@ -1,5 +1,6 @@
 import renderTiles from './mutations/renderTiles';
 import handleKeyDown from './mutations/handleKeyDown';
+import handleKeyUp from './mutations/handleKeyUp';
 import rotateMap from './mutations/rotateMap';
 import centerCanvas from './mutations/centerCanvas'
 
@@ -15,5 +16,6 @@ export default {
   centerCanvas,
   rotateMap,
   handleKeyDown,
+  handleKeyUp,
   renderTiles
 };

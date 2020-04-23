@@ -13,9 +13,11 @@ export default function handleKeyDown (state) {
     let startingPosY = state.env.mapY;
     // if not running, initiate interval
     if (state.keyMap[82]) {
+      /*
       console.log('Pressed R, rotating map...');
       rotateMap(state);
       renderTiles(state);
+      */
     }
     let drawFrequency = setInterval(() => {
       if (state.keyMap[68]) {

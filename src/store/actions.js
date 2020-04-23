@@ -11,6 +11,9 @@ export default {
   handleKeyDown(context, payload) {
     context.commit('handleKeyDown', payload);
   },
+  handleKeyUp(context, payload) {
+    context.commit('handleKeyUp', payload);
+  },
   renderTiles(context) {
     context.commit('renderTiles');
   }

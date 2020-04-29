@@ -16,15 +16,14 @@ class floatText {
         this.fade += 0.1;
       }
       else if (this.fade >= 1) {
-        console.log("display(): cleared interval");
+        //console.log("display(): cleared interval");
         clearInterval(this.refreshInterval);
         this.visible = true;
       }
     }, 50);
   }
   hide() {
-    console.log("hide()");
-    console.log('this.fade', this.fade);
+    //console.log('hide()', 'this.fade', this.fade);
     clearInterval(this.refreshInterval);
     // if( this.visible === true) {
       this.hideInterval = setInterval(() => {
@@ -34,7 +33,7 @@ class floatText {
         this.fade -= 0.1;
         if (this.fade <= 0) {
           clearInterval(this.hideInterval);
-          console.log("hide(): cleared interval");
+          //console.log("hide(): cleared interval");
         }
       }, 50);
       this.visible = false;

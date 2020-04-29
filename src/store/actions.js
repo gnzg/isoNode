@@ -16,5 +16,8 @@ export default {
   },
   renderTiles(context) {
     context.commit('renderTiles');
+  },
+  rotateMapAction(context) {
+    context.commit('rotateMap');
   }
 };

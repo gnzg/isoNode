@@ -4,11 +4,12 @@ export default function rotateMap(state) {
   let degree = tempDegree < 270 ? tempDegree + 90 : 0;
   let rotatedMaps = [];
   console.log('degree', degree);
-  for (let n = 0; n < Object.keys(maps).length - 1; n++) {
+  //console.log('All maps', Object.keys(maps));
+  
+  for (let n = 0; n < Object.keys(maps).length; n++) {
     let rotatedMap = [];
     let currentMap = maps[Object.keys(maps)[n]];
-    console.log('All maps', Object.keys(maps));
-    console.log('currentMap', maps[Object.keys(maps)[n]]);
+    //onsole.log('currentMap', Object.keys(maps)[n]);
     if (degree === 0) {
       for (let i = 0; i < currentMap.length; i++) {
         rotatedMap.push([]); // dummy fill
@@ -18,15 +19,17 @@ export default function rotateMap(state) {
       }
     }
     else if (degree === 90) {
-      console.log('currentMap length', currentMap[0].length);
+      //console.log('currentMap length', currentMap[0].length);
       for (let i = 0; i < currentMap[0].length; i++) {
         rotatedMap.push([]); // dummy fill
         for (let j = 0; j < currentMap.length; j++) {
           currentMap[j] && rotatedMap[i].push(currentMap[j][i]);
         }
+        //console.log('rotated map is', rotatedMap[i]);
         rotatedMap[i].reverse();
       }
-    }
+      console.log('rotatedMap', rotatedMap);
+    } /*
     else if (degree === 180) {
       for (let i = 0; i < currentMap.length; i++) {
         rotatedMap.push([]); // dummy fill
@@ -45,12 +48,10 @@ export default function rotateMap(state) {
         }
       }
       rotatedMap.reverse();
-    }
+    } */
     rotatedMaps.push(rotatedMap);
+    let currentMapName = Object.keys(maps)[n];
+    state.env[currentMapName] = rotatedMaps[n];
   }
-  // major TODO, i.e. rotate all maps
-  state.env.map = rotatedMaps[0];
-  state.env.waterWorld = rotatedMaps[1];
-
   return state;
 }

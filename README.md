@@ -9,7 +9,7 @@ Install all dependencies via `npm install`. Remove `package-lock.json` if reinst
 
 ### Run isoNode
 
-Build isoNode via `npm run build`. Then run it via `npm start`. The dev server will then be available via `localhost:1234`. 
+To compile and watch the source code run `npm start` from project root. The dev server will then be available via `localhost:1234`.
 
 ### Features
 

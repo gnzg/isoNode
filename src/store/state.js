@@ -6,6 +6,7 @@ export default {
   env: {
     // The isometric map. Each item represents a row, each number in a row a tile.
     maps: maps,
+    rotationDegree: 0,
     rectColors: [
       '000000',  // dummy
       '#096dff', // water
@@ -37,14 +38,14 @@ export default {
   misc: [],
   // keep map of pressed keys
   keyMap: { 
-      68: false,
-      39: false,
-      65: false,
-      37: false,
-      83: false,
-      40: false,
-      87: false,
-      38: false,
-      82: false
+    68: false,
+    39: false,
+    65: false,
+    37: false,
+    83: false,
+    40: false,
+    87: false,
+    38: false,
+    82: false
   }
 };

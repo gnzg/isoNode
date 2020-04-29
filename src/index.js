@@ -29,8 +29,7 @@ window.addEventListener("DOMContentLoaded", e => {
       e.keyCode === 68 ||       // D key
       e.keyCode === 65 ||       // A key
       e.keyCode === 87 ||       // W key
-      e.keyCode === 83 ||       // S key
-      e.keyCode === 82          // R key
+      e.keyCode === 83          // S key
       ) {
         store.dispatch('handleKeyDown', store.state.keyMap);
       }

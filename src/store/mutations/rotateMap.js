@@ -1,3 +1,5 @@
+import store from '../index';
+
 export default function rotateMap(state) {
   let tempDegree = 0;
   let maps = state.env.maps;
@@ -28,7 +30,7 @@ export default function rotateMap(state) {
         //console.log('rotated map is', rotatedMap[i]);
         rotatedMap[i].reverse();
       }
-      console.log('rotatedMap', rotatedMap);
+      //console.log('rotatedMap', rotatedMap);
     } /*
     else if (degree === 180) {
       for (let i = 0; i < currentMap.length; i++) {
@@ -51,7 +53,7 @@ export default function rotateMap(state) {
     } */
     rotatedMaps.push(rotatedMap);
     let currentMapName = Object.keys(maps)[n];
-    state.env[currentMapName] = rotatedMaps[n];
+    state.env.maps[currentMapName] = rotatedMaps[n];
+    store.dispatch('renderTiles');
   }
-  return state;
 }

@@ -5,9 +5,9 @@ export default function rotateMap(state) {
   let rotatedMaps = [];
   //console.log('All maps', Object.keys(maps));
   
-  for (let n = 0; n < Object.keys(maps).length; n++) {
+  for (let n = 0; n < maps.length; n++) {
     let rotatedMap = [];
-    let currentMap = maps[Object.keys(maps)[n]];
+    let currentMap = maps[n];
     //onsole.log('currentMap', Object.keys(maps)[n]);
     
     //console.log('currentMap length', currentMap[0].length);

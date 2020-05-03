@@ -26,4 +26,4 @@ It is possible to test newly introduced actions via the browser console as they 
 
 ### License
 
-isoNode is licensed under GNU AGPLv3.
+isoNode is licensed under the MIT license.

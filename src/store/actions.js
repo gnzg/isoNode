@@ -19,5 +19,8 @@ export default {
   },
   rotateMapAction(context) {
     context.commit('rotateMap');
+  },
+  deleteTile(context, payload) {
+    context.commit('deleteTile', payload);
   }
 };

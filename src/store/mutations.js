@@ -3,6 +3,7 @@ import handleKeyDown from './mutations/handleKeyDown';
 import handleKeyUp from './mutations/handleKeyUp';
 import rotateMap from './mutations/rotateMap';
 import centerCanvas from './mutations/centerCanvas'
+import deleteTile from './mutations/deleteTile';
 
 export default {
   addItem(state, payload) {
@@ -17,5 +18,6 @@ export default {
   rotateMap,
   handleKeyDown,
   handleKeyUp,
-  renderTiles
+  renderTiles,
+  deleteTile
 };

@@ -53,4 +53,4 @@ let waterWorld = [
   [0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0]
 ];
 
-module.exports = {waterWorld, groundlevel_1, groundlevel_2};
+module.exports = [waterWorld, groundlevel_1, groundlevel_2];

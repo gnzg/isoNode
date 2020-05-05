@@ -63,4 +63,8 @@ window.addEventListener("DOMContentLoaded", e => {
     
     // Trigger actions via browser console
     window.store = store;
+
+    window.addEventListener('mousemove', e => {
+      //console.log(e.clientX / e.clientY);
+    });
 });

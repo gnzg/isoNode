@@ -24,6 +24,10 @@ To compile and watch the source code run `npm start` from project root. The dev 
 
 It is possible to test newly introduced actions via the browser console as they are available via the window object. E.g. `window.store.dispatch('renderTiles');` 
 
+### Misc
+
+If running into ambigious compilation errors, first try to rebuuld node-sass via `npm rebuild node-sass`
+
 ### License
 
 isoNode is licensed under the MIT license.

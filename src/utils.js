@@ -41,11 +41,11 @@ class floatText {
   }
 }
 
-let draw = (ctx, maps, mapX, mapY, tileW, i, j, k, rectColors, rectShadowColors) => {
+let draw = (ctx, maps, mapX, mapY, tileWidth, i, j, k, rectColors, rectShadowColors) => {
   this.i = i; // iterator across z axis, i.e. elements of the map array
   this.j = j; // iterator across x axis, i.e. elements of the map item array
   this.k = k; //iterator across y axis, i.e. map arrays
-  this.tileW = tileW;
+  this.tileWidth = tileWidth;
   this.mapX = mapX;
   this.mapY = mapY;
   this.maps = maps;
@@ -76,10 +76,10 @@ let draw = (ctx, maps, mapX, mapY, tileW, i, j, k, rectColors, rectShadowColors)
     this.tempMap[this.i][this.j] !== 0
   ) {
 
-    this.tileYoffset = this.tileW * this.k * 1.25;
-    this.c = this.mapY - this.tileW * this.j * 0.5;
-    this.d = this.tileW * 1.5;
-    this.topYfactor = this.tileW * this.i * 0.5;
+    this.tileYoffset = this.tileWidth * this.k * 1.25;
+    this.c = this.mapY - this.tileWidth * this.j * 0.5;
+    this.d = this.tileWidth * 1.5;
+    this.topYfactor = this.tileWidth * this.i * 0.5;
     this.topYsegment = this.c + this.topYfactor - this.tileYoffset;
     this.fillColor = this.rectShadowColors[this.tempMap[this.i][this.j]];
 
@@ -92,10 +92,10 @@ let draw = (ctx, maps, mapX, mapY, tileW, i, j, k, rectColors, rectShadowColors)
     // top
     ctx.globalCompositeOperation = 'source-over';
     ctx.beginPath();
-    ctx.moveTo(this.tileW * this.i + this.tileW + this.mapX + this.tileW * this.j, this.tileW + this.topYsegment);
-    ctx.lineTo(this.tileW * this.i + this.tileW * 2 + this.mapX + this.tileW * this.j, this.d + this.topYsegment);
-    ctx.lineTo(this.tileW * this.i + this.tileW + this.mapX + this.tileW * this.j, this.tileW * 2 + this.topYsegment);
-    ctx.lineTo(this.tileW * this.i + this.tileW - this.tileW + this.mapX + this.tileW * this.j, this.d + this.topYsegment);
+    ctx.moveTo(this.tileWidth * this.i + this.tileWidth + this.mapX + this.tileWidth * this.j, this.tileWidth + this.topYsegment);
+    ctx.lineTo(this.tileWidth * this.i + this.tileWidth * 2 + this.mapX + this.tileWidth * this.j, this.d + this.topYsegment);
+    ctx.lineTo(this.tileWidth * this.i + this.tileWidth + this.mapX + this.tileWidth * this.j, this.tileWidth * 2 + this.topYsegment);
+    ctx.lineTo(this.tileWidth * this.i + this.tileWidth - this.tileWidth + this.mapX + this.tileWidth * this.j, this.d + this.topYsegment);
     ctx.closePath();
     // return corresponding top color based on position of fillColor in rectShadowColors[]
     //ctx.fillStyle= this.rectColors[this.rectShadowColors.indexOf(this.fillColor)];
@@ -108,10 +108,10 @@ let draw = (ctx, maps, mapX, mapY, tileW, i, j, k, rectColors, rectShadowColors)
       if (this.j === 0) ctx.globalCompositeOperation = 'source-over';
       if (this.j - 1 >= 0 && this.tempMap[this.i][this.j - 1] === 0) ctx.globalCompositeOperation = 'source-over';
       ctx.beginPath();
-      ctx.moveTo(this.tileW * this.i + this.mapX + this.tileW * this.j, this.c + this.tileW * this.i + this.d - this.i * this.tileW * 0.5 - this.tileYoffset);
-      ctx.lineTo(this.tileW * this.i + this.mapX + this.tileW * this.j, this.c + this.tileW * this.i + this.tileW + this.tileW * 1.75 - this.i * this.tileW * 0.5 - this.tileYoffset);
-      ctx.lineTo(this.tileW * this.i + this.mapX + this.tileW * this.j + this.tileW, this.c + this.tileW * this.i + this.tileW + this.tileW * 1.75 + this.tileW * 0.5 - this.i * this.tileW * 0.5 - this.tileYoffset);
-      ctx.lineTo(this.tileW * this.i + this.mapX + this.tileW * this.j + this.tileW, this.c + this.tileW * this.i + this.d + this.tileW * 0.5 - this.i * this.tileW * 0.5 - this.tileYoffset);
+      ctx.moveTo(this.tileWidth * this.i + this.mapX + this.tileWidth * this.j, this.c + this.tileWidth * this.i + this.d - this.i * this.tileWidth * 0.5 - this.tileYoffset);
+      ctx.lineTo(this.tileWidth * this.i + this.mapX + this.tileWidth * this.j, this.c + this.tileWidth * this.i + this.tileWidth + this.tileWidth * 1.75 - this.i * this.tileWidth * 0.5 - this.tileYoffset);
+      ctx.lineTo(this.tileWidth * this.i + this.mapX + this.tileWidth * this.j + this.tileWidth, this.c + this.tileWidth * this.i + this.tileWidth + this.tileWidth * 1.75 + this.tileWidth * 0.5 - this.i * this.tileWidth * 0.5 - this.tileYoffset);
+      ctx.lineTo(this.tileWidth * this.i + this.mapX + this.tileWidth * this.j + this.tileWidth, this.c + this.tileWidth * this.i + this.d + this.tileWidth * 0.5 - this.i * this.tileWidth * 0.5 - this.tileYoffset);
       ctx.closePath();
       ctx.fillStyle = this.fillColor;
       ctx.fill();
@@ -124,10 +124,10 @@ let draw = (ctx, maps, mapX, mapY, tileW, i, j, k, rectColors, rectShadowColors)
       ctx.globalCompositeOperation = 'source-over';
       if (this.i < this.tempMap.length - 1 && this.tempMap[this.i + 1][this.j] !== 0) ctx.globalCompositeOperation = 'destination-over';
       ctx.beginPath();
-      ctx.moveTo(this.tileW * this.i + this.mapX + this.tileW * this.j + this.tileW * 2, this.c + this.tileW * this.i + this.d - this.i * this.tileW * 0.5 - this.tileYoffset);
-      ctx.lineTo(this.tileW * this.i + this.mapX + this.tileW * this.j + this.tileW * 2, this.c + this.tileW * this.i + this.tileW + this.tileW * 1.75 - this.i * this.tileW * 0.5 - this.tileYoffset);
-      ctx.lineTo(this.tileW * this.i + this.mapX + this.tileW * this.j + this.tileW, this.c + this.tileW * this.i + this.tileW + this.tileW * 1.75 + this.tileW * 0.5 - this.i * this.tileW * 0.5 - this.tileYoffset);
-      ctx.lineTo(this.tileW * this.i + this.mapX + this.tileW * this.j + this.tileW, this.c + this.tileW * this.i + this.d + this.tileW * 0.5 - this.i * this.tileW * 0.5 - this.tileYoffset);
+      ctx.moveTo(this.tileWidth * this.i + this.mapX + this.tileWidth * this.j + this.tileWidth * 2, this.c + this.tileWidth * this.i + this.d - this.i * this.tileWidth * 0.5 - this.tileYoffset);
+      ctx.lineTo(this.tileWidth * this.i + this.mapX + this.tileWidth * this.j + this.tileWidth * 2, this.c + this.tileWidth * this.i + this.tileWidth + this.tileWidth * 1.75 - this.i * this.tileWidth * 0.5 - this.tileYoffset);
+      ctx.lineTo(this.tileWidth * this.i + this.mapX + this.tileWidth * this.j + this.tileWidth, this.c + this.tileWidth * this.i + this.tileWidth + this.tileWidth * 1.75 + this.tileWidth * 0.5 - this.i * this.tileWidth * 0.5 - this.tileYoffset);
+      ctx.lineTo(this.tileWidth * this.i + this.mapX + this.tileWidth * this.j + this.tileWidth, this.c + this.tileWidth * this.i + this.d + this.tileWidth * 0.5 - this.i * this.tileWidth * 0.5 - this.tileYoffset);
       ctx.closePath();
       ctx.fillStyle = this.fillColor;
       ctx.fill();

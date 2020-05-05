@@ -26,7 +26,7 @@ export default {
       "./images/land.png"
     ],
     // Set as your tile pixel sizes, alter if you are using larger tiles.
-    tileW: 24,
+    tileWidth: 24,
     // mapX and mapY are offsets to make sure we can position the map as we want.
     mapX: 0,
     mapY: 350,

@@ -12,7 +12,7 @@ let draw = (ctx, maps, mapX, mapY, tileWidth, i, j, k, rectColors, rectShadowCol
   // save a copy of the map 
   this.tempMap = maps[`${Object.keys(maps)[k]}`];
 
-  // if tile is non-zero, draw it
+  // if the map is defined and the tile is non-zero, draw it
   if (
     this.tempMap !== undefined &&
     this.tempMap.length > 0 &&

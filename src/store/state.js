@@ -4,9 +4,14 @@ export default {
   ctx: document.querySelector('#main') ? document.querySelector('#main').getContext('2d') : null,
   cooldown: false,
   env: {
-    // The isometric map. Each item represents a row, each number in a row a tile.
+    // @param {Array}; every item represents a tile map
     maps: maps,
-    rotationDegree: 0,
+    
+    // @param {Array}; every item represents an array of tile hitboxes
+    tileHitBoxes: [],
+    
+    
+    
     rectColors: [
       '000000',  // dummy
       '#096dff', // water
@@ -21,19 +26,25 @@ export default {
       '#91d611', // arid vegetation sides
       'salmon'
     ],
+    /*
     tileGraphicsToLoad: [
       "./images/water.png",
       "./images/land.png"
     ],
-    // Set as your tile pixel sizes, alter if you are using larger tiles.
+    */
+    // @param {Array}; Area to clear relative to the canvas
+    clearArea: [-1000, 50, 4000, 4000],       
+    
+    // @param {integer}; the degree of map rotation
+    rotationDegree: 0,
+    // @param {integer}; the tile size
     tileWidth: 24,
+    
     // mapX and mapY are offsets to make sure we can position the map as we want.
     mapX: 0,
     mapY: 350,
     winWidth: window.innerWidth,
-    winHeight: window.innerHeight,
-    rotationDegree: 0,
-    clearArea: [-1000, 50, 4000, 4000]            // Area to clear relative to the canvas
+    winHeight: window.innerHeight
   },
   misc: [],
   // keep map of pressed keys

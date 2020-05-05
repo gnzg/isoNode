@@ -1,5 +1,4 @@
 import draw from '../../draw.js';
-import Tile from '../../tile.js';
 
 export default function renderTiles (state) {
   
@@ -34,7 +33,6 @@ export default function renderTiles (state) {
             // draw all three visible sides of the rect aspect
             // logic whether to draw or not to draw shapes is defined in draw()
             draw(ctx, maps, mapX, mapY, tileWidth, z, x, y, rectColors, rectShadowColors);
-            //window['Tile_' + z + '' + x + '' + y] = new Tile({x, y, z});
           }
         }
       };

@@ -10,8 +10,6 @@ export default {
     // @param {Array}; every item represents an array of tile hitboxes
     tileHitBoxes: [],
     
-    
-    
     rectColors: [
       '000000',  // dummy
       '#096dff', // water

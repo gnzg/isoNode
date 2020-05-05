@@ -40,7 +40,7 @@ window.addEventListener("DOMContentLoaded", e => {
       let keyMapState = store.state.keyMap;
       if (e.keyCode in store.state.keyMap) keyMapState[e.keyCode] = false;
       store.dispatch('handleKeyUp', keyMapState);
-      hint.hide();
+      //hint.hide();
       if (e.keyCode === 82)     // R key
       {
         store.dispatch('rotateMapAction');
@@ -57,10 +57,9 @@ window.addEventListener("DOMContentLoaded", e => {
     e.stopImmediatePropagation();
     
     const canvasWrapperInstance = new canvasWrapper('main');
-    let hint = new Object;
     store.dispatch('centerCanvas');
     store.dispatch('renderTiles');
-    hint = new floatText(store.state.ctx, 'Press R to rotate the canvas');
+    //let hint = new floatText(store.state.ctx, 'Press R to rotate the canvas');
     setTimeout(() => { hint.display(); }, 3000);
     
     // Trigger actions via browser console

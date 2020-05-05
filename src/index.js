@@ -51,6 +51,13 @@ window.addEventListener("DOMContentLoaded", e => {
       // get magnitude of mouse position
       let mousePosMag = Math.sqrt(Math.pow(e.clientX, 2) + Math.pow(e.clientY, 2));
       console.log('mousePosMag', mousePosMag);
+      //console.log(store.state.env.tileHitBoxes[0]);
+      if (mousePosMag >= store.state.env.tileHitBoxes[0].alef &&
+          mousePosMag < store.state.env.tileHitBoxes[0].daled &&
+          mousePosMag >= store.state.env.tileHitBoxes[0].gimel &&
+          mousePosMag < store.state.env.tileHitBoxes[0].beth) {
+        console.log("within hitbox!");
+      }
     });
     
     // no friggin' event bubbling
@@ -60,7 +67,7 @@ window.addEventListener("DOMContentLoaded", e => {
     store.dispatch('centerCanvas');
     store.dispatch('renderTiles');
     //let hint = new floatText(store.state.ctx, 'Press R to rotate the canvas');
-    setTimeout(() => { hint.display(); }, 3000);
+    //setTimeout(() => { hint.display(); }, 3000);
     
     // Trigger actions via browser console
     window.store = store;

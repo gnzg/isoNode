@@ -4,7 +4,7 @@
 */
 
 export default class Tile {
-    constructor({ x, y, z, tileWidth, style}) {
+    constructor({ x, y, z, tileWidth = 24, style = null}) {
         
         /* tile coordinates */
         this.x = x || 0;

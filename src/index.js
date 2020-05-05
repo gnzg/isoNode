@@ -1,4 +1,4 @@
-import { floatText } from './utils';
+import floatText from './floatText.js';
 import store from './store/index';
 import canvasWrapper from './components/canvasWrapper';
 import './assets/scss/styles.scss';

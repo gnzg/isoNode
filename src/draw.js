@@ -1,7 +1,7 @@
 let draw = (ctx, maps, mapX, mapY, tileWidth, i, j, k, rectColors, rectShadowColors) => {
-  this.i = i; // iterator across z axis, i.e. elements of the map array
-  this.j = j; // iterator across x axis, i.e. elements of the map item array
-  this.k = k; //iterator across y axis, i.e. map arrays
+  this.i = i;   // iterator across z axis, i.e. elements of the map array
+  this.j = j;   // iterator across x axis, i.e. elements of the map item array
+  this.k = k;   // iterator across y axis, i.e. map arrays
   this.tileWidth = tileWidth;
   this.mapX = mapX;
   this.mapY = mapY;
@@ -9,21 +9,8 @@ let draw = (ctx, maps, mapX, mapY, tileWidth, i, j, k, rectColors, rectShadowCol
   this.rectColors = rectColors;
   this.rectShadowColors = rectShadowColors;
 
-  if (this.k === 0) {
-    // Waterworld
-    this.tempMap = maps[`${Object.keys(maps)[0]}`];
-  }
-  else if (this.k === 1) {
-    // ground level 1
-    this.tempMap = maps[`${Object.keys(maps)[1]}`];
-  }
-  else if (this.k === 2) {
-    // ground level 2
-    this.tempMap = maps[`${Object.keys(maps)[2]}`];
-  } else {
-    this.tempMap = [];
-  }
-  //console.log('this.i', this.i, 'this.tempMap[this.i]', this.tempMap[this.i]);
+  // save a copy of the map 
+  this.tempMap = maps[`${Object.keys(maps)[k]}`];
 
   // if tile is non-zero, draw it
   if (
@@ -40,11 +27,7 @@ let draw = (ctx, maps, mapX, mapY, tileWidth, i, j, k, rectColors, rectShadowCol
     this.topYsegment = this.c + this.topYfactor - this.tileYoffset;
     this.fillColor = this.rectShadowColors[this.tempMap[this.i][this.j]];
 
-    // if (this.k === 1 && this.i === 4 && this.j === 3) {
-    //     ctx.fillStyle= '#FF14AE';
-    // } else {
     ctx.fillStyle = this.rectColors[this.rectShadowColors.indexOf(this.fillColor)];
-    //}
 
     // top
     ctx.globalCompositeOperation = 'source-over';
@@ -54,8 +37,6 @@ let draw = (ctx, maps, mapX, mapY, tileWidth, i, j, k, rectColors, rectShadowCol
     ctx.lineTo(this.tileWidth * this.i + this.tileWidth + this.mapX + this.tileWidth * this.j, this.tileWidth * 2 + this.topYsegment);
     ctx.lineTo(this.tileWidth * this.i + this.tileWidth - this.tileWidth + this.mapX + this.tileWidth * this.j, this.d + this.topYsegment);
     ctx.closePath();
-    // return corresponding top color based on position of fillColor in rectShadowColors[]
-    //ctx.fillStyle= this.rectColors[this.rectShadowColors.indexOf(this.fillColor)];
     ctx.fill();
 
     // left

@@ -48,7 +48,9 @@ window.addEventListener("DOMContentLoaded", e => {
     });
     
     window.addEventListener("mousemove", e => {
-      //console.log('x:', e.clientX, 'y:', e.clientX);
+      // get magnitude of mouse position
+      let mousePosMag = Math.sqrt(Math.pow(e.clientX, 2) + Math.pow(e.clientY, 2));
+      console.log('mousePosMag', mousePosMag);
     });
     
     // no friggin' event bubbling
@@ -63,8 +65,4 @@ window.addEventListener("DOMContentLoaded", e => {
     
     // Trigger actions via browser console
     window.store = store;
-
-    window.addEventListener('mousemove', e => {
-      //console.log(e.clientX / e.clientY);
-    });
 });

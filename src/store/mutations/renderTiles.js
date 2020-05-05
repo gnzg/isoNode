@@ -35,7 +35,6 @@ export default function renderTiles (state) {
             // logic whether to draw or not to draw shapes is defined in draw()
             draw(ctx, maps, mapX, mapY, tileWidth, z, x, y, rectColors, rectShadowColors);
             //window['Tile_' + z + '' + x + '' + y] = new Tile({x, y, z});
-            console.log('Tile', window['Tile_' + z + '' + x + '' + y]);
           }
         }
       };

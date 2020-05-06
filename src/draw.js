@@ -56,13 +56,21 @@ import state from './store/state';
         ctx.closePath();
         ctx.fill();
         
-        // save hitboxes only for the ground level map
+        // save points a, b, c
         if (k === 1 && i === 0 && j === 0) {
-          let alef = Math.sqrt(Math.pow(tileWidth * i + tileWidth - tileWidth + mapX + tileWidth * j, 2) + Math.pow(d + topYsegment, 2));
-          let beth = Math.sqrt(Math.pow(tileWidth * i + tileWidth + mapX + tileWidth * j, 2), Math.pow(tileWidth + topYsegment ,2));
-          let gimel = Math.sqrt(Math.pow(tileWidth * i + tileWidth + mapX + tileWidth * j, 2) + Math.pow(tileWidth + topYsegment, 2));
-          let daled = Math.sqrt(Math.pow(tileWidth * i + tileWidth * 2 + mapX + tileWidth * j, 2) + Math.pow( d + topYsegment, 2));
-          
+          let a = {
+            x: tileWidth * i + tileWidth + mapX + tileWidth * j,
+            y: tileWidth + topYsegment
+          };
+          let b = {
+            x: tileWidth * i + tileWidth - tileWidth + mapX + tileWidth * j,
+            y: d + topYsegment
+          };
+          let c = {
+            x: (tileWidth * i + tileWidth - tileWidth + mapX + tileWidth * j) + tileWidth,
+            y: (tileWidth + topYsegment - tileWidth) + tileWidth*1.5
+          };
+
           // draw the center point
           ctx.beginPath();
           ctx.arc(
@@ -73,13 +81,8 @@ import state from './store/state';
             2 * Math.PI);
           ctx.stroke();
             
-            // save the tile's vector magnitudes, i.e. hitbox boundries
-            state.env.tileHitBoxes[0] = {
-              'alef':alef,
-              'beth':beth,
-              'gimel':gimel,
-              'daled':daled
-            };
+          // save the tile's vector magnitudes, i.e. hitbox boundries
+          state.env.tileHitBoxes[0] = {            a,            b,            c};
           }
           
           // left

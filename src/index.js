@@ -16,7 +16,7 @@ window.addEventListener("DOMContentLoaded", e => {
   
   // Rotate or move canvas on key(s) down
   window.addEventListener("keydown", e => {
-    // no friggin' event bubbling
+    // prevent event bubbling
     e.stopImmediatePropagation();
     if (e.keyCode in store.state.keyMap) {
       store.state.keyMap[e.keyCode] = true;
@@ -48,19 +48,40 @@ window.addEventListener("DOMContentLoaded", e => {
     });
     
     window.addEventListener("mousemove", e => {
-      // get magnitude of mouse position
-      let mousePosMag = Math.sqrt(Math.pow(e.clientX, 2) + Math.pow(e.clientY, 2));
-      //console.log('mousePosMag', mousePosMag);
-      //console.log(store.state.env.tileHitBoxes[0]);
-      if (mousePosMag >= store.state.env.tileHitBoxes[0].alef &&
-          mousePosMag < store.state.env.tileHitBoxes[0].daled &&
-          mousePosMag >= store.state.env.tileHitBoxes[0].gimel &&
-          mousePosMag < store.state.env.tileHitBoxes[0].beth) {
-        //console.log("within hitbox!");
+
+      let pointAx = store.state.env.tileHitBoxes[0].a.x;
+      let pointAy = store.state.env.tileHitBoxes[0].a.y;
+      let pointA = [pointAx, pointAy];
+
+      let pointBx = store.state.env.tileHitBoxes[0].b.x;
+      let pointBy = store.state.env.tileHitBoxes[0].b.y;
+      let pointB = [pointBx, pointBy];
+
+      // box center reference, i.e. "absolute zero" reference; point c
+      let pointCx = store.state.env.tileHitBoxes[0].c.x;
+      let pointCy = store.state.env.tileHitBoxes[0].c.y;
+      let pointC = [pointCx, pointCy];
+
+      let sameSide = (p1, p2 = -p1, a, b) => {
+        /*
+        let cp1 = CrossProduct(b-a, p1-a)
+        let cp2 = CrossProduct(b-a, p2-a)
+        if (DotProduct(cp1, cp2) >= 0) {
+           return true;
+        }
+        else return false;
+        */
+      }
+
+      let PointInTriangle = (p, a,b,c) => {
+        if (sameSide(p,a,b,c) && sameSide(p,b,a,c) && sameSide(p,c,a,b)) {
+          return true;
+        } 
+        else return false;
       }
     });
     
-    // no friggin' event bubbling
+    // prevent event bubbling
     e.stopImmediatePropagation();
     
     const canvasWrapperInstance = new canvasWrapper('main');

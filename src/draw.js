@@ -1,13 +1,25 @@
 import state from './store/state';
-
-export default function draw (canvas, mapsObject, mapXparam, mapYparam, tileWidthParam, z, x, y, rectColorsParam, rectShadowColorsParam) {
+/**
+ * 
+ * @param {Object} canvas 
+ * @param {Array} mapsArray 
+ * @param {Integer mapXparam 
+ * @param {Integer} mapYparam 
+ * @param {Integer} tileWidthParam 
+ * @param {Integer} z 
+ * @param {Integer} x 
+ * @param {Integer} y 
+ * @param {Array} rectColorsParam 
+ * @param {Array} rectShadowColorsParam 
+ */
+export default function draw (canvas, mapsArray, mapXparam, mapYparam, tileWidthParam, z, x, y, rectColorsParam, rectShadowColorsParam) {
   let i = z;   // iterator across z axis, i.e. elements of the map array
   let j = x;   // iterator across x axis, i.e. elements of the map item array
   let k = y;   // iterator across y axis, i.e. map arrays
   let tileWidth = tileWidthParam;
   let mapX = mapXparam;
   let mapY = mapYparam;
-  let maps = mapsObject;
+  let maps = mapsArray;
   let rectColors = rectColorsParam;
   let rectShadowColors = rectShadowColorsParam;
   let ctx = canvas;

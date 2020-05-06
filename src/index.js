@@ -50,13 +50,13 @@ window.addEventListener("DOMContentLoaded", e => {
     window.addEventListener("mousemove", e => {
       // get magnitude of mouse position
       let mousePosMag = Math.sqrt(Math.pow(e.clientX, 2) + Math.pow(e.clientY, 2));
-      console.log('mousePosMag', mousePosMag);
+      //console.log('mousePosMag', mousePosMag);
       //console.log(store.state.env.tileHitBoxes[0]);
       if (mousePosMag >= store.state.env.tileHitBoxes[0].alef &&
           mousePosMag < store.state.env.tileHitBoxes[0].daled &&
           mousePosMag >= store.state.env.tileHitBoxes[0].gimel &&
           mousePosMag < store.state.env.tileHitBoxes[0].beth) {
-        console.log("within hitbox!");
+        //console.log("within hitbox!");
       }
     });
     

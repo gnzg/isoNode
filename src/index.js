@@ -62,7 +62,17 @@ window.addEventListener("DOMContentLoaded", e => {
       let pointCy = store.state.env.tileHitBoxes[0].c.y;
       let pointC = [pointCx, pointCy];
 
+      // calculate cross product based on two 2D vectors 
+      // and return a scalar value
+      let CrossProduct = (U,V) => {
+        let CrossProductAnalog = (U.x*V.y-U.y*V.x);
+        return CrossProductAnalog;
+      }
+      
+      // calculate whether p1 lies "on the same side" of vectors a and b
+      // and return a boolean
       let sameSide = (p1, p2 = -p1, a, b) => {
+        // TODO vector math utils
         /*
         let cp1 = CrossProduct(b-a, p1-a)
         let cp2 = CrossProduct(b-a, p2-a)

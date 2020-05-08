@@ -48,47 +48,54 @@ window.addEventListener("DOMContentLoaded", e => {
     });
     
     window.addEventListener("mousemove", e => {
-
-      let pointAx = store.state.env.tileHitBoxes[0].a.x;
-      let pointAy = store.state.env.tileHitBoxes[0].a.y;
-      let pointA = [pointAx, pointAy];
-
-      let pointBx = store.state.env.tileHitBoxes[0].b.x;
-      let pointBy = store.state.env.tileHitBoxes[0].b.y;
-      let pointB = [pointBx, pointBy];
-
-      // box center reference, i.e. "absolute zero" reference; point c
-      let pointCx = store.state.env.tileHitBoxes[0].c.x;
-      let pointCy = store.state.env.tileHitBoxes[0].c.y;
-      let pointC = [pointCx, pointCy];
-
-      // calculate cross product based on two 2D vectors 
-      // and return a scalar value
+      
+      // point a
+      let pointA = {x:store.state.env.tileHitBoxes[0].a.x, y:store.state.env.tileHitBoxes[0].a.y};
+      
+      // point b
+      let pointB = {x:store.state.env.tileHitBoxes[0].b.x, y:store.state.env.tileHitBoxes[0].b.y};
+      
+      // point c; box center reference
+      let pointC = {x:store.state.env.tileHitBoxes[0].c.x, y:store.state.env.tileHitBoxes[0].c.y};
+      
+      // calculate cross product (analog) based on two 2D vectors 
+      // returns a scalar value
       let CrossProduct = (U,V) => {
         let CrossProductAnalog = (U.x*V.y-U.y*V.x);
         return CrossProductAnalog;
       }
-      
-      // calculate whether p1 lies "on the same side" of vectors a and b
-      // and return a boolean
-      let sameSide = (p1, p2 = -p1, a, b) => {
-        // TODO vector math utils
-        /*
-        let cp1 = CrossProduct(b-a, p1-a)
-        let cp2 = CrossProduct(b-a, p2-a)
-        if (DotProduct(cp1, cp2) >= 0) {
-           return true;
-        }
-        else return false;
-        */
+
+      // calculate dot product of two 2D vectors via the algebraic definition
+      // returns a scalar value
+      let dotProduct = (U,V) => {
+        let dotProduct = U.x * V.x + U.y * V.y;
+        return dotProduct;
       }
 
-      let PointInTriangle = (p, a,b,c) => {
-        if (sameSide(p,a,b,c) && sameSide(p,b,a,c) && sameSide(p,c,a,b)) {
-          return true;
-        } 
-        else return false;
+      // takes 3 points [x,y] and an arbitrary point [x,y]
+      // returns a boolean
+      let PointInTriangle = (a,b,c,p) => {
+        // Compute vectors        
+        let v0 =  {x: c.x - a.x, y: c.y - a.y},
+        v1 =      {x: b.x - a.x, y: b.y - a.y},
+        v2 =      {x: p.x - a.x, y: p.y - a.y};
+        
+        // Compute dot products
+        let dot00 = dotProduct(v0, v0),
+        dot01 = dotProduct(v0, v1),
+        dot02 = dotProduct(v0, v2),
+        dot11 = dotProduct(v1, v1),
+        dot12 = dotProduct(v1, v2);
+        
+        // Compute barycentric coordinates
+        let invDenom = 1 / (dot00 * dot11 - dot01 * dot01),
+        u = (dot11 * dot02 - dot01 * dot12) * invDenom,
+        v = (dot00 * dot12 - dot01 * dot02) * invDenom;
+        
+        // Check if point is in triangle
+        return (u >= 0) && (v >= 0) && (u + v < 1);
       }
+      console.log(PointInTriangle(pointA,pointB,pointC, {x:e.clientX, y:e.clientY}));
     });
     
     // prevent event bubbling
@@ -102,4 +109,4 @@ window.addEventListener("DOMContentLoaded", e => {
     
     // Trigger actions via browser console
     window.store = store;
-});
+  });

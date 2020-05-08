@@ -1,6 +1,7 @@
 import state from './store/state';
 /**
-* 
+* static function for drawing the canvas 
+*
 * @param {Object} canvas 
 * @param {Array} mapsArray 
 * @param {Integer mapXparam 
@@ -59,63 +60,65 @@ import state from './store/state';
         // save points a, b, c
         if (k === 1 && i === 0 && j === 0) {
           let a = {
-            x: tileWidth * i + tileWidth + mapX + tileWidth * j,
-            y: tileWidth + topYsegment
-          };
-          let b = {
             x: tileWidth * i + tileWidth - tileWidth + mapX + tileWidth * j,
             y: d + topYsegment
           };
-          let c = {
-            x: (tileWidth * i + tileWidth - tileWidth + mapX + tileWidth * j) + tileWidth,
-            y: (tileWidth + topYsegment - tileWidth) + tileWidth*1.5
+          let b = {
+            x: tileWidth * i + tileWidth + mapX + tileWidth * j,
+            y: tileWidth + topYsegment
           };
-
-          // draw the center point
-          ctx.beginPath();
-          ctx.arc(
-            (tileWidth * i + tileWidth - tileWidth + mapX + tileWidth * j) + tileWidth,
-            (tileWidth + topYsegment - tileWidth) + tileWidth*1.5,
-            1,
-            0,
-            2 * Math.PI);
-          ctx.stroke();
-            
-          // save the tile's vector magnitudes, i.e. hitbox boundries
-          state.env.tileHitBoxes[0] = {            a,            b,            c};
-          }
+          let c = {
+            x: tileWidth * i + tileWidth * 2 + mapX + tileWidth * j,
+            y: d + topYsegment
+          };
           
-          // left
-          // draw only if NOT preceeded by a tile on the z axis, or if first tile
-          if (tempMap[i][j - 1] !== 1 || j === 0) {
-            ctx.globalCompositeOperation = 'destination-over';
-            if (j === 0) ctx.globalCompositeOperation = 'source-over';
-            if (j - 1 >= 0 && tempMap[i][j - 1] === 0) ctx.globalCompositeOperation = 'source-over';
+          ctx.beginPath();
+          ctx.arc(a.x, a.y, 1, 0, 2 * Math.PI);
+          ctx.stroke();
+          
+          ctx.beginPath();
+          ctx.arc(b.x, b.y, 1, 0, 2 * Math.PI);
+          ctx.stroke();
+          
+          ctx.beginPath();
+          ctx.arc(c.x, c.y, 1, 0, 2 * Math.PI);
+          ctx.stroke();
+          
+          // save the tile's points, i.e. hitbox boundries
+          state.env.tileHitBoxes[0] = { a, b, c};
+        }
+        
+        // left
+        // draw only if NOT preceeded by a tile on the z axis, or if first tile
+        if (tempMap[i][j - 1] !== 1 || j === 0) {
+          ctx.globalCompositeOperation = 'destination-over';
+          if (j === 0) ctx.globalCompositeOperation = 'source-over';
+          if (j - 1 >= 0 && tempMap[i][j - 1] === 0) ctx.globalCompositeOperation = 'source-over';
+          ctx.beginPath();
+          ctx.moveTo(tileWidth * i + mapX + tileWidth * j, c + tileWidth * i + d - i * tileWidth * 0.5 - tileYoffset);
+          ctx.lineTo(tileWidth * i + mapX + tileWidth * j, c + tileWidth * i + tileWidth + tileWidth * 1.75 - i * tileWidth * 0.5 - tileYoffset);
+          ctx.lineTo(tileWidth * i + mapX + tileWidth * j + tileWidth, c + tileWidth * i + tileWidth + tileWidth * 1.75 + tileWidth * 0.5 - i * tileWidth * 0.5 - tileYoffset);
+          ctx.lineTo(tileWidth * i + mapX + tileWidth * j + tileWidth, c + tileWidth * i + d + tileWidth * 0.5 - i * tileWidth * 0.5 - tileYoffset);
+          ctx.closePath();
+          ctx.fillStyle = fillColor;
+          ctx.fill();
+        }
+        
+        // right
+        // draw only if NOT preceeded by a tile on the x axis, or if iterating over the last row across the z axis
+        if (tempMap[i + 1] !== undefined && tempMap[i + 1][j] !== 1 ||
+          i === tempMap.length - 1) {
+            ctx.globalCompositeOperation = 'source-over';
+            if (i < tempMap.length - 1 && tempMap[i + 1][j] !== 0) ctx.globalCompositeOperation = 'destination-over';
             ctx.beginPath();
-            ctx.moveTo(tileWidth * i + mapX + tileWidth * j, c + tileWidth * i + d - i * tileWidth * 0.5 - tileYoffset);
-            ctx.lineTo(tileWidth * i + mapX + tileWidth * j, c + tileWidth * i + tileWidth + tileWidth * 1.75 - i * tileWidth * 0.5 - tileYoffset);
+            ctx.moveTo(tileWidth * i + mapX + tileWidth * j + tileWidth * 2, c + tileWidth * i + d - i * tileWidth * 0.5 - tileYoffset);
+            ctx.lineTo(tileWidth * i + mapX + tileWidth * j + tileWidth * 2, c + tileWidth * i + tileWidth + tileWidth * 1.75 - i * tileWidth * 0.5 - tileYoffset);
             ctx.lineTo(tileWidth * i + mapX + tileWidth * j + tileWidth, c + tileWidth * i + tileWidth + tileWidth * 1.75 + tileWidth * 0.5 - i * tileWidth * 0.5 - tileYoffset);
             ctx.lineTo(tileWidth * i + mapX + tileWidth * j + tileWidth, c + tileWidth * i + d + tileWidth * 0.5 - i * tileWidth * 0.5 - tileYoffset);
             ctx.closePath();
             ctx.fillStyle = fillColor;
             ctx.fill();
           }
-          
-          // right
-          // draw only if NOT preceeded by a tile on the x axis, or if iterating over the last row across the z axis
-          if (tempMap[i + 1] !== undefined && tempMap[i + 1][j] !== 1 ||
-            i === tempMap.length - 1) {
-              ctx.globalCompositeOperation = 'source-over';
-              if (i < tempMap.length - 1 && tempMap[i + 1][j] !== 0) ctx.globalCompositeOperation = 'destination-over';
-              ctx.beginPath();
-              ctx.moveTo(tileWidth * i + mapX + tileWidth * j + tileWidth * 2, c + tileWidth * i + d - i * tileWidth * 0.5 - tileYoffset);
-              ctx.lineTo(tileWidth * i + mapX + tileWidth * j + tileWidth * 2, c + tileWidth * i + tileWidth + tileWidth * 1.75 - i * tileWidth * 0.5 - tileYoffset);
-              ctx.lineTo(tileWidth * i + mapX + tileWidth * j + tileWidth, c + tileWidth * i + tileWidth + tileWidth * 1.75 + tileWidth * 0.5 - i * tileWidth * 0.5 - tileYoffset);
-              ctx.lineTo(tileWidth * i + mapX + tileWidth * j + tileWidth, c + tileWidth * i + d + tileWidth * 0.5 - i * tileWidth * 0.5 - tileYoffset);
-              ctx.closePath();
-              ctx.fillStyle = fillColor;
-              ctx.fill();
-            }
-          }
-          return ctx;
         }
+        return ctx;
+      }

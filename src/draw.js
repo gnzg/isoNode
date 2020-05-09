@@ -65,16 +65,16 @@ import state from './store/state';
           };
           let pointB = {
             x: tileWidth * i + tileWidth + mapX + tileWidth * j,
-            y: tileWidth + topYsegment
+            y: tileWidth * 2 + topYsegment
           };
           let pointC = {
             x: tileWidth * i + tileWidth * 2 + mapX + tileWidth * j,
             y: d + topYsegment
           };
-
+          
           let pointD = {
-            x: tileWidth * i + tileWidth * 2 + mapX + tileWidth * j,
-            y: d + topYsegment
+            x: tileWidth * i + tileWidth + mapX + tileWidth * j,
+            y: tileWidth + topYsegment
           };
           
           ctx.beginPath();
@@ -88,13 +88,13 @@ import state from './store/state';
           ctx.beginPath();
           ctx.arc(pointC.x, pointC.y, 1, 0, 2 * Math.PI);
           ctx.stroke();
-
+          
           ctx.beginPath();
           ctx.arc(pointD.x, pointD.y, 1, 0, 2 * Math.PI);
           ctx.stroke();
           
           // save the tile's points, i.e. hitbox boundries
-          state.env.tileHitBoxes[0] = { pointA, pointB, pointC };
+          state.env.tileHitBoxes[0] = { pointA, pointB, pointC, pointD };
         }
         
         // left

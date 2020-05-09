@@ -59,33 +59,42 @@ import state from './store/state';
         
         // save points a, b, c
         if (k === 1 && i === 0 && j === 0) {
-          let a = {
+          let pointA = {
             x: tileWidth * i + tileWidth - tileWidth + mapX + tileWidth * j,
             y: d + topYsegment
           };
-          let b = {
+          let pointB = {
             x: tileWidth * i + tileWidth + mapX + tileWidth * j,
             y: tileWidth + topYsegment
           };
-          let c = {
+          let pointC = {
+            x: tileWidth * i + tileWidth * 2 + mapX + tileWidth * j,
+            y: d + topYsegment
+          };
+
+          let pointD = {
             x: tileWidth * i + tileWidth * 2 + mapX + tileWidth * j,
             y: d + topYsegment
           };
           
           ctx.beginPath();
-          ctx.arc(a.x, a.y, 1, 0, 2 * Math.PI);
+          ctx.arc(pointA.x, pointA.y, 1, 0, 2 * Math.PI);
           ctx.stroke();
           
           ctx.beginPath();
-          ctx.arc(b.x, b.y, 1, 0, 2 * Math.PI);
+          ctx.arc(pointB.x, pointB.y, 1, 0, 2 * Math.PI);
           ctx.stroke();
           
           ctx.beginPath();
-          ctx.arc(c.x, c.y, 1, 0, 2 * Math.PI);
+          ctx.arc(pointC.x, pointC.y, 1, 0, 2 * Math.PI);
+          ctx.stroke();
+
+          ctx.beginPath();
+          ctx.arc(pointD.x, pointD.y, 1, 0, 2 * Math.PI);
           ctx.stroke();
           
           // save the tile's points, i.e. hitbox boundries
-          state.env.tileHitBoxes[0] = { a, b, c};
+          state.env.tileHitBoxes[0] = { pointA, pointB, pointC };
         }
         
         // left

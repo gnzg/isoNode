@@ -50,13 +50,13 @@ window.addEventListener("DOMContentLoaded", e => {
     window.addEventListener("mousemove", e => {
       
       // point a
-      let pointA = {x:store.state.env.tileHitBoxes[0].a.x, y:store.state.env.tileHitBoxes[0].a.y};
+      let pointA = store.state.env.tileHitBoxes[0].pointA;
       
       // point b
-      let pointB = {x:store.state.env.tileHitBoxes[0].b.x, y:store.state.env.tileHitBoxes[0].b.y};
+      let pointB = store.state.env.tileHitBoxes[0].pointB;
       
-      // point c; box center reference
-      let pointC = {x:store.state.env.tileHitBoxes[0].c.x, y:store.state.env.tileHitBoxes[0].c.y};
+      // point c
+      let pointC = store.state.env.tileHitBoxes[0].pointC;
       
       // calculate cross product (analog) based on two 2D vectors 
       // returns a scalar value

@@ -77,6 +77,7 @@ import state from './store/state';
             y: tileWidth + topYsegment
           };
           
+          /*
           ctx.beginPath();
           ctx.arc(pointA.x, pointA.y, 1, 0, 2 * Math.PI);
           ctx.stroke();
@@ -92,6 +93,7 @@ import state from './store/state';
           ctx.beginPath();
           ctx.arc(pointD.x, pointD.y, 1, 0, 2 * Math.PI);
           ctx.stroke();
+          */
           
           // save the tile's points, i.e. hitbox boundries
           state.env.tileHitBoxes[0] = { pointA, pointB, pointC, pointD };

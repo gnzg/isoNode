@@ -80,10 +80,13 @@ let pointInRhombus = (a,b,c,d,p) => {
     yabs = vectorDotProduct(W, V);    // here W*V is the dot product of W and V
     
     if (xabs/alpha + yabs/beta <= 1) {
-        console.log('true');
+        console.log('intersection with tile');
         return true;
     }
-    else return false
+    else {
+        console.log('no intersection with tile');
+        return false;
+    }
 }
 
 module.exports = {vectorCrossProduct, vectorDotProduct, pointInTriangle, pointInRhombus};

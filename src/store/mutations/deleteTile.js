@@ -5,10 +5,10 @@ import store from '../index';
 * @param {*} state 
 * @param array payload 
 */
-export default function deleteTile(state, payload = [0,0,0]) {
-    let x = payload[0];
-    let y = payload[1]; 
-    let z = payload[2];
-    state.env.maps[z][y][x] = 0;
+export default function deleteTile(state, payload) {
+    let y = payload[0]; 
+    let z = payload[1];
+    let x = payload[2];
+    state.env.maps[y][z][x] = 0;
     store.dispatch('renderTiles');
 }

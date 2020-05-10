@@ -56,11 +56,11 @@ window.addEventListener("DOMContentLoaded", e => {
     });
     
     window.addEventListener("mousemove", e => {
-
+      
       // 2 problems with this approach:
       // 1) needs to be called also on keyUp
       // 2) it is not persistent, i.e. not saved in the state, so resetted on each state update
-
+      
       // TODO: make a function of the below; update vertices on moving the canvas 
       for (let i = 0; i < store.state.env.tileHitBoxes.length; i++) {
         let pointA = store.state.env.tileHitBoxes[i].pointA;
@@ -70,9 +70,10 @@ window.addEventListener("DOMContentLoaded", e => {
         
         if (pointInRhombus(pointA,pointB,pointC,pointD, {x:e.clientX, y:e.clientY})) {
           /* pass the coordinates of the tile respective to the maps object to manipulate it further */
-          let tile = { x: store.state.env.tileHitBoxes[i].x,
-                       y: store.state.env.tileHitBoxes[i].y,
-                       z: store.state.env.tileHitBoxes[i].z
+          let tile = { 
+            y: store.state.env.tileHitBoxes[i].y,
+            z: store.state.env.tileHitBoxes[i].z,
+            x: store.state.env.tileHitBoxes[i].x
           };
           console.log("Interaction with tile!", tile);
           store.dispatch("tileHovered", tile);
@@ -80,7 +81,7 @@ window.addEventListener("DOMContentLoaded", e => {
           
           // avoid having the condition loop if it is fulfilled
           return true;
-
+          
         } else {
           // store.dispatch("tileNotHovered", store.state.env.tileHitBoxes[i]);
         }

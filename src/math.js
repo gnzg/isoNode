@@ -1,14 +1,16 @@
 // calculate cross product (analog) based on two 2D vectors 
 // returns a scalar value
-let crossProduct = (U,V) => {
+let vectorCrossProduct = (U,V) => {
     let CrossProductAnalog = (U.x*V.y-U.y*V.x);
     return CrossProductAnalog;
 };
 
-// calculate dot product of two 2D vectors via the algebraic definition
+// calculate dot product of two 2D vectors via the geometric definition
+// i.e. by multiplying the sum of the vector lengths of points U, V by cos x,
+// the former being the angle between the two vectors 
 // returns a scalar value
-let dotProduct = (U,V) => {
-    return Math.abs(U.x * V.x) + Math.abs(U.y * V.y);
+let vectorDotProduct = (U,V, x = 45) => {
+    return Math.abs(U.x * V.x) + Math.abs(U.y * V.y)*Math.cos(x);
 };
 
 let vectorAddition = (a,b) => {
@@ -38,11 +40,11 @@ let pointInTriangle = (a,b,c,p) => {
     v2 =      {x: p.x - a.x, y: p.y - a.y};
     
     // Compute dot products
-    let dot00 = dotProduct(v0, v0),
-    dot01 = dotProduct(v0, v1),
-    dot02 = dotProduct(v0, v2),
-    dot11 = dotProduct(v1, v1),
-    dot12 = dotProduct(v1, v2);
+    let dot00 = vectorDotProduct(v0, v0),
+    dot01 = vectorDotProduct(v0, v1),
+    dot02 = vectorDotProduct(v0, v2),
+    dot11 = vectorDotProduct(v1, v1),
+    dot12 = vectorDotProduct(v1, v2);
     
     // Compute barycentric coordinates
     let invDenom = 1 / (dot00 * dot11 - dot01 * dot01),
@@ -74,12 +76,9 @@ let pointInRhombus = (a,b,c,d,p) => {
     V = vectorDivisionByScalar(vectorSubtraction(d, b), 2*beta);
     
     let W = vectorSubtraction(p, Q),
-    xabs = dotProduct(W, U),    // here W*U is the dot product of W and U
-    yabs = dotProduct(W, V);    // here W*V is the dot product of W and V
+    xabs = vectorDotProduct(W, U),    // here W*U is the dot product of W and U
+    yabs = vectorDotProduct(W, V);    // here W*V is the dot product of W and V
     
-    console.log('xabs/alpha', xabs/alpha);
-    console.log('yabs/beta', yabs/beta)
-
     if (xabs/alpha + yabs/beta <= 1) {
         console.log('true');
         return true;
@@ -87,4 +86,4 @@ let pointInRhombus = (a,b,c,d,p) => {
     else return false
 }
 
-module.exports = {crossProduct, dotProduct, pointInTriangle, pointInRhombus};
+module.exports = {vectorCrossProduct, vectorDotProduct, pointInTriangle, pointInRhombus};

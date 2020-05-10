@@ -20,7 +20,11 @@ To compile and watch the source code run `npm start` from project root. The dev 
 </li>
 </ul>
 
-### Notes for further development
+### How is the isometric map drawn?
+Currently, drawing is accomplish layerwise: Assume we want our map to consist of three height levels - to do so we will create three arrays, each array for a separate height level. Each of these arrays resembles a distinct map layer. Each map layer consists of rows, where a single row is an array of integers, each resembling a tile configuration, which is currently merely the tile's color.
+
+
+### Easing further development
 
 It is possible to test newly introduced actions via the browser console as they are available via the window object. E.g. `window.store.dispatch('renderTiles');` 
 

@@ -1,8 +1,11 @@
+import store from '../index';
+
 export default function tileHovered(state, payload) {
-    console.log('tileHovered() tile', payload);
+    //onsole.log('tileHovered() tile', payload);
 
     let tile = payload;
 
+    /*
     state.ctx.fillStyle = "red"
         
     // top
@@ -14,5 +17,7 @@ export default function tileHovered(state, payload) {
     state.ctx.lineTo(tile.pointD.x, tile.pointD.y);
     state.ctx.closePath();
     state.ctx.fill();
-    
+    */
+
+    state.env.maps[1][tile.x][tile.z] = state.env.rectColors[4];
 };

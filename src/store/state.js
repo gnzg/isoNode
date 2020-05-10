@@ -15,7 +15,7 @@ export default {
       '#096dff', // water
       '#8dee03', // vegetation
       '#a3f742', // arid vegetation
-      'salmon'
+      'red'
     ],
     rectShadowColors: [
       '000000',

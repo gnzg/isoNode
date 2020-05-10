@@ -99,7 +99,17 @@ import state from './store/state';
           // save the tile's points, i.e. hitbox boundries
           // but only if the map tile is non-zero
           if (drawTile === true) {
-            state.env.tileHitBoxes.push({ pointA, pointB, pointC, pointD });
+            state.env.tileHitBoxes.push({ 
+              // rhombus vertices
+              pointA,
+              pointB,
+              pointC,
+              pointD,
+              // coordinates respective to the maps object
+              x:j,
+              y:k,
+              z:i
+            });
           }
         }
         

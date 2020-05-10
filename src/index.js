@@ -49,13 +49,20 @@ window.addEventListener("DOMContentLoaded", e => {
     });
     
     window.addEventListener("mousemove", e => {
-      
-      let pointA = store.state.env.tileHitBoxes[0].pointA;
-      let pointB = store.state.env.tileHitBoxes[0].pointB;
-      let pointC = store.state.env.tileHitBoxes[0].pointC;
-      let pointD = store.state.env.tileHitBoxes[0].pointD;
-      
-      pointInRhombus(pointA,pointB,pointC,pointD, {x:e.clientX, y:e.clientY});
+      console.log(store.state.env.tileHitBoxes);
+      for (let i = 0; i < store.state.env.tileHitBoxes.length; i++) {
+        let pointA = store.state.env.tileHitBoxes[i].pointA;
+        let pointB = store.state.env.tileHitBoxes[i].pointB;
+        let pointC = store.state.env.tileHitBoxes[i].pointC;
+        let pointD = store.state.env.tileHitBoxes[i].pointD;
+        
+        if (pointInRhombus(pointA,pointB,pointC,pointD, {x:e.clientX, y:e.clientY})) {
+          console.log("Interaction with tile!");
+          // store.dispatch("tileHovered");
+        } else {
+          // store.dispatch("tileNotHovered");
+        }
+      }
     });
     
     // prevent event bubbling

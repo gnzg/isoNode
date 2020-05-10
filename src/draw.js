@@ -27,15 +27,16 @@ import state from './store/state';
     let rectShadowColors = rectShadowColorsParam;
     let ctx = canvas;
     let tileYoffset = 0;
-    // save a copy of the map 
+    // operate on a copy of the actual map 
     let tempMap = maps[`${Object.keys(maps)[k]}`];
-    
+    // should the tile be drawn? 
+    let drawTile = tempMap[i][j] !== 0;
     // if the map is defined and the tile is non-zero, draw it
     if (
       tempMap !== undefined &&
       tempMap.length > 0 &&
       tempMap[i] !== undefined &&
-      tempMap[i][j] !== 0
+      drawTile === true
       ) {
         
         tileYoffset = tileWidth * k * 1.25;
@@ -57,8 +58,9 @@ import state from './store/state';
         ctx.closePath();
         ctx.fill();
         
-        // save points a, b, c
-        if (k === 1 && i === 0 && j === 0) {
+        // arbitrary: consider only 1st ground level
+        if (k === 1) {
+        // establish coordinates for the four vertices of each rhombus
           let pointA = {
             x: tileWidth * i + tileWidth - tileWidth + mapX + tileWidth * j,
             y: d + topYsegment
@@ -94,9 +96,12 @@ import state from './store/state';
           ctx.arc(pointD.x, pointD.y, 1, 0, 2 * Math.PI);
           ctx.stroke();
           */
-          
+
           // save the tile's points, i.e. hitbox boundries
-          state.env.tileHitBoxes[0] = { pointA, pointB, pointC, pointD };
+          // but only if the map tile is non-zero
+          if (drawTile === true) {
+            state.env.tileHitBoxes.push({ pointA, pointB, pointC, pointD });
+          }
         }
         
         // left

@@ -80,12 +80,12 @@ let pointInRhombus = (a,b,c,d,p) => {
     xabs = vectorDotProduct(W, U),    // here W*U is the dot product of W and U
     yabs = vectorDotProduct(W, V);    // here W*V is the dot product of W and V
     
+    // on intersection with tile
     if (xabs/alpha + yabs/beta <= 1) {
-        console.log('intersection with tile');
         return true;
     }
+    // no intersection with tile
     else {
-        console.log('no intersection with tile');
         return false;
     }
 }

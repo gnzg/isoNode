@@ -15,14 +15,14 @@ export default {
       '#096dff', // water
       '#8dee03', // vegetation
       '#a3f742', // arid vegetation
-      'red'
+      'yellow'
     ],
     rectShadowColors: [
       '000000',
       '#0d49a9', // water sides
       '#04b807', // vegetation sides
       '#91d611', // arid vegetation sides
-      'salmon'
+      'orange'
     ],
     /*
     tileGraphicsToLoad: [

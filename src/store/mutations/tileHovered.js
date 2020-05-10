@@ -19,5 +19,5 @@ export default function tileHovered(state, payload) {
     state.ctx.fill();
     */
 
-    state.env.maps[tile.y][tile.z][tile.x] = state.env.rectColors[4];
+    state.env.maps[tile.y][tile.z][tile.x] = 4;
 };

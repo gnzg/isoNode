@@ -1,6 +1,6 @@
 import state from './store/state';
 /**
-* static function for drawing the canvas 
+* manipulates the canvas pointer found in the state object
 *
 * @param {Object} canvas 
 * @param {Array} mapsArray 
@@ -15,7 +15,7 @@ import state from './store/state';
   * 
   * @returns {Object} canvas
   */
-  export default function draw (canvas, mapsArray, mapXparam, mapYparam, tileWidthParam, z, x, y, rectColorsParam, rectShadowColorsParam) {
+  export default function draw (ctx, mapsArray, mapXparam, mapYparam, tileWidthParam, z, x, y, rectColorsParam, rectShadowColorsParam) {
     let i = z;   // iterator across z axis, i.e. elements of the map array
     let j = x;   // iterator across x axis, i.e. elements of the map item array
     let k = y;   // iterator across y axis, i.e. map arrays
@@ -25,7 +25,6 @@ import state from './store/state';
     let maps = mapsArray;
     let rectColors = rectColorsParam;
     let rectShadowColors = rectShadowColorsParam;
-    let ctx = canvas;
     let tileYoffset = 0;
     // operate on a copy of the actual map 
     let tempMap = maps[`${Object.keys(maps)[k]}`];
@@ -60,7 +59,7 @@ import state from './store/state';
         
         // arbitrary: consider only 1st ground level
         if (k === 1) {
-        // establish coordinates for the four vertices of each rhombus
+          // establish coordinates for the four vertices of each rhombus
           let pointA = {
             x: tileWidth * i + tileWidth - tileWidth + mapX + tileWidth * j,
             y: d + topYsegment
@@ -96,7 +95,7 @@ import state from './store/state';
           ctx.arc(pointD.x, pointD.y, 1, 0, 2 * Math.PI);
           ctx.stroke();
           */
-
+          
           // save the tile's points, i.e. hitbox boundries
           // but only if the map tile is non-zero
           if (drawTile === true) {
@@ -136,5 +135,4 @@ import state from './store/state';
             ctx.fill();
           }
         }
-        return ctx;
       }

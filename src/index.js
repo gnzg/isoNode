@@ -7,6 +7,13 @@ import { dotProduct, crossProduct, pointInRhombus } from './math.js';
 // Initialization
 window.addEventListener("DOMContentLoaded", e => {
   
+  // prevent event bubbling
+  e.stopImmediatePropagation();
+  
+  const canvasWrapperInstance = new canvasWrapper('main');
+  store.dispatch('centerCanvas');
+  store.dispatch('renderTiles');
+  
   // Events
   window.addEventListener("resize", () => {
     store.state.env.winWidth = window.innerWidth;
@@ -49,7 +56,6 @@ window.addEventListener("DOMContentLoaded", e => {
     });
     
     window.addEventListener("mousemove", e => {
-      console.log(store.state.env.tileHitBoxes);
       for (let i = 0; i < store.state.env.tileHitBoxes.length; i++) {
         let pointA = store.state.env.tileHitBoxes[i].pointA;
         let pointB = store.state.env.tileHitBoxes[i].pointB;
@@ -57,20 +63,16 @@ window.addEventListener("DOMContentLoaded", e => {
         let pointD = store.state.env.tileHitBoxes[i].pointD;
         
         if (pointInRhombus(pointA,pointB,pointC,pointD, {x:e.clientX, y:e.clientY})) {
-          console.log("Interaction with tile!");
-          // store.dispatch("tileHovered");
+          console.log("Interaction with tile!", store.state.env.tileHitBoxes[i]);
+          let tile = store.state.env.tileHitBoxes[i];
+          console.log('mousemove', tile);
+          store.dispatch("tileHovered", tile);
         } else {
-          // store.dispatch("tileNotHovered");
+          // store.dispatch("tileNotHovered", store.state.env.tileHitBoxes[i]);
         }
       }
     });
     
-    // prevent event bubbling
-    e.stopImmediatePropagation();
-    
-    const canvasWrapperInstance = new canvasWrapper('main');
-    store.dispatch('centerCanvas');
-    store.dispatch('renderTiles');
     //let hint = new floatText(store.state.ctx, 'Press R to rotate the canvas');
     //setTimeout(() => { hint.display(); }, 3000);
     

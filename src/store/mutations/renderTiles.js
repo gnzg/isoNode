@@ -32,7 +32,7 @@ export default function renderTiles (state) {
           for (let x = 0; x < maps[currentMap][z].length; x++) {
             // draw all three visible sides of the rect aspect
             // logic whether to draw or not to draw shapes is defined in draw()
-            ctx = draw(ctx, maps, mapX, mapY, tileWidth, z, x, y, rectColors, rectShadowColors);
+            draw(ctx, maps, mapX, mapY, tileWidth, z, x, y, rectColors, rectShadowColors);
           }
         }
       };

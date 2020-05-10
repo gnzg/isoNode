@@ -22,5 +22,8 @@ export default {
   },
   deleteTile(context, payload) {
     context.commit('deleteTile', payload);
+  },
+  tileHovered(context, payload) {
+    context.commit('tileHovered', payload);
   }
 };

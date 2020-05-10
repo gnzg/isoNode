@@ -4,6 +4,7 @@ import handleKeyUp from './mutations/handleKeyUp';
 import rotateMap from './mutations/rotateMap';
 import centerCanvas from './mutations/centerCanvas'
 import deleteTile from './mutations/deleteTile';
+import tileHovered from './mutations/tileHovered';
 
 export default {
   addItem(state, payload) {
@@ -14,10 +15,12 @@ export default {
     state.env[`${payload.label}`] = payload.data;
     return state;
   },
-  centerCanvas,
-  rotateMap,
+  // the below mutations implicitly use state as an argument
+  renderTiles,
   handleKeyDown,
   handleKeyUp,
-  renderTiles,
-  deleteTile
+  centerCanvas,
+  rotateMap,
+  deleteTile,
+  tileHovered
 };

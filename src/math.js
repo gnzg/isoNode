@@ -10,6 +10,7 @@ let vectorCrossProduct = (U,V) => {
 // the former being the angle between the two vectors 
 // returns a scalar value
 let vectorDotProduct = (U,V, x = 45) => {
+    // vector lengths are always positive
     return Math.abs(U.x * V.x) + Math.abs(U.y * V.y)*Math.cos(x);
 };
 

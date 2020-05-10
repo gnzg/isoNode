@@ -63,9 +63,8 @@ window.addEventListener("DOMContentLoaded", e => {
         let pointD = store.state.env.tileHitBoxes[i].pointD;
         
         if (pointInRhombus(pointA,pointB,pointC,pointD, {x:e.clientX, y:e.clientY})) {
-          console.log("Interaction with tile!", store.state.env.tileHitBoxes[i]);
+          // console.log("Interaction with tile!", store.state.env.tileHitBoxes[i]);
           let tile = store.state.env.tileHitBoxes[i];
-          console.log('mousemove', tile);
           store.dispatch("tileHovered", tile);
         } else {
           // store.dispatch("tileNotHovered", store.state.env.tileHitBoxes[i]);

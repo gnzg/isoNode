@@ -19,8 +19,8 @@ export default {
   renderTiles,
   handleKeyDown,
   handleKeyUp,
-  centerCanvas,
   rotateMap,
+  centerCanvas,
   deleteTile,
   tileHovered
 };

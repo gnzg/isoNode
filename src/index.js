@@ -57,11 +57,7 @@ window.addEventListener("DOMContentLoaded", e => {
     
     window.addEventListener("mousemove", e => {
       
-      // 2 problems with this approach:
-      // 1) needs to be called also on keyUp
-      // 2) it is not persistent, i.e. not saved in the state, so resetted on each state update
-      
-      // TODO: make a function of the below; update vertices on moving the canvas 
+      // TODO: make the below reusable; update vertices on moving the canvas 
       for (let i = 0; i < store.state.env.tileHitBoxes.length; i++) {
         let pointA = store.state.env.tileHitBoxes[i].pointA;
         let pointB = store.state.env.tileHitBoxes[i].pointB;
@@ -86,6 +82,8 @@ window.addEventListener("DOMContentLoaded", e => {
           // store.dispatch("tileNotHovered", store.state.env.tileHitBoxes[i]);
         }
       }
+      // END TODO
+
     });
     
     //let hint = new floatText(store.state.ctx, 'Press R to rotate the canvas');

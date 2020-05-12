@@ -41,8 +41,8 @@ window.addEventListener("DOMContentLoaded", e => {
       ) {
         store.dispatch('handleKeyDown', store.state.keyMap);
         
-        // if movement takes place, clear the tile hitboxes
-        store.state.env.tileHitboxes = [];
+        // if movement takes place, clear the tile hitboxes // TODO: make prettier
+        store.state.env.tileHitBoxes = [];
 
       }
     });
@@ -56,10 +56,15 @@ window.addEventListener("DOMContentLoaded", e => {
 
       // R key
       if (e.keyCode === 82) {
+
+        // if movement takes place, clear the tile hitboxes // TODO: make prettier
+        store.state.env.tileHitBoxes = [];
+
         store.dispatch('rotateMapAction');
       }
-        // the below also includes implicitly rebuilding the hit box array (but not clearing the old array yet!)
-        checkCollision(e, store.state.env.tileHitBoxes);
+
+      // the below also includes implicitly rebuilding the hit box array (but not clearing the old array yet!)
+      checkCollision(e, store.state.env.tileHitBoxes);
         
     });
     

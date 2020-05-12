@@ -15,13 +15,13 @@ export default class Tile {
         this.tileWidth = tileWidth;
         
         /* styling defaults */
-        let defaultStyle = {
+        this.defaultStyle = {
             fill:  'white',
             shadowedFill: '#666',
             outlineWidth: 0.5,
             strokeStyle: '#666',
             enableStroke: false
         };
-        this.style = style || defaultStyle;
+        this.style = style || this.defaultStyle;
     }
 }

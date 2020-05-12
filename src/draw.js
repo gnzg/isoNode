@@ -1,6 +1,7 @@
 import state from './store/state';
+
 /**
-* manipulates the canvas pointer found in the state object
+* directly manipulates the canvas property found in the state object
 *
 * @param {Object} canvas 
 * @param {Array} mapsArray 
@@ -26,6 +27,10 @@ import state from './store/state';
     let rectColors = rectColorsParam;
     let rectShadowColors = rectShadowColorsParam;
     let tileYoffset = 0;
+    
+    // make tile vertices available from this scope
+    let pointA, pointB, pointC, pointD = {};
+    
     // operate on a copy of the actual map 
     let tempMap = maps[`${Object.keys(maps)[k]}`];
     // should the tile be drawn? 
@@ -60,20 +65,20 @@ import state from './store/state';
         // arbitrary: consider only 1st ground level
         if (k === 1) {
           // establish coordinates for the four vertices of each rhombus
-          let pointA = {
+          pointA = {
             x: tileWidth * i + tileWidth - tileWidth + mapX + tileWidth * j,
             y: d + topYsegment
           };
-          let pointB = {
+          pointB = {
             x: tileWidth * i + tileWidth + mapX + tileWidth * j,
             y: tileWidth * 2 + topYsegment
           };
-          let pointC = {
+          pointC = {
             x: tileWidth * i + tileWidth * 2 + mapX + tileWidth * j,
             y: d + topYsegment
           };
           
-          let pointD = {
+          pointD = {
             x: tileWidth * i + tileWidth + mapX + tileWidth * j,
             y: tileWidth + topYsegment
           };

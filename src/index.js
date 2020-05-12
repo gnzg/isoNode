@@ -2,7 +2,7 @@ import floatText from './floatText.js';
 import store from './store/index';
 import canvasWrapper from './components/canvasWrapper';
 import './assets/scss/styles.scss';
-import { dotProduct, crossProduct, pointInRhombus } from './math.js';
+import { pointInRhombus, pointInHexagon } from './math.js';
 
 // Initialization
 window.addEventListener("DOMContentLoaded", e => {
@@ -40,6 +40,10 @@ window.addEventListener("DOMContentLoaded", e => {
       e.keyCode === 83          // S key
       ) {
         store.dispatch('handleKeyDown', store.state.keyMap);
+        
+        // if movement takes place, clear the tile hitboxes
+        store.state.env.tileHitboxes = [];
+
       }
     });
     
@@ -49,27 +53,31 @@ window.addEventListener("DOMContentLoaded", e => {
       if (e.keyCode in store.state.keyMap) keyMapState[e.keyCode] = false;
       store.dispatch('handleKeyUp', keyMapState);
       //hint.hide();
-      if (e.keyCode === 82)     // R key
-      {
+
+      // R key
+      if (e.keyCode === 82) {
         store.dispatch('rotateMapAction');
       }
+        // the below also includes implicitly rebuilding the hit box array (but not clearing the old array yet!)
+        checkCollision(e, store.state.env.tileHitBoxes);
+        
     });
     
-    window.addEventListener("mousemove", e => {
-      
-      // TODO: make the below reusable; update vertices on moving the canvas 
-      for (let i = 0; i < store.state.env.tileHitBoxes.length; i++) {
-        let pointA = store.state.env.tileHitBoxes[i].pointA;
-        let pointB = store.state.env.tileHitBoxes[i].pointB;
-        let pointC = store.state.env.tileHitBoxes[i].pointC;
-        let pointD = store.state.env.tileHitBoxes[i].pointD;
+    let checkCollision = (e, tileCoordinates) => {
+      for (let i = 0; i < tileCoordinates.length; i++) {
+        let pointA = tileCoordinates[i].pointA;
+        let pointB = tileCoordinates[i].pointB;
+        let pointC = tileCoordinates[i].pointC;
+        let pointD = tileCoordinates[i].pointD;
+        
+        //pointInHexagon(pointA, pointB);
         
         if (pointInRhombus(pointA,pointB,pointC,pointD, {x:e.clientX, y:e.clientY})) {
           /* pass the coordinates of the tile respective to the maps object to manipulate it further */
           let tile = { 
-            y: store.state.env.tileHitBoxes[i].y,
-            z: store.state.env.tileHitBoxes[i].z,
-            x: store.state.env.tileHitBoxes[i].x
+            y: tileCoordinates[i].y,
+            z: tileCoordinates[i].z,
+            x: tileCoordinates[i].x
           };
           console.log("Interaction with tile!", tile);
           store.dispatch("tileHovered", tile);
@@ -79,10 +87,14 @@ window.addEventListener("DOMContentLoaded", e => {
           return true;
           
         } else {
-          // store.dispatch("tileNotHovered", store.state.env.tileHitBoxes[i]);
+          // store.dispatch("tileNotHovered", tileCoordinates[i]);
         }
       }
-      // END TODO
+    }
+
+    window.addEventListener("mousemove", e => {
+      
+      checkCollision(e, store.state.env.tileHitBoxes);
 
     });
     

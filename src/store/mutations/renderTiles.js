@@ -1,7 +1,7 @@
 import draw from '../../draw.js';
 
 export default function renderTiles (state) {
-  
+
   if (state.ctx) {
     let ctx = state.ctx;
     let {

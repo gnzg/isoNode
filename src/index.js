@@ -43,7 +43,7 @@ window.addEventListener("DOMContentLoaded", e => {
         
         // if movement takes place, clear the tile hitboxes // TODO: make prettier
         store.state.env.tileHitBoxes = [];
-
+        
       }
     });
     
@@ -53,19 +53,19 @@ window.addEventListener("DOMContentLoaded", e => {
       if (e.keyCode in store.state.keyMap) keyMapState[e.keyCode] = false;
       store.dispatch('handleKeyUp', keyMapState);
       //hint.hide();
-
+      
       // R key
       if (e.keyCode === 82) {
-
-        // if movement takes place, clear the tile hitboxes // TODO: make prettier
-        store.state.env.tileHitBoxes = [];
-
         store.dispatch('rotateMapAction');
       }
-
+      
+      // if movement takes place, clear the tile hitboxes // TODO: make prettier
+      store.state.env.tileHitBoxes = [];
+      
+      
       // the below also includes implicitly rebuilding the hit box array (but not clearing the old array yet!)
       checkCollision(e, store.state.env.tileHitBoxes);
-        
+      
     });
     
     let checkCollision = (e, tileCoordinates) => {
@@ -96,11 +96,11 @@ window.addEventListener("DOMContentLoaded", e => {
         }
       }
     }
-
+    
     window.addEventListener("mousemove", e => {
       
       checkCollision(e, store.state.env.tileHitBoxes);
-
+      
     });
     
     //let hint = new floatText(store.state.ctx, 'Press R to rotate the canvas');

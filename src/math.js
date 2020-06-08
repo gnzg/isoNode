@@ -103,4 +103,36 @@ let pointInHexagon = (a,b) => {
     //return 2 * _vert * _hori - _vert * q2x - _hori * q2y >= 0;   // finally the dot product can be reduced to this due to the hexagon symmetry
 };
 
-module.exports = {vectorCrossProduct, vectorDotProduct, pointInTriangle, pointInRhombus, pointInHexagon};
+// receives e as the pointer move event {object}, the current tile coords [array] and the store {object}
+// returns void
+let checkCollision = (e, tileCoordinates, st) => {
+    for (let i = 0; i < tileCoordinates.length; i++) {
+      let pointA = tileCoordinates[i].pointA;
+      let pointB = tileCoordinates[i].pointB;
+      let pointC = tileCoordinates[i].pointC;
+      let pointD = tileCoordinates[i].pointD;
+      
+      //pointInHexagon(pointA, pointB);
+      
+      if (pointInRhombus(pointA,pointB,pointC,pointD, {x:e.clientX, y:e.clientY})) {
+        // console.log("Interaction with tile!", tile);
+        /* pass the coordinates of the tile respective to the maps object to manipulate it further */
+        let tile = { 
+          y: tileCoordinates[i].y,
+          z: tileCoordinates[i].z,
+          x: tileCoordinates[i].x
+        };
+        st.dispatch("tileHovered", tile);
+
+        // TODO: avoid re-drawing the canvas if pointer moves within hitbox
+        st.dispatch('renderTiles');
+        
+        // avoid having the condition loop if it is fulfilled
+        return true;
+      } else {
+        // st.dispatch("tileNotHovered", tileCoordinates[i]);
+      }
+    }
+  }
+
+module.exports = {vectorCrossProduct, vectorDotProduct, pointInTriangle, pointInRhombus, pointInHexagon, checkCollision};

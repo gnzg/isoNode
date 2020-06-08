@@ -1,4 +1,5 @@
 import store from '../index';
+import { checkCollision } from '../../math.js';
 
 export default function rotateMap(state) {
   let maps = state.env.maps;
@@ -25,5 +26,9 @@ export default function rotateMap(state) {
   }
   if (state.env.rotationDegree < 270) state.env.rotationDegree += 90; else state.env.rotationDegree = 0;
   console.log('rotationDegree', state.env.rotationDegree); 
+  // re-draw canvas
   store.dispatch('renderTiles');
+  // empty tile hit box array
+  store.state.env.tileHitBoxes = [];
+  
 }

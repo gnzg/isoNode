@@ -65,6 +65,8 @@ import state from './store/state';
         // arbitrary: consider only 1st ground level
         if (k === 1) {
           // establish coordinates for the four vertices of each rhombus
+          // i.e. build the hitboxes for the tile top surfaces
+
           pointA = {
             x: tileWidth * i + tileWidth - tileWidth + mapX + tileWidth * j,
             y: d + topYsegment

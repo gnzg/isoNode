@@ -17,6 +17,9 @@ export default function renderTiles (state) {
     
     // clear entire canvas
     ctx.clearRect(...clearArea);
+
+    // clear tile hitbox array
+    state.env.tileHitBoxes = [];
     
     if (maps !== undefined) {
       

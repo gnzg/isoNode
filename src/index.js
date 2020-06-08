@@ -46,7 +46,7 @@ window.addEventListener("DOMContentLoaded", e => {
         
       }
        else if (e.keyCode === 82) {    // R key
-        store.state.env.tileHitBoxes = [];
+        // rotates map and re-draws the canvas
         store.dispatch('rotateMapAction');
         // TODO: update hitbox array after map is rotated
       }
@@ -61,9 +61,6 @@ window.addEventListener("DOMContentLoaded", e => {
       store.dispatch('handleKeyUp', keyMapState);
 
       //hint.hide(); // TODO: fix
-      
-      // if movement takes place, clear the tile hitboxes // TODO: make prettier
-      store.state.env.tileHitBoxes = [];
       
       checkCollision(e, store.state.env.tileHitBoxes, store);
     });

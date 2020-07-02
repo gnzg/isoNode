@@ -5,6 +5,7 @@ import rotateMap from './mutations/rotateMap';
 import centerCanvas from './mutations/centerCanvas'
 import deleteTile from './mutations/deleteTile';
 import tileHovered from './mutations/tileHovered';
+import tileNotHovered from './mutations/tileNotHovered';
 
 export default {
   addItem(state, payload) {
@@ -22,5 +23,6 @@ export default {
   rotateMap,
   centerCanvas,
   deleteTile,
-  tileHovered
+  tileHovered,
+  tileNotHovered
 };

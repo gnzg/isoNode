@@ -1,10 +1,13 @@
 import store from '../index';
 
-export default function tileHovered(state, payload) {
-    
+export default function tileNotHovered(state, payload) {
+    //onsole.log('tileHovered() tile', payload);
+
     let tile = payload;
 
     /*
+    state.ctx.fillStyle = "red"
+        
     // top
     state.ctx.globalCompositeOperation = 'source-over';
     state.ctx.beginPath();
@@ -16,7 +19,7 @@ export default function tileHovered(state, payload) {
     state.ctx.fill();
     */
 
-    state.env.maps[tile.y][tile.z][tile.x] = 4;
+    state.env.maps[tile.y][tile.z][tile.x] = 2;
 
     // TODO: avoid re-drawing the entire canvas if pointer moves within hitbox
     store.dispatch('renderTiles');

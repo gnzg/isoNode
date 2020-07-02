@@ -25,5 +25,8 @@ export default {
   },
   tileHovered(context, payload) {
     context.commit('tileHovered', payload);
+  },
+  tileNotHovered(context, payload) {
+    context.commit('tileNotHovered', payload);
   }
 };

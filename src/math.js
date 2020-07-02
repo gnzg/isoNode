@@ -64,12 +64,12 @@ let pointInRhombus = (a,b,c,d,p) => {
         x: 0.5*vectorAddition(a,c).x,
         y: 0.5*vectorAddition(a,c).y
     };
-
+    
     // half-width (in the x-direction)
     let alpha = 0.5*distanceBetweenTwoPoints(a,c),    
     // half-height (y-direction)  
     beta = 0.5*distanceBetweenTwoPoints(b,d);
-
+    
     // unit vector in x-direction
     //console.log('a', a, 'c', c);
     //console.log('vectorSubtraction(c, a)', vectorSubtraction(c, a));
@@ -106,33 +106,28 @@ let pointInHexagon = (a,b) => {
 // receives e as the pointer move event {object}, the current tile coords [array] and the store {object}
 // returns void
 let checkCollision = (e, tileCoordinates, st) => {
+    
     for (let i = 0; i < tileCoordinates.length; i++) {
-      let pointA = tileCoordinates[i].pointA;
-      let pointB = tileCoordinates[i].pointB;
-      let pointC = tileCoordinates[i].pointC;
-      let pointD = tileCoordinates[i].pointD;
-      
-      //pointInHexagon(pointA, pointB);
-      
-      if (pointInRhombus(pointA,pointB,pointC,pointD, {x:e.clientX, y:e.clientY})) {
-        // console.log("Interaction with tile!", tile);
-        /* pass the coordinates of the tile respective to the maps object to manipulate it further */
-        let tile = { 
-          y: tileCoordinates[i].y,
-          z: tileCoordinates[i].z,
-          x: tileCoordinates[i].x
-        };
-        st.dispatch("tileHovered", tile);
-
-        // TODO: avoid re-drawing the canvas if pointer moves within hitbox
-        st.dispatch('renderTiles');
+        let pointA = tileCoordinates[i].pointA;
+        let pointB = tileCoordinates[i].pointB;
+        let pointC = tileCoordinates[i].pointC;
+        let pointD = tileCoordinates[i].pointD;
         
-        // avoid having the condition loop if it is fulfilled
-        return true;
-      } else {
-        // st.dispatch("tileNotHovered", tileCoordinates[i]);
-      }
+        let tile = { 
+            y: tileCoordinates[i].y,
+            z: tileCoordinates[i].z,
+            x: tileCoordinates[i].x
+        };
+        
+        // if mouse within constraints of tile
+        if (pointInRhombus(pointA,pointB,pointC,pointD, {x:e.clientX, y:e.clientY})) {
+            // console.log("Interaction with tile!", tile);
+            /* pass the coordinates of the tile respective to the maps object to manipulate it further */
+            st.dispatch("tileHovered", tile);
+        } else {
+            st.dispatch("tileNotHovered", tile);
+        }
     }
-  }
+}
 
 module.exports = {vectorCrossProduct, vectorDotProduct, pointInTriangle, pointInRhombus, pointInHexagon, checkCollision};

@@ -7,6 +7,7 @@ const devMode = true;
 
 module.exports = {
   mode: 'development',
+  devtool: 'cheap-source-map',
   module: {
     rules: [
       {

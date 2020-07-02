@@ -10,5 +10,5 @@ export default function deleteTile(state, payload) {
     let z = payload[1];
     let x = payload[2];
     state.env.maps[y][z][x] = 0;
-    store.dispatch('renderTiles');
+    store.dispatch('refreshCanvas');
 }

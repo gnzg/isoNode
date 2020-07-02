@@ -26,7 +26,7 @@ Currently, drawing is accomplish layerwise: Assume we want our map to consist of
 
 ### Easing further development
 
-It is possible to test newly introduced actions via the browser console as they are available via the window object. E.g. `window.store.dispatch('renderTiles');` 
+It is possible to test newly introduced actions via the browser console as they are available via the window object. E.g. `window.store.dispatch('refreshCanvas');` 
 
 ### Misc
 

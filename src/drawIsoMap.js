@@ -1,7 +1,7 @@
 import state from './store/state';
 
 /**
-* directly manipulates the canvas property found in the state object
+* directly manipulates the canvas reference found in the state object
 *
 * @param {Object} canvas 
 * @param {Array} mapsArray 
@@ -16,7 +16,7 @@ import state from './store/state';
   * 
   * @returns {Object} canvas
   */
-  export default function draw (ctx, mapsArray, mapXparam, mapYparam, tileWidthParam, z, x, y, rectColorsParam, rectShadowColorsParam) {
+  export default (ctx, mapsArray, mapXparam, mapYparam, tileWidthParam, z, x, y, rectColorsParam, rectShadowColorsParam)  => {
     let i = z;   // iterator across z axis, i.e. elements of the map array
     let j = x;   // iterator across x axis, i.e. elements of the map item array
     let k = y;   // iterator across y axis, i.e. map arrays

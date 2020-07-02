@@ -9,7 +9,7 @@ export default {
     
     // @param {Array}; every item represents an array of tile hitboxes
     tileHitBoxes: [],
-    
+    lastHoveredTile: {},
     rectColors: [
       '000000',  // dummy
       '#096dff', // water

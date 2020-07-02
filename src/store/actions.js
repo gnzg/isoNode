@@ -14,8 +14,8 @@ export default {
   handleKeyUp(context, payload) {
     context.commit('handleKeyUp', payload);
   },
-  renderTiles(context) {
-    context.commit('renderTiles');
+  refreshCanvas(context) {
+    context.commit('refreshCanvas');
   },
   rotateMapAction(context) {
     context.commit('rotateMap');
@@ -28,5 +28,8 @@ export default {
   },
   tileNotHovered(context, payload) {
     context.commit('tileNotHovered', payload);
+  },
+  saveLastHoveredTile(context, payload) {
+    context.commit('saveLastHoveredTile', payload);
   }
 };

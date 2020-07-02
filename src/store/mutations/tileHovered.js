@@ -19,5 +19,5 @@ export default function tileHovered(state, payload) {
     state.env.maps[tile.y][tile.z][tile.x] = 4;
 
     // TODO: avoid re-drawing the entire canvas if pointer moves within hitbox
-    store.dispatch('renderTiles');
+    store.dispatch('refreshCanvas');
 };

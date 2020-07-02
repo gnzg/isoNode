@@ -1,4 +1,4 @@
-import renderTiles from './mutations/renderTiles';
+import refreshCanvas from './mutations/refreshCanvas';
 import handleKeyDown from './mutations/handleKeyDown';
 import handleKeyUp from './mutations/handleKeyUp';
 import rotateMap from './mutations/rotateMap';
@@ -6,6 +6,7 @@ import centerCanvas from './mutations/centerCanvas'
 import deleteTile from './mutations/deleteTile';
 import tileHovered from './mutations/tileHovered';
 import tileNotHovered from './mutations/tileNotHovered';
+import saveLastHoveredTile from './mutations/saveLastHoveredTile';
 
 export default {
   addItem(state, payload) {
@@ -17,12 +18,13 @@ export default {
     return state;
   },
   // the below mutations implicitly use state as an argument
-  renderTiles,
+  refreshCanvas,
   handleKeyDown,
   handleKeyUp,
   rotateMap,
   centerCanvas,
   deleteTile,
   tileHovered,
-  tileNotHovered
+  tileNotHovered,
+  saveLastHoveredTile
 };

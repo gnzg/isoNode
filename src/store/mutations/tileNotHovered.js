@@ -1,10 +1,9 @@
 import store from '../index';
 
 export default function tileNotHovered(state, payload) {
-    //onsole.log('tileHovered() tile', payload);
 
     let tile = payload;
-
+    console.log('tile', tile);
     /*
     state.ctx.fillStyle = "red"
         
@@ -18,9 +17,9 @@ export default function tileNotHovered(state, payload) {
     state.ctx.closePath();
     state.ctx.fill();
     */
-
+   
     state.env.maps[tile.y][tile.z][tile.x] = 2;
-
     // TODO: avoid re-drawing the entire canvas if pointer moves within hitbox
-    store.dispatch('renderTiles');
+    // second parameter provides constraints within which the map should be refreshed 
+    store.dispatch('refreshCanvas');
 };

@@ -1,4 +1,4 @@
-import renderTiles from './renderTiles';
+import refreshCanvas from './refreshCanvas';
 
 export default function handleKeyDown (state) {
   
@@ -25,6 +25,6 @@ export default function handleKeyDown (state) {
       !state.keyMap[87] && !state.keyMap[83]) {
         clearInterval(drawFrequency);
       }
-      renderTiles(state);
+      refreshCanvas(state);
     }, 20);
   }

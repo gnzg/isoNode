@@ -1,6 +1,6 @@
-import draw from '../../draw.js';
+import drawIsoMap from '../../drawIsoMap.js';
 
-export default function renderTiles (state) {
+export default (state, refreshArea = undefined) => {
 
   if (state.ctx) {
     let ctx = state.ctx;
@@ -35,7 +35,7 @@ export default function renderTiles (state) {
           for (let x = 0; x < maps[currentMap][z].length; x++) {
             // draw all three visible sides of the rect aspect
             // logic whether to draw or not to draw shapes is defined in draw()
-            draw(ctx, maps, mapX, mapY, tileWidth, z, x, y, rectColors, rectShadowColors);
+            drawIsoMap(ctx, maps, mapX, mapY, tileWidth, z, x, y, rectColors, rectShadowColors);
           }
         }
       };

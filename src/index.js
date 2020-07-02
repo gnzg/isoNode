@@ -12,14 +12,14 @@ window.addEventListener("DOMContentLoaded", e => {
   
   const canvasWrapperInstance = new canvasWrapper('main');
   store.dispatch('centerCanvas');
-  store.dispatch('renderTiles');
+  store.dispatch('refreshCanvas');
   
   // Events
   window.addEventListener("resize", () => {
     store.state.env.winWidth = window.innerWidth;
     store.state.env.winHeight = window.innerHeight;
     store.dispatch('centerCanvas');
-    store.dispatch('renderTiles');
+    store.dispatch('refreshCanvas');
   });
   
   // Rotate or move canvas on key(s) down
@@ -62,11 +62,11 @@ window.addEventListener("DOMContentLoaded", e => {
 
       //hint.hide(); // TODO: fix
       
-      checkCollision(e, store.state.env.tileHitBoxes, store);
+      checkCollision(e, store.state.env.tileHitBoxes, store, state);
     });
     
     window.addEventListener("mousemove", e => {
-      checkCollision(e, store.state.env.tileHitBoxes, store);
+      checkCollision(e, store.state.env.tileHitBoxes, store, store.state);
     });
     
     //let hint = new floatText(store.state.ctx, 'Press R to rotate the canvas');

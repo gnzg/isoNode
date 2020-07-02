@@ -1,6 +1,6 @@
 // calculate cross product (analog) based on two 2D vectors 
 // returns a scalar value
-let vectorCrossProduct = (U,V) => {
+export let vectorCrossProduct = (U,V) => {
     let CrossProductAnalog = (U.x*V.y-U.y*V.x);
     return CrossProductAnalog;
 };
@@ -9,32 +9,32 @@ let vectorCrossProduct = (U,V) => {
 // i.e. by multiplying the sum of the vector lengths of points U, V by cos x,
 // the former being the angle between the two vectors 
 // returns a scalar value
-let vectorDotProduct = (U,V, x = 25) => {
+export let vectorDotProduct = (U,V, x = 25) => {
     // vector lengths are always positive
     return Math.abs(U.x * V.x) + Math.abs(U.y * V.y)*Math.cos(x);
 };
 
-let vectorAddition = (a,b) => {
+export let vectorAddition = (a,b) => {
     return { x: a.x+b.x, y: a.y+b.y };
 }
 
-let vectorSubtraction = (a,b) => {
+export let vectorSubtraction = (a,b) => {
     return { x: a.x-b.x, y: a.y-b.y };
 }
 
-let vectorDivisionByScalar = (a, s) => {
+export let vectorDivisionByScalar = (a, s) => {
     return { x: a.x/s, y: a.y/s };
 }
 
 // receives two points (x,y)
 // returns a scalar value
-let distanceBetweenTwoPoints = (a, b) => {
+export let distanceBetweenTwoPoints = (a, b) => {
     return Math.sqrt(Math.pow(a.x-b.x, 2) + Math.pow(a.y-b.y, 2));
 }
 
 // receives 3 points [x,y] and an arbitrary point [x,y]
 // returns a boolean
-let pointInTriangle = (a,b,c,p) => {
+export let pointInTriangle = (a,b,c,p) => {
     // Compute vectors        
     let v0 =  {x: c.x - a.x, y: c.y - a.y},
     v1 =      {x: b.x - a.x, y: b.y - a.y},
@@ -58,7 +58,7 @@ let pointInTriangle = (a,b,c,p) => {
 
 // receives 4 points [x,y] and an arbitrary point [x,y]
 // returns a boolean
-let pointInRhombus = (a,b,c,d,p) => {
+export let pointInRhombus = (a,b,c,d,p) => {
     // center point
     let Q = {
         x: 0.5*vectorAddition(a,c).x,
@@ -93,7 +93,7 @@ let pointInRhombus = (a,b,c,d,p) => {
 
 // receives 2 points [x,y] and an arbitrary point [x,y]
 // returns a boolean
-let pointInHexagon = (a,b) => {
+export let pointInHexagon = (a,b) => {
     // calculate center point of bounding box
     let centerPoint = {x: (b.x - a.x)/2, y:(b.y - a.y)/2};
     console.log('centerPoint', centerPoint);
@@ -105,29 +105,44 @@ let pointInHexagon = (a,b) => {
 
 // receives e as the pointer move event {object}, the current tile coords [array] and the store {object}
 // returns void
-let checkCollision = (e, tileCoordinates, st) => {
+export let checkCollision = (e, tileCoordinates, store) => {
     
+    let prevTile = {};
+
+    // REFACTOR the check here as it gives false negatives
     for (let i = 0; i < tileCoordinates.length; i++) {
         let pointA = tileCoordinates[i].pointA;
         let pointB = tileCoordinates[i].pointB;
         let pointC = tileCoordinates[i].pointC;
         let pointD = tileCoordinates[i].pointD;
         
-        let tile = { 
-            y: tileCoordinates[i].y,
-            z: tileCoordinates[i].z,
-            x: tileCoordinates[i].x
-        };
-        
+
         // if mouse within constraints of tile
         if (pointInRhombus(pointA,pointB,pointC,pointD, {x:e.clientX, y:e.clientY})) {
-            // console.log("Interaction with tile!", tile);
+            //console.log("Hovering a tile!", tile);
+            
             /* pass the coordinates of the tile respective to the maps object to manipulate it further */
-            st.dispatch("tileHovered", tile);
+            let tile = { 
+                y: tileCoordinates[i].y,
+                x: tileCoordinates[i].x,
+                z: tileCoordinates[i].z
+            };
+            // write current tile coordinates to temporary object
+            Object.defineProperty(prevTile, i, { value: tile });
+            prevTile = Object.getOwnPropertyDescriptor(prevTile, i).value;
+            store.dispatch("tileHovered", tile);
+
+            // if hovering a tile, exit the execution of the checkCollision()
+            // TODO: and return the hovered value
+            console.log('hovering a tile!');
+            return tile => {
+                store.dispatch("saveLastHoveredTile", tile);
+            }
         } else {
-            st.dispatch("tileNotHovered", tile);
+            console.log('Not hovering a tile.');
+            // only perform if prevTile.i has been hovered previously
+            console.log('lastHoveredTile', store.state.env.lastHoveredTile);
+            if (store.state.env.lastHoveredTile) store.dispatch("saveLastHoveredTile", store.state.env.lastHoveredTile);
         }
     }
 }
-
-module.exports = {vectorCrossProduct, vectorDotProduct, pointInTriangle, pointInRhombus, pointInHexagon, checkCollision};

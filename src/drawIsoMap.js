@@ -85,11 +85,12 @@ import state from './store/state';
             y: tileWidth + topYsegment
           };
           
+          // draw vertices; for development purposes
           /*
           ctx.beginPath();
           ctx.arc(pointA.x, pointA.y, 1, 0, 2 * Math.PI);
           ctx.stroke();
-          
+
           ctx.beginPath();
           ctx.arc(pointB.x, pointB.y, 1, 0, 2 * Math.PI);
           ctx.stroke();

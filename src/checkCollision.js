@@ -4,7 +4,16 @@ import { pointInRhombus } from './math';
 // returns void
 export default (e, tileCoordinates, store) => {
     
-    let prevTile = {};
+
+    // coordinates of all tiles
+    // tileCoordinates
+
+    // check within which hitbox the mouse is
+    if (e.clientX) {
+        // pointA is minimum x reference
+        // pointB is minium y reference
+    }
+    
 
     // REFACTOR the check here as it gives false negatives
     for (let i = 0; i < tileCoordinates.length; i++) {
@@ -12,7 +21,6 @@ export default (e, tileCoordinates, store) => {
         let pointB = tileCoordinates[i].pointB;
         let pointC = tileCoordinates[i].pointC;
         let pointD = tileCoordinates[i].pointD;
-        
 
         // if mouse within constraints of tile
         if (pointInRhombus(pointA,pointB,pointC,pointD, {x:e.clientX, y:e.clientY})) {
@@ -24,21 +32,26 @@ export default (e, tileCoordinates, store) => {
                 x: tileCoordinates[i].x,
                 z: tileCoordinates[i].z
             };
+
+            let prevTile = {};
             // write current tile coordinates to temporary object
             Object.defineProperty(prevTile, i, { value: tile });
-            prevTile = Object.getOwnPropertyDescriptor(prevTile, i).value;
+            Object.getOwnPropertyDescriptor(prevTile, i).value;
+
             store.dispatch("tileHovered", tile);
 
             // if hovering a tile, exit the execution of the checkCollision()
             // TODO: and return the hovered value
             console.log('hovering a tile!', tile);
-            return tile => {
-                store.dispatch("saveLastHoveredTile", tile);
+
+            // write last hovered tile to global state
+            return prevTile => {
+                store.dispatch("saveLastHoveredTile", prevTile);
             }
         } else {
             console.log('Not hovering a tile.');
             // only perform if prevTile.i has been hovered previously
-            console.log('lastHoveredTile', store.state.env.lastHoveredTile);
+            console.log('last saved hovered tile', store.state.env.lastHoveredTile);
             //if (store.state.env.lastHoveredTile) store.dispatch("saveLastHoveredTile", store.state.env.lastHoveredTile);
         }
     }

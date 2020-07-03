@@ -68,21 +68,21 @@ import state from './store/state';
           // i.e. build the hitboxes for the tile top surfaces
 
           pointA = {
-            x: tileWidth * i + tileWidth - tileWidth + mapX + tileWidth * j,
+            x: tileWidth * i + mapX + tileWidth * j,
             y: d + topYsegment
           };
           pointB = {
-            x: tileWidth * i + tileWidth + mapX + tileWidth * j,
-            y: tileWidth * 2 + topYsegment
+            x: pointA.x + tileWidth,
+            y: 2 * tileWidth + topYsegment
           };
           pointC = {
-            x: tileWidth * i + tileWidth * 2 + mapX + tileWidth * j,
-            y: d + topYsegment
+            x: pointB.x + tileWidth,
+            y: pointA.y
           };
           
           pointD = {
-            x: tileWidth * i + tileWidth + mapX + tileWidth * j,
-            y: tileWidth + topYsegment
+            x: pointB.x,
+            y: pointB.y - tileWidth
           };
           
           // draw vertices; for development purposes
@@ -94,7 +94,7 @@ import state from './store/state';
           ctx.beginPath();
           ctx.arc(pointB.x, pointB.y, 1, 0, 2 * Math.PI);
           ctx.stroke();
-          
+
           ctx.beginPath();
           ctx.arc(pointC.x, pointC.y, 1, 0, 2 * Math.PI);
           ctx.stroke();

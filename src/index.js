@@ -66,6 +66,7 @@ window.addEventListener("DOMContentLoaded", e => {
     });
     
     window.addEventListener("mousemove", e => {
+      e.stopImmediatePropagation();
       checkCollision(e, store.state.env.tileHitBoxes, store);
     });
     

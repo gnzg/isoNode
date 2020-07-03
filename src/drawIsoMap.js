@@ -79,7 +79,6 @@ import state from './store/state';
             x: pointB.x + tileWidth,
             y: pointA.y
           };
-          
           pointD = {
             x: pointB.x,
             y: pointB.y - tileWidth

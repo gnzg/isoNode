@@ -3,7 +3,7 @@ import { pointInRhombus } from './math';
 // receives e as the pointer move event {object}, the current tile coords [array] and the store {object}
 // returns void
 export default (e, tileCoordinates, store) => {
-    e.stopImmediatePropagation();
+    
     // coordinates of all tiles
     // tileCoordinates
     
@@ -12,7 +12,6 @@ export default (e, tileCoordinates, store) => {
     // pointA is minimum x reference
     // pointB is minium y reference
     //}
-    
     
     // REFACTOR the check here as it gives false negatives
     for (let i = 0; i < tileCoordinates.length; i++) {
@@ -32,23 +31,18 @@ export default (e, tileCoordinates, store) => {
                 z: tileCoordinates[i].z
             };
             
-            //let prevTile = {};
-            // write current tile coordinates to temporary object
-            //Object.defineProperty(prevTile, i, { value: tile });
-            //Object.getOwnPropertyDescriptor(prevTile, i).value;
-            
             store.dispatch("tileHovered", tile);
             
-            // write last hovered tile to global state
-            //    prevTile => {
-            //    store.dispatch("saveLastHoveredTile", prevTile);
+            //write last hovered tile to global state
+            store.dispatch("saveLastHoveredTile", tile);
+            return true;
         }
-        /*
+        // if not hovering a tile
         else {
-            console.log('Not hovering a tile.');
+            store.state.env.lastHoveredTile.x !== undefined && store.dispatch("tileNotHovered", store.state.env.lastHoveredTile);
             // only perform if prevTile.i has been hovered previously
-            console.log('last saved hovered tile', store.state.env.lastHoveredTile);
+            //console.log('last saved hovered tile', store.state.env.lastHoveredTile);
             //if (store.state.env.lastHoveredTile) store.dispatch("saveLastHoveredTile", store.state.env.lastHoveredTile);
-        }*/
+        }
     }
 }

@@ -2,7 +2,7 @@ import floatText from './floatText.js';
 import store from './store/index';
 import canvasWrapper from './components/canvasWrapper';
 import './assets/scss/styles.scss';
-import { pointInRhombus, pointInHexagon, checkCollision } from './math.js';
+import checkCollision from './checkCollision.js';
 
 // Initialization
 window.addEventListener("DOMContentLoaded", e => {
@@ -45,7 +45,7 @@ window.addEventListener("DOMContentLoaded", e => {
         store.state.env.tileHitBoxes = [];
         
       }
-       else if (e.keyCode === 82) {    // R key
+       else if (e.keyCode === 32) {    // SPACE key
         // rotates map and re-draws the canvas
         store.dispatch('rotateMapAction');
         // TODO: update hitbox array after map is rotated
@@ -62,11 +62,11 @@ window.addEventListener("DOMContentLoaded", e => {
 
       //hint.hide(); // TODO: fix
       
-      checkCollision(e, store.state.env.tileHitBoxes, store, state);
+      checkCollision(e, store.state.env.tileHitBoxes, store);
     });
     
     window.addEventListener("mousemove", e => {
-      checkCollision(e, store.state.env.tileHitBoxes, store, store.state);
+      checkCollision(e, store.state.env.tileHitBoxes, store);
     });
     
     //let hint = new floatText(store.state.ctx, 'Press R to rotate the canvas');

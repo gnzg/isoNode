@@ -18,9 +18,9 @@ import state from './store/state';
   */
 
   export default (ctx, mapsArray, mapXparam, mapYparam, tileWidthParam, z, x, y, rectColorsParam, rectShadowColorsParam)  => {
-    let i = z;   // iterator across z axis, i.e. elements of the map array
-    let j = x;   // iterator across x axis, i.e. elements of the map item array
-    let k = y;   // iterator across y axis, i.e. map arrays
+    let i = z;    // iterator across z axis, i.e. elements of the map array
+    let j = x;    // iterator across x axis, i.e. elements of the map item array
+    let k = y;    // iterator across y axis, i.e. map arrays
     let tileWidth = tileWidthParam;
     let mapX = mapXparam;
     let mapY = mapYparam;
@@ -35,7 +35,7 @@ import state from './store/state';
     let tempMap = maps[`${Object.keys(maps)[k]}`];
     // should the tile be drawn? 
     let drawTile = tempMap[i][j] !== 0;
-    
+
     // if the map is defined and the tile is non-zero, draw it
     if (
       tempMap !== undefined &&

@@ -18,7 +18,7 @@ export default {
     return state;
   },
   toggleDebugMode(state) {
-    state.debug_mode = !state.debug_mode; 
+    state.debug_mode = !state.debug_mode;
     return state;
   },
   // the below mutations implicitly use state as an argument

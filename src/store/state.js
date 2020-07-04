@@ -1,7 +1,7 @@
 import maps from '../maps';
 
 export default {
-  ctx: document.querySelector('#main') ? document.querySelector('#main').getContext('2d') : null,
+  ctx: document.querySelector('#main') ? document.querySelector('#main').getContext('2d') : () => { console.error('no canvas context found!' ); },
   cooldown: false,
   debug_mode: false,
   env: {

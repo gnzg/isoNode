@@ -34,5 +34,6 @@ export default {
   },
   toggleDebugMode(context) {
     context.commit('toggleDebugMode');
+    context.commit('refreshCanvas');
   }
 };

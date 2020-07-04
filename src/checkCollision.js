@@ -37,7 +37,7 @@ export default (e, tileCoordinates, store) => {
             store.dispatch("saveLastHoveredTile", tile);
             return true;
         }
-        // if not hovering a tile, and if the last hovered tile has not yet been cleaned from the global state 
+        // if not hovering a tile, and if the last hovered tile has not yet been cleaned from the global state
         else if (store.state.env.lastHoveredTile.x !== undefined) {
             // only perform if prevTile.i has been hovered previously
             store.dispatch("tileNotHovered", store.state.env.lastHoveredTile);

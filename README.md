@@ -16,7 +16,7 @@ To compile and watch the source code run `npm start` from project root. The dev 
 <ul>
 <li>Multi-key map navigation. Currently A,W,S,D keys are the default navigation keys
 </li>
-<li>Map rotation via the R key
+<li>Map rotation via the SPACE key
 </li>
 </ul>
 
@@ -27,6 +27,10 @@ Currently, drawing is accomplish layerwise: Assume we want our map to consist of
 ### Easing further development
 
 It is possible to test newly introduced actions via the browser console as they are available via the window object. E.g. `window.store.dispatch('refreshCanvas');` 
+
+### Debug mode
+
+Working on the map in debug mode is possible by setting the debug_mode property in the global state object to true, or toggling it via the browser console via `window.store.dispatch("toggleDebugMode");`
 
 ### Misc
 

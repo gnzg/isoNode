@@ -3,6 +3,7 @@ import maps from '../maps';
 export default {
   ctx: document.querySelector('#main') ? document.querySelector('#main').getContext('2d') : null,
   cooldown: false,
+  debug_mode: false,
   env: {
     // @param {Array}; every item represents a tile map
     maps: maps,

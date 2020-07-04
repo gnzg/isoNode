@@ -47,8 +47,7 @@ window.addEventListener("DOMContentLoaded", e => {
       }
        else if (e.keyCode === 32) {    // SPACE key
         // rotates map and re-draws the canvas
-        store.dispatch('rotateMapAction');
-        // TODO: update hitbox array after map is rotated
+        // store.dispatch('rotateMapAction');
       }
     });
     

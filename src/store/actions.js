@@ -31,5 +31,8 @@ export default {
   },
   saveLastHoveredTile(context, payload) {
     context.commit('saveLastHoveredTile', payload);
+  },
+  toggleDebugMode(context) {
+    context.commit('toggleDebugMode');
   }
 };

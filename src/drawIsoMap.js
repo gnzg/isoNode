@@ -16,7 +16,7 @@ import state from './store/state';
   * 
   * @returns {Object} canvas
   */
-
+  
   export default (ctx, mapsArray, mapXparam, mapYparam, tileWidthParam, z, x, y, rectColorsParam, rectShadowColorsParam)  => {
     let i = z;    // iterator across z axis, i.e. elements of the map array
     let j = x;    // iterator across x axis, i.e. elements of the map item array
@@ -28,29 +28,51 @@ import state from './store/state';
     let rectColors = rectColorsParam;
     let rectShadowColors = rectShadowColorsParam;
     let tileYoffset = 0;
-    
-    // make tile vertices available from this scope
-    let pointA, pointB, pointC, pointD = {};
+    let rhombusVertices = { pointA: {}, pointB: {}, pointC: {}, pointD: {}};
+
     // operate on a copy of the actual map 
     let tempMap = maps[`${Object.keys(maps)[k]}`];
     // should the tile be drawn? 
     let drawTile = tempMap[i][j] !== 0;
-
+    
     // if the map is defined and the tile is non-zero, draw it
     if (
       tempMap !== undefined &&
       tempMap.length > 0 &&
       tempMap[i] !== undefined &&
       drawTile === true
-      ) {
-        
-        tileYoffset = tileWidth * k * 1.25;
-        let c = mapY - tileWidth * j * 0.5;
-        let d = tileWidth * 1.5;
-        let topYfactor = tileWidth * i * 0.5;
-        let topYsegment = c + topYfactor - tileYoffset;
+      ) 
+    {
+      
+      tileYoffset = tileWidth * k * 1.25;
+      let c = mapY - tileWidth * j * 0.5;
+      let d = tileWidth * 1.5;
+      let topYfactor = tileWidth * i * 0.5;
+      let topYsegment = c + topYfactor - tileYoffset;
+      
+      // make tile vertices available from this scope
+      // establish coordinates for the four vertices of each rhombus
+      // i.e. build the hitboxes for the tile top surfaces
+      rhombusVertices = {
+            pointA : {
+              x: tileWidth * i + mapX + tileWidth * j,
+              y: d + topYsegment
+            },
+            pointB : {
+              x: rhombusVertices.pointA.x + tileWidth,
+              y: 2 * tileWidth + topYsegment
+            },
+            pointC : {
+              x: rhombusVertices.pointB.x + tileWidth,
+              y: rhombusVertices.pointA.y
+            },
+            pointD : {
+              x: rhombusVertices.pointB.x,
+              y: rhombusVertices.pointB.y - tileWidth
+            }
+        };
+
         let fillColor = rectShadowColors[tempMap[i][j]];
-        
         ctx.fillStyle = rectColors[rectShadowColors.indexOf(fillColor)];
         
         // top
@@ -93,58 +115,20 @@ import state from './store/state';
             ctx.closePath();
             ctx.fillStyle = fillColor;
             ctx.fill();
-          }
+        }
 
-        // arbitrary: consider only 1st ground level
-        if (k === 1) {
-          // establish coordinates for the four vertices of each rhombus
-          // i.e. build the hitboxes for the tile top surfaces
-
-          pointA = {
-            x: tileWidth * i + mapX + tileWidth * j,
-            y: d + topYsegment
-          };
-          pointB = {
-            x: pointA.x + tileWidth,
-            y: 2 * tileWidth + topYsegment
-          };
-          pointC = {
-            x: pointB.x + tileWidth,
-            y: pointA.y
-          };
-          pointD = {
-            x: pointB.x,
-            y: pointB.y - tileWidth
-          };
-          
           // draw vertices; only available in debug mode
           if (state.debug_mode) {
-            ctx.beginPath();
-            ctx.arc(pointA.x, pointA.y, 1, 0, 2 * Math.PI);
-            ctx.stroke();
-            
-            ctx.beginPath();
-            ctx.arc(pointB.x, pointB.y, 1, 0, 2 * Math.PI);
-            ctx.stroke();
-            
-            ctx.beginPath();
-            ctx.arc(pointC.x, pointC.y, 1, 0, 2 * Math.PI);
-            ctx.stroke();
-            
-            ctx.beginPath();
-            ctx.arc(pointD.x, pointD.y, 1, 0, 2 * Math.PI);
-            ctx.stroke();
+            drawAdditionalDetails(ctx, rhombusVertices);
           }
           
           // save the tile's points, i.e. hitbox boundries
+          // arbitrary: consider only 1st ground level
           // but only if the map tile is non-zero
-          if (drawTile === true) {
+          if (drawTile === true && k === 1) {
             state.env.tileHitBoxes.push({ 
               // rhombus vertices
-              pointA,
-              pointB,
-              pointC,
-              pointD,
+              ...rhombusVertices,
               // coordinates respective to the maps object
               x:j,
               y:k,
@@ -153,4 +137,3 @@ import state from './store/state';
           }
         }
       }
-    }

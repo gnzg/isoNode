@@ -33,5 +33,8 @@
   },
   "keywords": [],
   "author": "Ilya Ginzburg",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "babel-plugin-transform-object-rest-spread": "^6.26.0"
+  }
 }

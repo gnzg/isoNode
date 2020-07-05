@@ -1,5 +1,5 @@
 import state from './store/state';
-
+import RhombusVertices from './RhombusVertices';
 /**
 * directly manipulates the canvas reference found in the state object
 *
@@ -28,7 +28,6 @@ import state from './store/state';
     let rectColors = rectColorsParam;
     let rectShadowColors = rectShadowColorsParam;
     let tileYoffset = 0;
-    let rhombusVertices = { pointA: {}, pointB: {}, pointC: {}, pointD: {}};
 
     // operate on a copy of the actual map 
     let tempMap = maps[`${Object.keys(maps)[k]}`];
@@ -52,25 +51,21 @@ import state from './store/state';
       
       // make tile vertices available from this scope
       // establish coordinates for the four vertices of each rhombus
-      // i.e. build the hitboxes for the tile top surfaces
-      rhombusVertices = {
-            pointA : {
-              x: tileWidth * i + mapX + tileWidth * j,
-              y: d + topYsegment
-            },
-            pointB : {
-              x: rhombusVertices.pointA.x + tileWidth,
-              y: 2 * tileWidth + topYsegment
-            },
-            pointC : {
-              x: rhombusVertices.pointB.x + tileWidth,
-              y: rhombusVertices.pointA.y
-            },
-            pointD : {
-              x: rhombusVertices.pointB.x,
-              y: rhombusVertices.pointB.y - tileWidth
-            }
-        };
+      let rhombusVertices = new RhombusVertices(tileWidth, mapX, i, j, d, topYsegment);
+                  
+          // save the tile's points, i.e. hitbox boundries
+          // arbitrary: consider only 1st ground level
+          if (k === 1) {
+            // build the hitboxes array
+            state.env.tileHitBoxes.push({ 
+              // rhombus vertices
+              ...rhombusVertices,
+              // coordinates respective to the maps object
+              x:j,
+              y:k,
+              z:i
+            });
+          }
 
         let fillColor = rectShadowColors[tempMap[i][j]];
         ctx.fillStyle = rectColors[rectShadowColors.indexOf(fillColor)];
@@ -121,19 +116,6 @@ import state from './store/state';
           if (state.debug_mode) {
             drawAdditionalDetails(ctx, rhombusVertices);
           }
-          
-          // save the tile's points, i.e. hitbox boundries
-          // arbitrary: consider only 1st ground level
-          // but only if the map tile is non-zero
-          if (drawTile === true && k === 1) {
-            state.env.tileHitBoxes.push({ 
-              // rhombus vertices
-              ...rhombusVertices,
-              // coordinates respective to the maps object
-              x:j,
-              y:k,
-              z:i
-            });
-          }
+
         }
       }

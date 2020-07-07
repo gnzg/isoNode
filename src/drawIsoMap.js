@@ -1,36 +1,35 @@
 import state from './store/state';
 import RhombusVertices from './RhombusVertices';
+import Tile from './tile';
 /**
-* directly manipulates the canvas reference found in the state object
+* directly manipulates the canvas context found in the state object
 *
-* @param {Object} canvas 
-* @param {Array} mapsArray 
-* @param {Integer mapXparam 
-  * @param {Integer} mapYparam 
-  * @param {Integer} tileWidthParam 
-  * @param {Integer} z 
-  * @param {Integer} x 
-  * @param {Integer} y 
-  * @param {Array} rectColorsParam 
-  * @param {Array} rectShadowColorsParam
-  * 
-  * @returns {Object} canvas
-  */
+* @param {Object} canvas
+* @param {Array} maps
+* @param {Integer mapX 
+* @param {Integer} mapY 
+* @param {Integer} tileWidth 
+* @param {Integer} z 
+* @param {Integer} x 
+* @param {Integer} y 
+* @param {Array} rectColors
+* @param {Array} rectShadowColors
+* 
+* @returns {Object} canvas
+*/
   
-  export default (ctx, mapsArray, mapXparam, mapYparam, tileWidthParam, z, x, y, rectColorsParam, rectShadowColorsParam)  => {
+  export default (ctx, maps, mapX, mapY, tileWidth, z, x, y, rectColors, rectShadowColors)  => {
+
     let i = z;    // iterator across z axis, i.e. elements of the map array
     let j = x;    // iterator across x axis, i.e. elements of the map item array
     let k = y;    // iterator across y axis, i.e. map arrays
-    let tileWidth = tileWidthParam;
-    let mapX = mapXparam;
-    let mapY = mapYparam;
-    let maps = mapsArray;
-    let rectColors = rectColorsParam;
-    let rectShadowColors = rectShadowColorsParam;
-    let tileYoffset = 0;
 
     // operate on a copy of the actual map 
     let tempMap = maps[`${Object.keys(maps)[k]}`];
+    let fillColor = rectShadowColors[tempMap[i][j]];
+
+    let tile = new Tile({x, y, z, tileWidth, style: null, rectColors: rectColors[rectShadowColors.indexOf(fillColor)], rectShadowColors, tileYoffset: tileWidth * k * 1.25});
+
     // should the tile be drawn? 
     let drawTile = tempMap[i][j] !== 0;
     
@@ -43,11 +42,10 @@ import RhombusVertices from './RhombusVertices';
       ) 
     {
       
-      tileYoffset = tileWidth * k * 1.25;
       let c = mapY - tileWidth * j * 0.5;
       let d = tileWidth * 1.5;
       let topYfactor = tileWidth * i * 0.5;
-      let topYsegment = c + topYfactor - tileYoffset;
+      let topYsegment = c + topYfactor - tile.tileYoffset;
       
       // make tile vertices available from this scope
       // establish coordinates for the four vertices of each rhombus
@@ -67,8 +65,7 @@ import RhombusVertices from './RhombusVertices';
             });
           }
 
-        let fillColor = rectShadowColors[tempMap[i][j]];
-        ctx.fillStyle = rectColors[rectShadowColors.indexOf(fillColor)];
+        ctx.fillStyle = tile.rectColor;
         
         // top
         ctx.globalCompositeOperation = 'source-over';
@@ -87,10 +84,10 @@ import RhombusVertices from './RhombusVertices';
           if (j === 0) ctx.globalCompositeOperation = 'source-over';
           if (j - 1 >= 0 && tempMap[i][j - 1] === 0) ctx.globalCompositeOperation = 'source-over';
           ctx.beginPath();
-          ctx.moveTo(tileWidth * i + mapX + tileWidth * j, c + tileWidth * i + d - i * tileWidth * 0.5 - tileYoffset);
-          ctx.lineTo(tileWidth * i + mapX + tileWidth * j, c + tileWidth * i + tileWidth + tileWidth * 1.75 - i * tileWidth * 0.5 - tileYoffset);
-          ctx.lineTo(tileWidth * i + mapX + tileWidth * j + tileWidth, c + tileWidth * i + tileWidth + tileWidth * 1.75 + tileWidth * 0.5 - i * tileWidth * 0.5 - tileYoffset);
-          ctx.lineTo(tileWidth * i + mapX + tileWidth * j + tileWidth, c + tileWidth * i + d + tileWidth * 0.5 - i * tileWidth * 0.5 - tileYoffset);
+          ctx.moveTo(tileWidth * i + mapX + tileWidth * j, c + tileWidth * i + d - i * tileWidth * 0.5 - tile.tileYoffset);
+          ctx.lineTo(tileWidth * i + mapX + tileWidth * j, c + tileWidth * i + tileWidth + tileWidth * 1.75 - i * tileWidth * 0.5 - tile.tileYoffset);
+          ctx.lineTo(tileWidth * i + mapX + tileWidth * j + tileWidth, c + tileWidth * i + tileWidth + tileWidth * 1.75 + tileWidth * 0.5 - i * tileWidth * 0.5 - tile.tileYoffset);
+          ctx.lineTo(tileWidth * i + mapX + tileWidth * j + tileWidth, c + tileWidth * i + d + tileWidth * 0.5 - i * tileWidth * 0.5 - tile.tileYoffset);
           ctx.closePath();
           ctx.fillStyle = fillColor;
           ctx.fill();
@@ -103,10 +100,10 @@ import RhombusVertices from './RhombusVertices';
             ctx.globalCompositeOperation = 'source-over';
             if (i < tempMap.length - 1 && tempMap[i + 1][j] !== 0) ctx.globalCompositeOperation = 'destination-over';
             ctx.beginPath();
-            ctx.moveTo(tileWidth * i + mapX + tileWidth * j + tileWidth * 2, c + tileWidth * i + d - i * tileWidth * 0.5 - tileYoffset);
-            ctx.lineTo(tileWidth * i + mapX + tileWidth * j + tileWidth * 2, c + tileWidth * i + tileWidth + tileWidth * 1.75 - i * tileWidth * 0.5 - tileYoffset);
-            ctx.lineTo(tileWidth * i + mapX + tileWidth * j + tileWidth, c + tileWidth * i + tileWidth + tileWidth * 1.75 + tileWidth * 0.5 - i * tileWidth * 0.5 - tileYoffset);
-            ctx.lineTo(tileWidth * i + mapX + tileWidth * j + tileWidth, c + tileWidth * i + d + tileWidth * 0.5 - i * tileWidth * 0.5 - tileYoffset);
+            ctx.moveTo(tileWidth * i + mapX + tileWidth * j + tileWidth * 2, c + tileWidth * i + d - i * tileWidth * 0.5 - tile.tileYoffset);
+            ctx.lineTo(tileWidth * i + mapX + tileWidth * j + tileWidth * 2, c + tileWidth * i + tileWidth + tileWidth * 1.75 - i * tileWidth * 0.5 - tile.tileYoffset);
+            ctx.lineTo(tileWidth * i + mapX + tileWidth * j + tileWidth, c + tileWidth * i + tileWidth + tileWidth * 1.75 + tileWidth * 0.5 - i * tileWidth * 0.5 - tile.tileYoffset);
+            ctx.lineTo(tileWidth * i + mapX + tileWidth * j + tileWidth, c + tileWidth * i + d + tileWidth * 0.5 - i * tileWidth * 0.5 - tile.tileYoffset);
             ctx.closePath();
             ctx.fillStyle = fillColor;
             ctx.fill();

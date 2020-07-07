@@ -11,6 +11,10 @@ export default {
     // @param {Array}; every item represents an array of tile hitboxes
     tileHitBoxes: [],
     lastHoveredTile: {},
+    
+    // @param {integer}; the tile size
+    tileWidth: 24,
+
     rectColors: [
       '000000',  // dummy
       '#096dff', // water
@@ -32,12 +36,10 @@ export default {
     ],
     */
     // @param {Array}; Area to clear relative to the canvas
-    clearArea: [-1000, 50, 4000, 4000],       
+    clearArea: [-1000, 0, 4000, 4000],       
     
     // @param {integer}; the degree of map rotation
     rotationDegree: 0,
-    // @param {integer}; the tile size
-    tileWidth: 24,
     
     // mapX and mapY are offsets to make sure we can position the map as we want.
     mapX: 0,

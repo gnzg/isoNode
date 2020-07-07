@@ -1,19 +1,19 @@
 // RhombusVertrices constructor
-export default function (tileWidth, mapX, i, j, d, topYsegment) {
+export default function (tileWidth, mapX, z, x, d, topYsegment) {
     this.pointA = {
-      x: tileWidth * i + mapX + tileWidth * j,
+      x: tileWidth * z + mapX + tileWidth * x,
       y: d + topYsegment
     };
     this.pointB = {
-      x: tileWidth * i + mapX + tileWidth * j + tileWidth,
+      x: tileWidth * z + mapX + tileWidth * x + tileWidth,
       y: topYsegment + tileWidth * 2
     };
     this.pointC = {
-      x: tileWidth * i + mapX + tileWidth * j + tileWidth * 2,
+      x: tileWidth * z + mapX + tileWidth * x + tileWidth * 2,
       y: d + topYsegment
     };
     this.pointD = {
-      x: tileWidth * i + mapX + tileWidth * j + tileWidth,
+      x: tileWidth * z + mapX + tileWidth * x + tileWidth,
       y: topYsegment + tileWidth
     };
 };

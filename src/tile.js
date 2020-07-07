@@ -3,7 +3,7 @@
 *  stores tile information and notifies the canvas on changes 
 */
 export default class Tile {
-    constructor({ x, y, z, tileWidth, style = null, rectColors, rectShadowColors}) {
+    constructor({ x, y, z, tileWidth, style = null, rectColor, rectShadowColors, tileYoffset}) {
         
         /* tile coordinates */
         this.x = x;
@@ -13,9 +13,9 @@ export default class Tile {
         /* size */
         this.tileWidth = tileWidth;
 
-        this.rectColors = rectColors
+        this.rectColor = rectColor
         this.rectShadowColors = rectShadowColors;
-        this.tileYoffset = 0;
+        this.tileYoffset = tileYoffset;
 
         /* styling defaults */
         this.defaultStyle = {
@@ -26,6 +26,5 @@ export default class Tile {
             enableStroke: false
         };
         this.style = style || this.defaultStyle;
-
     }
 }

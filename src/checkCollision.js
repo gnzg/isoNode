@@ -10,10 +10,9 @@ export default (e, tileCoordinates, store) => {
     // check within which hitbox the mouse is
     //if (e.clientX) {
     // pointA is minimum x reference
-    // pointB is minium y reference
+    // pointB is minimum y reference
     //}
     
-    // REFACTOR the check here as it gives false negatives
     for (let i = 0; i < tileCoordinates.length; i++) {
         let pointA = tileCoordinates[i].pointA;
         let pointB = tileCoordinates[i].pointB;
@@ -26,11 +25,12 @@ export default (e, tileCoordinates, store) => {
             
             /* pass the coordinates of the tile respective to the maps object to manipulate it further */
             let tile = { 
-                y: tileCoordinates[i].y,
                 x: tileCoordinates[i].x,
+                y: tileCoordinates[i].y,
                 z: tileCoordinates[i].z
             };
-            
+            console.log('tile', tile);
+
             store.dispatch("tileHovered", tile);
             
             //write last hovered tile to global state

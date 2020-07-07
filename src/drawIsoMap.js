@@ -1,6 +1,8 @@
 import state from './store/state';
 import RhombusVertices from './RhombusVertices';
 import Tile from './tile';
+import drawAdditionalDetails from './drawAdditionalDetails';
+
 /**
 * directly manipulates the canvas context found in the state object
 *
@@ -9,9 +11,9 @@ import Tile from './tile';
 * @param {Integer mapX 
 * @param {Integer} mapY 
 * @param {Integer} tileWidth 
-* @param {Integer} z        // iterator across z axis, i.e. elements of the map array
-* @param {Integer} x        // iterator across x axis, i.e. elements of the map item array
-* @param {Integer} y        // iterator across y axis, i.e. map arrays
+* @param {Integer} x        // iterates across a map array
+* @param {Integer} z        // iterates across a map array child's elements
+* @param {Integer} y        // iterates across the array of maps
 * @param {Array} rectColors
 * @param {Array} rectShadowColors
 * 
@@ -24,52 +26,56 @@ import Tile from './tile';
     let tempMap = maps[`${Object.keys(maps)[y]}`];
     let fillColor = rectShadowColors[tempMap[z][x]];
 
-    let tile = new Tile({x, y, z, tileWidth, style: null, rectColors: rectColors[rectShadowColors.indexOf(fillColor)], rectShadowColors, tileYoffset: tileWidth * y * 1.25});
+    let tile = new Tile({
+      y, z, x,
+      tileWidth,
+      style: null,
+      rectColor: rectColors[rectShadowColors.indexOf(fillColor)],
+      rectShadowColors,
+      tileYoffset: tileWidth * y * 1.25
+    });
 
-    // should the tile be drawn? 
-    let drawTile = tempMap[z][x] !== 0;
-    
     // if the map is defined and the tile is non-zero, draw it
     if (
       tempMap !== undefined &&
       tempMap.length > 0 &&
       tempMap[z] !== undefined &&
-      drawTile === true
-      ) 
+      tempMap[z][x] !== 0 &&
+      x === 0
+      )
     {
       
-      let c = mapY - tileWidth * x * 0.5;
-      let d = tileWidth * 1.5;
-      let topYfactor = tileWidth * z * 0.5;
+      let c = mapY - tile.tileWidth * x * 0.5;
+      let d = tile.tileWidth * 1.5;
+      let topYfactor = tile.tileWidth * z * 0.5;
       let topYsegment = c + topYfactor - tile.tileYoffset;
       
       // make tile vertices available from this scope
       // establish coordinates for the four vertices of each rhombus
-      let rhombusVertices = new RhombusVertices(tileWidth, mapX, z, x, d, topYsegment);
+      let rhombusVertices = new RhombusVertices(tile.tileWidth, mapX, z, x, d, topYsegment);
                   
           // save the tile's points, i.e. hitbox boundries
           // arbitrary: consider only 1st ground level
-          if (y === 0) {
-            // build the hitboxes array
-            state.env.tileHitBoxes.push({ 
-              // rhombus vertices
-              ...rhombusVertices,
-              // coordinates respective to the maps object
-              x,
-              y,
-              z
-            });
-          }
+          
+          // build the hitboxes array
+          state.env.tileHitBoxes.push({ 
+            // rhombus vertices
+            ...rhombusVertices,
+            // coordinates respective to the maps object
+            x,
+            y,
+            z
+          });
 
         ctx.fillStyle = tile.rectColor;
         
         // top
         ctx.globalCompositeOperation = 'source-over';
         ctx.beginPath();
-        ctx.moveTo(tileWidth * z + tileWidth + mapX + tileWidth * x, tileWidth + topYsegment);
-        ctx.lineTo(tileWidth * z  + tileWidth * 2 + mapX + tileWidth * x, d + topYsegment);
-        ctx.lineTo(tileWidth * z  + tileWidth + mapX + tileWidth * x, tileWidth * 2 + topYsegment);
-        ctx.lineTo(tileWidth * z  + tileWidth - tileWidth + mapX + tileWidth * x, d + topYsegment);
+        ctx.moveTo(tile.tileWidth * z + tile.tileWidth + mapX + tile.tileWidth * x, tile.tileWidth + topYsegment);
+        ctx.lineTo(tile.tileWidth * z  + tile.tileWidth * 2 + mapX + tile.tileWidth * x, d + topYsegment);
+        ctx.lineTo(tile.tileWidth * z  + tile.tileWidth + mapX + tile.tileWidth * x, tile.tileWidth * 2 + topYsegment);
+        ctx.lineTo(tile.tileWidth * z  + tile.tileWidth - tile.tileWidth + mapX + tile.tileWidth * x, d + topYsegment);
         ctx.closePath();
         ctx.fill();
         
@@ -80,10 +86,10 @@ import Tile from './tile';
           if (x === 0) ctx.globalCompositeOperation = 'source-over';
           if (x - 1 >= 0 && tempMap[z][x - 1] === 0) ctx.globalCompositeOperation = 'source-over';
           ctx.beginPath();
-          ctx.moveTo(tileWidth * z  + mapX + tileWidth * x, c + tileWidth * z  + d - z* tileWidth * 0.5 - tile.tileYoffset);
-          ctx.lineTo(tileWidth * z  + mapX + tileWidth * x, c + tileWidth * z  + tileWidth + tileWidth * 1.75 - z* tileWidth * 0.5 - tile.tileYoffset);
-          ctx.lineTo(tileWidth * z  + mapX + tileWidth * x + tileWidth, c + tileWidth * z  + tileWidth + tileWidth * 1.75 + tileWidth * 0.5 - z* tileWidth * 0.5 - tile.tileYoffset);
-          ctx.lineTo(tileWidth * z  + mapX + tileWidth * x + tileWidth, c + tileWidth * z  + d + tileWidth * 0.5 - z* tileWidth * 0.5 - tile.tileYoffset);
+          ctx.moveTo(tile.tileWidth * z  + mapX + tile.tileWidth * x, c + tile.tileWidth * z  + d - z* tile.tileWidth * 0.5 - tile.tileYoffset);
+          ctx.lineTo(tile.tileWidth * z  + mapX + tile.tileWidth * x, c + tile.tileWidth * z  + tile.tileWidth + tile.tileWidth * 1.75 - z* tile.tileWidth * 0.5 - tile.tileYoffset);
+          ctx.lineTo(tile.tileWidth * z  + mapX + tile.tileWidth * x + tile.tileWidth, c + tile.tileWidth * z  + tile.tileWidth + tile.tileWidth * 1.75 + tile.tileWidth * 0.5 - z* tile.tileWidth * 0.5 - tile.tileYoffset);
+          ctx.lineTo(tile.tileWidth * z  + mapX + tile.tileWidth * x + tile.tileWidth, c + tile.tileWidth * z  + d + tile.tileWidth * 0.5 - z* tile.tileWidth * 0.5 - tile.tileYoffset);
           ctx.closePath();
           ctx.fillStyle = fillColor;
           ctx.fill();
@@ -96,10 +102,10 @@ import Tile from './tile';
             ctx.globalCompositeOperation = 'source-over';
             if (z< tempMap.length - 1 && tempMap[z + 1][x] !== 0) ctx.globalCompositeOperation = 'destination-over';
             ctx.beginPath();
-            ctx.moveTo(tileWidth * z + mapX + tileWidth * x + tileWidth * 2, c + tileWidth * z + d - z * tileWidth * 0.5 - tile.tileYoffset);
-            ctx.lineTo(tileWidth * z + mapX + tileWidth * x + tileWidth * 2, c + tileWidth * z + tileWidth + tileWidth * 1.75 - z * tileWidth * 0.5 - tile.tileYoffset);
-            ctx.lineTo(tileWidth * z + mapX + tileWidth * x + tileWidth, c + tileWidth * z + tileWidth + tileWidth * 1.75 + tileWidth * 0.5 - z * tileWidth * 0.5 - tile.tileYoffset);
-            ctx.lineTo(tileWidth * z + mapX + tileWidth * x + tileWidth, c + tileWidth * z + d + tileWidth * 0.5 - z * tileWidth * 0.5 - tile.tileYoffset);
+            ctx.moveTo(tile.tileWidth * z + mapX + tile.tileWidth * x + tile.tileWidth * 2, c + tile.tileWidth * z + d - z * tile.tileWidth * 0.5 - tile.tileYoffset);
+            ctx.lineTo(tile.tileWidth * z + mapX + tile.tileWidth * x + tile.tileWidth * 2, c + tile.tileWidth * z + tile.tileWidth + tile.tileWidth * 1.75 - z * tile.tileWidth * 0.5 - tile.tileYoffset);
+            ctx.lineTo(tile.tileWidth * z + mapX + tile.tileWidth * x + tile.tileWidth, c + tile.tileWidth * z + tile.tileWidth + tile.tileWidth * 1.75 + tile.tileWidth * 0.5 - z * tile.tileWidth * 0.5 - tile.tileYoffset);
+            ctx.lineTo(tile.tileWidth * z + mapX + tile.tileWidth * x + tile.tileWidth, c + tile.tileWidth * z + d + tile.tileWidth * 0.5 - z * tile.tileWidth * 0.5 - tile.tileYoffset);
             ctx.closePath();
             ctx.fillStyle = fillColor;
             ctx.fill();
@@ -109,6 +115,5 @@ import Tile from './tile';
           if (state.debug_mode) {
             drawAdditionalDetails(ctx, rhombusVertices);
           }
-
         }
       }

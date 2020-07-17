@@ -1,5 +1,6 @@
+// control depending on parameter combination
+// which dimension or tile set to draw
 export default options => {
-    console.log(options);
     if (options.dimension !== null && options.position !== null) {
         return options.dimension === options.position;
     } else {

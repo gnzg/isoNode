@@ -4,6 +4,6 @@ import map2 from './map2';
 
 export default [
     map0,
-    //map1,
-    //map2
+    map1,
+    map2
 ];

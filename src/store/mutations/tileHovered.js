@@ -1,7 +1,6 @@
 import store from '../index';
 
 export default function tileHovered(state, payload) {
-    
     let tile = payload;
 
     /*
@@ -15,7 +14,7 @@ export default function tileHovered(state, payload) {
     state.ctx.closePath();
     state.ctx.fill();
     */
-    state.env.maps[tile.y][tile.z][tile.x] = 4;
+    state.env.maps[tile.mapIndex][tile.y][tile.x] = 4;
     //console.log("y", tile.y, "z", tile.z, "x", tile.x,);
     
     // TODO: avoid re-drawing the entire canvas if pointer moves within hitbox

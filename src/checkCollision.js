@@ -18,9 +18,9 @@ export default (e, tileCoordinates, store) => {
             
             /* pass the coordinates of the tile respective to the maps object to manipulate it further */
             let tile = { 
+                mapIndex: tileCoordinates[i].mapIndex,
                 x: tileCoordinates[i].x,
-                y: tileCoordinates[i].y,
-                z: tileCoordinates[i].z
+                y: tileCoordinates[i].y
             };
             // console.log('tile', tile);
             

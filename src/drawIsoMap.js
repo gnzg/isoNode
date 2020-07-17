@@ -25,7 +25,7 @@ export default ({ctx, maps, mapX, mapY, tileWidth, y, x, mapIndex, rectColors, r
   let tempMap = maps[`${Object.keys(maps)[mapIndex]}`];
   let fillColor = rectShadowColors[tempMap[y][x]];
   
-  alert('x:' + x + 'mapIndex:' + mapIndex + 'y:' + y);
+  //alert('x:' + x + ' y:' + y + ' mapIndex:' + mapIndex);
 
 
   let tile = new Tile({
@@ -44,6 +44,7 @@ export default ({ctx, maps, mapX, mapY, tileWidth, y, x, mapIndex, rectColors, r
     tempMap[y] !== undefined &&
     tempMap[y][x] !== 0
     && debugOptions({dimension:mapIndex, position:0}) // draw only first map
+    && (debugOptions({dimension:y, position:1}) || debugOptions({dimension:y, position:2})) // draw only first map
     )
     {
       
@@ -73,7 +74,7 @@ export default ({ctx, maps, mapX, mapY, tileWidth, y, x, mapIndex, rectColors, r
       // check placement based on tile offset 
       // if current offset is larger than the offset of the next tile, 
       // then current tile visibility dominates
-      if (maps[1][x] > maps[1][x+1]) { 
+      if (maps[1][y][x] >= maps[1][y][x+1]) { 
         ctx.globalCompositeOperation = 'source-over';
       } else {
         ctx.globalCompositeOperation = 'destination-over';
@@ -125,7 +126,7 @@ export default ({ctx, maps, mapX, mapY, tileWidth, y, x, mapIndex, rectColors, r
         }
         
         // draw vertices; only available in debug mode
-        if (state.debug_mode) {
+        if (state.debug_mode === true) {
           drawAdditionalDetails(ctx, rhombusVertices);
         }
       }

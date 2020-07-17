@@ -3,25 +3,18 @@ import { pointInRhombus } from './math';
 // receives e as the pointer move event {object}, the current tile coords [array] and the store {object}
 // returns void
 export default (e, tileCoordinates, store) => {
-    
-    // coordinates of all tiles
-    // tileCoordinates
-    
-    // check within which hitbox the mouse is
-    //if (e.clientX) {
-    // pointA is minimum x reference
-    // pointB is minimum y reference
-    //}
-    
     for (let i = 0; i < tileCoordinates.length; i++) {
         let pointA = tileCoordinates[i].pointA;
         let pointB = tileCoordinates[i].pointB;
         let pointC = tileCoordinates[i].pointC;
         let pointD = tileCoordinates[i].pointD;
         
+        // pointA is minimum x reference
+        // pointB is minimum y reference
+        
         // if mouse within constraints of tile
         if (pointInRhombus(pointA,pointB,pointC,pointD, {x:e.clientX, y:e.clientY})) {
-            //console.log("Hovering a tile!", tile);
+            // console.log("Hovering a tile!", tile);
             
             /* pass the coordinates of the tile respective to the maps object to manipulate it further */
             let tile = { 
@@ -29,8 +22,8 @@ export default (e, tileCoordinates, store) => {
                 y: tileCoordinates[i].y,
                 z: tileCoordinates[i].z
             };
-            console.log('tile', tile);
-
+            // console.log('tile', tile);
+            
             store.dispatch("tileHovered", tile);
             
             //write last hovered tile to global state

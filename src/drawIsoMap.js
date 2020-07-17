@@ -2,6 +2,7 @@ import state from './store/state';
 import RhombusVertices from './RhombusVertices';
 import Tile from './tile';
 import drawAdditionalDetails from './drawAdditionalDetails';
+import debugOptions from './debugOptions';
 
 /**
 * directly manipulates the canvas context found in the state object
@@ -9,23 +10,22 @@ import drawAdditionalDetails from './drawAdditionalDetails';
 * @param {Object} canvas
 * @param {Array} maps
 * @param {Integer mapX 
-* @param {Integer} mapY 
-* @param {Integer} tileWidth 
-* @param {Integer} x        // iterates across a map array
-* @param {Integer} z        // iterates across a map array child's elements
-* @param {Integer} y        // iterates across the array of maps
-* @param {Array} rectColors
-* @param {Array} rectShadowColors
-* 
-* @returns {Object} canvas
-*/
+  * @param {Integer} mapY 
+  * @param {Integer} tileWidth 
+  * @param {Integer} x        // iterates across a map array
+  * @param {Integer} z        // iterates across a map array child's elements
+  * @param {Integer} y        // iterates across the array of maps
+  * @param {Array} rectColors
+  * @param {Array} rectShadowColors
+  * 
+  * @returns {Object} canvas
+  */
   
   export default (ctx, maps, mapX, mapY, tileWidth, z, x, y, rectColors, rectShadowColors)  => {
-
     // operate on a copy of the actual map 
     let tempMap = maps[`${Object.keys(maps)[y]}`];
     let fillColor = rectShadowColors[tempMap[z][x]];
-
+    
     let tile = new Tile({
       y, z, x,
       tileWidth,
@@ -34,39 +34,36 @@ import drawAdditionalDetails from './drawAdditionalDetails';
       rectShadowColors,
       tileYoffset: tileWidth * y * 1.25
     });
-
+    
     // if the map is defined and the tile is non-zero, draw it
     if (
       tempMap !== undefined &&
       tempMap.length > 0 &&
       tempMap[z] !== undefined &&
       tempMap[z][x] !== 0 &&
-      x === 0
+      debugOptions({dimension:x, position:0})
       )
-    {
-      
-      let c = mapY - tile.tileWidth * x * 0.5;
-      let d = tile.tileWidth * 1.5;
-      let topYfactor = tile.tileWidth * z * 0.5;
-      let topYsegment = c + topYfactor - tile.tileYoffset;
-      
-      // make tile vertices available from this scope
-      // establish coordinates for the four vertices of each rhombus
-      let rhombusVertices = new RhombusVertices(tile.tileWidth, mapX, z, x, d, topYsegment);
-                  
-          // save the tile's points, i.e. hitbox boundries
-          // arbitrary: consider only 1st ground level
-          
-          // build the hitboxes array
-          state.env.tileHitBoxes.push({ 
-            // rhombus vertices
-            ...rhombusVertices,
-            // coordinates respective to the maps object
-            x,
-            y,
-            z
-          });
-
+      {
+        
+        let c = mapY - tile.tileWidth * x * 0.5;
+        let d = tile.tileWidth * 1.5;
+        let topYfactor = tile.tileWidth * z * 0.5;
+        let topYsegment = c + topYfactor - tile.tileYoffset;
+        
+        // make tile vertices available from this scope
+        // establish coordinates for the four vertices of each rhombus
+        let rhombusVertices = new RhombusVertices(tile.tileWidth, mapX, z, x, d, topYsegment);
+        
+        // build the hitboxes array
+        state.env.tileHitBoxes.push({ 
+          // rhombus vertices
+          ...rhombusVertices,
+          // coordinates respective to the maps object
+          x,
+          y,
+          z
+        });
+        
         ctx.fillStyle = tile.rectColor;
         
         // top
@@ -109,8 +106,8 @@ import drawAdditionalDetails from './drawAdditionalDetails';
             ctx.closePath();
             ctx.fillStyle = fillColor;
             ctx.fill();
-        }
-
+          }
+          
           // draw vertices; only available in debug mode
           if (state.debug_mode) {
             drawAdditionalDetails(ctx, rhombusVertices);

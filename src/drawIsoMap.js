@@ -7,21 +7,20 @@ import debugOptions from './debugOptions';
 /**
 * directly manipulates the canvas context found in the state object
 *
-* @param {Object} canvas
-* @param {Array} maps
-* @param {Integer mapX 
-  * @param {Integer} mapY 
-  * @param {Integer} tileWidth 
-  * @param {Integer} x        // iterates across a map array
-  * @param {Integer} z        // iterates across a map array child's elements
-  * @param {Integer} y        // iterates across the array of maps
-  * @param {Array} rectColors
-  * @param {Array} rectShadowColors
-  * 
-  * @returns {Object} canvas
+* @param Object canvas
+* @param Array maps
+* @param Integer mapX 
+  * @param Integer mapY 
+  * @param Integer tileWidth 
+  * @param Integer x    iterates across a map array
+  * @param Integer z    iterates across a map array child's elements
+  * @param Integer y    iterates across the array of maps
+  * @param Array rectColors
+  * @param Array rectShadowColors
+  * @returns Object canvas
   */
   
-  export default (ctx, maps, mapX, mapY, tileWidth, z, x, y, rectColors, rectShadowColors)  => {
+  export default ({ctx, maps, mapX, mapY, tileWidth, z, x, y, rectColors, rectShadowColors})  => {
     // operate on a copy of the actual map 
     let tempMap = maps[`${Object.keys(maps)[y]}`];
     let fillColor = rectShadowColors[tempMap[z][x]];

@@ -59,7 +59,7 @@ window.addEventListener("DOMContentLoaded", e => {
       if (e.keyCode in store.state.keyMap) keyMapState[e.keyCode] = false;
       store.dispatch('handleKeyUp', keyMapState);
       
-      //hint.hide(); // TODO: fix
+      //hint.hide(); // TODO
       
       checkCollision(e, store.state.env.tileHitBoxes, store);
     });

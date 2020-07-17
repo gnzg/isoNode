@@ -5,14 +5,14 @@ export default {
   cooldown: false,
   debug_mode: false,
   env: {
-    // @param {Array}; every item represents a tile map
+    // @param Array; every item represents a tile map
     maps: maps,
     
-    // @param {Array}; every item represents an array of tile hitboxes
+    // @param Array; every item represents an array of tile hitboxes
     tileHitBoxes: [],
     lastHoveredTile: {},
     
-    // @param {integer}; the tile size
+    // @param Integer; the tile size
     tileWidth: 24,
 
     rectColors: [
@@ -35,10 +35,10 @@ export default {
       "./images/land.png"
     ],
     */
-    // @param {Array}; Area to clear relative to the canvas
+    // @param Array; Area to clear relative to the canvas
     clearArea: [-1000, 0, 4000, 4000],       
     
-    // @param {integer}; the degree of map rotation
+    // @param Integer; the degree of map rotation
     rotationDegree: 0,
     
     // mapX and mapY are offsets to make sure we can position the map as we want.
@@ -48,7 +48,7 @@ export default {
     winHeight: window.innerHeight
   },
   misc: [],
-  // keep map of pressed keys
+  // save a map of pressed keys to allow key combinations
   keyMap: { 
     68: false,
     39: false,

@@ -40,8 +40,8 @@ import debugOptions from './debugOptions';
       tempMap !== undefined &&
       tempMap.length > 0 &&
       tempMap[z] !== undefined &&
-      tempMap[z][x] !== 0 &&
-      debugOptions({dimension:x, position:0})
+      tempMap[z][x] !== 0
+      //&& debugOptions({dimension:x, position:0})
       )
       {
         

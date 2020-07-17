@@ -1,4 +1,4 @@
-import maps from '../maps';
+import maps from '../maps/mapBundle';
 
 export default {
   ctx: document.querySelector('#main') ? document.querySelector('#main').getContext('2d') : () => { console.error('no canvas context found!' ); },

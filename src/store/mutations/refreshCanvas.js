@@ -26,16 +26,27 @@ export default (state, refreshArea = undefined) => {
       // loop through our maps
       // maps are drawn layer by layer like on a cake
       
-      // iterator y draws the map across the y axis
-      for (let y = 0; y <= Object.keys(maps).length-1; y++) {
-        let currentMap = Object.keys(maps)[y];
-        // iterator i draws a row across the z axis
-        for (let z = 0; z < maps[currentMap].length; z++) {
-          // iterator j draws a row across the x axis
-          for (let x = 0; x < maps[currentMap][z].length; x++) {
+      // mapIndex draws the map across the y axis
+      for (let mapIndex = 0; mapIndex <= Object.keys(maps).length-1; mapIndex++) {
+        let currentMap = Object.keys(maps)[mapIndex];
+        // i draws a row across the y axis
+        for (let y = 0; y < maps[currentMap].length; y++) {
+          // j draws a row across the x axis
+          for (let x = 0; x < maps[currentMap][y].length; x++) {
             // draw all three visible sides of the rect aspect
             // logic whether to draw or not to draw shapes is defined in draw()
-            drawIsoMap(ctx, maps, mapX, mapY, tileWidth, z, x, y, rectColors, rectShadowColors);
+            drawIsoMap({
+              ctx,
+              maps,
+              mapX,
+              mapY,
+              tileWidth,
+              y,
+              x,
+              mapIndex: mapIndex,
+              rectColors,
+              rectShadowColors
+            });
           }
         }
       };

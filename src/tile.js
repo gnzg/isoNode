@@ -2,18 +2,21 @@
 *  Virtual Tile object
 *  stores tile information and notifies the canvas on changes 
 */
-
 export default class Tile {
-    constructor({ x, y, z, tileWidth = 24, style = null}) {
+    constructor({ x, y, z, tileWidth, style = null, rectColor, rectShadowColors, tileYoffset}) {
         
         /* tile coordinates */
-        this.x = x || 0;
-        this.y = y || 0;
-        this.z = z || 0;
+        this.x = x;
+        this.y = y;
+        this.z = z;
         
         /* size */
         this.tileWidth = tileWidth;
-        
+
+        this.rectColor = rectColor
+        this.rectShadowColors = rectShadowColors;
+        this.tileYoffset = tileYoffset;
+
         /* styling defaults */
         this.defaultStyle = {
             fill:  'white',

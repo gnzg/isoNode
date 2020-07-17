@@ -45,7 +45,7 @@ window.addEventListener("DOMContentLoaded", e => {
         store.state.env.tileHitBoxes = [];
         
       }
-       else if (e.keyCode === 32) {    // SPACE key
+      else if (e.keyCode === 32) {    // SPACE key
         // rotates map and re-draws the canvas
         // store.dispatch('rotateMapAction');
       }
@@ -58,8 +58,8 @@ window.addEventListener("DOMContentLoaded", e => {
       let keyMapState = store.state.keyMap; // type: object
       if (e.keyCode in store.state.keyMap) keyMapState[e.keyCode] = false;
       store.dispatch('handleKeyUp', keyMapState);
-
-      //hint.hide(); // TODO: fix
+      
+      //hint.hide(); // TODO
       
       checkCollision(e, store.state.env.tileHitBoxes, store);
     });

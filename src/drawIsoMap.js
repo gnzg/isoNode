@@ -27,7 +27,6 @@ export default ({ctx, maps, mapX, mapY, tileWidth, y, x, mapIndex, rectColors, r
   
   //alert('x:' + x + ' y:' + y + ' mapIndex:' + mapIndex);
 
-
   let tile = new Tile({
     mapIndex, y, x,
     tileWidth,
@@ -44,7 +43,7 @@ export default ({ctx, maps, mapX, mapY, tileWidth, y, x, mapIndex, rectColors, r
     tempMap[y] !== undefined &&
     tempMap[y][x] !== 0
     && debugOptions({dimension:mapIndex, position:0}) // draw only first map
-    && (debugOptions({dimension:y, position:1}) || debugOptions({dimension:y, position:2})) // draw only first map
+    && (debugOptions({dimension:y, position:0}) || debugOptions({dimension:y, position:1}) || debugOptions({dimension:y, position:2})) // draw only first map
     )
     {
       
@@ -74,12 +73,11 @@ export default ({ctx, maps, mapX, mapY, tileWidth, y, x, mapIndex, rectColors, r
       // check placement based on tile offset 
       // if current offset is larger than the offset of the next tile, 
       // then current tile visibility dominates
-      if (maps[1][y][x] >= maps[1][y][x+1]) { 
+      if (maps[1][y][x] >= maps[1][y+1][x]) { 
         ctx.globalCompositeOperation = 'source-over';
       } else {
         ctx.globalCompositeOperation = 'destination-over';
       }
-
 
       ctx.beginPath();
       ctx.moveTo(tile.tileWidth * y + tile.tileWidth + mapX + tile.tileWidth * x, tile.tileWidth + topYsegment);
@@ -94,7 +92,13 @@ export default ({ctx, maps, mapX, mapY, tileWidth, y, x, mapIndex, rectColors, r
       if (tempMap[y][x - 1] !== 1 || x === 0) {
         
         // TODO: account for different tile offsets
+        
+        
+        
+        
         ctx.globalCompositeOperation = 'destination-over';
+        
+
 
 
         if (x === 0) ctx.globalCompositeOperation = 'source-over';

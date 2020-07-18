@@ -68,8 +68,6 @@ export default ({ctx, maps, mapX, mapY, tileWidth, y, x, mapIndex, rectColors, r
         y
       });
       
-      
-      
       // left
       // draw only if NOT preceeded by a tile on the y axis, or if first tile
       if (tempMap[y][x - 1] !== 1 || x === 0) {
@@ -124,9 +122,9 @@ export default ({ctx, maps, mapX, mapY, tileWidth, y, x, mapIndex, rectColors, r
       
       ctx.fillStyle = tile.rectColor;
       
-      if (mapHeight[y][x] >= mapHeight[y+1][x] || tempMap[x+1] !== 0) { 
+      if ((mapHeight[y][x] >= mapHeight[y+1][x]) && (mapHeight[y][x+1] < mapHeight[y][x])) { 
         ctx.globalCompositeOperation = 'source-over';
-      } else {
+      } else if ((y -1 >= 0 && mapHeight[y-1][x] >= mapHeight[y][x]) || mapHeight[y][x-1] >= mapHeight[y][x]) {
         ctx.globalCompositeOperation = 'destination-over';
       }
       

@@ -25,10 +25,11 @@ export default ({ctx, maps, mapX, mapY, tileWidth, y, x, mapIndex, rectColors, r
   let tempMap = maps[`${Object.keys(maps)[mapIndex]}`];
   let fillColor = rectShadowColors[tempMap[y][x]];
   
-  //alert('x:' + x + ' y:' + y + ' mapIndex:' + mapIndex);
+  // alert('x:' + x + ' y:' + y + ' mapIndex:' + mapIndex);
 
   let tile = new Tile({
-    mapIndex, y, x,
+    mapIndex, 
+    y, x,
     tileWidth,
     style: null,
     rectColor: rectColors[rectShadowColors.indexOf(fillColor)],
@@ -51,7 +52,8 @@ export default ({ctx, maps, mapX, mapY, tileWidth, y, x, mapIndex, rectColors, r
       let d = tile.tileWidth * 1.5;
       let topYfactor = tile.tileWidth * y * 0.5;
       let topYsegment = c + topYfactor - tile.tileYoffset;
-      
+      let mapHeight = maps[1];
+
       // make tile vertices available from this scope
       // establish coordinates for the four vertices of each rhombus
       let rhombusVertices = new RhombusVertices(tile.tileWidth, mapX, y, x, d, topYsegment);
@@ -66,14 +68,16 @@ export default ({ctx, maps, mapX, mapY, tileWidth, y, x, mapIndex, rectColors, r
         y
       });
       
-      ctx.fillStyle = tile.rectColor;
       
       // top
       
       // check placement based on tile offset 
       // if current offset is larger than the offset of the next tile, 
       // then current tile visibility dominates
-      if (maps[1][y][x] >= maps[1][y+1][x]) { 
+
+      ctx.fillStyle = tile.rectColor;
+
+      if (mapHeight[y][x] >= mapHeight[y+1][x] || tempMap[x+1] !== 0) { 
         ctx.globalCompositeOperation = 'source-over';
       } else {
         ctx.globalCompositeOperation = 'destination-over';
@@ -87,22 +91,20 @@ export default ({ctx, maps, mapX, mapY, tileWidth, y, x, mapIndex, rectColors, r
       ctx.closePath();
       ctx.fill();
       
+
       // left
       // draw only if NOT preceeded by a tile on the y axis, or if first tile
       if (tempMap[y][x - 1] !== 1 || x === 0) {
         
         // TODO: account for different tile offsets
         
-        
-        
-        
-        ctx.globalCompositeOperation = 'destination-over';
-        
-
-
-
-        if (x === 0) ctx.globalCompositeOperation = 'source-over';
-        if (x - 1 >= 0 && tempMap[y][x - 1] === 0) ctx.globalCompositeOperation = 'source-over';
+        if (mapHeight[y+1][x] >= mapHeight[y][x]) { 
+          ctx.globalCompositeOperation = 'destination-over';
+        } else if (x === 0) {
+          ctx.globalCompositeOperation = 'source-over';
+        } else if (x - 1 >= 0 && tempMap[y][x - 1] === 0) {
+          ctx.globalCompositeOperation = 'source-over';
+        }
         ctx.beginPath();
         ctx.moveTo(tile.tileWidth * y  + mapX + tile.tileWidth * x, c + tile.tileWidth * y  + d - y* tile.tileWidth * 0.5 - tile.tileYoffset);
         ctx.lineTo(tile.tileWidth * y  + mapX + tile.tileWidth * x, c + tile.tileWidth * y  + tile.tileWidth + tile.tileWidth * 1.75 - y* tile.tileWidth * 0.5 - tile.tileYoffset);
@@ -115,10 +117,13 @@ export default ({ctx, maps, mapX, mapY, tileWidth, y, x, mapIndex, rectColors, r
       
       // right
       // draw only if NOT preceeded by a tile on the x axis, or if iterating over the last row across the y axis
-      if (tempMap[y  + 1] !== undefined && tempMap[y  + 1][x] !== 1 ||
-        y=== tempMap.length - 1) {
+      if (tempMap[y  + 1] !== undefined && tempMap[y  + 1][x] !== 1 
+        || y=== tempMap.length - 1) {
           ctx.globalCompositeOperation = 'source-over';
-          if (y< tempMap.length - 1 && tempMap[y + 1][x] !== 0) ctx.globalCompositeOperation = 'destination-over';
+      }
+      else if (y< tempMap.length - 1 && tempMap[y + 1][x] !== 0) {
+        ctx.globalCompositeOperation = 'destination-over';
+      }
           ctx.beginPath();
           ctx.moveTo(tile.tileWidth * y + mapX + tile.tileWidth * x + tile.tileWidth * 2, c + tile.tileWidth * y + d - y * tile.tileWidth * 0.5 - tile.tileYoffset);
           ctx.lineTo(tile.tileWidth * y + mapX + tile.tileWidth * x + tile.tileWidth * 2, c + tile.tileWidth * y + tile.tileWidth + tile.tileWidth * 1.75 - y * tile.tileWidth * 0.5 - tile.tileYoffset);
@@ -127,7 +132,6 @@ export default ({ctx, maps, mapX, mapY, tileWidth, y, x, mapIndex, rectColors, r
           ctx.closePath();
           ctx.fillStyle = fillColor;
           ctx.fill();
-        }
         
         // draw vertices; only available in debug mode
         if (state.debug_mode === true) {

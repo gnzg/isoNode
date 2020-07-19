@@ -95,7 +95,7 @@ export default ({ctx, maps, mapX, mapY, tileWidth, y, x, mapIndex, rectColors, r
       
       // right
       // draw only if suceeded by a tile on the y axis, or if iterating over the last y element
-      if ((tempMap[y  + 1] !== undefined && tempMap[y+1][x] === 0) || y === tempMap[y].length) {
+      if ((tempMap[y  + 1] !== undefined && tempMap[y+1][x] === 0) || y === tempMap.length-1) {
         
         if (tempMap[y  + 1] !== undefined && tempMap[y  + 1][x] !== 1 
           || y=== tempMap.length - 1) {

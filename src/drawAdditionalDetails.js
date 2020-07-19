@@ -1,8 +1,6 @@
 export default (ctx, rhombusVertices) => {
     let { pointA, pointB, pointC, pointD } = rhombusVertices;
     
-    ctx.globalCompositeOperation = 'source-over';
-
     ctx.beginPath();
     ctx.strokeStyle = "black";
     

@@ -135,26 +135,29 @@ export default ({ctx, maps, mapX, mapY, tileWidth, y, x, mapIndex, rectColors, r
         // then current tile visibility dominates
         if (
           // should be 4 cases
-          (tempMap[y + 1] !== undefined && 
-            mapHeight[y][x] >= mapHeight[y+1][x])
-            ) { 
-              ctx.globalCompositeOperation = 'source-over';
-            } else {
+
+          // if next tile on y axis has a higher mapHeight
+            (mapHeight[y][x - 1] !== undefined &&
+            mapHeight[y][x] >= mapHeight[y][x-1])
+            || x === 0
+        ) { 
+            ctx.globalCompositeOperation = 'source-over';
+          } else {
               ctx.globalCompositeOperation = 'destination-over';
-            }
-            
-            ctx.beginPath();
-            ctx.moveTo(tile.tileWidth * y + tile.tileWidth + mapX + tile.tileWidth * x, tile.tileWidth + topYsegment);
-            ctx.lineTo(tile.tileWidth * y  + tile.tileWidth * 2 + mapX + tile.tileWidth * x, d + topYsegment);
-            ctx.lineTo(tile.tileWidth * y  + tile.tileWidth + mapX + tile.tileWidth * x, tile.tileWidth * 2 + topYsegment);
-            ctx.lineTo(tile.tileWidth * y  + tile.tileWidth - tile.tileWidth + mapX + tile.tileWidth * x, d + topYsegment);
-            ctx.closePath();
-            ctx.fill();
-    }
-        
-      // draw vertices; only available in debug mode
-      if (state.debug_mode === true) {
-        drawAdditionalDetails(ctx, rhombusVertices);
-      }
+          }
+          
+          ctx.beginPath();
+          ctx.moveTo(tile.tileWidth * y + tile.tileWidth + mapX + tile.tileWidth * x, tile.tileWidth + topYsegment);
+          ctx.lineTo(tile.tileWidth * y  + tile.tileWidth * 2 + mapX + tile.tileWidth * x, d + topYsegment);
+          ctx.lineTo(tile.tileWidth * y  + tile.tileWidth + mapX + tile.tileWidth * x, tile.tileWidth * 2 + topYsegment);
+          ctx.lineTo(tile.tileWidth * y  + tile.tileWidth - tile.tileWidth + mapX + tile.tileWidth * x, d + topYsegment);
+          ctx.closePath();
+          ctx.fill();
+
+          // draw vertices; only available in debug mode
+          if (state.debug_mode === true) {
+            drawAdditionalDetails(ctx, rhombusVertices);
+          }
+      }  
     }
   }

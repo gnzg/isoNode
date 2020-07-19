@@ -44,7 +44,7 @@ export default ({ctx, maps, mapX, mapY, tileWidth, y, x, mapIndex, rectColors, r
     tempMap[y] !== undefined &&
     tempMap[y][x] !== 0
     && debugOptions({dimension:mapIndex, position:0}) // draw only first map
-    // && (debugOptions({dimension:y, position:0}) || debugOptions({dimension:y, position:1}) || debugOptions({dimension:y, position:2})) // draw only first map
+    //&& (debugOptions({dimension:y, position:0}) || debugOptions({dimension:y, position:1}) || debugOptions({dimension:y, position:2})) // draw only first map
     )
     {
       
@@ -70,16 +70,15 @@ export default ({ctx, maps, mapX, mapY, tileWidth, y, x, mapIndex, rectColors, r
       
       // left
       // draw only if NOT preceeded by a tile on the y axis, or if first tile
-      if (tempMap[y][x - 1] !== 1 || x === 0) {
+      if (tempMap[y][x - 1] === 0 || x === 0) {
         
-        // if previous tile is non-zero, 
-        // or current tile has a higher height,
+        // if current tile has a higher height,
         // then draw under drawn elements
-        if (tempMap[y][x - 1] !== 0 && mapHeight[y][x] <= mapHeight[y][x-1]) { 
+        if (mapHeight[y][x] <= mapHeight[y][x-1]) { 
           ctx.globalCompositeOperation = 'destination-over';
         } 
         // if tile iterator is at position 0 or if on the same map, the previous tile was zero
-        else if ((y -1 >= 0 && mapHeight[y-1][x] <= mapHeight[y][x]) || x === 0 || tempMap[y][x - 1] === 0) {
+        else {
           ctx.globalCompositeOperation = 'source-over';
         }
         

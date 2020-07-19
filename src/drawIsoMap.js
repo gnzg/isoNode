@@ -44,7 +44,7 @@ export default ({ctx, maps, mapX, mapY, tileWidth, y, x, mapIndex, rectColors, r
     tempMap[y] !== undefined &&
     tempMap[y][x] !== 0
     && debugOptions({dimension:mapIndex, position:0}) // draw only first map
-    && (debugOptions({dimension:y, position:0}) || debugOptions({dimension:y, position:1}) || debugOptions({dimension:y, position:2})) // draw only first map
+    // && (debugOptions({dimension:y, position:0}) || debugOptions({dimension:y, position:1}) || debugOptions({dimension:y, position:2})) // draw only first map
     )
     {
       
@@ -94,25 +94,25 @@ export default ({ctx, maps, mapX, mapY, tileWidth, y, x, mapIndex, rectColors, r
       }
       
       // right
-      // draw only if NOT preceeded by a tile on the x axis, or if iterating over the last row across the y axis
-      if (tempMap[y  + 1] !== undefined && tempMap[y  + 1][x] !== 1 
-        || y=== tempMap.length - 1) {
-          ctx.globalCompositeOperation = 'source-over';
+      // draw only if suceeded by a tile on the y axis, or if iterating over the last y element
+      if ((tempMap[y  + 1] !== undefined && tempMap[y+1][x] === 0) || y === tempMap[y].length) {
+        
+        if (tempMap[y  + 1] !== undefined && tempMap[y  + 1][x] !== 1 
+          || y=== tempMap.length - 1) {
+            ctx.globalCompositeOperation = 'source-over';
+        }
+        else {
+            ctx.globalCompositeOperation = 'destination-over';
+        }
+        ctx.beginPath();
+        ctx.moveTo(tile.tileWidth * y + mapX + tile.tileWidth * x + tile.tileWidth * 2, c + tile.tileWidth * y + d - y * tile.tileWidth * 0.5 - tile.tileYoffset);
+        ctx.lineTo(tile.tileWidth * y + mapX + tile.tileWidth * x + tile.tileWidth * 2, c + tile.tileWidth * y + tile.tileWidth + tile.tileWidth * 1.75 - y * tile.tileWidth * 0.5 - tile.tileYoffset);
+        ctx.lineTo(tile.tileWidth * y + mapX + tile.tileWidth * x + tile.tileWidth, c + tile.tileWidth * y + tile.tileWidth + tile.tileWidth * 1.75 + tile.tileWidth * 0.5 - y * tile.tileWidth * 0.5 - tile.tileYoffset);
+        ctx.lineTo(tile.tileWidth * y + mapX + tile.tileWidth * x + tile.tileWidth, c + tile.tileWidth * y + d + tile.tileWidth * 0.5 - y * tile.tileWidth * 0.5 - tile.tileYoffset);
+        ctx.closePath();
+        ctx.fillStyle = fillColor;
+        ctx.fill();
       }
-      else if (y< tempMap.length - 1 && tempMap[y + 1][x] !== 0) {
-          ctx.globalCompositeOperation = 'destination-over';
-      }
-      ctx.beginPath();
-      ctx.moveTo(tile.tileWidth * y + mapX + tile.tileWidth * x + tile.tileWidth * 2, c + tile.tileWidth * y + d - y * tile.tileWidth * 0.5 - tile.tileYoffset);
-      ctx.lineTo(tile.tileWidth * y + mapX + tile.tileWidth * x + tile.tileWidth * 2, c + tile.tileWidth * y + tile.tileWidth + tile.tileWidth * 1.75 - y * tile.tileWidth * 0.5 - tile.tileYoffset);
-      ctx.lineTo(tile.tileWidth * y + mapX + tile.tileWidth * x + tile.tileWidth, c + tile.tileWidth * y + tile.tileWidth + tile.tileWidth * 1.75 + tile.tileWidth * 0.5 - y * tile.tileWidth * 0.5 - tile.tileYoffset);
-      ctx.lineTo(tile.tileWidth * y + mapX + tile.tileWidth * x + tile.tileWidth, c + tile.tileWidth * y + d + tile.tileWidth * 0.5 - y * tile.tileWidth * 0.5 - tile.tileYoffset);
-      ctx.closePath();
-      ctx.fillStyle = fillColor;
-      ctx.fill();
-
-
-
 
       // top
       
@@ -122,9 +122,13 @@ export default ({ctx, maps, mapX, mapY, tileWidth, y, x, mapIndex, rectColors, r
       
       ctx.fillStyle = tile.rectColor;
       
-      if ((mapHeight[y][x] >= mapHeight[y+1][x]) && (mapHeight[y][x+1] < mapHeight[y][x])) { 
+      if (
+        // should be 4 cases
+        (tempMap[y  + 1] !== undefined && mapHeight[y][x] >= mapHeight[y+1][x]) && (mapHeight[y][x+1] < mapHeight[y][x])
+        || (mapHeight[y][x] == mapHeight[y][x+1])
+      ) { 
         ctx.globalCompositeOperation = 'source-over';
-      } else if ((y -1 >= 0 && mapHeight[y-1][x] >= mapHeight[y][x]) || mapHeight[y][x-1] >= mapHeight[y][x]) {
+      } else {
         ctx.globalCompositeOperation = 'destination-over';
       }
       

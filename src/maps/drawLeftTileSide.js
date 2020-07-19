@@ -1,6 +1,7 @@
 export default ({ctx, tempMap, mapHeight, tile, mapX, y, x, d, c, fillColor}) => {
       // left
-      // draw only if preceeded by an empty tile on the x axis, or if first tile on x axis
+      // draw only if preceeded by an empty tile on the x axis,
+      // or if first tile on x axis
       if (tempMap[y][x - 1] === 0
         || x === 0
         || mapHeight[y][x] > mapHeight[y][x-1]

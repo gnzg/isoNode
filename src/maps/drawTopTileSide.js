@@ -1,4 +1,4 @@
-import drawAdditionalDetails from './drawAdditionalDetails';
+import drawAdditionalDetails from './drawOutlines';
 
 export default ({ctx, tempMap, mapHeight, tile, mapX, y, x, d, c, state, topYsegment, rhombusVertices}) => {
     // top

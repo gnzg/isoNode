@@ -1,8 +1,10 @@
 import state from '../store/state';
 import RhombusVertices from '../RhombusVertices';
 import Tile from '../tile';
-import drawAdditionalDetails from '../drawAdditionalDetails';
 import debugOptions from '../debugOptions';
+import drawLeftTileSide from './drawLeftTileSide';
+import drawRightTileSide from './drawRightTileSide';
+import drawTopTileSide from './drawTopTileSide';
 
 /**
 * directly manipulates the canvas context found in the state object
@@ -44,7 +46,7 @@ export default ({ctx, maps, mapX, mapY, tileWidth, y, x, mapIndex, rectColors, r
     tempMap[y] !== undefined &&
     tempMap[y][x] !== 0
     && debugOptions({dimension:mapIndex, position:0}) // draw only first map
-    && (debugOptions({dimension:y, position:0}) || debugOptions({dimension:y, position:1}) || debugOptions({dimension:y, position:2})) // draw only first map
+    //&& (debugOptions({dimension:y, position:0}) || debugOptions({dimension:y, position:1}) || debugOptions({dimension:y, position:2})) // draw only first map
     )
     {
       
@@ -68,96 +70,9 @@ export default ({ctx, maps, mapX, mapY, tileWidth, y, x, mapIndex, rectColors, r
         y
       });
       
-      // left
-      // draw only if preceeded by an empty tile on the x axis, or if first tile on x axis
-      if (tempMap[y][x - 1] === 0
-          || x === 0
-          || mapHeight[y][x] > mapHeight[y][x-1]
-      ) {
-        
-        // if current tile has a higher height,
-        // then draw under drawn elements
-        if (mapHeight[y][x] <= mapHeight[y][x-1]) { 
-          ctx.globalCompositeOperation = 'destination-over';
-        } 
-        // if tile iterator is at position 0 or if on the same map, the previous tile was zero
-        else {
-          ctx.globalCompositeOperation = 'source-over';
-        }
-        
-        ctx.beginPath();
-        
-        // upper left corner of tile
-        ctx.moveTo(tile.tileWidth * y  + mapX + tile.tileWidth * x, c + tile.tileWidth * y  + d - y* tile.tileWidth * 0.5 - tile.tileYoffset);
-        
-        // lower left corner of tile
-        ctx.lineTo(tile.tileWidth * y  + mapX + tile.tileWidth * x, c + tile.tileWidth * y  + tile.tileWidth + tile.tileWidth * 1.75 - y* tile.tileWidth * 0.5 - tile.tileYoffset -20 * mapHeight[y][x]);
-        
-        // lower right corner of tile
-        ctx.lineTo(tile.tileWidth * y  + mapX + tile.tileWidth * x + tile.tileWidth, c + tile.tileWidth * y  + tile.tileWidth + tile.tileWidth * 1.75 + tile.tileWidth * 0.5 - y* tile.tileWidth * 0.5 - tile.tileYoffset - 20 * mapHeight[y][x]);
-        
-        // upper right corner of tile
-        ctx.lineTo(tile.tileWidth * y  + mapX + tile.tileWidth * x + tile.tileWidth, c + tile.tileWidth * y  + d + tile.tileWidth * 0.5 - y* tile.tileWidth * 0.5 - tile.tileYoffset);
-        
-        ctx.closePath();
-        ctx.fillStyle = fillColor;
-        ctx.fill();
-      }
-      
-      // right
-      // draw only if suceeded by a tile on the y axis, or if iterating over the last y element
-      if ((tempMap[y  + 1] !== undefined && tempMap[y+1][x] === 0) || y === tempMap.length-1) {
-        
-        if (tempMap[y  + 1] !== undefined && tempMap[y  + 1][x] !== 1 
-          || y=== tempMap.length - 1) {
-            ctx.globalCompositeOperation = 'source-over';
-        }
-        else {
-            ctx.globalCompositeOperation = 'destination-over';
-        }
-        ctx.beginPath();
-        ctx.moveTo(tile.tileWidth * y + mapX + tile.tileWidth * x + tile.tileWidth * 2, c + tile.tileWidth * y + d - y * tile.tileWidth * 0.5 - tile.tileYoffset);
-        ctx.lineTo(tile.tileWidth * y + mapX + tile.tileWidth * x + tile.tileWidth * 2, c + tile.tileWidth * y + tile.tileWidth + tile.tileWidth * 1.75 - y * tile.tileWidth * 0.5 - tile.tileYoffset);
-        ctx.lineTo(tile.tileWidth * y + mapX + tile.tileWidth * x + tile.tileWidth, c + tile.tileWidth * y + tile.tileWidth + tile.tileWidth * 1.75 + tile.tileWidth * 0.5 - y * tile.tileWidth * 0.5 - tile.tileYoffset);
-        ctx.lineTo(tile.tileWidth * y + mapX + tile.tileWidth * x + tile.tileWidth, c + tile.tileWidth * y + d + tile.tileWidth * 0.5 - y * tile.tileWidth * 0.5 - tile.tileYoffset);
-        ctx.closePath();
-        ctx.fillStyle = fillColor;
-        ctx.fill();
-      }
-
-      // top
-      // draw only if current tile is non-zero
-      if (tempMap[y][x] !== 0) {
-        ctx.fillStyle = tile.rectColor;
-        
-        // check placement based on tile offset 
-        // if current offset is larger than the offset of the next tile, 
-        // then current tile visibility dominates
-        if (
-          // should be 4 cases
-
-          // if next tile on y axis has a higher mapHeight
-            (mapHeight[y][x - 1] !== undefined &&
-            mapHeight[y][x] >= mapHeight[y][x-1])
-            || x === 0
-        ) { 
-            ctx.globalCompositeOperation = 'source-over';
-          } else {
-              ctx.globalCompositeOperation = 'destination-over';
-          }
-          
-          ctx.beginPath();
-          ctx.moveTo(tile.tileWidth * y + tile.tileWidth + mapX + tile.tileWidth * x, tile.tileWidth + topYsegment);
-          ctx.lineTo(tile.tileWidth * y  + tile.tileWidth * 2 + mapX + tile.tileWidth * x, d + topYsegment);
-          ctx.lineTo(tile.tileWidth * y  + tile.tileWidth + mapX + tile.tileWidth * x, tile.tileWidth * 2 + topYsegment);
-          ctx.lineTo(tile.tileWidth * y  + tile.tileWidth - tile.tileWidth + mapX + tile.tileWidth * x, d + topYsegment);
-          ctx.closePath();
-          ctx.fill();
-
-          // draw vertices; only available in debug mode
-          if (state.debug_mode === true) {
-            drawAdditionalDetails(ctx, rhombusVertices);
-          }
-      }  
+      drawLeftTileSide({ctx, tempMap, mapHeight, tile, mapX, y, x, d, c, fillColor});
+      drawRightTileSide({ctx, tempMap, mapHeight, tile, mapX, y, x, d, c, fillColor});
+      drawTopTileSide({ctx, tempMap, mapHeight, tile, mapX, y, x, d, c, state, topYsegment, rhombusVertices});
+     
     }
   }

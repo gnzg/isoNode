@@ -1,4 +1,4 @@
-import drawIsoMap from '../../drawIsoMap.js';
+import drawIsoMap from '../../maps/drawIsoMap';
 
 export default (state, refreshArea = undefined) => {
 

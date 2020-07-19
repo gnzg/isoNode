@@ -1,8 +1,8 @@
-import state from './store/state';
-import RhombusVertices from './RhombusVertices';
-import Tile from './tile';
-import drawAdditionalDetails from './drawAdditionalDetails';
-import debugOptions from './debugOptions';
+import state from '../store/state';
+import RhombusVertices from '../RhombusVertices';
+import Tile from '../tile';
+import drawAdditionalDetails from '../drawAdditionalDetails';
+import debugOptions from '../debugOptions';
 
 /**
 * directly manipulates the canvas context found in the state object

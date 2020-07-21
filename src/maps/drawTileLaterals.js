@@ -4,7 +4,7 @@ import Tile from '../tile';
 import debugOptions from '../debugOptions';
 import drawLeftTileSide from './drawLeftTileSide';
 import drawRightTileSide from './drawRightTileSide';
-import drawTopTileSide from './drawTopTileSide';
+import drawTileTop from './drawTileTop';
 
 /**
 * directly manipulates the canvas context found in the state object
@@ -22,7 +22,7 @@ import drawTopTileSide from './drawTopTileSide';
 * @returns Object canvas
 */
 
-export default ({ctx, maps, mapX, mapY, tileWidth, y, x, mapIndex, rectColors, rectShadowColors})  => {
+export default ({ctx, maps, mapX, mapY, tileWidth, y, x, i, mapIndex, rectColors, rectShadowColors})  => {
   // operate on a copy of the actual map 
   let tempMap = maps[0];
   let fillColor = rectShadowColors[tempMap[y][x]];
@@ -72,7 +72,6 @@ export default ({ctx, maps, mapX, mapY, tileWidth, y, x, mapIndex, rectColors, r
       
       drawLeftTileSide({ctx, tempMap, mapHeight, tile, mapX, y, x, d, c, fillColor});
       drawRightTileSide({ctx, tempMap, mapHeight, tile, mapX, y, x, d, c, fillColor});
-      drawTopTileSide({ctx, tempMap, mapHeight, tile, mapX, y, x, d, c, state, topYsegment, rhombusVertices});
-     
+      drawTileTop({ctx, tempMap: maps[0], mapHeight: maps[1], tile, mapX, y, x, d, i, state, topYsegment, rhombusVertices});
     }
   }

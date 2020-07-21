@@ -1,4 +1,4 @@
-import drawIsoMap from '../../maps/drawIsoMap';
+import drawTileLaterals from '../../maps/drawTileLaterals';
 
 export default (state, refreshArea = undefined) => {
 
@@ -28,13 +28,15 @@ export default (state, refreshArea = undefined) => {
       
       // mapIndex draws the map across the y axis
         let currentMap = maps[0];
+
+        for (let i = 0; i < 3; i++) {
         // i draws a row across the y axis
         for (let y = 0; y < currentMap.length; y++) {
           // j draws a row across the x axis
           for (let x = 0; x < currentMap[y].length; x++) {
             // draw all three visible sides of the rect aspect
             // logic whether to draw or not to draw shapes is defined in draw()
-            drawIsoMap({
+            drawTileLaterals({
               ctx,
               maps,
               mapX,
@@ -42,12 +44,14 @@ export default (state, refreshArea = undefined) => {
               tileWidth,
               y,
               x,
+              i,
               mapIndex: 0,
               rectColors,
               rectShadowColors
             });
           }
         }
+      }
     } else {
       console.error("no maps object found!");
     }

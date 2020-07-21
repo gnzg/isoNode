@@ -24,7 +24,7 @@ import drawTopTileSide from './drawTopTileSide';
 
 export default ({ctx, maps, mapX, mapY, tileWidth, y, x, mapIndex, rectColors, rectShadowColors})  => {
   // operate on a copy of the actual map 
-  let tempMap = maps[`${Object.keys(maps)[mapIndex]}`];
+  let tempMap = maps[0];
   let fillColor = rectShadowColors[tempMap[y][x]];
   
   // alert('x:' + x + ' y:' + y + ' mapIndex:' + mapIndex);

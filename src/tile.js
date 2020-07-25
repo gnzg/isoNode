@@ -1,3 +1,6 @@
+import tileHeightMap from "./maps/tileHeightMap";
+import map from './maps/map0'
+
 /**
 *  Virtual Tile object
 *  stores tile information and notifies the canvas on changes 
@@ -12,6 +15,8 @@ export default class Tile {
         
         /* size */
         this.tileWidth = tileWidth;
+
+        this.tileYoffset = this.tileWidth * tileHeightMap[y][x] * 1.25 + map[y][x]*10
 
         this.rectColor = rectColor
         this.rectShadowColors = rectShadowColors;

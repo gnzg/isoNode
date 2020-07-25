@@ -14,9 +14,14 @@ export default ({ctx, tempMap, mapHeight, tile, mapX, y, x, d, c, fillColor}) =>
         ||
         y === tempMap.length-1
     ) {
-        
-        if (mapHeight[y - 1] !== undefined
+        // if there is a previous row, and if the height of tile x at previous row is larger, draw the current right
+        // tile side above the existing canvas
+        if ((mapHeight[y - 1] !== undefined
             && mapHeight[y][x] < mapHeight[y - 1][x])
+            //||
+            //(mapHeight[y - 1] !== undefined
+            //    && mapHeight[y][x] < mapHeight[y - 1][x])
+            )
         {
             ctx.globalCompositeOperation = 'source-over';
         }

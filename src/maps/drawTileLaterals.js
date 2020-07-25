@@ -1,19 +1,15 @@
 import state from '../store/state';
 import RhombusVertices from '../RhombusVertices';
-import Tile from '../tile';
 import debugOptions from '../debugOptions';
 import drawLeftTileSide from './drawLeftTileSide';
 import drawRightTileSide from './drawRightTileSide';
-import drawTileTop from './drawTileTop';
 
 /**
 * directly manipulates the canvas context found in the state object
 *
 * @param Object canvas
-* @param Array maps
 * @param Integer mapX 
 * @param Integer mapY 
-* @param Integer tileWidth 
 * @param Integer x    iterates across a map array
 * @param Integer y    iterates across a map array child's elements
 * @param Integer mapIndex    iterates across the array of maps
@@ -22,22 +18,9 @@ import drawTileTop from './drawTileTop';
 * @returns Object canvas
 */
 
-export default ({ctx, maps, mapX, mapY, tileWidth, y, x, i, mapIndex, rectColors, rectShadowColors})  => {
+export default ({ctx, maps, mapX, mapY, y, x, mapIndex, tile})  => {
   // operate on a copy of the actual map 
-  let tempMap = maps[0];
-  let fillColor = rectShadowColors[tempMap[y][x]];
-  
-  // alert('x:' + x + ' y:' + y + ' mapIndex:' + mapIndex);
-  
-  let tile = new Tile({
-    mapIndex, 
-    y, x,
-    tileWidth,
-    style: null,
-    rectColor: rectColors[rectShadowColors.indexOf(fillColor)],
-    rectShadowColors,
-    tileYoffset: tileWidth * mapIndex * 1.25 + maps[1][y][x]*10
-  });
+
   
   // if the map is defined and the tile is non-zero, draw it
   if (
@@ -72,6 +55,5 @@ export default ({ctx, maps, mapX, mapY, tileWidth, y, x, i, mapIndex, rectColors
       
       drawLeftTileSide({ctx, tempMap, mapHeight, tile, mapX, y, x, d, c, fillColor});
       drawRightTileSide({ctx, tempMap, mapHeight, tile, mapX, y, x, d, c, fillColor});
-      drawTileTop({ctx, tempMap: maps[0], mapHeight: maps[1], tile, mapX, y, x, d, i, state, topYsegment, rhombusVertices});
     }
   }

@@ -1,6 +1,11 @@
+import heightMap from '../maps/tileHeightMap';
+import state from '../store/state';
 
-export default ({ctx, map, heightMap, tile, mapX, y, x, d, c}) => {
+export default ({tile, mapX, y, x, d, c}) => {
     
+    let ctx = state.ctx;
+    let map = state.env.map;
+
     // right
     // draw only if suceeded by an empty tile on the y axis,
     // or if iterating over the last y element

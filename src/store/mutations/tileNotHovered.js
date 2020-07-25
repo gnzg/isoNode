@@ -3,7 +3,7 @@ import store from '../index';
 export default function tileNotHovered(state, payload) {
     let tile = payload;
    
-    state.env.maps[tile.mapIndex][tile.y][tile.x] = 2;
+    state.env.map[tile.y][tile.x] = 2;
     
     // reset last hovered tile
     state.env.lastHoveredTile = {};

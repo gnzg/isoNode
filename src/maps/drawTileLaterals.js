@@ -48,8 +48,8 @@ export default ({ctx, map, mapX, mapY, y, x, mapIndex, tile})  => {
         y
       });
       
-      drawLeftTileSide({ctx, map, heightMap, tile, mapX, y, x, d, c});
-      drawRightTileSide({ctx, map, heightMap, tile, mapX, y, x, d, c});
+      drawLeftTileSide({tile, mapX, y, x, d, c});
+      drawRightTileSide({tile, mapX, y, x, d, c});
       
     } else if (map.length == 0) {
       console.error("Length of main map is zero!");   

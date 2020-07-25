@@ -2,6 +2,7 @@ import drawTileLaterals from '../../maps/drawTileLaterals';
 import drawTileTop from '../../maps/drawTileTop';
 import Tile from '../../tile';
 import map from '../../maps/map0';
+import RhombusVertices from '../../RhombusVertices';
 
 export default (state) => {
   
@@ -22,7 +23,7 @@ export default (state) => {
     state.env.tileHitBoxes = [];
     
     if (map !== undefined) {
-
+      
       for (let y = 0; y < map.length; y++) {
         // j draws a row across the x axis
         for (let x = 0; x < map[y].length; x++) {
@@ -32,6 +33,17 @@ export default (state) => {
           // alert('x:' + x + ' y:' + y + ' mapIndex:' + mapIndex);
           let tile = new Tile({ y, x });
           
+          let c = mapY - tile.tileWidth * x * 0.5;
+          let d = tile.tileWidth * 1.5;
+          
+          let topYfactor = tile.tileWidth * y * 0.5;
+          let topYsegment = c + topYfactor - tile.tileYoffset;
+          
+          
+          // make tile vertices available from this scope
+          // establish coordinates for the four vertices of each rhombus
+          let rhombusVertices = new RhombusVertices(tile, mapX, y, x, d, topYsegment);
+          
           drawTileLaterals({
             ctx,
             map,
@@ -40,8 +52,11 @@ export default (state) => {
             y,
             x,
             mapIndex: 0,
-            tile
+            tile,
+            rhombusVertices
           });
+          drawTileTop({tile, mapX, y, x, c, rhombusVertices});
+          
         }
       }
       /*

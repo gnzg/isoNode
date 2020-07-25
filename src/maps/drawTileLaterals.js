@@ -1,9 +1,7 @@
 import state from '../store/state';
-import RhombusVertices from '../RhombusVertices';
 import debugOptions from '../debugOptions';
 import drawLeftTileSide from './drawLeftTileSide';
 import drawRightTileSide from './drawRightTileSide';
-import heightMap from '../maps/tileHeightMap';
 
 /**
 * directly manipulates the canvas context found in the state object
@@ -18,7 +16,7 @@ import heightMap from '../maps/tileHeightMap';
 * @returns Object canvas
 */
 
-export default ({ctx, map, mapX, mapY, y, x, mapIndex, tile})  => {
+export default ({ctx, map, mapX, mapY, y, x, mapIndex, tile, rhombusVertices})  => {
   // if the map is defined and the tile is non-zero, draw it
   if (
     map !== undefined &&
@@ -31,12 +29,6 @@ export default ({ctx, map, mapX, mapY, y, x, mapIndex, tile})  => {
       
       let c = mapY - tile.tileWidth * x * 0.5;
       let d = tile.tileWidth * 1.5;
-      let topYfactor = tile.tileWidth * y * 0.5;
-      let topYsegment = c + topYfactor - tile.tileYoffset;
-      
-      // make tile vertices available from this scope
-      // establish coordinates for the four vertices of each rhombus
-      let rhombusVertices = new RhombusVertices(tile.tileWidth, mapX, y, x, d, topYsegment);
       
       // build the hitboxes array
       state.env.tileHitBoxes.push({ 

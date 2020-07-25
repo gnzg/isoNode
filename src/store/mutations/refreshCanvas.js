@@ -11,11 +11,9 @@ export default (state) => {
       tileWidth,
       mapX,
       mapY,
-      rectColors,
       rectShadowColors,
       clearArea
     } = state.env;
-    // TODO: Add prevalance of elevated tiles if they rise above other tiles
     
     // clear entire canvas
     ctx.clearRect(...clearArea);
@@ -24,7 +22,7 @@ export default (state) => {
     state.env.tileHitBoxes = [];
     
     if (map !== undefined) {
-      
+
       for (let y = 0; y < map.length; y++) {
         // j draws a row across the x axis
         for (let x = 0; x < map[y].length; x++) {
@@ -32,19 +30,16 @@ export default (state) => {
           // logic whether to draw or not to draw shapes is defined in draw()
           
           // alert('x:' + x + ' y:' + y + ' mapIndex:' + mapIndex);
+          let tile = new Tile({ y, x });
           
-
           drawTileLaterals({
             ctx,
             map,
             mapX,
             mapY,
-            tileWidth,
             y,
             x,
             mapIndex: 0,
-            rectColors,
-            rectShadowColors,
             tile
           });
         }

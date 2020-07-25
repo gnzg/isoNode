@@ -1,4 +1,6 @@
-export default ({ctx, map, heightMap, tile, mapX, y, x, d, c}) => {
+import heightMap from '../maps/tileHeightMap';
+
+export default ({ctx, map, mapX, tile, y, x, d, c}) => {
   // left
   // draw only if preceeded by an empty tile on the x axis,
   // or if first tile on x axis
@@ -20,18 +22,19 @@ export default ({ctx, map, heightMap, tile, mapX, y, x, d, c}) => {
       ctx.beginPath();
       
       let sideHeight = heightMap[y][x] !== 0 ? (20 / heightMap[y][x]) : 0;
-
+      console.log("tileYoffset", tile.tileYoffset);
       // upper left corner of tile
-      ctx.moveTo(tile.tileWidth * y  + mapX + tile.tileWidth * x, c + tile.tileWidth * y  + d - y* tile.tileWidth * 0.5 - tile.tileYoffset );
+      ctx.moveTo(tile.tileWidth * y  + mapX + tile.tileWidth * x, c + tile.tileWidth * y + d - y* tile.tileWidth * 0.5 - tile.tileYoffset );
       // lower left corner of tile
-      ctx.lineTo(tile.tileWidth * y  + mapX + tile.tileWidth * x, c + tile.tileWidth * y  + tile.tileWidth + tile.tileWidth * 1.75 - y* tile.tileWidth * 0.5 - tile.tileYoffset - sideHeight);
+      ctx.lineTo(tile.tileWidth * y  + mapX + tile.tileWidth * x, c + tile.tileWidth * y  + tile.tileWidth + tile.tileWidth * 1.75 - y * tile.tileWidth * 0.5 - tile.tileYoffset - sideHeight);
       // lower right corner of tile
-      ctx.lineTo(tile.tileWidth * y  + mapX + tile.tileWidth * x + tile.tileWidth, c + tile.tileWidth * y  + tile.tileWidth + tile.tileWidth * 1.75 + tile.tileWidth * 0.5 - y* tile.tileWidth * 0.5 - tile.tileYoffset - sideHeight);
+      ctx.lineTo(tile.tileWidth * y  + mapX + tile.tileWidth * x + tile.tileWidth, c + tile.tileWidth * y + tile.tileWidth + tile.tileWidth * 1.75 + tile.tileWidth * 0.5 - y* tile.tileWidth * 0.5 - tile.tileYoffset - sideHeight);
       // upper right corner of tile
-      ctx.lineTo(tile.tileWidth * y  + mapX + tile.tileWidth * x + tile.tileWidth, c + tile.tileWidth * y  + d + tile.tileWidth * 0.5 - y* tile.tileWidth * 0.5 - tile.tileYoffset);
+      ctx.lineTo(tile.tileWidth * y  + mapX + tile.tileWidth * x + tile.tileWidth, c + tile.tileWidth * y + d + tile.tileWidth * 0.5 - y * tile.tileWidth * 0.5 - tile.tileYoffset);
       
       ctx.closePath();
       ctx.fillStyle = tile.fillColor;
       ctx.fill();
+
     }
   }

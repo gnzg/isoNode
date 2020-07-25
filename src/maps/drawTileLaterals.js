@@ -19,11 +19,9 @@ import heightMap from '../maps/tileHeightMap';
 */
 
 export default ({ctx, map, mapX, mapY, y, x, mapIndex, tile})  => {
-  
   // if the map is defined and the tile is non-zero, draw it
   if (
     map !== undefined &&
-    map.length > 0 &&
     map[y] !== undefined &&
     map[y][x] !== 0
     && debugOptions({dimension:mapIndex, position:0}) // draw only first map
@@ -52,5 +50,8 @@ export default ({ctx, map, mapX, mapY, y, x, mapIndex, tile})  => {
       
       drawLeftTileSide({ctx, map, heightMap, tile, mapX, y, x, d, c});
       drawRightTileSide({ctx, map, heightMap, tile, mapX, y, x, d, c});
+      
+    } else if (map.length == 0) {
+      console.error("Length of main map is zero!");   
     }
   }

@@ -1,26 +1,26 @@
 
-export default ({ctx, tempMap, mapHeight, tile, mapX, y, x, d, c, fillColor}) => {
+export default ({ctx, map, heightMap, tile, mapX, y, x, d, c}) => {
     
     // right
     // draw only if suceeded by an empty tile on the y axis,
     // or if iterating over the last y element
     if (
-        (tempMap[y + 1] !== undefined
-        && tempMap[y + 1][x] === 0) 
+        (map[y + 1] !== undefined
+        && map[y + 1][x] === 0) 
         || 
-        (tempMap[y + 1] !== undefined
-        && mapHeight[y + 1][x] !== undefined
-        && mapHeight[y + 1][x] < mapHeight[y][x]) 
+        (map[y + 1] !== undefined
+        && heightMap[y + 1][x] !== undefined
+        && heightMap[y + 1][x] < heightMap[y][x]) 
         ||
-        y === tempMap.length-1
+        y === map.length-1
     ) {
         // if there is a previous row, and if the height of tile x at previous row is larger, draw the current right
         // tile side above the existing canvas
-        if ((mapHeight[y - 1] !== undefined
-            && mapHeight[y][x] < mapHeight[y - 1][x])
+        if ((heightMap[y - 1] !== undefined
+            && heightMap[y][x] < heightMap[y - 1][x])
             //||
-            //(mapHeight[y - 1] !== undefined
-            //    && mapHeight[y][x] < mapHeight[y - 1][x])
+            //(heightMap[y - 1] !== undefined
+            //    && heightMap[y][x] < heightMap[y - 1][x])
             )
         {
             ctx.globalCompositeOperation = 'source-over';
@@ -30,7 +30,7 @@ export default ({ctx, tempMap, mapHeight, tile, mapX, y, x, d, c, fillColor}) =>
         }
         ctx.beginPath();
 
-        let sideHeight = mapHeight[y][x] !== 0 ? (20 / mapHeight[y][x]) : 0;
+        let sideHeight = heightMap[y][x] !== 0 ? (20 / heightMap[y][x]) : 0;
         
         // upper left corner of tile
         ctx.moveTo(tile.tileWidth * y + mapX + tile.tileWidth * x + tile.tileWidth * 2, c + tile.tileWidth * y + d - y * tile.tileWidth * 0.5 - tile.tileYoffset );
@@ -42,7 +42,7 @@ export default ({ctx, tempMap, mapHeight, tile, mapX, y, x, d, c, fillColor}) =>
         ctx.lineTo(tile.tileWidth * y + mapX + tile.tileWidth * x + tile.tileWidth, c + tile.tileWidth * y + d + tile.tileWidth * 0.5 - y * tile.tileWidth * 0.5 - tile.tileYoffset);
         
         ctx.closePath();
-        ctx.fillStyle = fillColor;
+        ctx.fillStyle = tile.fillColor;
         ctx.fill();
     }
 }

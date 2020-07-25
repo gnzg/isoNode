@@ -1,9 +1,9 @@
 import drawAdditionalDetails from './drawOutlines';
 
-export default ({ctx, tempMap, mapHeight, tile, mapX, y, x, d, i, state, topYsegment, rhombusVertices}) => {
+export default ({ctx, map, heightMap, tile, mapX, y, x, d, i, state, topYsegment, rhombusVertices}) => {
   // top
   // draw only if current tile is non-zero
-  if (tempMap[y][x] !== 0 && mapHeight[y][x] === i) {
+  if (map[y][x] !== 0 && heightMap[y][x] === i) {
     ctx.fillStyle = tile.rectColor;
     
     ctx.globalCompositeOperation = 'source-over';

@@ -1,12 +1,12 @@
-import maps from '../maps/mapBundle';
+import map from '../maps/map0';
 
 export default {
   ctx: document.querySelector('#main') ? document.querySelector('#main').getContext('2d') : () => { console.error('no canvas context found!' ); },
   cooldown: false,
   debug_mode: true,
   env: {
-    // @param Array; every item represents a tile map
-    maps: maps,
+    // @param Array; main map
+    map,
     
     // @param Array; every item represents an array of tile hitboxes
     tileHitBoxes: [],

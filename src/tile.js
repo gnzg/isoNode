@@ -1,9 +1,10 @@
 import tileHeightMap from "./maps/tileHeightMap";
-import map from './maps/map0'
+import map from './maps/map0';
+import state from './store/state'
 
 /**
 *  Virtual Tile object
-*  stores tile information and notifies the canvas on changes 
+*  stores all info related to the tile object 
 */
 export default class Tile {
     constructor({ x, y, z, tileWidth, style = null, rectColor, rectShadowColors, tileYoffset}) {
@@ -31,5 +32,8 @@ export default class Tile {
             enableStroke: false
         };
         this.style = style || this.defaultStyle;
+
+        this.fillColor = state.env.rectShadowColors[map[y][x]];
+        this.rectColor = state.env.rectColors[rectShadowColors.indexOf(this.fillColor)];
     }
 }

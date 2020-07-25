@@ -1,15 +1,15 @@
-export default ({ctx, tempMap, mapHeight, tile, mapX, y, x, d, c, fillColor}) => {
+export default ({ctx, map, heightMap, tile, mapX, y, x, d, c}) => {
   // left
   // draw only if preceeded by an empty tile on the x axis,
   // or if first tile on x axis
-  if (tempMap[y][x - 1] === 0
+  if (map[y][x - 1] === 0
     || x === 0
-    || mapHeight[y][x] > mapHeight[y][x-1]
+    || heightMap[y][x] > heightMap[y][x-1]
     ) {
       
       // if current tile has a higher height,
       // then draw under drawn elements
-      if (mapHeight[y][x] <= mapHeight[y][x-1]) { 
+      if (heightMap[y][x] <= heightMap[y][x-1]) { 
         ctx.globalCompositeOperation = 'destination-over';
       } 
       // if tile iterator is at position 0 or if on the same map, the previous tile was zero
@@ -19,7 +19,7 @@ export default ({ctx, tempMap, mapHeight, tile, mapX, y, x, d, c, fillColor}) =>
       
       ctx.beginPath();
       
-      let sideHeight = mapHeight[y][x] !== 0 ? (20 / mapHeight[y][x]) : 0;
+      let sideHeight = heightMap[y][x] !== 0 ? (20 / heightMap[y][x]) : 0;
 
       // upper left corner of tile
       ctx.moveTo(tile.tileWidth * y  + mapX + tile.tileWidth * x, c + tile.tileWidth * y  + d - y* tile.tileWidth * 0.5 - tile.tileYoffset );
@@ -31,7 +31,7 @@ export default ({ctx, tempMap, mapHeight, tile, mapX, y, x, d, c, fillColor}) =>
       ctx.lineTo(tile.tileWidth * y  + mapX + tile.tileWidth * x + tile.tileWidth, c + tile.tileWidth * y  + d + tile.tileWidth * 0.5 - y* tile.tileWidth * 0.5 - tile.tileYoffset);
       
       ctx.closePath();
-      ctx.fillStyle = fillColor;
+      ctx.fillStyle = tile.fillColor;
       ctx.fill();
     }
   }

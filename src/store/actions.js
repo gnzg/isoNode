@@ -35,5 +35,8 @@ export default {
   toggleDebugMode(context) {
     context.commit('toggleDebugMode');
     context.commit('refreshCanvas');
+  },
+  createTileHitBoxes(context, payload) {
+    context.commit('createTileHitBoxes', payload);
   }
-};
+}

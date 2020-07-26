@@ -38,5 +38,8 @@ export default {
   },
   createTileHitBox(context, payload) {
     context.commit('createTileHitBox', payload);
+  },
+  clearTileHitBoxes(context) {
+    context.commit('clearTileHitBoxes');
   }
 }

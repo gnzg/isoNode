@@ -9,7 +9,6 @@ import drawRightTileSide from './drawRightTileSide';
 * @param Integer mapY 
 * @param Integer x    iterates across a map array
 * @param Integer y    iterates across a map array child's elements
-* @param Integer mapIndex    iterates across the array of maps
 * @param Array rectShadowColors
 * @returns Object canvas
 */

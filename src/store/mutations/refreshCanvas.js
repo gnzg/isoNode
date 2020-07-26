@@ -19,9 +19,6 @@ export default (state) => {
     // clear entire canvas
     ctx.clearRect(...clearArea);
     
-    // clear tile hitbox array
-    state.env.tileHitBoxes = [];
-    
     if (map !== undefined) {
       
       for (let y = 0; y < map.length; y++) {
@@ -36,12 +33,11 @@ export default (state) => {
             //&& debugOptions({dimension:y, position:0})
             ) {
               
-              // alert('x:' + x + ' y:' + y + ' mapIndex:' + mapIndex);
-              let tile = new Tile({ y, x });
+              let tile = new Tile({ x, y });
               
               // make tile vertices available from this scope
               // establish coordinates for the four vertices of each rhombus
-              let rhombusVertices = new RhombusVertices({tile, mapX, mapY, y, x});
+              let rhombusVertices = new RhombusVertices({tile, y, x});
               
               //drawTileLaterals({tile, x, y});
               

@@ -1,4 +1,5 @@
 import refreshCanvas from './refreshCanvas';
+import store from '../../store/index';
 
 export default function handleKeyDown (state) {
   

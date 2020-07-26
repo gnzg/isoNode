@@ -8,12 +8,10 @@ import store from './store/index';
 // arguments:
 // receives e as the pointer move event {object}, an array of tile coordinates [{x,y}] and the store {object}
 // returns void
-export default (e) => {
+export default e => {
     
-    //console.log(e.clientX, e.clientY);
-    
-    // TODO: check if tile is non-zero before creating a hit box for it
     let tileCoordinates = state.env.tileHitBoxes;
+    console.log('tileCoordinates', tileCoordinates);
     for (let i = 0; i < tileCoordinates.length; i++) {
         
         let pointA = tileCoordinates[i].pointA;
@@ -27,25 +25,23 @@ export default (e) => {
         // if mouse within constraints of tile
         if (pointInRhombus(pointA,pointB,pointC,pointD, {x:e.clientX, y:e.clientY})) {
             // console.log("Hovering a tile!", tile);
-            
-            let tile = { 
+
+            let tile = {
                 x: tileCoordinates[i].x,
                 y: tileCoordinates[i].y
             };
             
+            console.log("inside tile at position", "y", tile.y, "x", tile.x);
             /* pass the coordinates of the tile respective to the maps object to manipulate it further */
             
             store.dispatch("tileHovered", tile);
-            
-            //write last hovered tile to global state
-            store.dispatch("saveLastHoveredTile", tile);
             return true;
         }
-        // if not hovering a tile, and if the last hovered tile has not yet been cleaned from the global state
+        // if outside of all hitboxes and
+        // a previous tile was hovered 
         else if (state.env.lastHoveredTile.x !== undefined) {
             // only perform if prevTile.i has been hovered previously
             store.dispatch("tileNotHovered", state.env.lastHoveredTile);
-            //('state.env.lastHoveredTile', state.env.lastHoveredTile);
         }
     }
 }

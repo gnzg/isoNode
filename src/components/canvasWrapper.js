@@ -16,5 +16,3 @@ export default class canvasWrapper extends Component {
     this.element.innerHTML = `<canvas>Browser does not support canvas.</canvas>`;
   }
 }
-
-// smooth out map movements

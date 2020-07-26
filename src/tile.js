@@ -27,18 +27,6 @@ export default class Tile {
             this.rectColors = state.env.rectColors;
             this.rectShadowColors = state.env.rectShadowColors;
             
-            /* styling defaults */
-            /*
-            this.defaultStyle = {
-                fill:  'white',
-                shadowedFill: '#666',
-                outlineWidth: 0.5,
-                strokeStyle: '#666',
-                enableStroke: false
-            };
-            this.style = style || this.defaultStyle;
-            */
-            
             this.fillColor = this.rectShadowColors[map[this.y][this.x]];
             this.rectColor = this.rectColors[this.rectShadowColors.indexOf(this.fillColor)];
         } else {

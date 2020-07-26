@@ -18,13 +18,15 @@ window.addEventListener("DOMContentLoaded", e => {
   
   
   
+  
+  
   // draw initial tile hitboxes creation
+  // Does not yet work if moving the map
   let map = store.state.env.map;
   
   for (let y = 0; y < map.length; y++) {
     // j draws a row across the x axis
     for (let x = 0; x < map[y].length; x++) {
-      // alert('x:' + x + ' y:' + y + ' mapIndex:' + mapIndex);
       let tile = new Tile({ y, x });
       // make tile vertices available from this scope
       // establish coordinates for the four vertices of each rhombus
@@ -67,6 +69,7 @@ window.addEventListener("DOMContentLoaded", e => {
       e.keyCode === 87 ||       // W key
       e.keyCode === 83          // S key
       ) {
+        // TODO: smooth out map movements
         store.dispatch('handleKeyDown', store.state.keyMap);
         
         // if movement takes place, clear the tile hitboxes // TODO: make prettier
@@ -82,6 +85,7 @@ window.addEventListener("DOMContentLoaded", e => {
     window.addEventListener("keyup", e => {
       e.stopImmediatePropagation();
       
+      store.dispatch("clearTileHitBoxes");
       // Allow multiple keys to be registered, e.g. for diagonally moving the map
       let keyMapState = store.state.keyMap; // type: object
       if (e.keyCode in store.state.keyMap) keyMapState[e.keyCode] = false;

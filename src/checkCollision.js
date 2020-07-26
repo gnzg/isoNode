@@ -21,7 +21,7 @@ export default (e, tileCoordinates, store) => {
                 x: tileCoordinates[i].x,
                 y: tileCoordinates[i].y
             };
-            // console.log('tile', tile);
+            console.log('tile', tile);
             
             store.dispatch("tileHovered", tile);
             

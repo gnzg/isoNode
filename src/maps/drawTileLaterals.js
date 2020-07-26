@@ -2,12 +2,10 @@ import state from '../store/state';
 import debugOptions from '../debugOptions';
 import drawLeftTileSide from './drawLeftTileSide';
 import drawRightTileSide from './drawRightTileSide';
-import drawTileTop from './drawTileTop';
 
 /**
 * directly manipulates the canvas context found in the state object
 *
-* @param Object canvas
 * @param Integer mapX 
 * @param Integer mapY 
 * @param Integer x    iterates across a map array
@@ -17,7 +15,7 @@ import drawTileTop from './drawTileTop';
 * @returns Object canvas
 */
 
-export default ({ mapX, mapY, y, x, tile, rhombusVertices})  => {
+export default ({ mapX, mapY, y, x, tile})  => {
 
   let map = state.env.map;
   // if the map is defined and the tile is non-zero, draw it
@@ -33,20 +31,8 @@ export default ({ mapX, mapY, y, x, tile, rhombusVertices})  => {
       let c = mapY - tile.tileWidth * x * 0.5;
       let d = tile.tileWidth * 1.5;
       
-      // build the hitboxes array
-      state.env.tileHitBoxes.push({ 
-        // rhombus vertices
-        ...rhombusVertices,
-        // coordinates respective to the maps object (for moving the map)
-        x,
-        y
-      });
-      
       drawLeftTileSide({tile, mapX, y, x, d, c});
       drawRightTileSide({tile, mapX, y, x, d, c});
-      drawTileTop({tile, mapX, y, x, c});
-      
-
 
     } else if (map.length == 0) {
       console.error("Length of main map is zero!");   

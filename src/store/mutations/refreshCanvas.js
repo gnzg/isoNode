@@ -1,4 +1,5 @@
 import drawTileLaterals from '../../maps/drawTileLaterals';
+import drawTileTop from '../../maps/drawTileTop';
 import Tile from '../../tile';
 import map from '../../maps/map0';
 import RhombusVertices from '../../RhombusVertices';
@@ -38,13 +39,24 @@ export default (state) => {
           let rhombusVertices = new RhombusVertices({tile, mapX, mapY, y, x});
           
           drawTileLaterals({
+            tile,
             mapX,
             mapY,
-            y,
             x,
-            tile,
-            rhombusVertices
+            y
           });
+          
+          drawTileTop({tile, mapX, x, y, c});
+          
+          // build the hitboxes array
+          state.env.tileHitBoxes.push({ 
+            // rhombus vertices
+            ...rhombusVertices,
+            // coordinates respective to the maps object (for moving the map)
+            x,
+            y
+          });
+          
           // draw vertices; only available in debug mode
           if (state.debug_mode === true) {
             drawAdditionalDetails(state.ctx, rhombusVertices);

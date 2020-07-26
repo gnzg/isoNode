@@ -56,6 +56,9 @@ window.addEventListener("DOMContentLoaded", e => {
   window.addEventListener("keydown", e => {
     // prevent event bubbling
     e.stopImmediatePropagation();
+    
+    // TODO: smooth out map movements
+    
     if (e.keyCode in store.state.keyMap) {
       store.state.keyMap[e.keyCode] = true;
     }
@@ -69,8 +72,8 @@ window.addEventListener("DOMContentLoaded", e => {
       e.keyCode === 87 ||       // W key
       e.keyCode === 83          // S key
       ) {
-        // TODO: smooth out map movements
         store.dispatch('handleKeyDown', store.state.keyMap);
+        store.dispatch("clearTileHitBoxes");
         
         // if movement takes place, clear the tile hitboxes // TODO: make prettier
         store.state.env.tileHitBoxes = [];
@@ -85,7 +88,6 @@ window.addEventListener("DOMContentLoaded", e => {
     window.addEventListener("keyup", e => {
       e.stopImmediatePropagation();
       
-      store.dispatch("clearTileHitBoxes");
       // Allow multiple keys to be registered, e.g. for diagonally moving the map
       let keyMapState = store.state.keyMap; // type: object
       if (e.keyCode in store.state.keyMap) keyMapState[e.keyCode] = false;

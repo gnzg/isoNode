@@ -29,7 +29,7 @@ export default (state) => {
           
           if (
             (debugOptions({dimension:y, position:0}) || debugOptions({dimension:y, position:1}) || debugOptions({dimension:y, position:2}))
-            && debugOptions({dimension:x, position:0})
+            //&& debugOptions({dimension:x, position:0})
             //&& debugOptions({dimension:y, position:0})
             ) {
               
@@ -41,7 +41,7 @@ export default (state) => {
               
               //drawTileLaterals({tile, x, y});
               
-              //drawTileTop({tile, x, y});
+              drawTileTop({tile, x, y});
               
               // draw vertices; only available in debug mode
               if (state.debug_mode === true) {

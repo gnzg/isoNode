@@ -1,10 +1,13 @@
 import { pointInRhombus } from './math';
+import state from './store/state';
+import store from './store/index';
 
 // receives e as the pointer move event {object}, an array of tile coordinates [{x,y}] and the store {object}
 // returns void
-export default (e, store) => {
+export default (e) => {
+    
     // TODO: check if tile is non-zero before creating a hit box for it
-    let tileCoordinates = store.state.env.tileHitBoxes;
+    let tileCoordinates = state.env.tileHitBoxes;
     for (let i = 0; i < tileCoordinates.length; i++) {
         
         let pointA = tileCoordinates[i].pointA;
@@ -33,9 +36,9 @@ export default (e, store) => {
             return true;
         }
         // if not hovering a tile, and if the last hovered tile has not yet been cleaned from the global state
-        else if (store.state.env.lastHoveredTile.x !== undefined) {
+        else if (state.env.lastHoveredTile.x !== undefined) {
             // only perform if prevTile.i has been hovered previously
-            store.dispatch("tileNotHovered", store.state.env.lastHoveredTile);
+            store.dispatch("tileNotHovered", state.env.lastHoveredTile);
         }
     }
 }

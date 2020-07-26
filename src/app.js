@@ -67,7 +67,7 @@ window.addEventListener("DOMContentLoaded", e => {
     
     window.addEventListener("mousemove", e => {
       e.stopImmediatePropagation();
-      checkCollision(e, store);
+      checkCollision(e);
     });
     
     //let hint = new floatText(store.state.ctx, 'Press R to rotate the canvas');

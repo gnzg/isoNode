@@ -16,11 +16,11 @@ window.addEventListener("DOMContentLoaded", e => {
   store.dispatch('centerCanvas');
   store.dispatch('refreshCanvas');
   
-
-
+  
+  
   // draw initial tile hitboxes creation
   let map = store.state.env.map;
-
+  
   for (let y = 0; y < map.length; y++) {
     // j draws a row across the x axis
     for (let x = 0; x < map[y].length; x++) {
@@ -29,16 +29,19 @@ window.addEventListener("DOMContentLoaded", e => {
       // make tile vertices available from this scope
       // establish coordinates for the four vertices of each rhombus
       let rhombusVertices = new RhombusVertices({tile, y, x});
-      // build the hitboxes array, but only if the tile is non-zero
-      store.dispatch("createTileHitBox", ({x, y, rhombusVertices}));
+      // only if the tile is non-zero
+      if(map[y][x] !== 0) {
+        // build the hitboxes for the tile in question
+        store.dispatch("createTileHitBox", ({x, y, rhombusVertices}));
+      }
     }
   }
   window.tileHitBoxes = store.state.env.tileHitBoxes;
   // end of initial tile hitboxes creation
   
-
-
-
+  
+  
+  
   // Events
   window.addEventListener("resize", () => {
     store.state.env.winWidth = window.innerWidth;
@@ -93,9 +96,6 @@ window.addEventListener("DOMContentLoaded", e => {
       e.stopImmediatePropagation();
       checkCollision(e);
     });
-    
-    //let hint = new floatText(store.state.ctx, 'Press R to rotate the canvas');
-    //setTimeout(() => { hint.display(); }, 3000);
     
   });
   

@@ -35,7 +35,7 @@ export default (e) => {
             
             /* pass the coordinates of the tile respective to the maps object to manipulate it further */
             
-            //store.dispatch("tileHovered", tile);
+            store.dispatch("tileHovered", tile);
             
             //write last hovered tile to global state
             store.dispatch("saveLastHoveredTile", tile);

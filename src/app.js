@@ -18,11 +18,9 @@ window.addEventListener("DOMContentLoaded", e => {
   
 
 
-  
   // draw initial tile hitboxes creation
   let map = store.state.env.map;
-  let mapX = store.state.mapX;
-  let mapY = store.state.mapY;
+
   for (let y = 0; y < map.length; y++) {
     // j draws a row across the x axis
     for (let x = 0; x < map[y].length; x++) {
@@ -30,7 +28,7 @@ window.addEventListener("DOMContentLoaded", e => {
       let tile = new Tile({ y, x });
       // make tile vertices available from this scope
       // establish coordinates for the four vertices of each rhombus
-      let rhombusVertices = new RhombusVertices({tile, mapX, mapY, y, x});
+      let rhombusVertices = new RhombusVertices({tile, y, x});
       // build the hitboxes array, but only if the tile is non-zero
       store.dispatch("createTileHitBox", ({x, y, rhombusVertices}));
     }

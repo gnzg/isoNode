@@ -43,9 +43,9 @@ export default (state) => {
               // establish coordinates for the four vertices of each rhombus
               let rhombusVertices = new RhombusVertices({tile, mapX, mapY, y, x});
               
-              //drawTileLaterals({tile, mapX, mapY, x, y});
+              //drawTileLaterals({tile, x, y});
               
-              //drawTileTop({tile, mapX, mapY, x, y});
+              //drawTileTop({tile, x, y});
               
               // draw vertices; only available in debug mode
               if (state.debug_mode === true) {

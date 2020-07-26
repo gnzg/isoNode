@@ -3,6 +3,8 @@ export default (state, payload) => {
     let y = payload.y;
     let rhombusVertices = payload.rhombusVertices;
     
+console.log('X', x, 'Y', y, rhombusVertices);
+
     if(state.env.map[y][x] !== 0) {
         state.env.tileHitBoxes.push({ 
           // rhombus vertices

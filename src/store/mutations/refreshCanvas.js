@@ -33,19 +33,15 @@ export default (state) => {
           
           let c = mapY - tile.tileWidth * x * 0.5;
           
-          let topYfactor = tile.tileWidth * y * 0.5;
-          
-          
           // make tile vertices available from this scope
           // establish coordinates for the four vertices of each rhombus
-          let rhombusVertices = new RhombusVertices(tile, mapX, mapY, y, x);
+          let rhombusVertices = new RhombusVertices({tile, mapX, mapY, y, x});
           
           drawTileLaterals({
             mapX,
             mapY,
             y,
             x,
-            mapIndex: 0,
             tile,
             rhombusVertices
           });

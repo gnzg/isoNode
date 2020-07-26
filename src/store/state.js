@@ -3,7 +3,7 @@ import map from '../maps/map0';
 export default {
   ctx: document.querySelector('#main') ? document.querySelector('#main').getContext('2d') : () => { console.error('no canvas context found!' ); },
   cooldown: false,
-  debug_mode: true,
+  debug_mode: false,
   env: {
     // @param Array; main map
     map,

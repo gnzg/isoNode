@@ -8,6 +8,7 @@ const devMode = true;
 module.exports = {
   mode: 'development',
   devtool: 'cheap-source-map',
+  entry: './src/app.js',
   module: {
     rules: [
       {

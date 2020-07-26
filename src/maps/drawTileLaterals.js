@@ -16,7 +16,7 @@ import drawRightTileSide from './drawRightTileSide';
 * @returns Object canvas
 */
 
-export default ({ mapX, mapY, y, x, mapIndex, tile, rhombusVertices})  => {
+export default ({ mapX, mapY, y, x, tile, rhombusVertices})  => {
 
   let map = state.env.map;
   // if the map is defined and the tile is non-zero, draw it
@@ -39,7 +39,6 @@ export default ({ mapX, mapY, y, x, mapIndex, tile, rhombusVertices})  => {
         ...rhombusVertices,
         // coordinates respective to the maps object
         x,
-        mapIndex,
         y
       });
       

@@ -6,7 +6,6 @@ export default ({mapX, tile, y, x, d, c}) => {
   let ctx = state.ctx;
   let map = state.env.map;
 
-
   // left
   // draw only if preceeded by an empty tile on the x axis,
   // or if first tile on x axis

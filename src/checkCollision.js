@@ -1,6 +1,6 @@
 import { pointInRhombus } from './math';
 
-// receives e as the pointer move event {object}, the current tile coords [array] and the store {object}
+// receives e as the pointer move event {object}, the current tile coords [x,y] and the store {object}
 // returns void
 export default (e, tileCoordinates, store) => {
     for (let i = 0; i < tileCoordinates.length; i++) {
@@ -18,7 +18,6 @@ export default (e, tileCoordinates, store) => {
             
             /* pass the coordinates of the tile respective to the maps object to manipulate it further */
             let tile = { 
-                mapIndex: tileCoordinates[i].mapIndex,
                 x: tileCoordinates[i].x,
                 y: tileCoordinates[i].y
             };

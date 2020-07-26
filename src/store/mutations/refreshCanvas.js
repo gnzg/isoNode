@@ -32,21 +32,14 @@ export default (state) => {
           // alert('x:' + x + ' y:' + y + ' mapIndex:' + mapIndex);
           let tile = new Tile({ y, x });
           
-          let c = mapY - tile.tileWidth * x * 0.5;
           
           // make tile vertices available from this scope
           // establish coordinates for the four vertices of each rhombus
           let rhombusVertices = new RhombusVertices({tile, mapX, mapY, y, x});
           
-          drawTileLaterals({
-            tile,
-            mapX,
-            mapY,
-            x,
-            y
-          });
+          drawTileLaterals({tile, mapX, mapY, x, y});
           
-          drawTileTop({tile, mapX, x, y, c});
+          drawTileTop({tile, mapX, mapY, x, y});
           
           // build the hitboxes array
           state.env.tileHitBoxes.push({ 

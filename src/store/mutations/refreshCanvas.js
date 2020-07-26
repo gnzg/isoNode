@@ -9,10 +9,8 @@ export default (state) => {
   if (state.ctx) {
     let ctx = state.ctx;
     let {
-      tileWidth,
       mapX,
       mapY,
-      rectShadowColors,
       clearArea
     } = state.env;
     
@@ -34,19 +32,15 @@ export default (state) => {
           let tile = new Tile({ y, x });
           
           let c = mapY - tile.tileWidth * x * 0.5;
-          let d = tile.tileWidth * 1.5;
           
           let topYfactor = tile.tileWidth * y * 0.5;
-          let topYsegment = c + topYfactor - tile.tileYoffset;
           
           
           // make tile vertices available from this scope
           // establish coordinates for the four vertices of each rhombus
-          let rhombusVertices = new RhombusVertices(tile, mapX, y, x, d, topYsegment);
+          let rhombusVertices = new RhombusVertices(tile, mapX, mapY, y, x);
           
           drawTileLaterals({
-            ctx,
-            map,
             mapX,
             mapY,
             y,

@@ -16,19 +16,22 @@ import drawRightTileSide from './drawRightTileSide';
 * @returns Object canvas
 */
 
-export default ({ctx, map, mapX, mapY, y, x, mapIndex, tile, rhombusVertices})  => {
+export default ({ mapX, mapY, y, x, mapIndex, tile, rhombusVertices})  => {
+
+  let map = state.env.map;
   // if the map is defined and the tile is non-zero, draw it
   if (
     map !== undefined &&
     map[y] !== undefined &&
     map[y][x] !== 0
-    && debugOptions({dimension:mapIndex, position:0}) // draw only first map
+    && debugOptions({dimension:0, position:0}) // draw only first map
     //&& (debugOptions({dimension:y, position:0}) || debugOptions({dimension:y, position:1}) || debugOptions({dimension:y, position:2})) // draw only first map
     )
     {
       
       let c = mapY - tile.tileWidth * x * 0.5;
       let d = tile.tileWidth * 1.5;
+      let ctx = state.ctx;
       
       // build the hitboxes array
       state.env.tileHitBoxes.push({ 

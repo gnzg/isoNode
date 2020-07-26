@@ -7,7 +7,6 @@ export default {
   env: {
     // @param Array; main map
     map,
-    
     // @param Array; every item represents a tile hitboxes 
     // a tile hitbox is an object with the form {pointA, pointB, pointC, pointD}
     tileHitBoxes: [],

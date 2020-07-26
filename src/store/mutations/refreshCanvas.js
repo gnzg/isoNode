@@ -4,6 +4,7 @@ import Tile from '../../tile';
 import map from '../../maps/map0';
 import RhombusVertices from '../../RhombusVertices';
 import drawAdditionalDetails from '../../maps/drawOutlines';
+import debugOptions from '../../debugOptions';
 
 export default (state) => {
   
@@ -29,39 +30,44 @@ export default (state) => {
           // draw all three visible sides of the rect aspect
           // logic whether to draw or not to draw shapes is defined in draw()
           
-          // alert('x:' + x + ' y:' + y + ' mapIndex:' + mapIndex);
-          let tile = new Tile({ y, x });
-          
-          
-          // make tile vertices available from this scope
-          // establish coordinates for the four vertices of each rhombus
-          let rhombusVertices = new RhombusVertices({tile, mapX, mapY, y, x});
-          
-          drawTileLaterals({tile, mapX, mapY, x, y});
-          
-          drawTileTop({tile, mapX, mapY, x, y});
-          
-          // build the hitboxes array
-          state.env.tileHitBoxes.push({ 
-            // rhombus vertices
-            ...rhombusVertices,
-            // coordinates respective to the maps object (for moving the map)
-            x,
-            y
-          });
-          
-          // draw vertices; only available in debug mode
-          if (state.debug_mode === true) {
-            drawAdditionalDetails(state.ctx, rhombusVertices);
-          }        
+          if (
+            (debugOptions({dimension:y, position:0}) || debugOptions({dimension:y, position:1}) || debugOptions({dimension:y, position:2}))
+            && debugOptions({dimension:x, position:0})
+            //&& debugOptions({dimension:y, position:0})
+            ) {
+              
+              // alert('x:' + x + ' y:' + y + ' mapIndex:' + mapIndex);
+              let tile = new Tile({ y, x });
+              
+              // make tile vertices available from this scope
+              // establish coordinates for the four vertices of each rhombus
+              let rhombusVertices = new RhombusVertices({tile, mapX, mapY, y, x});
+              
+              //drawTileLaterals({tile, mapX, mapY, x, y});
+              
+              //drawTileTop({tile, mapX, mapY, x, y});
+              
+              // build the hitboxes array
+              state.env.tileHitBoxes.push({ 
+                // rhombus vertices
+                ...rhombusVertices,
+                // coordinates respective to the maps object (for moving the map)
+                x,
+                y
+              });
+              
+              // draw vertices; only available in debug mode
+              if (state.debug_mode === true) {
+                drawAdditionalDetails(state.ctx, rhombusVertices);
+              } 
+            }
+          }
         }
+      } else {
+        console.error("no maps object found!");
       }
-      
-    } else {
-      console.error("no maps object found!");
+    }
+    else {
+      console.error('No ctx object found!');
     }
   }
-  else {
-    console.error('No ctx object found!');
-  }
-}

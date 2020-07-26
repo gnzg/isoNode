@@ -1,5 +1,4 @@
 import state from '../store/state';
-import debugOptions from '../debugOptions';
 import drawLeftTileSide from './drawLeftTileSide';
 import drawRightTileSide from './drawRightTileSide';
 
@@ -23,8 +22,6 @@ export default ({ mapX, mapY, y, x, tile})  => {
     map !== undefined &&
     map[y] !== undefined &&
     map[y][x] !== 0
-    //&& debugOptions({dimension:0, position:0}) // draw only first map
-    && (debugOptions({dimension:y, position:0}) || debugOptions({dimension:y, position:1}) || debugOptions({dimension:y, position:2})) // draw only first map
     )
     {
       

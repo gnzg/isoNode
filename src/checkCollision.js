@@ -1,9 +1,12 @@
 import { pointInRhombus } from './math';
 
-// receives e as the pointer move event {object}, the current tile coords [x,y] and the store {object}
+// receives e as the pointer move event {object}, an array of tile coordinates [{x,y}] and the store {object}
 // returns void
-export default (e, tileCoordinates, store) => {
+export default (e, store) => {
+    // TODO: check if tile is non-zero before creating a hit box for it
+    let tileCoordinates = store.state.env.tileHitBoxes;
     for (let i = 0; i < tileCoordinates.length; i++) {
+        
         let pointA = tileCoordinates[i].pointA;
         let pointB = tileCoordinates[i].pointB;
         let pointC = tileCoordinates[i].pointC;
@@ -21,7 +24,7 @@ export default (e, tileCoordinates, store) => {
                 x: tileCoordinates[i].x,
                 y: tileCoordinates[i].y
             };
-            console.log('tile', tile);
+            console.log(tile.x, tile.y);
             
             store.dispatch("tileHovered", tile);
             

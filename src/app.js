@@ -1,8 +1,7 @@
-import floatText from './floatText.js';
 import store from './store/index';
-import canvasWrapper from './components/canvasWrapper';
 import './assets/scss/styles.scss';
 import checkCollision from './checkCollision.js';
+import canvasWrapper from './components/canvasWrapper';
 
 // Initialization
 window.addEventListener("DOMContentLoaded", e => {
@@ -11,8 +10,10 @@ window.addEventListener("DOMContentLoaded", e => {
   e.stopImmediatePropagation();
   
   const canvasWrapperInstance = new canvasWrapper('main');
+  
   store.dispatch('centerCanvas');
   store.dispatch('refreshCanvas');
+  
   
   // Events
   window.addEventListener("resize", () => {
@@ -61,17 +62,18 @@ window.addEventListener("DOMContentLoaded", e => {
       
       //hint.hide(); // TODO
       
-      checkCollision(e, store.state.env.tileHitBoxes, store);
+      //checkCollision(e, store.state.env.tileHitBoxes, store);
     });
     
     window.addEventListener("mousemove", e => {
       e.stopImmediatePropagation();
-      checkCollision(e, store.state.env.tileHitBoxes, store);
+      checkCollision(e, store);
     });
     
     //let hint = new floatText(store.state.ctx, 'Press R to rotate the canvas');
     //setTimeout(() => { hint.display(); }, 3000);
     
-    // Access actions via browser console
-    window.store = store;
   });
+  
+  // Access actions via browser console
+  window.store = store;

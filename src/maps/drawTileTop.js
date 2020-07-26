@@ -1,9 +1,8 @@
-import drawAdditionalDetails from './drawOutlines';
 import heightMap from '../maps/tileHeightMap';
 import map from '../maps/map0';
 import state from '../store/state'
 
-export default ({tile, mapX, y, x, c, rhombusVertices}) => {
+export default ({tile, mapX, y, x, c}) => {
 
   let ctx = state.ctx;
 
@@ -24,9 +23,5 @@ export default ({tile, mapX, y, x, c, rhombusVertices}) => {
     ctx.closePath();
     ctx.fill();
     
-    // draw vertices; only available in debug mode
-    if (state.debug_mode === true) {
-      drawAdditionalDetails(ctx, rhombusVertices);
-    }
   }
 }

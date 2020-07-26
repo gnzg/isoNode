@@ -3,12 +3,13 @@ import map from '../maps/map0';
 export default {
   ctx: document.querySelector('#main') ? document.querySelector('#main').getContext('2d') : () => { console.error('no canvas context found!' ); },
   cooldown: false,
-  debug_mode: false,
+  debug_mode: true,
   env: {
     // @param Array; main map
     map,
     
-    // @param Array; every item represents an array of tile hitboxes
+    // @param Array; every item represents a tile hitboxes 
+    // a tile hitbox is an object with the form {pointA, pointB, pointC, pointD}
     tileHitBoxes: [],
     lastHoveredTile: {},
     

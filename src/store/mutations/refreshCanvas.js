@@ -1,8 +1,8 @@
 import drawTileLaterals from '../../maps/drawTileLaterals';
-import drawTileTop from '../../maps/drawTileTop';
 import Tile from '../../tile';
 import map from '../../maps/map0';
 import RhombusVertices from '../../RhombusVertices';
+import drawAdditionalDetails from '../../maps/drawOutlines';
 
 export default (state) => {
   
@@ -45,18 +45,13 @@ export default (state) => {
             tile,
             rhombusVertices
           });
-          drawTileTop({tile, mapX, y, x, c, rhombusVertices});
-          
+          // draw vertices; only available in debug mode
+          if (state.debug_mode === true) {
+            drawAdditionalDetails(state.ctx, rhombusVertices);
+          }        
         }
       }
-      /*
-      for (let i = 0; i < 3; i++) {
-        for (let y = 0; y < map.length; y++) {
-          for (let x = 0; x < map[y].length; x++) {
-            // drawTileTop({ctx, map, heightMap, tile, mapX, y, x, d, i, state, topYsegment, rhombusVertices});
-          }
-        }
-      } */
+      
     } else {
       console.error("no maps object found!");
     }

@@ -2,6 +2,7 @@ import state from '../store/state';
 import debugOptions from '../debugOptions';
 import drawLeftTileSide from './drawLeftTileSide';
 import drawRightTileSide from './drawRightTileSide';
+import drawTileTop from './drawTileTop';
 
 /**
 * directly manipulates the canvas context found in the state object
@@ -24,27 +25,29 @@ export default ({ mapX, mapY, y, x, tile, rhombusVertices})  => {
     map !== undefined &&
     map[y] !== undefined &&
     map[y][x] !== 0
-    && debugOptions({dimension:0, position:0}) // draw only first map
-    //&& (debugOptions({dimension:y, position:0}) || debugOptions({dimension:y, position:1}) || debugOptions({dimension:y, position:2})) // draw only first map
+    //&& debugOptions({dimension:0, position:0}) // draw only first map
+    && (debugOptions({dimension:y, position:0}) || debugOptions({dimension:y, position:1}) || debugOptions({dimension:y, position:2})) // draw only first map
     )
     {
       
       let c = mapY - tile.tileWidth * x * 0.5;
       let d = tile.tileWidth * 1.5;
-      let ctx = state.ctx;
       
       // build the hitboxes array
       state.env.tileHitBoxes.push({ 
         // rhombus vertices
         ...rhombusVertices,
-        // coordinates respective to the maps object
+        // coordinates respective to the maps object (for moving the map)
         x,
         y
       });
       
       drawLeftTileSide({tile, mapX, y, x, d, c});
       drawRightTileSide({tile, mapX, y, x, d, c});
+      drawTileTop({tile, mapX, y, x, c});
       
+
+
     } else if (map.length == 0) {
       console.error("Length of main map is zero!");   
     }

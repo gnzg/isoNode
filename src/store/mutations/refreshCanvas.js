@@ -5,8 +5,6 @@ import map from '../../maps/map0';
 import RhombusVertices from '../../RhombusVertices';
 import drawAdditionalDetails from '../../maps/drawOutlines';
 import debugOptions from '../../debugOptions';
-import createTileHitBoxes from './createTileHitBoxes';
-import store from '../../store/index';
 
 export default (state) => {
   
@@ -48,9 +46,6 @@ export default (state) => {
               //drawTileLaterals({tile, mapX, mapY, x, y});
               
               //drawTileTop({tile, mapX, mapY, x, y});
-              
-              // build the hitboxes array, but only if the tile is non-zero
-              store.dispatch("createTileHitBoxes", ({x, y, rhombusVertices}));
               
               // draw vertices; only available in debug mode
               if (state.debug_mode === true) {

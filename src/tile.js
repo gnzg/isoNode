@@ -13,10 +13,16 @@ export default class Tile {
             this.x = x;
             this.y = y;
             
+            this.c = state.env.mapY - this.tileWidth * x * 0.5;
+            this.d = this.tileWidth * 1.5;
+            
             /* size */
             this.tileWidth = state.env.tileWidth;
             
             this.tileYoffset = this.tileWidth * tileHeightMap[y][x] * 1.25 + map[y][x]*10;
+            this.topYfactor = this.tileWidth * y * 0.5;
+            this.topYsegment = this.c + this.topYfactor - this.tileYoffset;
+
             this.rectColors = state.env.rectColors;
             this.rectShadowColors = state.env.rectShadowColors;
             

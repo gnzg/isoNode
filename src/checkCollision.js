@@ -10,6 +10,8 @@ import store from './store/index';
 // returns void
 export default (e) => {
     
+    //console.log(e.clientX, e.clientY);
+    
     // TODO: check if tile is non-zero before creating a hit box for it
     let tileCoordinates = state.env.tileHitBoxes;
     for (let i = 0; i < tileCoordinates.length; i++) {
@@ -26,14 +28,14 @@ export default (e) => {
         if (pointInRhombus(pointA,pointB,pointC,pointD, {x:e.clientX, y:e.clientY})) {
             // console.log("Hovering a tile!", tile);
             
-            /* pass the coordinates of the tile respective to the maps object to manipulate it further */
             let tile = { 
                 x: tileCoordinates[i].x,
                 y: tileCoordinates[i].y
             };
-            console.log(tile.x, tile.y);
             
-            store.dispatch("tileHovered", tile);
+            /* pass the coordinates of the tile respective to the maps object to manipulate it further */
+            
+            //store.dispatch("tileHovered", tile);
             
             //write last hovered tile to global state
             store.dispatch("saveLastHoveredTile", tile);

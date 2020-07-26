@@ -2,6 +2,8 @@ import store from './store/index';
 import './assets/scss/styles.scss';
 import checkCollision from './checkCollision.js';
 import canvasWrapper from './components/canvasWrapper';
+import Tile from './tile';
+import RhombusVertices from './RhombusVertices';
 
 // Initialization
 window.addEventListener("DOMContentLoaded", e => {
@@ -14,7 +16,31 @@ window.addEventListener("DOMContentLoaded", e => {
   store.dispatch('centerCanvas');
   store.dispatch('refreshCanvas');
   
+
+
   
+  // draw initial tile hitboxes creation
+  let map = store.state.env.map;
+  let mapX = store.state.mapX;
+  let mapY = store.state.mapY;
+  for (let y = 0; y < map.length; y++) {
+    // j draws a row across the x axis
+    for (let x = 0; x < map[y].length; x++) {
+      // alert('x:' + x + ' y:' + y + ' mapIndex:' + mapIndex);
+      let tile = new Tile({ y, x });
+      // make tile vertices available from this scope
+      // establish coordinates for the four vertices of each rhombus
+      let rhombusVertices = new RhombusVertices({tile, mapX, mapY, y, x});
+      // build the hitboxes array, but only if the tile is non-zero
+      store.dispatch("createTileHitBox", ({x, y, rhombusVertices}));
+    }
+  }
+  window.tileHitBoxes = store.state.env.tileHitBoxes;
+  // end of initial tile hitboxes creation
+  
+
+
+
   // Events
   window.addEventListener("resize", () => {
     store.state.env.winWidth = window.innerWidth;

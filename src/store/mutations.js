@@ -7,7 +7,7 @@ import deleteTile from './mutations/deleteTile';
 import tileHovered from './mutations/tileHovered';
 import tileNotHovered from './mutations/tileNotHovered';
 import saveLastHoveredTile from './mutations/saveLastHoveredTile';
-import createTileHitBoxes from './mutations/createTileHitBoxes'
+import createTileHitBox from './mutations/createTileHitBox'
 
 export default {
   addItem(state, payload) {
@@ -32,5 +32,5 @@ export default {
   tileHovered,
   tileNotHovered,
   saveLastHoveredTile,
-  createTileHitBoxes
+  createTileHitBox
 };

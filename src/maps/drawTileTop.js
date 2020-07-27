@@ -1,11 +1,11 @@
 import heightMap from '../maps/tileHeightMap';
-import map from '../maps/map0';
 import state from '../store/state'
 
 export default ( {tile, x, y }) => {
 
   let mapX = state.env.mapX;
   let mapY = state.env.mapY;
+  let map = state.env.map;
   let ctx = state.ctx;
   let c = mapY - tile.tileWidth * x * 0.5;
   let d = tile.tileWidth * 1.5;

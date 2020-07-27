@@ -16,12 +16,13 @@ export default ({tile, y, x, d, c}) => {
     || x === 0
     // if not exceeding row length
     || x > map[y].length -1
+    // if current tile's height is greater than its predecessor's
     || heightMap[y][x] > heightMap[y][x-1]
     ) {
       
-      // if current tile has a higher height,
-      // then draw under drawn elements
+      // if current tile has a higher height
       if (heightMap[y][x] <= heightMap[y][x-1]) { 
+        // draw under drawn elements
         ctx.globalCompositeOperation = 'destination-over';
       } 
       // if tile iterator is at position 0 or if on the same map, the previous tile was zero

@@ -16,6 +16,8 @@ export default ( {tile, x, y }) => {
   // draw only if current tile is non-zero
   if (map[y][x] !== 0) {
 
+    ctx.globalCompositeOperation = 'source-over';
+
     ctx.fillStyle = tile.rectColor;
     ctx.beginPath();
     ctx.moveTo(tile.tileWidth * y + tile.tileWidth + mapX + tile.tileWidth * x, tile.tileWidth + topYsegment);

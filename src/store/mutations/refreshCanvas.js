@@ -45,7 +45,7 @@ export default (state) => {
               
               // draw vertices; only available in debug mode
               if (state.debug_mode === true) {
-                drawAdditionalDetails(state.ctx, rhombusVertices);
+                drawAdditionalDetails({ctx, rhombusVertices, x, y});
               } 
             }
           }

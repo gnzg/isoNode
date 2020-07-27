@@ -9,10 +9,13 @@ export default ({tile, y, x, d, c}) => {
   let mapY = state.env.mapY;
 
   // left
-  // draw only if preceeded by an empty tile on the x axis,
-  // or if first tile on x axis
-  if (map[y][x - 1] === 0
+  if (
+    // draw only if preceeded by an empty tile on the x axis,
+    map[y][x - 1] === 0
+    // if first tile in row
     || x === 0
+    // if not exceeding row length
+    || x > map[y].length -1
     || heightMap[y][x] > heightMap[y][x-1]
     ) {
       

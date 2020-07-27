@@ -9,10 +9,8 @@ export default ({tile, y, x, d, c}) => {
     let mapY = state.env.mapY;
 
     // right
-    // draw only if suceeded by an empty tile on the y axis,
-    // or if iterating over the last y element
     if (
-        // if not last row and either one of the tiles across the x axis are zero
+        // draw if not last row and the next row's tiles are zero
         (map[y + 1] !== undefined
         && map[y + 1][x] === 0) 
         ||

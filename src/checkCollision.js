@@ -9,9 +9,7 @@ import store from './store/index';
 // receives e as the pointer move event {object}, an array of tile coordinates [{x,y}] and the store {object}
 // returns void
 export default e => {
-    
     let tileCoordinates = state.env.tileHitBoxes;
-    console.log('tileCoordinates', tileCoordinates);
     for (let i = 0; i < tileCoordinates.length; i++) {
         
         let pointA = tileCoordinates[i].pointA;
@@ -31,7 +29,7 @@ export default e => {
                 y: tileCoordinates[i].y
             };
             
-            console.log("inside tile at position", "y", tile.y, "x", tile.x);
+            // console.log("inside tile at position", "y", tile.y, "x", tile.x);
             /* pass the coordinates of the tile respective to the maps object to manipulate it further */
             
             store.dispatch("tileHovered", tile);

@@ -2,7 +2,7 @@ import heightMap from '../maps/tileHeightMap';
 import map from '../maps/map0';
 import state from '../store/state'
 
-export default ({tile, y, x}) => {
+export default ( {tile, x, y }) => {
 
   let mapX = state.env.mapX;
   let mapY = state.env.mapY;

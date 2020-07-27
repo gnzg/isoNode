@@ -1,22 +1,27 @@
 import heightMap from '../maps/tileHeightMap';
 import state from '../store/state';
 
-export default ({tile, mapX, y, x, d, c}) => {
+export default ({tile, y, x, d, c}) => {
     
     let ctx = state.ctx;
     let map = state.env.map;
+    let mapX = state.env.mapX;
+    let mapY = state.env.mapY;
 
     // right
     // draw only if suceeded by an empty tile on the y axis,
     // or if iterating over the last y element
     if (
+        // if not last row and either one of the tiles across the x axis are zero
         (map[y + 1] !== undefined
         && map[y + 1][x] === 0) 
-        || 
-        (map[y + 1] !== undefined
+        ||
+        // if not last row and next row's tiles' heightmap is not undefined and greater than current tile's height map
+        (map[y + 1] !== undefined 
         && heightMap[y + 1][x] !== undefined
         && heightMap[y + 1][x] < heightMap[y][x]) 
         ||
+        // if last row
         y === map.length-1
     ) {
         // if there is a previous row, and if the height of tile x at previous row is larger, draw the current right

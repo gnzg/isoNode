@@ -13,9 +13,12 @@ import drawRightTileSide from './drawRightTileSide';
 * @returns Object canvas
 */
 
-export default ({ mapX, mapY, y, x, tile})  => {
+export default ({ tile, x, y })  => {
 
   let map = state.env.map;
+  let mapX = state.env.mapX;
+  let mapY = state.env.mapY;
+
   // if the map is defined and the tile is non-zero, draw it
   if (
     map !== undefined &&
@@ -27,8 +30,8 @@ export default ({ mapX, mapY, y, x, tile})  => {
       let c = mapY - tile.tileWidth * x * 0.5;
       let d = tile.tileWidth * 1.5;
       
-      drawLeftTileSide({tile, mapX, y, x, d, c});
-      drawRightTileSide({tile, mapX, y, x, d, c});
+      drawLeftTileSide({tile, y, x, d, c});
+      drawRightTileSide({tile, y, x, d, c});
 
     } else if (map.length == 0) {
       console.error("Length of main map is zero!");   

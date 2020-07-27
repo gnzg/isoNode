@@ -37,9 +37,9 @@ export default (state) => {
               
               // make tile vertices available from this scope
               // establish coordinates for the four vertices of each rhombus
-              let rhombusVertices = new RhombusVertices({tile, y, x});
+              let rhombusVertices = new RhombusVertices({tile, x, y});
               
-              //drawTileLaterals({tile, x, y});
+              drawTileLaterals({tile, x, y});
               
               drawTileTop({tile, x, y});
               

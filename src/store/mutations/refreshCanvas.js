@@ -35,16 +35,15 @@ export default (state) => {
               
               let tile = new Tile({ x, y });
               
-              // make tile vertices available from this scope
-              // establish coordinates for the four vertices of each rhombus
-              let rhombusVertices = new RhombusVertices({tile, x, y});
-              
               drawTileLaterals({tile, x, y});
               
               drawTileTop({tile, x, y});
               
               // draw vertices; only available in debug mode
               if (state.debug_mode === true) {
+                // make tile vertices available from this scope
+                // establish coordinates for the four vertices of each rhombus
+                let rhombusVertices = new RhombusVertices({tile, x, y});
                 drawAdditionalDetails({ctx, rhombusVertices, x, y});
               } 
             }

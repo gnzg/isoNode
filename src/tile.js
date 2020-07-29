@@ -20,7 +20,7 @@ export default class Tile {
             
             /* size */
             
-            this.tileYoffset = this.tileWidth * tileHeightMap[this.y][this.x] * 1.25 + map[this.y][this.x]*10;
+            this.tileYoffset = this.tileWidth * tileHeightMap[this.y][this.x] * 1.25;
             this.topYfactor = this.tileWidth * this.y * 0.5;
             this.topYsegment = this.c + this.topYfactor - this.tileYoffset;
 

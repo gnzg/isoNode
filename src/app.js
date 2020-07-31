@@ -43,9 +43,9 @@ window.addEventListener("DOMContentLoaded", e => {
       e.keyCode === 87 ||       // W key
       e.keyCode === 83          // S key
       ) {
+      // Allow multiple keys to be registered, e.g. for diagonally moving the map
         store.dispatch('handleKeyDown', store.state.keyMap);
         store.dispatch("clearTileHitBoxes");
-
         // if movement takes place, clear the tile hitboxes // TODO: make prettier
         store.state.env.tileHitBoxes = [];
         
@@ -60,10 +60,11 @@ window.addEventListener("DOMContentLoaded", e => {
       e.stopImmediatePropagation();
       
       store.dispatch("createTileHitBox");
-      
-      // Allow multiple keys to be registered, e.g. for diagonally moving the map
-      let keyMapState = store.state.keyMap; // type: object
-      if (e.keyCode in store.state.keyMap) keyMapState[e.keyCode] = false;
+      // deactivate any previously pressed keys
+      let keyMapState = store.state.keyMap;
+      if (e.keyCode in store.state.keyMap) {
+        keyMapState[e.keyCode] = false;
+      }
       store.dispatch('handleKeyUp', keyMapState);
       
       //hint.hide(); // TODO

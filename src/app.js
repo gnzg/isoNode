@@ -2,8 +2,6 @@ import store from './store/index';
 import './assets/scss/styles.scss';
 import checkCollision from './checkCollision.js';
 import canvasWrapper from './components/canvasWrapper';
-import Tile from './tile';
-import RhombusVertices from './RhombusVertices';
 
 // Initialization
 window.addEventListener("DOMContentLoaded", e => {
@@ -15,29 +13,7 @@ window.addEventListener("DOMContentLoaded", e => {
   
   store.dispatch('centerCanvas');
   store.dispatch('refreshCanvas');
-  
-  
-  // draw initial tile hitboxes creation
-  // Does not yet work if moving the map
-  let map = store.state.env.map;
-  
-  for (let y = 0; y < map.length; y++) {
-    // j draws a row across the x axis
-    for (let x = 0; x < map[y].length; x++) {
-      let tile = new Tile({ y, x });
-      // make tile vertices available from this scope
-      // establish coordinates for the four vertices of each rhombus
-      let rhombusVertices = new RhombusVertices({tile, y, x});
-      // only if the tile is non-zero
-      if(map[y][x] !== 0) {
-        // build the hitboxes for the tile in question
-        store.dispatch("createTileHitBox", ({x, y, rhombusVertices}));
-      }
-    }
-  }
-  window.tileHitBoxes = store.state.env.tileHitBoxes;
-  // end of initial tile hitboxes creation
-  
+  store.dispatch("createTileHitBox");
   
   // Events
   window.addEventListener("resize", () => {
@@ -82,6 +58,8 @@ window.addEventListener("DOMContentLoaded", e => {
     
     window.addEventListener("keyup", e => {
       e.stopImmediatePropagation();
+      
+      store.dispatch("createTileHitBox");
       
       // Allow multiple keys to be registered, e.g. for diagonally moving the map
       let keyMapState = store.state.keyMap; // type: object

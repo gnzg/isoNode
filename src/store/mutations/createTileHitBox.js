@@ -1,17 +1,31 @@
-export default (state, payload) => {
-  let x = payload.x;
-  let y = payload.y;
-  let rhombusVertices = payload.rhombusVertices;
+import store from '../index';
+import RhombusVertices from '../../RhombusVertices';
+import Tile from '../../tile';
+
+export default (state) => {
   
-  console.log('X', x, 'Y', y, 'rhombusVertices', rhombusVertices);
+  // Does not yet work if moving the map
+  let map = state.env.map;
   
-  if (state.env.map[y][x] !== 0) {
-    state.env.tileHitBoxes.push({ 
-      // rhombus vertices
-      ...rhombusVertices,
-      // coordinates respective to the maps object (for moving the map)
-      x,
-      y
-    });
+  for (let y = 0; y < map.length; y++) {
+    // j draws a row across the x axis
+    for (let x = 0; x < map[y].length; x++) {
+      // only if the tile is non-zero
+      if(map[y][x] !== 0) {
+        let tile = new Tile({ x, y });
+
+        // establish coordinates for the four vertices of each rhombus
+        let rhombusVertices = new RhombusVertices({tile, x, y});
+        state.env.tileHitBoxes.push({ 
+          // rhombus vertices
+          ...rhombusVertices,
+          // coordinates respective to the maps object (for moving the map)
+          x,
+          y
+        });
+      }
+    }
+    // make tileHitBoxes available for the console
+    window.tileHitBoxes = store.state.env.tileHitBoxes;
   }
 }

@@ -1,5 +1,10 @@
-import heightMap from '../maps/tileHeightMap';
 import state from '../store/state'
+
+/**
+* @param Integer x    iterates across a map array
+* @param Integer y    iterates across a map array child's elements
+* @returns Object canvas
+*/
 
 export default ( {tile, x, y }) => {
 

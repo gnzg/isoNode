@@ -1,13 +1,15 @@
 import heightMap from '../maps/tileHeightMap';
 import state from '../store/state';
 
-export default ({tile, y, x, d, c}) => {
-
+export default ({tile, x, y}) => {
+  
   let ctx = state.ctx;
   let map = state.env.map;
   let mapX = state.env.mapX;
   let mapY = state.env.mapY;
-
+  let c = mapY - tile.tileWidth * x * 0.5;
+  let d = tile.tileWidth * 1.5;
+  
   // left
   if (
     // draw only if preceeded by an empty tile on the x axis,
@@ -45,6 +47,6 @@ export default ({tile, y, x, d, c}) => {
       ctx.closePath();
       ctx.fillStyle = tile.fillColor;
       ctx.fill();
-
+      
     }
   }

@@ -35,6 +35,7 @@
   "author": "Ilya Ginzburg",
   "license": "MIT",
   "devDependencies": {
-    "babel-plugin-transform-object-rest-spread": "^6.26.0"
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "eslint": "^7.5.0"
   }
 }

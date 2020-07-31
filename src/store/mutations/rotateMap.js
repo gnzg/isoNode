@@ -1,5 +1,4 @@
 import store from '../index';
-import { checkCollision } from '../../math.js';
 
 export default function rotateMap(state) {
   let maps = state.env.maps;

@@ -16,7 +16,6 @@ import drawRightTileSide from './drawRightTileSide';
 export default ({ tile, x, y })  => {
 
   let map = state.env.map;
-  let mapX = state.env.mapX;
   let mapY = state.env.mapY;
 
   // if the map is defined and the tile is non-zero, draw it

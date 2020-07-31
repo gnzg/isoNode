@@ -17,9 +17,6 @@ window.addEventListener("DOMContentLoaded", e => {
   store.dispatch('refreshCanvas');
   
   
-  
-  
-  
   // draw initial tile hitboxes creation
   // Does not yet work if moving the map
   let map = store.state.env.map;
@@ -40,8 +37,6 @@ window.addEventListener("DOMContentLoaded", e => {
   }
   window.tileHitBoxes = store.state.env.tileHitBoxes;
   // end of initial tile hitboxes creation
-  
-  
   
   
   // Events

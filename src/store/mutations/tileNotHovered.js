@@ -10,4 +10,4 @@ export default function tileNotHovered(state, payload) {
 
     // TODO: avoid re-drawing the entire canvas if pointer moves within hitbox
     store.dispatch('refreshCanvas');
-};
+}

@@ -11,8 +11,6 @@ export default (state) => {
   if (state.ctx) {
     let ctx = state.ctx;
     let {
-      mapX,
-      mapY,
       clearArea
     } = state.env;
     
@@ -28,7 +26,7 @@ export default (state) => {
           // logic whether to draw or not to draw shapes is defined in draw()
           
           if (
-            (debugOptions({dimension:y, position:0}) || debugOptions({dimension:y, position:1}) || debugOptions({dimension:y, position:2}))
+            (debugOptions({dimension:y, position:1}) || debugOptions({dimension:y, position:2}) || debugOptions({dimension:y, position:3}))
             //&& debugOptions({dimension:x, position:0})
             //&& debugOptions({dimension:y, position:0})
             ) {

@@ -6,7 +6,6 @@ export default ({tile, y, x, d, c}) => {
     let ctx = state.ctx;
     let map = state.env.map;
     let mapX = state.env.mapX;
-    let mapY = state.env.mapY;
 
     // right
     if (

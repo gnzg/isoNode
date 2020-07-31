@@ -1,5 +1,4 @@
 import refreshCanvas from './refreshCanvas';
-import store from '../../store/index';
 
 export default function handleKeyDown (state) {
   
@@ -7,9 +6,6 @@ export default function handleKeyDown (state) {
   // also, make sure an instance of drawFrequency is not running 
   // acceleration
   let inc = 10;
-  // save posX at beginning of event
-  let startingPosX = state.env.mapX;
-  let startingPosY = state.env.mapY;
   // if not running, initiate interval
   let drawFrequency = setInterval(() => {
     if (state.keyMap[68]) {

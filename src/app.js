@@ -45,7 +45,7 @@ window.addEventListener("DOMContentLoaded", e => {
       ) {
         store.dispatch('handleKeyDown', store.state.keyMap);
         store.dispatch("clearTileHitBoxes");
-        
+
         // if movement takes place, clear the tile hitboxes // TODO: make prettier
         store.state.env.tileHitBoxes = [];
         

@@ -23,14 +23,8 @@ export default ({tile, x, y}) => {
     ) {
       
       // if current tile has a higher height
-      if (heightMap[y][x] <= heightMap[y][x-1]) { 
         // draw under drawn elements
-        ctx.globalCompositeOperation = 'destination-over';
-      } 
-      // if tile iterator is at position 0 or if on the same map, the previous tile was zero
-      else {
         ctx.globalCompositeOperation = 'source-over';
-      }
       
       ctx.beginPath();
       

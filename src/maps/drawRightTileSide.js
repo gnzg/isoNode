@@ -18,26 +18,13 @@ export default ({tile, x, y}) => {
             ||
             // if not last row and next row's tiles' heightmap is not undefined and greater than current tile's height map
             (map[y + 1] !== undefined 
-            && heightMap[y + 1][x] !== undefined
-            && heightMap[y + 1][x] < heightMap[y][x]) 
-            ||
-            // if last row
-            y === map.length-1
-            ) {
-                // if there is a previous row, and if the height of tile x at previous row is larger, draw the current right
-                // tile side above the existing canvas
-                if ((heightMap[y - 1] !== undefined
-                    && heightMap[y][x] < heightMap[y - 1][x])
-                    //||
-                    //(heightMap[y - 1] !== undefined
-                    //    && heightMap[y][x] < heightMap[y - 1][x])
-                    )
-                    {
-                        ctx.globalCompositeOperation = 'source-over';
-                    }
-                    else {
-                        ctx.globalCompositeOperation = 'destination-over';
-                    }
+                && heightMap[y + 1][x] !== undefined
+                && heightMap[y + 1][x] < heightMap[y][x]) 
+                ||
+                // if last row
+                y === map.length-1
+                ) {
+                    ctx.globalCompositeOperation = 'source-over';
                     ctx.beginPath();
                     
                     let sideHeight = heightMap[y][x] !== 0 ? (20 / heightMap[y][x]) : 0;
@@ -55,4 +42,4 @@ export default ({tile, x, y}) => {
                     ctx.fillStyle = tile.fillColor;
                     ctx.fill();
                 }
-}
+            }

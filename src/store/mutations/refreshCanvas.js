@@ -47,6 +47,7 @@ export default (state) => {
             }
           }
         }
+        for (let i = 0; i < 3; i++) {
           for (let y = 0; y < map.length; y++) {
             // j draws a row across the x axis
             for (let x = 0; x < map[y].length; x++) {
@@ -57,6 +58,7 @@ export default (state) => {
               let tileTop = new Tile({ x, y });
               drawTileTop({tile: tileTop, x, y});
             }
+          }
         }
       }
     } else {

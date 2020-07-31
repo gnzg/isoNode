@@ -2,8 +2,6 @@ import drawTileLaterals from '../../maps/drawTileLaterals';
 import drawTileTop from '../../maps/drawTileTop';
 import Tile from '../../tile';
 import map from '../../maps/map0';
-import RhombusVertices from '../../RhombusVertices';
-import drawAdditionalDetails from '../../maps/drawOutlines';
 import debugOptions from '../../debugOptions';
 
 export default (state) => {
@@ -20,11 +18,8 @@ export default (state) => {
     if (map !== undefined) {
       
       for (let y = 0; y < map.length; y++) {
-        // j draws a row across the x axis
         for (let x = 0; x < map[y].length; x++) {
-          // draw all three visible sides of the rect aspect
-          // logic whether to draw or not to draw shapes is defined in draw()
-          
+          // debugging separate rows and/or columns
           if ((debugOptions({dimension:y, position:1})
               || debugOptions({dimension:y, position:2}) 
               || debugOptions({dimension:y, position:3})
@@ -36,27 +31,18 @@ export default (state) => {
               let tile = new Tile({ x, y });
               drawTileLaterals({tile, x, y});
               
-              
-              // draw vertices; only available in debug mode
-              if (state.debug_mode === true) {
-                // make tile vertices available from this scope
-                // establish coordinates for the four vertices of each rhombus
-                let rhombusVertices = new RhombusVertices({tile, x, y});
-                drawAdditionalDetails({ctx, rhombusVertices, x, y});
-              } 
             }
           }
         }
         for (let i = 0; i < 3; i++) {
           for (let y = 0; y < map.length; y++) {
-            // j draws a row across the x axis
             for (let x = 0; x < map[y].length; x++) {
               if (debugOptions({dimension:y, position:1}) 
               || debugOptions({dimension:y, position:2}) 
               || debugOptions({dimension:y, position:3})
               || debugOptions({dimension:y, position:4})) {              let tile = new Tile({ x, y });
               let tileTop = new Tile({ x, y });
-              drawTileTop({tile: tileTop, x, y});
+              drawTileTop({tile: tileTop, x, y, i});
             }
           }
         }

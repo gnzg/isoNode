@@ -1,5 +1,7 @@
 import state from '../store/state'
 import tileHeightMap from './tileHeightMap';
+import drawAdditionalDetails from '../maps/drawOutlines';
+import RhombusVertices from '../RhombusVertices';
 
 /**
 * @param Integer x    iterates across a map array
@@ -7,7 +9,7 @@ import tileHeightMap from './tileHeightMap';
 * @returns Object canvas
 */
 
-export default ( {tile, x, y }) => {
+export default ( {tile, x, y, i }) => {
   
   let mapX = state.env.mapX;
   let mapY = state.env.mapY;
@@ -20,14 +22,15 @@ export default ( {tile, x, y }) => {
   
   // top
   // draw only if current tile is non-zero
-  if (map[y][x] !== 0 ) {
+  // and if the tile height level corresponds to i
+  if (map[y][x] !== 0 && tileHeightMap[y][x] === i) {
     
     // determine whether the surface will be drawn above or below 
     // the present data on thecanvas
-      ctx.globalCompositeOperation = 'source-over';
-
+    ctx.globalCompositeOperation = 'source-over';
+    
     // IDEA: draw each level separately
-
+    
     ctx.fillStyle = tile.rectColor;
     ctx.beginPath();
     ctx.moveTo(tile.tileWidth * y + tile.tileWidth + mapX + tile.tileWidth * x, tile.tileWidth + topYsegment);
@@ -37,5 +40,11 @@ export default ( {tile, x, y }) => {
     ctx.closePath();
     ctx.fill();
     
+    // debug mode
+    if (state.debug_mode === true) {
+      // establish coordinates for the four vertices of each rhombus
+      let rhombusVertices = new RhombusVertices({tile, x, y});
+      drawAdditionalDetails({ctx, rhombusVertices, x, y});
+    } 
   }
 }

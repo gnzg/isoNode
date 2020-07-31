@@ -1,6 +1,7 @@
 import state from '../store/state';
 import drawLeftTileSide from './drawLeftTileSide';
 import drawRightTileSide from './drawRightTileSide';
+import tileHeightMap from './tileHeightMap';
 
 /**
 * @param Integer x    iterates across a map array
@@ -8,7 +9,7 @@ import drawRightTileSide from './drawRightTileSide';
 * @returns Object canvas
 */
 
-export default ({ tile, x, y })  => {
+export default ({ tile, x, y, i })  => {
 
   let map = state.env.map;
 
@@ -16,10 +17,10 @@ export default ({ tile, x, y })  => {
   if (
     map !== undefined &&
     map[y] !== undefined &&
-    map[y][x] !== 0
+    map[y][x] !== 0 &&
+    tileHeightMap[y][x] === i
     )
     {
-      
       drawLeftTileSide({tile, x, y});
       drawRightTileSide({tile, x, y});
 

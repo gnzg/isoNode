@@ -6,6 +6,7 @@ import state from './store/state';
 *  Virtual Tile object
 *  stores all info related to the tile object 
 */
+
 export default class Tile {
     constructor({ x, y }) {
         if (Object.keys(arguments[0]).length === 2) {
@@ -15,7 +16,7 @@ export default class Tile {
             this.c = state.env.mapY - this.tileWidth * x * 0.5;
             this.d = this.tileWidth * 1.5;
             
-            this.tileYoffset = this.tileWidth * tileHeightMap[y][x] * 1.25;
+            this.tileYoffset = this.tileWidth + tileHeightMap[y][x] * this.tileWidth / 3;
             this.topYfactor = this.tileWidth * y * 0.5;
             this.topYsegment = this.c + this.topYfactor - this.tileYoffset;
 

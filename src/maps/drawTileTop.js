@@ -12,13 +12,10 @@ import RhombusVertices from '../RhombusVertices';
 export default ( {tile, x, y, i }) => {
   
   let mapX = state.env.mapX;
-  let mapY = state.env.mapY;
   let map = state.env.map;
   let ctx = state.ctx;
-  let c = mapY - tile.tileWidth * x * 0.5;
-  let d = tile.tileWidth * 1.5;
   let topYfactor = tile.tileWidth * y * 0.5;
-  let topYsegment = c + topYfactor - tile.tileYoffset;
+  let topYsegment = tile.c + topYfactor - tile.tileYoffset;
   
   // top
   // draw only if current tile is non-zero
@@ -34,12 +31,10 @@ export default ( {tile, x, y, i }) => {
     ctx.fillStyle = tile.rectColor;
     ctx.beginPath();
 
-    let sideHeight = tileHeightMap[y][x] !== 0 ? ((tile.tileWidth / 3) * tileHeightMap[y][x]) : 0;
-
     ctx.moveTo(tile.tileWidth * y + tile.tileWidth + mapX + tile.tileWidth * x, tile.tileWidth + topYsegment);
-    ctx.lineTo(tile.tileWidth * y  + tile.tileWidth * 2 + mapX + tile.tileWidth * x, d + topYsegment);
+    ctx.lineTo(tile.tileWidth * y  + tile.tileWidth * 2 + mapX + tile.tileWidth * x, tile.d + topYsegment);
     ctx.lineTo(tile.tileWidth * y  + tile.tileWidth + mapX + tile.tileWidth * x, tile.tileWidth * 2 + topYsegment);
-    ctx.lineTo(tile.tileWidth * y  + tile.tileWidth - tile.tileWidth + mapX + tile.tileWidth * x, d + topYsegment);
+    ctx.lineTo(tile.tileWidth * y  + tile.tileWidth - tile.tileWidth + mapX + tile.tileWidth * x, tile.d + topYsegment);
     ctx.closePath();
     ctx.fill();
     

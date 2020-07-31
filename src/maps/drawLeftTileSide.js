@@ -6,9 +6,6 @@ export default ({tile, x, y}) => {
   let ctx = state.ctx;
   let map = state.env.map;
   let mapX = state.env.mapX;
-  let mapY = state.env.mapY;
-  let c = mapY - tile.tileWidth * x * 0.5;
-  let d = tile.tileWidth * 1.5;
   
   // left
   if (
@@ -31,13 +28,13 @@ export default ({tile, x, y}) => {
       let sideHeight = tileHeightMap[y][x] !== 0 ? ((tile.tileWidth / 3) * tileHeightMap[y][x]) : 0;
       
       // upper left corner of tile
-      ctx.moveTo(tile.tileWidth * y  + mapX + tile.tileWidth * x, c + tile.tileWidth * y + d - y * tile.tileWidth * 0.5 - tile.tileYoffset );
+      ctx.moveTo(tile.tileWidth * y  + mapX + tile.tileWidth * x, tile.c + tile.tileWidth * y + tile.d - y * tile.tileWidth * 0.5 - tile.tileYoffset );
       // lower left corner of tile
-      ctx.lineTo(tile.tileWidth * y  + mapX + tile.tileWidth * x, c + tile.tileWidth * y + tile.tileWidth + tile.tileWidth * 1.75 - y * tile.tileWidth * 0.5 - tile.tileYoffset - sideHeight );
+      ctx.lineTo(tile.tileWidth * y  + mapX + tile.tileWidth * x, tile.c + tile.tileWidth * y + tile.tileWidth + tile.tileWidth * 1.75 - y * tile.tileWidth * 0.5 - tile.tileYoffset - sideHeight );
       // lower right corner of tile
-      ctx.lineTo(tile.tileWidth * y  + mapX + tile.tileWidth * x + tile.tileWidth, c + tile.tileWidth * y + tile.tileWidth + tile.tileWidth * 1.75 + tile.tileWidth * 0.5 - y* tile.tileWidth * 0.5 - tile.tileYoffset  - sideHeight);
+      ctx.lineTo(tile.tileWidth * y  + mapX + tile.tileWidth * x + tile.tileWidth, tile.c + tile.tileWidth * y + tile.tileWidth + tile.tileWidth * 1.75 + tile.tileWidth * 0.5 - y* tile.tileWidth * 0.5 - tile.tileYoffset  - sideHeight);
       // upper right corner of tile
-      ctx.lineTo(tile.tileWidth * y  + mapX + tile.tileWidth * x + tile.tileWidth, c + tile.tileWidth * y + d + tile.tileWidth * 0.5 - y * tile.tileWidth * 0.5 - tile.tileYoffset);
+      ctx.lineTo(tile.tileWidth * y  + mapX + tile.tileWidth * x + tile.tileWidth, tile.c + tile.tileWidth * y + tile.d + tile.tileWidth * 0.5 - y * tile.tileWidth * 0.5 - tile.tileYoffset);
       
       ctx.closePath();
       ctx.fillStyle = tile.fillColor;

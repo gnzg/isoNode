@@ -25,17 +25,17 @@ export default (state) => {
           // draw all three visible sides of the rect aspect
           // logic whether to draw or not to draw shapes is defined in draw()
           
-          if (
-            (debugOptions({dimension:y, position:1}) || debugOptions({dimension:y, position:2}) || debugOptions({dimension:y, position:3})  || debugOptions({dimension:y, position:4}))
+          if ((debugOptions({dimension:y, position:1})
+              || debugOptions({dimension:y, position:2}) 
+              || debugOptions({dimension:y, position:3})
+              || debugOptions({dimension:y, position:4}))
             //&& debugOptions({dimension:x, position:0})
             //&& debugOptions({dimension:y, position:0})
             ) {
               
               let tile = new Tile({ x, y });
-              
               drawTileLaterals({tile, x, y});
               
-              drawTileTop({tile, x, y});
               
               // draw vertices; only available in debug mode
               if (state.debug_mode === true) {
@@ -47,11 +47,25 @@ export default (state) => {
             }
           }
         }
-      } else {
-        console.error("no maps object found!");
+        for (let i = 0; i < 3; i++) {
+          for (let y = 0; y < map.length; y++) {
+            // j draws a row across the x axis
+            for (let x = 0; x < map[y].length; x++) {
+              if (debugOptions({dimension:y, position:1}) 
+              || debugOptions({dimension:y, position:2}) 
+              || debugOptions({dimension:y, position:3})
+              || debugOptions({dimension:y, position:4})) {              let tile = new Tile({ x, y });
+              let tile = new Tile({ x, y });
+              drawTileTop({tile, x, y});
+            }
+          }
+        }
       }
-    }
-    else {
-      console.error('No ctx object found!');
+    } else {
+      console.error("no maps object found!");
     }
   }
+  else {
+    console.error('No ctx object found!');
+  }
+}

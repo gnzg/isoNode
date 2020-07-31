@@ -1,4 +1,5 @@
 import state from '../store/state'
+import tileHeightMap from './tileHeightMap';
 
 /**
 * @param Integer x    iterates across a map array
@@ -7,7 +8,7 @@ import state from '../store/state'
 */
 
 export default ( {tile, x, y }) => {
-
+  
   let mapX = state.env.mapX;
   let mapY = state.env.mapY;
   let map = state.env.map;
@@ -19,9 +20,13 @@ export default ( {tile, x, y }) => {
   
   // top
   // draw only if current tile is non-zero
-  if (map[y][x] !== 0) {
+  if (map[y][x] !== 0 ) {
+    
+    // determine whether the surface will be drawn above or below 
+    // the present data on thecanvas
+      ctx.globalCompositeOperation = 'source-over';
 
-    ctx.globalCompositeOperation = 'source-over';
+    // IDEA: draw each level separately
 
     ctx.fillStyle = tile.rectColor;
     ctx.beginPath();

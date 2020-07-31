@@ -20,8 +20,8 @@ export default ({tile, x, y}) => {
     ) {
       
       // if current tile has a higher height
-        // draw under drawn elements
-        ctx.globalCompositeOperation = 'source-over';
+      // draw under drawn elements
+      ctx.globalCompositeOperation = 'source-over';
       
       ctx.beginPath();
       

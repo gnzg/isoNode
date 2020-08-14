@@ -5,7 +5,7 @@ export default class PubSub {
   subscribe(event, callback) {
     let self = this;
     
-    if(!self.subscribers.hasOwnProperty(event)) {
+    if(!Object.prototype.hasOwnProperty.call(self.subscribers, event)) {
       self.subscribers[event] = [];
     }
 
@@ -14,7 +14,7 @@ export default class PubSub {
   publish(event, data = {}) {
     let self = this;
 
-    if(!self.subscribers.hasOwnProperty(event)) {
+    if(!Object.prototype.hasOwnProperty.call(self.subscribers, event)) {
       return [];
     }
 

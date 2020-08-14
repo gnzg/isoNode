@@ -8,10 +8,10 @@ export default class Store {
     self.state = {};
     self.status = {};
     self.events = new PubSub();
-    if(params.hasOwnProperty('actions')) {
+    if(Object.prototype.hasOwnProperty.call(params, 'actions')) {
       self.actions = params.actions;
     }
-    if(params.hasOwnProperty('mutations')) {
+    if(Object.prototype.hasOwnProperty.call(params, 'mutations')) {
       self.mutations = params.mutations;
     }
     

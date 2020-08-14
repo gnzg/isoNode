@@ -9,7 +9,7 @@ window.addEventListener("DOMContentLoaded", e => {
   // prevent event bubbling
   e.stopImmediatePropagation();
   
-  const canvasWrapperInstance = new canvasWrapper('main');
+  new canvasWrapper('main');
   
   store.dispatch('centerCanvas');
   store.dispatch('refreshCanvas');

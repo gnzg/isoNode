@@ -26,4 +26,4 @@ export default function ({tile, y, x}) {
     y: tile.topYsegment + tile.tileWidth
   };
   // console.log(this.pointA, this.pointB, this.pointC, this.pointD);
-};
+}

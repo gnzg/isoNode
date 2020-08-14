@@ -10,7 +10,7 @@ export default class Component {
       props.store.events.subscribe('stateChange', () => self.render());
     }
 
-    if (props.hasOwnProperty('element')) {
+    if (Object.prototype.hasOwnProperty.call(props, 'element')) {
       this.element = props.element;
     }
   }

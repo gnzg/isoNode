@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "An isometric tile engine realized via the Canvas API",
   "main": "index.js",
-  "dependencies": {
+  "devDependencies": {
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "eslint": "^7.6.0",
     "autoprefixer": "^9.6.1",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
@@ -28,14 +30,12 @@
     "webpack-dev-server": "^3.1.4"
   },
   "scripts": {
-    "start": "webpack-dev-server --config ./webpack.config.js && npm run watch",
+    "serve": "webpack-dev-server --config ./webpack.config.js && npm run watch",
     "watch": "webpack --watch"
+  },
+  "dependencies": {
   },
   "keywords": [],
   "author": "Ilya Ginzburg",
-  "license": "MIT",
-  "devDependencies": {
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "eslint": "^7.5.0"
-  }
+  "license": "MIT"
 }

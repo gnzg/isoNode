@@ -27,7 +27,8 @@ export default (state) => {
             //&& debugOptions({dimension:x, position:0})
             //&& debugOptions({dimension:y, position:0})
             ) {
-              
+              // draw first z level first, then the next one and so on
+              // based on z-height
               let tile = new Tile({ x, y });
               drawTileLaterals({tile, x, y, i});
               drawTileTop({tile, x, y, i});

@@ -18,6 +18,7 @@ export default ({ tile, x, y, i })  => {
     map !== undefined &&
     map[y] !== undefined &&
     map[y][x] !== 0 &&
+    // draw only the tiles correspond to the current height value i
     tileHeightMap[y][x] === i
     )
     {

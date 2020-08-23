@@ -31,6 +31,7 @@ export default ( {tile, x, y, i }) => {
     ctx.fillStyle = tile.rectColor;
     ctx.beginPath();
 
+      // upper left corner of tile
     ctx.moveTo(tile.tileWidth * y + tile.tileWidth + mapX + tile.tileWidth * x, tile.tileWidth + topYsegment);
     ctx.lineTo(tile.tileWidth * y  + tile.tileWidth * 2 + mapX + tile.tileWidth * x, tile.d + topYsegment);
     ctx.lineTo(tile.tileWidth * y  + tile.tileWidth + mapX + tile.tileWidth * x, tile.tileWidth * 2 + topYsegment);

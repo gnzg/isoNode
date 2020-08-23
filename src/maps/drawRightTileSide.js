@@ -28,8 +28,7 @@ export default ({tile, x, y}) => {
       
       ctx.beginPath();
       
-      let sideHeight = tileHeightMap[y][x] !== 0 ? ((tile.tileWidth / 3) * tileHeightMap[y][x]) : 0;
-      
+      let sideHeight = tileHeightMap[y][x] === 0 ? 0 : ((tileHeightMap[y][x]+1) / 4) * tile.tileWidth;
       // upper left corner of tile
       ctx.moveTo(tile.tileWidth * y + mapX + tile.tileWidth * x + tile.tileWidth * 2, tile.c + tile.tileWidth * y - y * tile.tileWidth * 0.5 - tile.tileYoffset + tile.d);
       // lower left corner of tile

@@ -16,7 +16,8 @@ export default class Tile {
             this.c = state.env.mapY - this.tileWidth * x * 0.5;
             this.d = this.tileWidth * 1.5;
             
-            this.tileYoffset = this.tileWidth + tileHeightMap[y][x] * this.tileWidth / 3;
+            // every height degree is one quarter of the tile's own height
+            this.tileYoffset = this.tileWidth + tileHeightMap[y][x] * this.tileWidth / 4;
             this.topYfactor = this.tileWidth * y * 0.5;
             this.topYsegment = this.c + this.topYfactor - this.tileYoffset;
 

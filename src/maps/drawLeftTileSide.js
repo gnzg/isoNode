@@ -1,8 +1,7 @@
 import tileHeightMap from '../maps/tileHeightMap';
 import state from '../store/state';
 
-export default ({tile, x, y, i}) => {
-  
+export default ({tile, x, y}) => {
   let ctx = state.ctx;
   let map = state.env.map;
   let mapX = state.env.mapX;
@@ -25,8 +24,8 @@ export default ({tile, x, y, i}) => {
       
       ctx.beginPath();
       
-      let sideHeight = tileHeightMap[y][x] !== 0 ? ((tile.tileWidth / 3) * tileHeightMap[y][x]) : 0;
-      
+      let sideHeight = tileHeightMap[y][x] === 0 ? 0 : ((tileHeightMap[y][x]+1) / 4) * tile.tileWidth;
+
       // upper left corner of tile
       ctx.moveTo(tile.tileWidth * y + mapX + tile.tileWidth * x, tile.c + tile.tileWidth * y - y * tile.tileWidth * 0.5 - tile.tileYoffset + tile.d);
       // lower left corner of tile

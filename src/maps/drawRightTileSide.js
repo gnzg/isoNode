@@ -9,9 +9,6 @@ export default ({tile, x, y}) => {
   
   // right
   if (
-    // draw only if succeeded by an empty tile on the y axis,
-    map[y+1][x] === 0
-    ||
     // draw if not last row and the next row's tiles are zero
     (map[y + 1] !== undefined
     && map[y + 1][x] === 0) 

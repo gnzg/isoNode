@@ -21,17 +21,14 @@ export default ({tile, x, y}) => {
       // if current tile has a higher height
       // draw under drawn elements
       ctx.globalCompositeOperation = 'source-over';
-      
       ctx.beginPath();
       
-      let sideHeight = tileHeightMap[y][x] === 0 ? 0 : ((tileHeightMap[y][x]+1) / 4) * tile.tileWidth;
-
       // upper left corner of tile
       ctx.moveTo(tile.tileWidth * y + mapX + tile.tileWidth * x, tile.c + tile.tileWidth * y - y * tile.tileWidth * 0.5 - tile.tileYoffset + tile.d);
       // lower left corner of tile
-      ctx.lineTo(tile.tileWidth * y + mapX + tile.tileWidth * x, tile.c + tile.tileWidth * y + tile.tileWidth + tile.tileWidth * 1.75 - y * tile.tileWidth * 0.5 - tile.tileYoffset - sideHeight);
+      ctx.lineTo(tile.tileWidth * y + mapX + tile.tileWidth * x, tile.c + tile.tileWidth * y + tile.tileWidth + tile.tileWidth * 1.75 - y * tile.tileWidth * 0.5 - tile.tileYoffset - /* WIP */ tile.tileWidth);
       // lower right corner of tile
-      ctx.lineTo(tile.tileWidth * y + mapX + tile.tileWidth * x + tile.tileWidth, tile.c + tile.tileWidth * y + tile.tileWidth + tile.tileWidth * 1.75 + tile.tileWidth * 0.5 - y* tile.tileWidth * 0.5 - tile.tileYoffset  - sideHeight);
+      ctx.lineTo(tile.tileWidth * y + mapX + tile.tileWidth * x + tile.tileWidth, tile.c + tile.tileWidth * y + tile.tileWidth + tile.tileWidth * 1.75 + tile.tileWidth * 0.5 - y* tile.tileWidth * 0.5 - tile.tileYoffset - /* WIP */ tile.tileWidth);
       // upper right corner of tile
       ctx.lineTo(tile.tileWidth * y + mapX + tile.tileWidth * x + tile.tileWidth, tile.c + tile.tileWidth * y + tile.d + tile.tileWidth * 0.5 - y * tile.tileWidth * 0.5 - tile.tileYoffset);
       

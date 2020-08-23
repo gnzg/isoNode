@@ -16,7 +16,7 @@ export default ({tile, x, y}) => {
     // if not last row and next row's tiles' heightmap is not undefined and greater than current tile's height map
     (map[y + 1] !== undefined 
     && tileHeightMap[y + 1][x] !== undefined
-    && tileHeightMap[y + 1][x] < tileHeightMap[y][x]) 
+    && tileHeightMap[y + 1][x] < tileHeightMap[y][x])
     ||
     // if last row
     y === map.length-1
@@ -25,13 +25,12 @@ export default ({tile, x, y}) => {
       
       ctx.beginPath();
       
-      let sideHeight = tileHeightMap[y][x] === 0 ? 0 : ((tileHeightMap[y][x]+1) / 4) * tile.tileWidth;
       // upper left corner of tile
       ctx.moveTo(tile.tileWidth * y + mapX + tile.tileWidth * x + tile.tileWidth * 2, tile.c + tile.tileWidth * y - y * tile.tileWidth * 0.5 - tile.tileYoffset + tile.d);
       // lower left corner of tile
-      ctx.lineTo(tile.tileWidth * y + mapX + tile.tileWidth * x + tile.tileWidth * 2, tile.c + tile.tileWidth * y + tile.tileWidth + tile.tileWidth * 1.75 - y * tile.tileWidth * 0.5 - tile.tileYoffset - sideHeight);
+      ctx.lineTo(tile.tileWidth * y + mapX + tile.tileWidth * x + tile.tileWidth * 2, tile.c + tile.tileWidth * y + tile.tileWidth + tile.tileWidth * 1.75 - y * tile.tileWidth * 0.5 - tile.tileYoffset);
       // lower right corner of tile
-      ctx.lineTo(tile.tileWidth * y + mapX + tile.tileWidth * x + tile.tileWidth, tile.tileWidth * y + tile.tileWidth + tile.tileWidth * 1.75 + tile.tileWidth * 0.5 - y * tile.tileWidth * 0.5 - tile.tileYoffset + tile.c - sideHeight);
+      ctx.lineTo(tile.tileWidth * y + mapX + tile.tileWidth * x + tile.tileWidth, tile.tileWidth * y + tile.tileWidth + tile.tileWidth * 1.75 + tile.tileWidth * 0.5 - y * tile.tileWidth * 0.5 - tile.tileYoffset + tile.c);
       // upper right corner of tile
       ctx.lineTo(tile.tileWidth * y + mapX + tile.tileWidth * x + tile.tileWidth, tile.tileWidth * y + tile.tileWidth * 0.5 - y * tile.tileWidth * 0.5 - tile.tileYoffset + tile.c + tile.d);
       

@@ -28,9 +28,9 @@ export default ({tile, x, y}) => {
       // upper left corner of tile
       ctx.moveTo(tile.tileWidth * y + mapX + tile.tileWidth * x + tile.tileWidth * 2, tile.c + tile.tileWidth * y - y * tile.tileWidth * 0.5 - tile.tileYoffset + tile.d);
       // lower left corner of tile
-      ctx.lineTo(tile.tileWidth * y + mapX + tile.tileWidth * x + tile.tileWidth * 2, tile.c + tile.tileWidth * y + tile.tileWidth + tile.tileWidth * 1.75 - y * tile.tileWidth * 0.5 - tile.tileYoffset);
+      ctx.lineTo(tile.tileWidth * y + mapX + tile.tileWidth * x + tile.tileWidth * 2, tile.c + tile.tileWidth * y + tile.tileWidth + tile.tileWidth * 1.75 - y * tile.tileWidth * 0.5 - tile.tileYoffset /* WIP */ - tile.tileWidth);
       // lower right corner of tile
-      ctx.lineTo(tile.tileWidth * y + mapX + tile.tileWidth * x + tile.tileWidth, tile.tileWidth * y + tile.tileWidth + tile.tileWidth * 1.75 + tile.tileWidth * 0.5 - y * tile.tileWidth * 0.5 - tile.tileYoffset + tile.c);
+      ctx.lineTo(tile.tileWidth * y + mapX + tile.tileWidth * x + tile.tileWidth, tile.tileWidth * y + tile.tileWidth + tile.tileWidth * 1.75 + tile.tileWidth * 0.5 - y * tile.tileWidth * 0.5 - tile.tileYoffset + tile.c /* WIP */ - tile.tileWidth);
       // upper right corner of tile
       ctx.lineTo(tile.tileWidth * y + mapX + tile.tileWidth * x + tile.tileWidth, tile.tileWidth * y + tile.tileWidth * 0.5 - y * tile.tileWidth * 0.5 - tile.tileYoffset + tile.c + tile.d);
       

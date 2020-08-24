@@ -1,9 +1,10 @@
 const webpack = require('webpack');
-const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const devMode = true;
+/* Create a separate object, e.g. NODE_ENV and populate it only on development */
+let NODE_ENV = 'development';
 
 module.exports = {
   mode: 'development',

@@ -30,8 +30,10 @@
     "webpack-dev-server": "^3.1.4"
   },
   "scripts": {
-    "serve": "webpack-dev-server --config ./webpack.config.js && npm run watch",
-    "watch": "webpack --watch"
+    "start": "webpack-dev-server --mode=development --hot --config ./webpack.config.js",
+    "watch": "webpack --watch",
+    "build": "webpack --mode=production",
+    "lint": "eslint ./src/**/*.js"
   },
   "dependencies": {
   },

@@ -9,7 +9,7 @@ import tileHeightMap from './tileHeightMap';
 * @returns Object canvas
 */
 
-export default ({ tile, x, y, i })  => {
+export default ({ tile, x, y, z })  => {
 
   let map = state.env.map;
 
@@ -19,11 +19,11 @@ export default ({ tile, x, y, i })  => {
     map[y] !== undefined &&
     map[y][x] !== 0 &&
     // draw only the tiles correspond to the current height value i
-    tileHeightMap[y][x] === i
+    tileHeightMap[y][x] === z
     )
     {
-      drawLeftTileSide({tile, x, y});
-      drawRightTileSide({tile, x, y});
+      drawLeftTileSide({tile, x, y, z});
+      drawRightTileSide({tile, x, y, z});
 
     } else if (map.length == 0) {
       console.error("Length of main map is zero!");   

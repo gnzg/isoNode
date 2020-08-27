@@ -1,7 +1,7 @@
 import tileHeightMap from '../maps/tileHeightMap';
 import state from '../store/state';
 
-export default ({tile, x, y}) => {
+export default ({tile, x, y, z}) => {
   
   let ctx = state.ctx;
   let map = state.env.map;
@@ -24,8 +24,10 @@ export default ({tile, x, y}) => {
       ctx.globalCompositeOperation = 'source-over';
       
       ctx.beginPath();
+
+      let zMultiplier = z === 0 ? 0 : z-1;
       let topHalf = tile.c + tile.tileWidth * y - y * tile.tileWidth * 0.5 - tile.tileYoffset + tile.d;
-      let bottomHalf = tile.c + tile.tileWidth * y - y * tile.tileWidth * 0.5 - tile.tileYoffset + tile.tileWidth * 1.75;
+      let bottomHalf = tile.c + tile.tileWidth * y - y * tile.tileWidth * 0.5 - tile.tileYoffset + tile.tileWidth * 1.75 + zMultiplier * (tile.tileWidth / 4);
       
       // upper left corner of tile
       ctx.moveTo(tile.tileWidth * y + mapX + tile.tileWidth * x + tile.tileWidth * 2, topHalf);

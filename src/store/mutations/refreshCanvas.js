@@ -22,8 +22,7 @@ export default (state) => {
           for (let x = 0; x < map[y].length; x++) {
             // draw first z level first, then the next one and so on
             // based on z-height
-            let tile = new Tile({ x, y });
-            drawTileLaterals({tile, x, y, i});
+            drawTileLaterals({tile: new Tile({ x, y }), x, y, z:i});
             drawTileTop({tile: new Tile({ x, y }), x, y, i});
           }
         }

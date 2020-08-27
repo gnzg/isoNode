@@ -1,7 +1,7 @@
 import tileHeightMap from '../maps/tileHeightMap';
 import state from '../store/state';
 
-export default ({tile, x, y}) => {
+export default ({tile, x, y, z}) => {
   let ctx = state.ctx;
   let map = state.env.map;
   let mapX = state.env.mapX;

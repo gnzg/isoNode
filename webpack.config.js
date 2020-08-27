@@ -4,11 +4,10 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const devMode = true;
 /* Create a separate object, e.g. NODE_ENV and populate it only on development */
-let NODE_ENV = 'development';
 
 module.exports = {
   mode: 'development',
-  devtool: 'cheap-source-map',
+  devtool: 'source-map',
   entry: './src/app.js',
   module: {
     rules: [

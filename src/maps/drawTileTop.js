@@ -9,7 +9,7 @@ import RhombusVertices from '../RhombusVertices';
 * @returns Object canvas
 */
 
-export default ( {tile, x, y, i }) => {
+export default ( {tile, x, y, z }) => {
   
   let mapX = state.env.mapX;
   let map = state.env.map;
@@ -19,8 +19,8 @@ export default ( {tile, x, y, i }) => {
   
   // top
   // draw only if current tile is non-zero
-  // and if the tile height level corresponds to i
-  if (map[y][x] !== 0 && tileHeightMap[y][x] === i) {
+  // and if the tile height level corresponds to z
+  if (map[y][x] !== 0 && tileHeightMap[y][x] === z) {
     
     // determine whether the surface will be drawn above or below 
     // the present data on thecanvas

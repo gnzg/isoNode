@@ -17,13 +17,13 @@ export default (state) => {
     
     
     if (map !== undefined) {
-      for (let i = 0; i < state.maxTileHeight; i++) {
-        for (let y = 0; y < map.length; y++) {
-          for (let x = 0; x < map[y].length; x++) {
+      for (let y = 0; y < map.length; y++) {
+        for (let i = 0; i < state.maxTileHeight; i++) {
+        for (let x = 0; x < map[y].length; x++) {
             // draw first z level first, then the next one and so on
             // based on z-height
-            drawTileLaterals({tile: new Tile({ x, y }), x, y, z:i});
-            drawTileTop({tile: new Tile({ x, y }), x, y, i});
+            drawTileLaterals({ tile: new Tile({ x, y }), x, y, z:i });
+            drawTileTop({ tile: new Tile({ x, y }), x, y, z:i });
           }
         }
       }

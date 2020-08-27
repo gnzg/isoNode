@@ -24,16 +24,17 @@ export default ({tile, x, y}) => {
       ctx.globalCompositeOperation = 'source-over';
       
       ctx.beginPath();
-      let pos1 = tile.tileWidth * y * 1.75 - y * tile.tileWidth * 0.5 + tile.c - tile.tileYoffset;
+      let topHalf = tile.c + tile.tileWidth * y - y * tile.tileWidth * 0.5 - tile.tileYoffset + tile.d;
+      let bottomHalf = tile.c + tile.tileWidth * y - y * tile.tileWidth * 0.5 - tile.tileYoffset + tile.tileWidth * 1.75;
       
       // upper left corner of tile
-      ctx.moveTo(tile.tileWidth * y + mapX + tile.tileWidth * x + tile.tileWidth * 2, tile.c + tile.tileWidth * y - y * tile.tileWidth * 0.5 - tile.tileYoffset + tile.d);
+      ctx.moveTo(tile.tileWidth * y + mapX + tile.tileWidth * x + tile.tileWidth * 2, topHalf);
       // lower left corner of tile
-      ctx.lineTo(tile.tileWidth * y + mapX + tile.tileWidth * x + tile.tileWidth * 2, pos1);
+      ctx.lineTo(tile.tileWidth * y + mapX + tile.tileWidth * x + tile.tileWidth * 2, bottomHalf);
       // lower right corner of tile
-      ctx.lineTo(tile.tileWidth * y + mapX + tile.tileWidth * x + tile.tileWidth, pos1 + tile.tileWidth * 0.5);
+      ctx.lineTo(tile.tileWidth * y + mapX + tile.tileWidth * x + tile.tileWidth, bottomHalf + tile.tileWidth * 0.5);
       // upper right corner of tile
-      ctx.lineTo(tile.tileWidth * y + mapX + tile.tileWidth * x + tile.tileWidth, tile.tileWidth * y + tile.tileWidth * 0.5 - y * tile.tileWidth * 0.5 - tile.tileYoffset + tile.c + tile.d);
+      ctx.lineTo(tile.tileWidth * y + mapX + tile.tileWidth * x + tile.tileWidth, topHalf + tile.tileWidth * 0.5);
       
       ctx.closePath();
       ctx.fillStyle = tile.fillColor;

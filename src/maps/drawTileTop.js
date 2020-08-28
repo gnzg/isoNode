@@ -9,7 +9,7 @@ import RhombusVertices from '../RhombusVertices';
 * @returns Object canvas
 */
 
-export default ( {tile, x, y, z }) => {
+export default ({ tile, x, y, z }) => {
   
   let mapX = state.env.mapX;
   let map = state.env.map;

@@ -23,14 +23,19 @@ export default ({tile, x, y, z}) => {
       ctx.globalCompositeOperation = 'source-over';
       ctx.beginPath();
       
+      let zMultiplier = z === 0 ? 0 : z-1;
+      let topHalf = tile.c + tile.tileWidth * y - y * tile.tileWidth * 0.5 - tile.tileYoffset + tile.d;
+      let bottomHalf = tile.c + tile.tileWidth * y - y * tile.tileWidth * 0.5 - tile.tileYoffset + tile.tileWidth * 1.75 + zMultiplier * (tile.tileWidth / 4);
+      
+
       // upper left corner of tile
-      ctx.moveTo(tile.tileWidth * y + mapX + tile.tileWidth * x, tile.c + tile.tileWidth * y - y * tile.tileWidth * 0.5 - tile.tileYoffset + tile.d);
+      ctx.moveTo(tile.tileWidth * y + mapX + tile.tileWidth * x, topHalf);
       // lower left corner of tile
-      ctx.lineTo(tile.tileWidth * y + mapX + tile.tileWidth * x, tile.c + tile.tileWidth * y + tile.tileWidth + tile.tileWidth * 1.75 - y * tile.tileWidth * 0.5 - tile.tileYoffset - /* WIP */ tile.tileWidth);
+      ctx.lineTo(tile.tileWidth * y + mapX + tile.tileWidth * x, bottomHalf);
       // lower right corner of tile
-      ctx.lineTo(tile.tileWidth * y + mapX + tile.tileWidth * x + tile.tileWidth, tile.c + tile.tileWidth * y + tile.tileWidth + tile.tileWidth * 1.75 + tile.tileWidth * 0.5 - y* tile.tileWidth * 0.5 - tile.tileYoffset - /* WIP */ tile.tileWidth);
+      ctx.lineTo(tile.tileWidth * y + mapX + tile.tileWidth * x + tile.tileWidth, bottomHalf + tile.tileWidth * 0.5);
       // upper right corner of tile
-      ctx.lineTo(tile.tileWidth * y + mapX + tile.tileWidth * x + tile.tileWidth, tile.c + tile.tileWidth * y + tile.d + tile.tileWidth * 0.5 - y * tile.tileWidth * 0.5 - tile.tileYoffset);
+      ctx.lineTo(tile.tileWidth * y + mapX + tile.tileWidth * x + tile.tileWidth, topHalf);
       
       ctx.closePath();
       ctx.fillStyle = tile.fillColor;

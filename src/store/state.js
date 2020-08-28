@@ -4,7 +4,7 @@ export default {
   ctx: document.querySelector('#main') ? document.querySelector('#main').getContext('2d') : () => { console.error('no canvas context found!' ); },
   cooldown: false,
   debug_mode: true,
-  maxTileHeight: 4,
+  maxTileHeight: 32,
   env: {
     // @param Array; main map
     map,

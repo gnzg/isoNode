@@ -43,7 +43,7 @@ If running into ambigious compilation errors, first try to rebuuld node-sass via
 
 ### Debug mode
 
-Working on the map in debug mode is possible by setting the debug_mode property in the global state object to true, or toggling it via the browser console via `window.store.dispatch("toggleDebugMode");`
+Working on the map in debug mode is possible by setting the `debug_mode` property in the global state object to true, or toggling it in the browser console via `window.store.dispatch("toggleDebugMode");`
 
 ### License
 

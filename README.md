@@ -1,5 +1,8 @@
 # IsoNode
 
+[![GitHub release](https://img.shields.io/github/v/tag/gnzg/isonode)](https://github.com/gnzg/isoNode/releases)
+[![GitHub license](https://img.shields.io/github/license/gnzg/isonode)](https://github.com/gnzg/isoNode/blob/master/LICENSE)
+
 ## Table of contents
 * [Introduction](#introduction)
 * [Technical details](#technical-details)

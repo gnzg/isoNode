@@ -9,21 +9,21 @@ export default function handleKeyDown (state) {
   // if not running, initiate interval
   let drawFrequency = setInterval(() => {
     
-    if (state.keyMap[68]) {
+    if (state.keyMap["ArrowRight"]) {
       state.env.mapX += inc;
     }
-    else if (state.keyMap[65]) {
+    else if (state.keyMap["ArrowLeft"]) {
       state.env.mapX -= inc;
     }
-    if (state.keyMap[87]) {
+    if (state.keyMap["ArrowUp"]) {
       state.env.mapY -= inc;
     }
-    else if (state.keyMap[83]) {
+    else if (state.keyMap["ArrowDown"]) {
       state.env.mapY += inc;
     }
     
-    if (!state.keyMap[68] && !state.keyMap[65] &&
-      !state.keyMap[87] && !state.keyMap[83]) {
+    if (!state.keyMap["ArrowLeft"] && !state.keyMap["ArrowRight"] &&
+      !state.keyMap["ArrowUp"] && !state.keyMap["ArrowDown"]) {
         clearInterval(drawFrequency);
       }
       refreshCanvas(state);

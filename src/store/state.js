@@ -51,14 +51,14 @@ export default {
   misc: [],
   // save a map of pressed keys to allow key combinations
   keyMap: { 
-    68: false,
-    39: false,
-    65: false,
-    37: false,
-    83: false,
-    40: false,
-    87: false,
-    38: false,
-    82: false
+    w: false,
+    a: false,
+    s: false,
+    d: false,
+    ArrowUp: false,
+    ArrowDown: false,
+    ArrowLeft: false,
+    ArrowRight: false,
+    " ": false
   }
 };

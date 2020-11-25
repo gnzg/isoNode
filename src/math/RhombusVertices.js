@@ -1,4 +1,4 @@
-import state from './store/state';
+import state from '../store/state';
 
 // RhombusVertrices constructor
 export default function ({tile, y, x}) {

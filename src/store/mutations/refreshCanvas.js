@@ -1,8 +1,8 @@
 import drawTileLaterals from '../../maps/drawTileLaterals';
 import drawTileTop from '../../maps/drawTileTop';
-import Tile from '../../tile';
+import Tile from '../../atoms/tile';
 import map from '../../maps/map0';
-import debugOptions from '../../debugOptions';
+// import debugOptions from '../../debugOptions';
 
 export default (state) => {
   

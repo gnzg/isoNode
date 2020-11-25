@@ -1,7 +1,7 @@
 import state from '../store/state'
 import tileHeightMap from './tileHeightMap';
 import drawAdditionalDetails from '../maps/drawOutlines';
-import RhombusVertices from '../RhombusVertices';
+import RhombusVertices from '../math/RhombusVertices';
 
 /**
 * @param Integer x    iterates across a map array

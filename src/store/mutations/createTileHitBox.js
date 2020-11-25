@@ -1,6 +1,6 @@
 import store from '../index';
-import RhombusVertices from '../../RhombusVertices';
-import Tile from '../../tile';
+import RhombusVertices from '../../math/RhombusVertices';
+import Tile from '../../atoms/tile';
 
 export default (state) => {
   
@@ -8,7 +8,7 @@ export default (state) => {
   let map = state.env.map;
   
   for (let y = 0; y < map.length; y++) {
-    // j draws a row across the x axis
+    // j draws a row across the x eaxis
     for (let x = 0; x < map[y].length; x++) {
       // only if the tile is non-zero
       if(map[y][x] !== 0) {

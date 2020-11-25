@@ -1,6 +1,6 @@
-import Store from '../store/store';
+import Store from '../store';
 
-export default class Component {
+export default class StoreComponent {
   constructor(props ={}) {
     let self = this;
 

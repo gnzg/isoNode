@@ -1,9 +1,9 @@
-import Component from '../lib/component';
-import store from '../store';
+import StoreComponent from './lib/storeComponent';
+import store from './store';
 
 // Create an instance of Component, and equipping it with a store instance
 
-export default class canvasWrapper extends Component {
+export default class canvasWrapper extends StoreComponent {
   constructor(elementId) {
     super({
       store,

@@ -1,6 +1,6 @@
 import { pointInRhombus } from './math';
-import state from './store/state';
-import store from './store/index';
+import state from '../store/state';
+import store from '../store/index';
 
 // checks whether the current mouse coordinates fall within saved hitboxes of non-zero tiles
 // by comparing the position of the cursor with each tile hitbox saved in the global state

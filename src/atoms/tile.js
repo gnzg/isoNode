@@ -1,9 +1,9 @@
-import tileHeightMap from "./maps/tileHeightMap";
-import map from './maps/map0';
-import state from './store/state';
+import tileHeightMap from "../maps/tileHeightMap";
+import map from '../maps/map0';
+import state from '../store/state';
 
 /**
-*  Virtual Tile object
+*  Tile object
 *  stores all info related to the tile object 
 */
 

@@ -11,6 +11,9 @@ import createTileHitBox from './mutations/createTileHitBox';
 import clearTileHitBoxes from './mutations/clearTileHitBoxes';
 
 export default {
+  error(payload) {
+    console.error("ERROR:", payload.data);
+  },
   addItem(state, payload) {
     state.misc.push(payload);
     return state;

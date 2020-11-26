@@ -1,6 +1,7 @@
 import tileHeightMap from "../maps/tileHeightMap";
 import map from '../maps/map0';
 import state from '../store/state';
+import store from '../store/index';
 
 /**
 *  Tile object
@@ -9,8 +10,8 @@ import state from '../store/state';
 
 export default class Tile {
     constructor({ x, y }) {
-        if (this.validateParams(x,y)) {
-            window.console.error("The tile object received too many/few arguments!");
+        if (this.areParamsInvalid(x,y)) {
+            //store.dispatch("error", "The tile object received too many/few arguments!");
         } else {
             this.tileWidth = state.env.tileWidth;
             
@@ -33,7 +34,7 @@ export default class Tile {
             }
         }
     }
-    validateParams(x,y) {
+    areParamsInvalid(x,y) {
         return x == undefined || y == undefined;
     }
 }

@@ -19,6 +19,7 @@ export default class Store {
       set: function(state, key, value) {
         
         state[key] = value;
+        
         console.log(`stateChange: ${key}: ${value}`);
         
         self.events.publish('stateChange', self.state);
@@ -41,13 +42,17 @@ export default class Store {
       console.error(`Action "${actionKey} doesn't exist.`);
       return false;
     }
-    // comment the below line out if you do not want action notifications
-    console.groupCollapsed(`ACTION: ${actionKey}`);
-    self.status = 'action';
-    
-    self.actions[actionKey](self, payload);
-    console.groupEnd();
-    
+    if (actionKey !== "error") {
+      // comment the below line out if you do not want action notifications
+      console.groupCollapsed(`ACTION: ${actionKey}`);
+      
+      self.status = 'action';
+      
+      self.actions[actionKey](self, payload);
+      console.groupEnd();
+    } else {
+      console.error('ERROR');
+    }
     return true;
   }
   

@@ -41,6 +41,9 @@ module.exports = {
   },
   devServer: {
     contentBase: './dist',
+    watchOptions: {
+      ignored: /node_modules/
+    },
     hot: true,
     port: 1234,
   },

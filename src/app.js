@@ -4,10 +4,7 @@ import CanvasWrapper from './store/canvasWrapper';
 import UserInput from './atoms/userInput';
 
 // Initialization
-window.addEventListener("DOMContentLoaded", e => {
-  
-  // prevent event bubbling
-  e.stopImmediatePropagation();
+window.addEventListener("DOMContentLoaded", () => {
   
   let canvasWrapper = new CanvasWrapper('main');
   canvasWrapper.initialize();

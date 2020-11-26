@@ -51,7 +51,6 @@ export default class Store {
       self.actions[actionKey](self, payload);
       console.groupEnd();
     } else {
-
       console.groupEnd();
       console.error('ERROR:', payload);
       return false;

@@ -4,7 +4,7 @@ import Tile from '../../atoms/tile';
 
 export default (state) => {
   
-  // Does not yet work if moving the map
+  // TODO: Fix moving the map
   let map = state.env.map;
   
   for (let y = 0; y < map.length; y++) {

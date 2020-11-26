@@ -11,7 +11,7 @@ import store from '../store/index';
 export default class Tile {
     constructor({ x, y }) {
         if (this.areParamsInvalid(x,y)) {
-            //store.dispatch("error", "The tile object received too many/few arguments!");
+            store.dispatch("error", "The tile object received too many/few arguments!");
         } else {
             this.tileWidth = state.env.tileWidth;
             

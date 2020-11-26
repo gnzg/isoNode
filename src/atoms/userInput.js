@@ -18,14 +18,14 @@ export default class UserInput {
         store.state.keyMap[e.key] = true;
       }
       if (
-        e.key == "ArrowLeft" ||       // left arrow key
-        e.key == "ArrowUp" ||       // up arrow key
-        e.key == "ArrowRight" ||       // right arrow key
-        e.key == "ArrowDown" ||       // down arrow key
-        e.key == "d" ||       // D key
-        e.key == "a" ||       // A key
-        e.key == "w" ||       // W key
-        e.key == "s"          // S key
+        e.key == "ArrowLeft" ||       
+        e.key == "ArrowUp" ||
+        e.key == "ArrowRight" ||
+        e.key == "ArrowDown" ||
+        e.key == "d" ||
+        e.key == "a" ||
+        e.key == "w" ||
+        e.key == "s"
         ) {
           // Allow multiple keys to be registered, e.g. for diagonally moving the map
           store.dispatch('handleKeyDown', store.state.keyMap);
@@ -34,7 +34,8 @@ export default class UserInput {
           store.state.env.tileHitBoxes = [];
           
         }
-        else if (e.key ==  " ") {    // SPACE key
+        // SPACE key
+        else if (e.key ==  " ") {
           // rotates map and re-draws the canvas
           // store.dispatch('rotateMapAction');
           alert("Space key pressed");

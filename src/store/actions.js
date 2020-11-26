@@ -41,5 +41,8 @@ export default {
   },
   clearTileHitBoxes(context) {
     context.commit('clearTileHitBoxes');
+  },
+  error(context, payload) {
+    context.commit('error', payload);
   }
 }

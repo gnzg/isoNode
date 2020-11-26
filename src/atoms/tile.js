@@ -19,7 +19,7 @@ export default class Tile {
             this.d = this.tileWidth * 1.5;
             
             if (tileHeightMap.length !== state.env.map.length) {
-                window.console.error("tileHeightMap size is different than map height!");
+                store.dispatch("error", "tileHeightMap size is different than map height!");
             } else {
                 // every height degree is one quarter of the tile's own height
                 this.tileYoffset = this.tileWidth + tileHeightMap[y][x] * this.tileWidth / 4;

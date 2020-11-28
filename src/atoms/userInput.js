@@ -7,8 +7,8 @@ export default class UserInput {
     window.addEventListener("keydown", e => {
       // prevent event bubbling
       e.stopImmediatePropagation();
-      // TODO: smooth out map movements
       
+      // TODO: smooth out map movements
       if (e.key in store.state.keyMap) {
         store.state.keyMap[e.key] = true;
       }
@@ -25,6 +25,7 @@ export default class UserInput {
           // Allow multiple keys to be registered, e.g. for diagonally moving the map
           store.dispatch('handleKeyDown', store.state.keyMap);
           store.dispatch("clearTileHitBoxes");
+
           // if movement takes place, clear the tile hitboxes // TODO: make prettier
           store.state.env.tileHitBoxes = [];
           
@@ -40,13 +41,7 @@ export default class UserInput {
       window.addEventListener("keyup", e => {
         e.stopImmediatePropagation();
         
-        store.dispatch("createTileHitBox");
-        // deactivate any previously pressed keys
-        let keyMapState = store.state.keyMap;
-        if (e.key in store.state.keyMap) {
-          keyMapState[e.key] = false;
-        }
-        store.dispatch('handleKeyUp', keyMapState);
+        store.dispatch('handleKeyUp', e.key);
         
         //hint.hide(); // TODO
         

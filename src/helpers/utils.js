@@ -12,7 +12,7 @@ export let isObjectEmpty = obj => {
  * 
  * @param {*} obj 
  */
-export let areObjectPropsFalse = obj => {
+export let areAllObjectPropsFalse = obj => {
     for (const property in obj) {
       if (obj[property] == false) {
         continue;

@@ -1,4 +1,4 @@
-import refreshCanvas from './refreshCanvas';
+import store from '../index';
 
 export default function handleKeyDown (state) {
   
@@ -21,9 +21,8 @@ export default function handleKeyDown (state) {
     else if (state.keyMap["ArrowDown"] || state.keyMap["s"]) {
       state.env.mapY += state.acceleration;
     }
-    // allow state mutation to take place only once cooldown is over
-    refreshCanvas(state);
-    
+    // allow state mutation to take place only once the cooldown is over
+    store.dispatch('refreshCanvas');
   }, 20);
   //}
   return state;

@@ -11,7 +11,7 @@ export default function handleKeyUp (state, payload) {
     //alert(key + " set to false");
   }
   // if all all user input keys have been unregistered, do...
-  else if (areAllObjectPropsFalse(state.keyMap)) {
+  if (areAllObjectPropsFalse(state.keyMap)) {
     state.acceleration = 0;  
     if (state.drawFrequency != null) {
       clearInterval(state.drawFrequency);

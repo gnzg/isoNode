@@ -14,7 +14,7 @@ export let isObjectEmpty = obj => {
  */
 export let areAllObjectPropsFalse = obj => {
     for (const property in obj) {
-      if (obj[property] == false) {
+      if (obj[property] === false) {
         continue;
       } else {
         return false;

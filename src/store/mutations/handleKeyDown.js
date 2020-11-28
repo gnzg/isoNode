@@ -6,8 +6,6 @@ export default function handleKeyDown (state) {
   
   if (state.env.tileHitBoxes.length != 0) store.dispatch("clearTileHitBoxes");
 
-  // also, make sure an instance of drawFrequency is not already running 
-  
   // if not running, initiate interval
   //if (state.drawFrequency == null) {
   state.drawFrequency = setInterval(() => {

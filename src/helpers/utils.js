@@ -20,6 +20,5 @@ export let areAllObjectPropsFalse = obj => {
         return false;
       }
     }
-    alert("all keys unregistered");
     return true;
 }

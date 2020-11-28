@@ -1,13 +1,8 @@
 import store from '../store/index';
-import checkCollision from '../math/checkCollision';
 
 // user input
 export default class UserInput {
-  constructor(windowObject) {
-    this.window = windowObject
-  }
   activate() {
-    //alert(this.window);
     // Rotate or move canvas on key(s) down
     window.addEventListener("keydown", e => {
       // prevent event bubbling
@@ -56,11 +51,6 @@ export default class UserInput {
         //hint.hide(); // TODO
         
         //checkCollision(e, store.state.env.tileHitBoxes, store);
-      });
-      
-      window.addEventListener("mousemove", e => {
-        e.stopImmediatePropagation();
-        checkCollision(e);
       });
       
       window.addEventListener("resize", () => {

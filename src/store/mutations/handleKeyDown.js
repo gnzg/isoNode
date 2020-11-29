@@ -9,7 +9,7 @@ export default function handleKeyDown (state, payload) {
     if (state.env.tileHitBoxes.length != 0) {
       store.dispatch("clearTileHitBoxes");
     }
-
+    
     // should not be handled by global state
     if (state.keyMap["ArrowRight"] || state.keyMap["d"]) {
       state.env.mapX += state.acceleration;
@@ -23,10 +23,6 @@ export default function handleKeyDown (state, payload) {
     else if (state.keyMap["ArrowDown"] || state.keyMap["s"]) {
       state.env.mapY += state.acceleration;
     }
-    // optional: limit redraw rate
-    let drawFrequency = setInterval(() => {
-      store.dispatch('refreshCanvas');
-      clearInterval(drawFrequency);
-    }, 20);
+    store.dispatch('refreshCanvas');
   }
 }

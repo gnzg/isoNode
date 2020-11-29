@@ -25,7 +25,6 @@ export default function handleKeyDown (state, payload) {
     }
     // optional: limit redraw rate
     let drawFrequency = setInterval(() => {
-      // allow state mutation to take place only once the cooldown is over
       store.dispatch('refreshCanvas');
       clearInterval(drawFrequency);
     }, 20);

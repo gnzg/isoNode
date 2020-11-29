@@ -8,36 +8,19 @@ export default class UserInput {
       // prevent event bubbling
       e.stopImmediatePropagation();
       
-      if (
-        e.key == "ArrowLeft" ||       
-        e.key == "ArrowUp" ||
-        e.key == "ArrowRight" ||
-        e.key == "ArrowDown" ||
-        e.key == "d" ||
-        e.key == "a" ||
-        e.key == "w" ||
-        e.key == "s"
-        ) {
-          // Allow multiple keys to be registered, e.g. for diagonally moving the map
-          store.dispatch('handleKeyDown', e.key);
-        }
-        // SPACE key
-        else if (e.key ==  " ") {
-          // rotates map and re-draws the canvas
-          // store.dispatch('rotateMapAction');
-        }
-      });
-      
-      window.addEventListener("keyup", e => {
-        e.stopImmediatePropagation();
-        store.dispatch('handleKeyUp', e.key);
-      });
-      
-      window.addEventListener("resize", () => {
-        store.state.env.winWidth = window.innerWidth;
-        store.state.env.winHeight = window.innerHeight;
-        store.dispatch('centerCanvas');
-        store.dispatch('refreshCanvas');
-      });
-    }
+      store.dispatch('handleKeyDown', e.key);
+    });
+    
+    window.addEventListener("keyup", e => {
+      e.stopImmediatePropagation();
+      store.dispatch('handleKeyUp', e.key);
+    });
+    
+    window.addEventListener("resize", () => {
+      store.state.env.winWidth = window.innerWidth;
+      store.state.env.winHeight = window.innerHeight;
+      store.dispatch('centerCanvas');
+      store.dispatch('refreshCanvas');
+    });
   }
+}

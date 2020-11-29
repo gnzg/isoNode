@@ -8,14 +8,13 @@ export default function handleKeyUp (state, payload) {
   // go further only if a relevant key is registered
   if (key in store.state.keyMap) {
     store.state.keyMap[key] = false;
-
+    
     // if all all user input keys have been unregistered, do...
     if (areAllObjectPropsFalse(state.keyMap)) {
       state.acceleration = 0;  
       clearInterval(state.drawFrequency);
       store.dispatch("createTileHitBox");
     }
+    return state;
   }
-  //alert(JSON.stringify(state.keyMap));
-  return state;
 }

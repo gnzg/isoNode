@@ -15,6 +15,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
   let events = new Events();
   events.activateHitBoxes();
+  events.refreshCanvasOnResize();
   
   // Access store and state via window object
   window.store = store;

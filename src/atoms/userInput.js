@@ -15,12 +15,5 @@ export default class UserInput {
       e.stopImmediatePropagation();
       store.dispatch('handleKeyUp', e.key);
     });
-    
-    window.addEventListener("resize", () => {
-      store.state.env.winWidth = window.innerWidth;
-      store.state.env.winHeight = window.innerHeight;
-      store.dispatch('centerCanvas');
-      store.dispatch('refreshCanvas');
-    });
   }
 }

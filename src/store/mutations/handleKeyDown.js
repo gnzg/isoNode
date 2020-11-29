@@ -27,6 +27,7 @@ export default function handleKeyDown (state, payload) {
       // allow state mutation to take place only once the cooldown is over
       store.dispatch('refreshCanvas');
       // TODO: fix refreshCanvas loop
+      console.log(state.drawFrequency);
     }, 20);
     return state;
   }

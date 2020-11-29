@@ -16,6 +16,7 @@ window.addEventListener("DOMContentLoaded", () => {
   let events = new Events();
   events.activateHitBoxes();
   
-  // Access actions via browser console
+  // Access store and state via window object
   window.store = store;
+  window.state = store.state;
 });

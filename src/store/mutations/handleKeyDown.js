@@ -6,12 +6,7 @@ export default function handleKeyDown (state, payload) {
   if (key in store.state.keyMap) {
     state.keyMap[key] = true;
     
-    if (state.acceleration != 5) {
-      state.acceleration = 5;
-    }
-    
     if (state.env.tileHitBoxes.length != 0) {
-      
       store.dispatch("clearTileHitBoxes");
     }
 
@@ -31,7 +26,6 @@ export default function handleKeyDown (state, payload) {
     let drawFrequency = setInterval(() => {
       // allow state mutation to take place only once the cooldown is over
       store.dispatch('refreshCanvas');
-      // TODO: fix canvas flickering
       clearInterval(drawFrequency);
     }, 20);
   }

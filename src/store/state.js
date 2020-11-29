@@ -5,7 +5,7 @@ export default {
   cooldown: false,
   debug_mode: true,
   maxTileHeight: 8,
-  acceleration: 0,
+  acceleration: 5,
   env: {
     // @param Array; main map
     map,

@@ -11,8 +11,6 @@ export default function handleKeyUp (state, payload) {
     
     // if all all user input keys have been unregistered, do...
     if (areAllObjectPropsFalse(state.keyMap)) {
-      state.acceleration = 0;  
-      store.dispatch('refreshCanvas');
       store.dispatch("createTileHitBox");
     }
   }

@@ -5,7 +5,6 @@ export default {
   cooldown: false,
   debug_mode: true,
   maxTileHeight: 8,
-  drawFrequency: null,
   env: {
     // @param Array; main map
     map,

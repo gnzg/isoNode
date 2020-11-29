@@ -11,7 +11,8 @@ export default function handleKeyDown (state, payload) {
     
     if (state.env.tileHitBoxes.length != 0) store.dispatch("clearTileHitBoxes");
     
-    state.drawFrequency = setInterval(() => {
+    // should not be handled by global state
+    let drawFrequency = setInterval(() => {
       if (state.keyMap["ArrowRight"] || state.keyMap["d"]) {
         state.env.mapX += state.acceleration;
       }
@@ -27,8 +28,7 @@ export default function handleKeyDown (state, payload) {
       // allow state mutation to take place only once the cooldown is over
       store.dispatch('refreshCanvas');
       // TODO: fix refreshCanvas loop
-      console.log(state.drawFrequency);
+      clearInterval(drawFrequency);
     }, 20);
-    return state;
   }
 }

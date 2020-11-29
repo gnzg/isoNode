@@ -1,13 +1,18 @@
 import store from '../index';
 
-export default function handleKeyDown (state) {
+export default function handleKeyDown (state, payload) {
+  
+  let key = payload;
+  
+  // TODO: smooth out map movements
+  if (key in store.state.keyMap) {
+    state.keyMap[key] = true;
+  }
   
   if (state.acceleration != 5) state.acceleration = 5;
   
   if (state.env.tileHitBoxes.length != 0) store.dispatch("clearTileHitBoxes");
-
-  // if not running, initiate interval
-  //if (state.drawFrequency == null) {
+  
   state.drawFrequency = setInterval(() => {
     if (state.keyMap["ArrowRight"] || state.keyMap["d"]) {
       state.env.mapX += state.acceleration;
@@ -23,7 +28,7 @@ export default function handleKeyDown (state) {
     }
     // allow state mutation to take place only once the cooldown is over
     store.dispatch('refreshCanvas');
+    // TODO: fix refreshCanvas loop
   }, 20);
-  //}
   return state;
 }

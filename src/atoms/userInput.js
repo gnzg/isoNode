@@ -8,10 +8,6 @@ export default class UserInput {
       // prevent event bubbling
       e.stopImmediatePropagation();
       
-      // TODO: smooth out map movements
-      if (e.key in store.state.keyMap) {
-        store.state.keyMap[e.key] = true;
-      }
       if (
         e.key == "ArrowLeft" ||       
         e.key == "ArrowUp" ||
@@ -23,7 +19,7 @@ export default class UserInput {
         e.key == "s"
         ) {
           // Allow multiple keys to be registered, e.g. for diagonally moving the map
-          store.dispatch('handleKeyDown', store.state.keyMap);
+          store.dispatch('handleKeyDown', e.key);
         }
         // SPACE key
         else if (e.key ==  " ") {

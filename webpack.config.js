@@ -8,9 +8,15 @@ const devMode = true;
 module.exports = {
   mode: 'development',
   devtool: 'source-map',
-  entry: './src/app.js',
+  entry: './src/app.ts',
+  resolve: {
+    // Add '.ts' and '.tsx' as resolvable extensions.
+    extensions: [".webpack.js", ".web.js", ".ts", ".tsx", ".js"],
+  },
   module: {
     rules: [
+      // All files with a '.ts' or '.tsx' extension will be handled by 'ts-loader'.
+      { test: /\.tsx?$/, loader: "ts-loader" },
       {
         test: /\.(js|jsx)$/,
         exclude: /(node_modules)/,
@@ -45,7 +51,7 @@ module.exports = {
       ignored: /node_modules/
     },
     hot: true,
-    port: 1234,
+    port: 1703,
   },
   plugins: [
     /* hot module replacement */

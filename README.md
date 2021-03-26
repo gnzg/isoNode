@@ -1,6 +1,6 @@
 # IsoNode
 
-[![GitHub release](https://img.shields.io/github/v/tag/gnzg/isonode)](https://github.com/gnzg/isoNode/releases)
+[![GitHub version](https://img.shields.io/github/manifest-json/v/gnzg/isonode/master)](/github/manifest-json/v/https://github.com/gnzg/isoNode)
 [![GitHub license](https://img.shields.io/github/license/gnzg/isonode)](https://github.com/gnzg/isoNode/blob/master/LICENSE)
 
 ## Table of contents

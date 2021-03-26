@@ -1,22 +1,34 @@
 import PubSub from './lib/pubsub';
 
-export default class Store {
+export interface Store {
+  actions: object;
+  mutations: object;
+  state: object;
+  status: string;
+  events: {
+    publish : CallableFunction,
+  }
+}
+
+export class Store {
+  
   constructor(params) {
-    let self = this;
-    self.actions = {};
-    self.mutations = {};
-    self.state = {};
-    self.status = {};
+    
+    let self : this = this;
+    
+    self.status = '';
     self.events = new PubSub();
-    if(Object.prototype.hasOwnProperty.call(params, 'actions')) {
+
+    if (Object.prototype.hasOwnProperty.call(params, 'actions')) {
       self.actions = params.actions;
     }
-    if(Object.prototype.hasOwnProperty.call(params, 'mutations')) {
+    if (Object.prototype.hasOwnProperty.call(params, 'mutations')) {
       self.mutations = params.mutations;
     }
     
     self.state = new Proxy((params.state || {}), {
-      set: function(state, key, value) {
+        
+      set: function(state, key: string, value) {
         
         state[key] = value;
         
@@ -36,7 +48,7 @@ export default class Store {
   }
   dispatch(actionKey, payload) {
     
-    let self = this;
+    let self : this = this;
     
     if(typeof self.actions[actionKey] !== 'function') {
       console.error(`Action "${actionKey} doesn't exist.`);

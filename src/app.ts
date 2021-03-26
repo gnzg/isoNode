@@ -4,6 +4,14 @@ import CanvasWrapper from './store/canvasWrapper';
 import UserInput from './atoms/userInput';
 import Events from './atoms/events';
 
+// ts: Extend the global Window interface
+declare global {
+  interface Window {
+    store: Object,
+    state: Object
+  }
+}
+
 // Initialization
 window.addEventListener("DOMContentLoaded", () => {
   

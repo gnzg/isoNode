@@ -1,7 +1,33 @@
 import map from '../maps/map0';
 
-export default {
-  ctx: document.querySelector('#main') ? document.querySelector('#main').getContext('2d') : () => { console.error('no canvas context found!' ); },
+interface State {
+  ctx: any;
+  cooldown: boolean;
+  debug_mode: boolean;
+  maxTileHeight: number;
+  acceleration: number;
+  env: {
+    map: number[][];
+    tileHitBoxes: number[];
+    lastHoveredTile: Object;
+    tileWidth: number;
+    rectColors: string[];
+    rectShadowColors: string[];
+    clearArea: number[];
+    rotationDegree: number;
+    mapX: number;
+    mapY: number;
+    winWidth: number;
+    winHeight: number;
+  };
+  misc: Object[];
+  keyMap: Object;
+}
+
+let canvas : HTMLCanvasElement = document.querySelector('#main');
+
+let state : State = ({
+  ctx: canvas ? canvas.getContext('2d') : () => { console.error('no canvas context found!' ); },
   cooldown: false,
   debug_mode: true,
   maxTileHeight: 8,
@@ -16,7 +42,7 @@ export default {
     
     // @param Integer; the tile size
     tileWidth: 24,
-
+    
     rectColors: [
       '000000',  // dummy
       '#096dff', // water
@@ -62,4 +88,6 @@ export default {
     ArrowRight: false,
     " ": false
   }
-};
+});
+
+export default state;

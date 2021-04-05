@@ -15,7 +15,6 @@ export default (state) => {
     // clear entire canvas
     ctx.clearRect(...clearArea);
     
-    
     if (map !== undefined) {
       for (let y = 0; y < map.length; y++) { // for each row
         for (let i = 0; i < state.maxTileHeight; i++) { // for each tile height

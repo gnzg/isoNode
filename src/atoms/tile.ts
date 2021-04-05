@@ -11,9 +11,9 @@ import store from '../store/index';
 export default class Tile {
     x: number;
     y: number;
-    tileWidth: number;
     c: number;
     d: number;
+    tileWidth: number;
     tileYoffset : number;
     topYfactor: number;
     topYsegment: number;

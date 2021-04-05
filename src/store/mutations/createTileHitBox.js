@@ -1,6 +1,6 @@
 import store from '../index';
 import RhombusVertices from '../../math/RhombusVertices';
-import Tile from '../../atoms/tile';
+import Tile from '../../atoms/tile.ts';
 
 export default (state) => {
   

@@ -9,9 +9,22 @@ import store from '../store/index';
 */
 
 export default class Tile {
+    x: number;
+    y: number;
+    tileWidth: number;
+    c: number;
+    d: number;
+    tileYoffset : number;
+    topYfactor: number;
+    topYsegment: number;
+    rectColors: string[];
+    rectShadowColors: string[];
+    fillColor : string;
+    rectColor : string;
+
     constructor({ x, y }) {
         if (this.areParamsInvalid(x,y)) {
-            store.dispatch("error", "The tile object received too many/few arguments!");
+            store.dispatch("error", "The tile object incorrect number of parameters!");
         } else {
             this.tileWidth = state.env.tileWidth;
             

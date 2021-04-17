@@ -26,8 +26,8 @@ export default ( tile )  => {
     tileHeightMap[y][x] === z
     )
     {
-      drawLeftTileSide({tile, x, y, z});
-      drawRightTileSide({tile, x, y, z});
+      drawLeftTileSide( tile );
+      drawRightTileSide( tile );
 
     } else if (map.length == 0) {
       console.error("Length of main map is zero!");   

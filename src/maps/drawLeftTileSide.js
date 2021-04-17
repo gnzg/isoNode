@@ -4,22 +4,21 @@ import state from '../store/state';
 export default ({tile, x, y, z}) => {
   let ctx = state.ctx;
   let map = state.env.map;
-  let mapX = state.env.mapX;
+  let map_offset_x = state.env.map_offset_x;
   const debug = false;
   
-  // left
+  // left tile side
   if ((
-    // draw only if preceeded by an empty tile on the x axis,
+    // draw if preceeded by an empty tile on the x axis,
     map[y][x - 1] === 0 ||
-    // if first tile in row
+    // or if first tile in row
     x === 0 ||
-    // if not exceeding row length
+    // or if not exceeding row length
     x > map[y].length -1 ||
     // if current tile's height is greater than its predecessor's
     tileHeightMap[y][x] > tileHeightMap[y][x-1]
     // and not in debug mode
     ) && !debug ) {
-      
       // if current tile has a higher height
       // draw under drawn elements
       ctx.globalCompositeOperation = 'source-over';
@@ -34,17 +33,17 @@ export default ({tile, x, y, z}) => {
       let prevTileZOffset = prevTileZ * (tile.tileWidth / 4);
 
       // upper left corner of tile
-      ctx.moveTo(tile.tileWidth * y + mapX + tile.tileWidth * x, topHalf);
+      ctx.moveTo(tile.tileWidth * y + map_offset_x + tile.tileWidth * x, topHalf);
       // bottom left corner of tile
-      ctx.lineTo(tile.tileWidth * y + mapX + tile.tileWidth * x, bottomHalf - prevTileZOffset);
+      ctx.lineTo(tile.tileWidth * y + map_offset_x + tile.tileWidth * x, bottomHalf - prevTileZOffset);
       // bottom right corner of tile
-      ctx.lineTo(tile.tileWidth * y + mapX + tile.tileWidth * x + tile.tileWidth, bottomHalf + tile.tileWidth * 0.5 - prevTileZOffset);
+      ctx.lineTo(tile.tileWidth * y + map_offset_x + tile.tileWidth * x + tile.tileWidth, bottomHalf + tile.tileWidth * 0.5 - prevTileZOffset);
       // upper right corner of tile
-      ctx.lineTo(tile.tileWidth * y + mapX + tile.tileWidth * x + tile.tileWidth, topHalf);
+      ctx.lineTo(tile.tileWidth * y + map_offset_x + tile.tileWidth * x + tile.tileWidth, topHalf);
       
       ctx.closePath();
       ctx.fillStyle = tile.fillColor;
       ctx.fill();
       
     }
-  }
+  };

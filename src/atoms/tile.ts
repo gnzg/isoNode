@@ -27,7 +27,7 @@ export default class Tile {
         } else {
             this.tileWidth = state.env.tileWidth;
             
-            this.c = state.env.mapY - this.tileWidth * x * 0.5;
+            this.c = state.env.map_offset_y - this.tileWidth * x * 0.5;
             this.d = this.tileWidth * 1.5;
             
             if (tileHeightMap.length !== state.env.map.length) {

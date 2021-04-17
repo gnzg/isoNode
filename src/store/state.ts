@@ -15,8 +15,8 @@ interface State {
     rectShadowColors: string[];
     clearArea: number[];
     rotationDegree: number;
-    mapX: number;
-    mapY: number;
+    map_offset_x: number;
+    map_offset_y: number;
     winWidth: number;
     winHeight: number;
   };
@@ -69,9 +69,9 @@ let state : State = ({
     // @param Integer; the degree of map rotation
     rotationDegree: 0,
     
-    // mapX and mapY are offsets to make sure we can position the map as we want.
-    mapX: 0,
-    mapY: 350,
+    // map_offset_x and map_offset_y are offsets to make sure we can position the map as we want.
+    map_offset_x: 0,
+    map_offset_y: 350,
     winWidth: window.innerWidth,
     winHeight: window.innerHeight
   },

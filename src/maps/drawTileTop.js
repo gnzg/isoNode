@@ -11,7 +11,7 @@ import RhombusVertices from '../math/RhombusVertices';
 
 export default ({ tile, x, y, z }) => {
   
-  let mapX = state.env.mapX;
+  let map_offset_x = state.env.map_offset_x;
   let map = state.env.map;
   let ctx = state.ctx;
   let topYfactor = tile.tileWidth * y * 0.5;
@@ -30,10 +30,10 @@ export default ({ tile, x, y, z }) => {
     ctx.beginPath();
 
       // upper left corner of tile
-    ctx.moveTo(tile.tileWidth * y + tile.tileWidth + mapX + tile.tileWidth * x, tile.tileWidth + topYsegment);
-    ctx.lineTo(tile.tileWidth * y  + tile.tileWidth * 2 + mapX + tile.tileWidth * x, tile.d + topYsegment);
-    ctx.lineTo(tile.tileWidth * y  + tile.tileWidth + mapX + tile.tileWidth * x, tile.tileWidth * 2 + topYsegment);
-    ctx.lineTo(tile.tileWidth * y  + tile.tileWidth - tile.tileWidth + mapX + tile.tileWidth * x, tile.d + topYsegment);
+    ctx.moveTo(tile.tileWidth * y + tile.tileWidth + map_offset_x + tile.tileWidth * x, tile.tileWidth + topYsegment);
+    ctx.lineTo(tile.tileWidth * y  + tile.tileWidth * 2 + map_offset_x + tile.tileWidth * x, tile.d + topYsegment);
+    ctx.lineTo(tile.tileWidth * y  + tile.tileWidth + map_offset_x + tile.tileWidth * x, tile.tileWidth * 2 + topYsegment);
+    ctx.lineTo(tile.tileWidth * y  + tile.tileWidth - tile.tileWidth + map_offset_x + tile.tileWidth * x, tile.d + topYsegment);
     ctx.closePath();
     ctx.fill();
     
@@ -44,4 +44,4 @@ export default ({ tile, x, y, z }) => {
       drawAdditionalDetails({ctx, rhombusVertices, x, y});
     } 
   }
-}
+};

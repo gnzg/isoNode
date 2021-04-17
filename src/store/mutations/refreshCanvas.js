@@ -19,8 +19,8 @@ export default (state) => {
       for (let y = 0; y < map.length; y++) { // for each row
         for (let i = 0; i < state.maxTileHeight; i++) { // for each tile height
           for (let x = 0; x < map[y].length; x++) {   // for each tile element
-            drawTileLaterals({ tile: new Tile({ x, y }), x, y, z:i });
-            drawTileTop({ tile: new Tile({ x, y }), x, y, z:i });
+            drawTileLaterals( new Tile({ x, y, z: i }) );
+            drawTileTop( new Tile({ x, y, z: i }) );
             //debugger;
           }
         }

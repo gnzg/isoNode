@@ -9,14 +9,19 @@ import RhombusVertices from '../math/RhombusVertices';
 * @returns Object canvas
 */
 
-export default ({ tile, x, y, z }) => {
+export default ( tile ) => {
   
+  const x = tile.x;
+  const y = tile.y;
+  const z = tile.z;
+
   let map_offset_x = state.env.map_offset_x;
   let map = state.env.map;
   let ctx = state.ctx;
   let topYfactor = tile.tileWidth * y * 0.5;
   let topYsegment = tile.c + topYfactor - tile.tileYoffset;
   
+
   // tile top
   // draw only if current tile is non-zero
   // and if the tile height level corresponds to z

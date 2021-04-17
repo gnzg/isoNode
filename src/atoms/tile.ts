@@ -10,6 +10,7 @@ import store from '../store/index';
 export default class Tile {
     x: number;
     y: number;
+    z: number;
     c: number;
     d: number;
     tileWidth: number;
@@ -21,12 +22,14 @@ export default class Tile {
     fillColor : string;
     rectColor : string;
 
-    constructor({ x, y }) {
-        if (this.areParamsInvalid(x,y)) {
+    constructor({ x, y, z }) {
+        if (this.areParamsInvalid(x, y)) {
             store.dispatch("error", "The tile object incorrect number of parameters!");
         } else {
             this.tileWidth = state.env.tileWidth;
-            
+            this.x = x;
+            this.y = y;
+            this.z = z;
             this.c = state.env.map_offset_y - this.tileWidth * x * 0.5;
             this.d = this.tileWidth * 1.5;
             

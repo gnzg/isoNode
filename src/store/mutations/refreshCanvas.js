@@ -21,7 +21,6 @@ export default (state) => {
           for (let x = 0; x < map[y].length; x++) {   // for each tile element
             drawTileLaterals( new Tile({ x, y, z: i }) );
             drawTileTop( new Tile({ x, y, z: i }) );
-            //debugger;
           }
         }
       }
@@ -32,4 +31,4 @@ export default (state) => {
   else {
     console.error('No ctx object found!');
   }
-}
+};

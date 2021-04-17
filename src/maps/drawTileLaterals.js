@@ -10,11 +10,13 @@ import tileHeightMap from './tileHeightMap';
 */
 
 export default ( tile )  => {
-  let map = state.env.map;
 
   const x = tile.x;
   const y = tile.y;
   const z = tile.z;
+
+  let map = state.env.map;
+
   // if the map is defined and the tile is non-zero, draw it
   if (
     map !== undefined &&

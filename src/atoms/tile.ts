@@ -7,7 +7,6 @@ import store from '../store/index';
 *  Tile object
 *  stores all info related to the tile object 
 */
-
 export default class Tile {
     x: number;
     y: number;

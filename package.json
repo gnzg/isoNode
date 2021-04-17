@@ -33,7 +33,6 @@
   },
   "scripts": {
     "dev-server": "webpack serve --mode development --env development --hot",
-    "watch": "webpack --watch",
     "build": "webpack --mode production",
     "lint": "eslint ./src/**/*.js"
   },

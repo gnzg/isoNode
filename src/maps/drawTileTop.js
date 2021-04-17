@@ -17,7 +17,7 @@ export default ({ tile, x, y, z }) => {
   let topYfactor = tile.tileWidth * y * 0.5;
   let topYsegment = tile.c + topYfactor - tile.tileYoffset;
   
-  // top
+  // tile top
   // draw only if current tile is non-zero
   // and if the tile height level corresponds to z
   if (map[y][x] !== 0 && tileHeightMap[y][x] === z) {
@@ -25,8 +25,6 @@ export default ({ tile, x, y, z }) => {
     // determine whether the surface will be drawn above or below 
     // the present data on thecanvas
     ctx.globalCompositeOperation = 'source-over';
-    
-    // IDEA: draw each level separately
     
     ctx.fillStyle = tile.rectColor;
     ctx.beginPath();

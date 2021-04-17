@@ -4,12 +4,6 @@ import drawLeftTileSide from './drawLeftTileSide';
 import drawRightTileSide from './drawRightTileSide';
 import tileHeightMap from './tileHeightMap';
 
-/**
-* @param Integer x    iterates across a map array
-* @param Integer y    iterates across a map array child's elements
-* @returns Object canvas
-*/
-
 export default ( tile : Tile )  => {
 
   const x : number = tile.x;

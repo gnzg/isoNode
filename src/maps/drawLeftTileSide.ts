@@ -1,11 +1,12 @@
-import tileHeightMap from '../maps/tileHeightMap';
+import Tile from '../atoms/tile';
 import state from '../store/state';
+import tileHeightMap from '../maps/tileHeightMap';
 
-export default ( tile ) => {
+export default ( tile : Tile ) => {
   
-  const x = tile.x;
-  const y = tile.y;
-  const z = tile.z;
+  const x : number = tile.x;
+  const y : number = tile.y;
+  const z : number = tile.z;
 
   let ctx = state.ctx;
   let map = state.env.map;

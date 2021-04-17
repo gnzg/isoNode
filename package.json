@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "An isometric tile engine realized via the Canvas API",
   "main": "index.js",
+  "resolve": {
+    "extensions": [".ts", ".tsx", ".js"]
+  },
   "devDependencies": {
     "autoprefixer": "^9.6.1",
     "babel-cli": "^6.26.0",

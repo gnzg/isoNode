@@ -11,9 +11,9 @@ import tileHeightMap from './tileHeightMap';
 
 export default ( tile )  => {
 
-  const x = tile.x;
-  const y = tile.y;
-  const z = tile.z;
+  const x : number = tile.x;
+  const y : number = tile.y;
+  const z : number = tile.z;
 
   let map = state.env.map;
 

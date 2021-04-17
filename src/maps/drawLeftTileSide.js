@@ -10,7 +10,7 @@ export default ( tile ) => {
   let ctx = state.ctx;
   let map = state.env.map;
   let map_offset_x = state.env.map_offset_x;
-  const debug = false;
+  const debug = state.debug_mode;
   
   // left tile side
   if ((
@@ -22,8 +22,8 @@ export default ( tile ) => {
     x > map[y].length -1 ||
     // if current tile's height is greater than its predecessor's
     tileHeightMap[y][x] > tileHeightMap[y][x-1]
-    // and not in debug mode
-    ) && !debug ) {
+    )) {
+
       // if current tile has a higher height, draw under drawn elements
       ctx.globalCompositeOperation = 'source-over';
       ctx.beginPath();
@@ -48,6 +48,17 @@ export default ( tile ) => {
       ctx.closePath();
       ctx.fillStyle = tile.fillColor;
       ctx.fill();
-      
+
+      // for debugging purposes, draw point at position 0
+      if (x === 0 && y === 0 && debug) {
+        ctx.beginPath();
+        ctx.globalCompositeOperation = 'source-over';
+        let dummyX = tile.tileWidth * y + map_offset_x + tile.tileWidth * x;
+        let dummyY = topHalf;
+        ctx.arc(dummyX, dummyY, 3, 0, 2 * Math.PI);
+        ctx.closePath();
+        ctx.fillStyle = "red";
+        ctx.fill();
+      }
     }
   };

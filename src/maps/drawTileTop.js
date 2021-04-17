@@ -43,7 +43,7 @@ export default ( tile ) => {
     ctx.fill();
     
     // debug mode
-    if (state.debug_mode === true) {
+    if (state.debug_mode === false) {
       // establish coordinates for the four vertices of each rhombus
       let rhombusVertices = new RhombusVertices({tile, x, y});
       drawAdditionalDetails({ctx, rhombusVertices, x, y});

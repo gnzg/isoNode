@@ -29,7 +29,7 @@ let canvas : HTMLCanvasElement = document.querySelector('#main');
 let state : State = ({
   ctx: canvas ? canvas.getContext('2d') : () => { console.error('no canvas context found!' ); },
   cooldown: false,
-  debug_mode: true,
+  debug_mode: false,
   maxTileHeight: 8,
   acceleration: 5,
   env: {

@@ -1,4 +1,4 @@
-import state from '../store/state'
+import state from '../store/state';
 import tileHeightMap from './tileHeightMap';
 import drawAdditionalDetails from '../maps/drawOutlines';
 import RhombusVertices from '../math/RhombusVertices';

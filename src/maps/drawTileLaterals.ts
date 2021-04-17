@@ -1,3 +1,4 @@
+import Tile from '../atoms/tile';
 import state from '../store/state';
 import drawLeftTileSide from './drawLeftTileSide';
 import drawRightTileSide from './drawRightTileSide';
@@ -9,7 +10,7 @@ import tileHeightMap from './tileHeightMap';
 * @returns Object canvas
 */
 
-export default ( tile )  => {
+export default ( tile : Tile )  => {
 
   const x : number = tile.x;
   const y : number = tile.y;

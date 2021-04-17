@@ -2,7 +2,7 @@ import refreshCanvas from './mutations/refreshCanvas';
 import handleKeyDown from './mutations/handleKeyDown';
 import handleKeyUp from './mutations/handleKeyUp';
 import rotateMap from './mutations/rotateMap';
-import centerCanvas from './mutations/centerCanvas'
+import centerCanvas from './mutations/centerCanvas';
 import deleteTile from './mutations/deleteTile';
 import tileHovered from './mutations/tileHovered';
 import tileNotHovered from './mutations/tileNotHovered';

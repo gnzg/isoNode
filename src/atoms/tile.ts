@@ -46,7 +46,7 @@ export default class Tile {
             }
         }
     }
-    areParamsInvalid(x,y) {
+    areParamsInvalid( x : number, y: number ) {
         return x == undefined || y == undefined;
     }
 }

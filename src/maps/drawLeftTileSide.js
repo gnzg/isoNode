@@ -9,18 +9,17 @@ export default ({tile, x, y, z}) => {
   
   // left tile side
   if ((
-    // draw if preceeded by an empty tile on the x axis,
-    map[y][x - 1] === 0 ||
-    // or if first tile in row
+    // draw if first tile in row
     x === 0 ||
+    // or, if preceeded by an empty tile on the x axis,
+    map[y][x - 1] === 0 ||
     // or if not exceeding row length
     x > map[y].length -1 ||
     // if current tile's height is greater than its predecessor's
     tileHeightMap[y][x] > tileHeightMap[y][x-1]
     // and not in debug mode
     ) && !debug ) {
-      // if current tile has a higher height
-      // draw under drawn elements
+      // if current tile has a higher height, draw under drawn elements
       ctx.globalCompositeOperation = 'source-over';
       ctx.beginPath();
       

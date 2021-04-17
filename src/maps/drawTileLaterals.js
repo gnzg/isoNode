@@ -10,7 +10,6 @@ import tileHeightMap from './tileHeightMap';
 */
 
 export default ({ tile, x, y, z })  => {
-
   let map = state.env.map;
 
   // if the map is defined and the tile is non-zero, draw it
@@ -28,4 +27,4 @@ export default ({ tile, x, y, z })  => {
     } else if (map.length == 0) {
       console.error("Length of main map is zero!");   
     }
-  }
+  };

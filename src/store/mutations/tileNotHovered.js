@@ -5,9 +5,10 @@ export default function tileNotHovered(state, payload) {
    
     state.env.map[tile.y][tile.x] = 2;
 
-    // if lost track of last hovered tile, reset last saved hovered tile
-    if (tile.x === undefined || tile.y === undefined) {
-        state.env.map[lastHoveredTile.y][lastHoveredTile.x] = 2;
+    // reset all hovered tiles
+    let tileCoordinates = state.env.tileHitBoxes;
+    for (let i = 0; i < tileCoordinates.length; i++) {
+        state.env.map[tileCoordinates[i].y][tileCoordinates[i].x] = 2;
     }
     
     // reset last hovered tile

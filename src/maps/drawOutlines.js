@@ -1,4 +1,5 @@
 import state from '../store/state';
+import colors from '../helpers/colors';
 
 export default ({ctx, rhombusVertices, x, y}) => {
     let { pointA, pointB, pointC, pointD } = rhombusVertices;
@@ -6,7 +7,7 @@ export default ({ctx, rhombusVertices, x, y}) => {
     // only draw placeholder if the current tile is non-zero 
     if (state.env.map[y][x] !== 0) {
         ctx.beginPath();
-        ctx.strokeStyle = "#197319";
+        ctx.strokeStyle = colors.debug.outlines;
         ctx.arc(pointB.x, pointB.y, 0, 0, 2 * Math.PI);
         ctx.arc(pointC.x, pointC.y, 0, 0, 2 * Math.PI);
         ctx.arc(pointD.x, pointD.y, 0, 0, 2 * Math.PI);

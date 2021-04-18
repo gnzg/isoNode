@@ -1,3 +1,4 @@
+import colors from '../helpers/colors';
 import map from '../maps/map0';
 
 interface State {
@@ -43,20 +44,8 @@ let state : State = ({
     // @param Integer; the tile size
     tileWidth: 24,
     
-    rectColors: [
-      '000000',  // dummy
-      '#096dff', // water
-      '#8dee03', // vegetation
-      '#a3f742', // arid vegetation
-      'yellow'
-    ],
-    rectShadowColors: [
-      '000000',
-      '#0d49a9', // water sides
-      '#04b807', // vegetation sides
-      '#91d611', // arid vegetation sides
-      'orange'
-    ],
+    rectColors: colors.rectColors,
+    rectShadowColors: colors.rectShadowColors,
     /*
     tileGraphicsToLoad: [
       "./images/water.png",

@@ -1,15 +1,14 @@
+import Tile from '../atoms/tile';
 import state from '../store/state';
 import drawLeftTileSide from './drawLeftTileSide';
 import drawRightTileSide from './drawRightTileSide';
 import tileHeightMap from './tileHeightMap';
 
-/**
-* @param Integer x    iterates across a map array
-* @param Integer y    iterates across a map array child's elements
-* @returns Object canvas
-*/
+export default ( tile : Tile )  => {
 
-export default ({ tile, x, y, z })  => {
+  const x : number = tile.x;
+  const y : number = tile.y;
+  const z : number = tile.z;
 
   let map = state.env.map;
 
@@ -22,10 +21,10 @@ export default ({ tile, x, y, z })  => {
     tileHeightMap[y][x] === z
     )
     {
-      drawLeftTileSide({tile, x, y, z});
-      drawRightTileSide({tile, x, y, z});
+      drawLeftTileSide( tile );
+      drawRightTileSide( tile );
 
     } else if (map.length == 0) {
       console.error("Length of main map is zero!");   
     }
-  }
+  };

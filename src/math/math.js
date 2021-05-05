@@ -58,7 +58,13 @@ export let pointInTriangle = (a,b,c,p) => {
 
 // receives 4 points [x,y] and an arbitrary point [x,y]
 // returns a boolean
-export let pointInRhombus = (a,b,c,d,p) => {
+export let pointInRhombus = (rhombus, p) => {
+
+    let a = rhombus.pointA;
+    let b = rhombus.pointB;
+    let c = rhombus.pointC;
+    let d = rhombus.pointD;
+
     // center point
     let Q = {
         x: 0.5*vectorAddition(a,c).x,

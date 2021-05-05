@@ -7,15 +7,30 @@ import store from '../store/index';
 *  Tile object
 *  stores all info related to the tile object 
 */
-
 export default class Tile {
-    constructor({ x, y }) {
-        if (this.areParamsInvalid(x,y)) {
-            store.dispatch("error", "The tile object received too many/few arguments!");
+    x: number;
+    y: number;
+    z: number;
+    c: number;
+    d: number;
+    tileWidth: number;
+    tileYoffset : number;
+    topYfactor: number;
+    topYsegment: number;
+    rectColors: string[];
+    rectShadowColors: string[];
+    fillColor : string;
+    rectColor : string;
+
+    constructor({ x, y, z }) {
+        if (this.areParamsInvalid(x, y)) {
+            store.dispatch("error", "The tile object incorrect number of parameters!");
         } else {
             this.tileWidth = state.env.tileWidth;
-            
-            this.c = state.env.mapY - this.tileWidth * x * 0.5;
+            this.x = x;
+            this.y = y;
+            this.z = z;
+            this.c = state.env.map_offset_y - this.tileWidth * x * 0.5;
             this.d = this.tileWidth * 1.5;
             
             if (tileHeightMap.length !== state.env.map.length) {
@@ -34,7 +49,7 @@ export default class Tile {
             }
         }
     }
-    areParamsInvalid(x,y) {
+    areParamsInvalid( x : number, y: number ) {
         return x == undefined || y == undefined;
     }
 }

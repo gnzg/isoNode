@@ -1,9 +1,12 @@
+SHELL=/bin/bash #YMMV
+
 run:
 	npm run dev-sever
 
+# supply desired port for dev server via e.g. PORT=1234
 watch:
-	npx webpack serve --port 1703 --env mode=dev --hot --config ./webpack.config.js
-	echo "Serving dev server from port 1703"
+	@echo Serving dev server from port $(PORT)
+	npx webpack serve --port $(PORT) --env mode=dev --hot --config ./webpack.config.js
 
 generate-preview:
 	echo "To do..."

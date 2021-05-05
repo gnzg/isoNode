@@ -1,4 +1,4 @@
-import state from '../store/state'
+import state from '../store/state';
 import tileHeightMap from './tileHeightMap';
 import drawAdditionalDetails from '../maps/drawOutlines';
 import RhombusVertices from '../math/RhombusVertices';
@@ -9,15 +9,20 @@ import RhombusVertices from '../math/RhombusVertices';
 * @returns Object canvas
 */
 
-export default ({ tile, x, y, z }) => {
+export default ( tile ) => {
   
-  let mapX = state.env.mapX;
+  const x = tile.x;
+  const y = tile.y;
+  const z = tile.z;
+
+  let map_offset_x = state.env.map_offset_x;
   let map = state.env.map;
   let ctx = state.ctx;
   let topYfactor = tile.tileWidth * y * 0.5;
   let topYsegment = tile.c + topYfactor - tile.tileYoffset;
   
-  // top
+
+  // tile top
   // draw only if current tile is non-zero
   // and if the tile height level corresponds to z
   if (map[y][x] !== 0 && tileHeightMap[y][x] === z) {
@@ -26,16 +31,14 @@ export default ({ tile, x, y, z }) => {
     // the present data on thecanvas
     ctx.globalCompositeOperation = 'source-over';
     
-    // IDEA: draw each level separately
-    
     ctx.fillStyle = tile.rectColor;
     ctx.beginPath();
 
       // upper left corner of tile
-    ctx.moveTo(tile.tileWidth * y + tile.tileWidth + mapX + tile.tileWidth * x, tile.tileWidth + topYsegment);
-    ctx.lineTo(tile.tileWidth * y  + tile.tileWidth * 2 + mapX + tile.tileWidth * x, tile.d + topYsegment);
-    ctx.lineTo(tile.tileWidth * y  + tile.tileWidth + mapX + tile.tileWidth * x, tile.tileWidth * 2 + topYsegment);
-    ctx.lineTo(tile.tileWidth * y  + tile.tileWidth - tile.tileWidth + mapX + tile.tileWidth * x, tile.d + topYsegment);
+    ctx.moveTo(tile.tileWidth * y + tile.tileWidth + map_offset_x + tile.tileWidth * x, tile.tileWidth + topYsegment);
+    ctx.lineTo(tile.tileWidth * y  + tile.tileWidth * 2 + map_offset_x + tile.tileWidth * x, tile.d + topYsegment);
+    ctx.lineTo(tile.tileWidth * y  + tile.tileWidth + map_offset_x + tile.tileWidth * x, tile.tileWidth * 2 + topYsegment);
+    ctx.lineTo(tile.tileWidth * y  + tile.tileWidth - tile.tileWidth + map_offset_x + tile.tileWidth * x, tile.d + topYsegment);
     ctx.closePath();
     ctx.fill();
     
@@ -44,6 +47,6 @@ export default ({ tile, x, y, z }) => {
       // establish coordinates for the four vertices of each rhombus
       let rhombusVertices = new RhombusVertices({tile, x, y});
       drawAdditionalDetails({ctx, rhombusVertices, x, y});
-    } 
+    }
   }
-}
+};

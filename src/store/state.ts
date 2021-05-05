@@ -1,9 +1,36 @@
+import colors from '../helpers/colors';
 import map from '../maps/map0';
 
-export default {
-  ctx: document.querySelector('#main') ? document.querySelector('#main').getContext('2d') : () => { console.error('no canvas context found!' ); },
+interface State {
+  ctx: any;
+  cooldown: boolean;
+  debug_mode: boolean;
+  maxTileHeight: number;
+  acceleration: number;
+  env: {
+    map: number[][];
+    tileHitBoxes: number[];
+    lastHoveredTile: Object;
+    tileWidth: number;
+    rectColors: string[];
+    rectShadowColors: string[];
+    clearArea: number[];
+    rotationDegree: number;
+    map_offset_x: number;
+    map_offset_y: number;
+    winWidth: number;
+    winHeight: number;
+  };
+  misc: Object[];
+  keyMap: Object;
+}
+
+let canvas : HTMLCanvasElement = document.querySelector('#main');
+
+let state : State = ({
+  ctx: canvas ? canvas.getContext('2d') : () => { console.error('no canvas context found!' ); },
   cooldown: false,
-  debug_mode: true,
+  debug_mode: false,
   maxTileHeight: 8,
   acceleration: 5,
   env: {
@@ -16,21 +43,9 @@ export default {
     
     // @param Integer; the tile size
     tileWidth: 24,
-
-    rectColors: [
-      '000000',  // dummy
-      '#096dff', // water
-      '#8dee03', // vegetation
-      '#a3f742', // arid vegetation
-      'yellow'
-    ],
-    rectShadowColors: [
-      '000000',
-      '#0d49a9', // water sides
-      '#04b807', // vegetation sides
-      '#91d611', // arid vegetation sides
-      'orange'
-    ],
+    
+    rectColors: colors.rectColors,
+    rectShadowColors: colors.rectShadowColors,
     /*
     tileGraphicsToLoad: [
       "./images/water.png",
@@ -43,9 +58,9 @@ export default {
     // @param Integer; the degree of map rotation
     rotationDegree: 0,
     
-    // mapX and mapY are offsets to make sure we can position the map as we want.
-    mapX: 0,
-    mapY: 350,
+    // map_offset_x and map_offset_y are offsets to make sure we can position the map as we want.
+    map_offset_x: 0,
+    map_offset_y: 350,
     winWidth: window.innerWidth,
     winHeight: window.innerHeight
   },
@@ -62,4 +77,6 @@ export default {
     ArrowRight: false,
     " ": false
   }
-};
+});
+
+export default state;

@@ -1,6 +1,7 @@
 # Generics
 node_modules
 dist
+yarn-error.log
 
 # JetBrains specific
 .idea

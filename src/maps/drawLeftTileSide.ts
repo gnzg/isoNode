@@ -1,4 +1,4 @@
-import Tile from '../atoms/tile';
+import Tile from '../objects/tile';
 import state from '../store/state';
 import tileHeightMap from '../maps/tileHeightMap';
 

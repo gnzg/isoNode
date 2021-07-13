@@ -1,6 +1,6 @@
 import drawTileLaterals from '../../maps/drawTileLaterals.ts';
 import drawTileTop from '../../maps/drawTileTop';
-import Tile from '../../atoms/tile.ts';
+import Tile from '../../objects/tile.ts';
 import map from '../../maps/map0';
 // import debugOptions from '../../debugOptions';
 

@@ -1,8 +1,8 @@
-import Store from './store/index';
 import './assets/scss/styles.scss';
+import Store from './store/index';
 import CanvasWrapper from './store/canvasWrapper';
-import UserInput from './atoms/userInput';
-import Events from './atoms/events';
+import UserInput from './utilities/userInput';
+import Events from './objects/events';
 
 // ts: Extend the global Window interface
 declare global {

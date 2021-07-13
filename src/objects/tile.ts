@@ -2,6 +2,7 @@ import tileHeightMap from "../maps/tileHeightMap";
 import map from '../maps/map0';
 import state from '../store/state';
 import store from '../store/index';
+import colors from '../helpers/colors';
 
 /**
 *  Tile object
@@ -17,12 +18,13 @@ export default class Tile {
     tileYoffset : number;
     topYfactor: number;
     topYsegment: number;
-    rectColors: string[];
-    rectShadowColors: string[];
+    rectColors: Object;
+    rectShadowColors: Object;
     fillColor : string;
     rectColor : string;
 
     constructor({ x, y, z }) {
+        // TODO: z parameter
         if (this.areParamsInvalid(x, y)) {
             store.dispatch("error", "The tile object incorrect number of parameters!");
         } else {
@@ -41,11 +43,14 @@ export default class Tile {
                 this.topYfactor = this.tileWidth * y * 0.5;
                 this.topYsegment = this.c + this.topYfactor - this.tileYoffset;
                 
-                this.rectColors = state.env.rectColors;
-                this.rectShadowColors = state.env.rectShadowColors;
+                this.rectColors = colors.rectColors;
+                this.rectShadowColors = colors.rectShadowColors;
                 
-                this.fillColor = this.rectShadowColors[map[y][x]];
-                this.rectColor = this.rectColors[this.rectShadowColors.indexOf(this.fillColor)];
+                // refers to the tile's sides
+                this.fillColor = Object.values(this.rectShadowColors)[map[y][x]];
+                
+                // refers to the tile's top rectangle
+                this.rectColor = Object.values(this.rectColors)[map[y][x]];
             }
         }
     }

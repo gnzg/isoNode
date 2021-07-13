@@ -12,8 +12,8 @@ interface State {
     tileHitBoxes: number[];
     lastHoveredTile: Object;
     tileWidth: number;
-    rectColors: string[];
-    rectShadowColors: string[];
+    rectColors: Object;
+    rectShadowColors: Object;
     clearArea: number[];
     rotationDegree: number;
     map_offset_x: number;

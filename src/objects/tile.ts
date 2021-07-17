@@ -1,5 +1,3 @@
-import tileHeightMap from "../maps/tileHeightMap";
-import map from '../maps/map0';
 import state from '../store/state';
 import store from '../store/index';
 import colors from '../helpers/colors';
@@ -14,6 +12,8 @@ export default class Tile {
     z: number;
     c: number;
     d: number;
+    tileType: number;
+    tileHeight: number;
     tileWidth: number;
     tileYoffset : number;
     topYfactor: number;
@@ -35,11 +35,16 @@ export default class Tile {
             this.c = state.env.map_offset_y - this.tileWidth * x * 0.5;
             this.d = this.tileWidth * 1.5;
             
-            if (tileHeightMap.length !== state.env.map.length) {
+            // check if tile map and tile height map lengths are the same
+            if (state.env.map_tiles_height.length !== state.env.map_tiles.length) {
                 store.dispatch("error", "tileHeightMap size is different than map height!");
             } else {
+
+                this.tileHeight = state.env.map_tiles_height[y][x];
+                this.tileType = state.env.map_tiles[y][x];
+
                 // every height degree is one quarter of the tile's own height
-                this.tileYoffset = this.tileWidth + tileHeightMap[y][x] * this.tileWidth / 4;
+                this.tileYoffset = this.tileWidth + this.tileHeight * this.tileWidth / 4;
                 this.topYfactor = this.tileWidth * y * 0.5;
                 this.topYsegment = this.c + this.topYfactor - this.tileYoffset;
                 
@@ -47,10 +52,10 @@ export default class Tile {
                 this.rectShadowColors = colors.rectShadowColors;
                 
                 // refers to the tile's sides
-                this.fillColor = Object.values(this.rectShadowColors)[map[y][x]];
+                this.fillColor = Object.values(this.rectShadowColors)[this.tileType];
                 
                 // refers to the tile's top rectangle
-                this.rectColor = Object.values(this.rectColors)[map[y][x]];
+                this.rectColor = Object.values(this.rectColors)[this.tileType];
             }
         }
     }

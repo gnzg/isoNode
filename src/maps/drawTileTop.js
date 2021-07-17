@@ -1,5 +1,4 @@
 import state from '../store/state';
-import tileHeightMap from './tileHeightMap';
 import drawAdditionalDetails from '../maps/drawOutlines';
 import RhombusVertices from '../math/RhombusVertices';
 
@@ -15,17 +14,19 @@ export default ( tile ) => {
   const y = tile.y;
   const z = tile.z;
 
+  let map_tiles = state.env.map_tiles;
+  let map_tiles_height = state.env.map_tiles_height;
   let map_offset_x = state.env.map_offset_x;
-  let map = state.env.map;
-  let ctx = state.ctx;
+
   let topYfactor = tile.tileWidth * y * 0.5;
   let topYsegment = tile.c + topYfactor - tile.tileYoffset;
-  
+
+  let ctx = state.ctx;
 
   // tile top
   // draw only if current tile is non-zero
   // and if the tile height level corresponds to z
-  if (map[y][x] !== 0 && tileHeightMap[y][x] === z) {
+  if (map_tiles[y][x] !== 0 && map_tiles_height[y][x] === z) {
     
     // determine whether the surface will be drawn above or below 
     // the present data on thecanvas

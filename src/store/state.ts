@@ -8,10 +8,11 @@ interface State {
   maxTileHeight: number;
   acceleration: number;
   env: {
-    map: number[][];
+    tileWidth: number;
+    map_tiles: number[][];
+    map_tiles_height: number[][];
     tileHitBoxes: number[];
     lastHoveredTile: Object;
-    tileWidth: number;
     rectColors: Object;
     rectShadowColors: Object;
     clearArea: number[];
@@ -34,15 +35,14 @@ let state : State = ({
   maxTileHeight: 8,
   acceleration: 5,
   env: {
+    tileWidth: 24,
     // @param Array; main map
-    map,
+    map_tiles: map.tiles,
+    map_tiles_height: map.tile_height,
     // @param Array; every item represents a tile hitboxes 
     // a tile hitbox is an object with the form {pointA, pointB, pointC, pointD}
     tileHitBoxes: [],
     lastHoveredTile: {},
-    
-    // @param Integer; the tile size
-    tileWidth: 24,
     
     rectColors: colors.rectColors,
     rectShadowColors: colors.rectShadowColors,

@@ -1,4 +1,3 @@
-import tileHeightMap from '../maps/tileHeightMap';
 import state from '../store/state';
 
 export default ( tile ) => {
@@ -8,18 +7,21 @@ export default ( tile ) => {
   const z = tile.z;
 
   let ctx = state.ctx;
-  let map = state.env.map;
+  
+  let map_tiles = state.env.map_tiles;
+  let map_tiles_height = state.env.map_tiles_height;
   let map_offset_x = state.env.map_offset_x;
+
   const debug = false;
 
   // right tile side
   if ((
     // draw if not last row and the next row's tiles are zero
-    (map[y + 1] !== undefined && map[y + 1][x] === 0) ||
+    (map_tiles[y + 1] !== undefined && map_tiles[y + 1][x] === 0) ||
     // or, if not last row and next row's tiles' heightmap is not undefined and greater than current tile's height map
-    (map[y + 1] !== undefined && tileHeightMap[y + 1][x] !== undefined && tileHeightMap[y + 1][x] < tileHeightMap[y][x]) ||
+    (map_tiles[y + 1] !== undefined && map_tiles_height[y + 1][x] !== undefined && map_tiles_height[y + 1][x] < map_tiles_height[y][x]) ||
     // or, if last row and not in debug mode
-    y === map.length-1) && !debug 
+    y === map_tiles.length-1) && !debug 
     ) {
       ctx.globalCompositeOperation = 'source-over';
       ctx.beginPath();

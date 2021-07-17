@@ -1,6 +1,5 @@
 import Tile from '../objects/tile';
 import state from '../store/state';
-import tileHeightMap from '../maps/tileHeightMap';
 
 export default ( tile : Tile ) => {
   
@@ -9,8 +8,11 @@ export default ( tile : Tile ) => {
   const z : number = tile.z;
 
   let ctx = state.ctx;
-  let map = state.env.map;
+
+  let map_tiles = state.env.map_tiles;
+  let map_tiles_height = state.env.map_tiles_height;
   let map_offset_x = state.env.map_offset_x;
+  
   const debug = state.debug_mode;
   
   // left tile side
@@ -18,11 +20,11 @@ export default ( tile : Tile ) => {
     // draw if first tile in row
     x === 0 ||
     // or, if preceeded by an empty tile on the x axis,
-    map[y][x - 1] === 0 ||
+    map_tiles[y][x - 1] === 0 ||
     // or if not exceeding row length
-    x > map[y].length -1 ||
+    x > map_tiles[y].length -1 ||
     // if current tile's height is greater than its predecessor's
-    tileHeightMap[y][x] > tileHeightMap[y][x-1]
+    map_tiles_height[y][x] > map_tiles_height[y][x-1]
     )) {
 
       // if current tile has a higher height, draw under drawn elements
@@ -34,7 +36,7 @@ export default ( tile : Tile ) => {
       let bottomHalf = tile.c + tile.tileWidth * y - y * tile.tileWidth * 0.5 - tile.tileYoffset + tile.tileWidth * 1.75 + zMultiplier * (tile.tileWidth / 4);
       
       // establish left tile side height based on previous tile's height, if it exists
-      let prevTileZ = tileHeightMap[y][x-1] ? tileHeightMap[y][x-1] : 0;
+      let prevTileZ = map_tiles[y][x-1] ? map_tiles[y][x-1] : 0;
       let prevTileZOffset = prevTileZ * (tile.tileWidth / 4);
 
       // upper left corner of tile

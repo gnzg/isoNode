@@ -5,8 +5,7 @@ export default function tileNotHovered(state, payload) {
     let tile = payload;
     let tileCoordinates = state.env.tileHitBoxes;
 
-    state.env.lastHoveredTileType = state.env.map_tiles[tile.y][tile.x];
-    state.env.map_tiles[tile.y][tile.x] = 2;
+    state.env.map_tiles[tile.y][tile.x] = state.env.lastHoveredTileType;
 
     // reset all hovered tiles
     for (let i = 0; i < tileCoordinates.length; i++) {

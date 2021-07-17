@@ -45,19 +45,12 @@ export default (event) => {
           state.env.lastHoveredTile.x,
           state.env.lastHoveredTile.y
         );
-        store.dispatch("tileNotHovered", state.env.lastHoveredTile);
         store.dispatch("tileHovered", tilePos);
+        store.dispatch("tileNotHovered", state.env.lastHoveredTile);
         store.dispatch("refreshCanvas");
       }
       // exit for loop
       return true;
-    } else {
-      console.log("not inside map");
-      let tileCoordinates = state.env.tileHitBoxes;
-
-      for (let i = 0; i < tileCoordinates.length; i++) {
-        state.env.map_tiles[tileCoordinates[i].y][tileCoordinates[i].x] = 2;
-      }
     }
   }
 };

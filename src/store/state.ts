@@ -25,6 +25,7 @@ interface State {
   };
   misc: Object[];
   keyMap: Object;
+  cursorInMap: boolean;
 }
 
 let canvas : HTMLCanvasElement = document.querySelector('#main');
@@ -35,6 +36,7 @@ let state : State = ({
   debug_mode: false,
   maxTileHeight: 8,
   acceleration: 5,
+  cursorInMap: undefined,
   env: {
     tileWidth: 24,
     // @param Array; main map

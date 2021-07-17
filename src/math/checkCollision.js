@@ -51,6 +51,15 @@ export default (event) => {
       }
       // exit for loop
       return true;
+    } 
+    /*
+    else if (
+        // TODO calculate total shape surface to determine if cursor left it
+        
+        pointInRhombus(rhombus, { x: event.clientX, y: event.clientY }) == false
+    ) {
+      console.log("outside of map!");
     }
+    */
   }
 };

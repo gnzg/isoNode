@@ -37,7 +37,7 @@ export default class Tile {
             
             // check if tile map and tile height map lengths are the same
             if (state.env.map_tiles_height.length !== state.env.map_tiles.length) {
-                store.dispatch("error", "tileHeightMap size is different than map height!");
+                store.dispatch("error", "map_tiles_height length is different than map_tiles height!");
             } else {
 
                 this.tileHeight = state.env.map_tiles_height[y][x];
@@ -48,14 +48,11 @@ export default class Tile {
                 this.topYfactor = this.tileWidth * y * 0.5;
                 this.topYsegment = this.c + this.topYfactor - this.tileYoffset;
                 
-                this.rectColors = colors.rectColors;
-                this.rectShadowColors = colors.rectShadowColors;
-                
                 // refers to the tile's sides
-                this.fillColor = Object.values(this.rectShadowColors)[this.tileType];
+                this.fillColor = Object.values(colors.rectShadowColors)[this.tileType];
                 
                 // refers to the tile's top rectangle
-                this.rectColor = Object.values(this.rectColors)[this.tileType];
+                this.rectColor = Object.values(colors.rectColors)[this.tileType];
             }
         }
     }

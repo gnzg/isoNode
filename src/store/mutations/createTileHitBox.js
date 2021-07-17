@@ -4,8 +4,7 @@ import Tile from '../../objects/tile.ts';
 
 export default (state) => {
   
-  // TODO: Fix moving the map
-  let map = state.env.map;
+  let map = state.env.map_tiles;
   
   for (let y = 0; y < map.length; y++) {
     // j draws a row across the x axis

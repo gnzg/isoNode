@@ -14,7 +14,7 @@ declare global {
 
 // Initialization
 window.addEventListener("DOMContentLoaded", () => {
-  
+
   let canvasWrapper = new CanvasWrapper('main');
   canvasWrapper.initialize();
   

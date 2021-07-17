@@ -13,6 +13,7 @@ interface State {
     map_tiles_height: number[][];
     tileHitBoxes: number[];
     lastHoveredTile: Object;
+    lastHoveredTileType: number;
     rectColors: Object;
     rectShadowColors: Object;
     clearArea: number[];
@@ -43,6 +44,7 @@ let state : State = ({
     // a tile hitbox is an object with the form {pointA, pointB, pointC, pointD}
     tileHitBoxes: [],
     lastHoveredTile: {},
+    lastHoveredTileType: 0,
     
     rectColors: colors.rectColors,
     rectShadowColors: colors.rectShadowColors,

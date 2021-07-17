@@ -1,13 +1,12 @@
-import Tile from '../objects/tile';
-import state from '../store/state';
-import drawLeftTileSide from './drawLeftTileSide';
-import drawRightTileSide from './drawRightTileSide';
+import Tile from "../objects/tile";
+import state from "../store/state";
+import drawLeftTileSide from "./drawLeftTileSide";
+import drawRightTileSide from "./drawRightTileSide";
 
-export default ( tile : Tile )  => {
-
-  const x : number = tile.x;
-  const y : number = tile.y;
-  const z : number = tile.z;
+export default (tile: Tile) => {
+  const x: number = tile.x;
+  const y: number = tile.y;
+  const z: number = tile.z;
 
   let map_tiles = state.env.map_tiles;
   let map_tiles_height = state.env.map_tiles_height;
@@ -19,12 +18,10 @@ export default ( tile : Tile )  => {
     map_tiles[y][x] !== 0 &&
     // draw only the tiles correspond to the current height value i
     map_tiles_height[y][x] === z
-    )
-    {
-      drawLeftTileSide( tile );
-      drawRightTileSide( tile );
-
-    } else if (map_tiles.length == 0) {
-      console.error("Length of main map is zero!");   
-    }
-  };
+  ) {
+    drawLeftTileSide(tile);
+    drawRightTileSide(tile);
+  } else if (map_tiles.length == 0) {
+    console.error("Length of main map is zero!");
+  }
+};

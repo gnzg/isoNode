@@ -1,5 +1,6 @@
+import Tile from '../objects/tile';
 import state from '../store/state';
-import drawAdditionalDetails from '../maps/drawOutlines';
+import drawAdditionalDetails from './drawOutlines';
 import RhombusVertices from '../math/RhombusVertices';
 
 /**
@@ -8,7 +9,7 @@ import RhombusVertices from '../math/RhombusVertices';
 * @returns Object canvas
 */
 
-export default ( tile ) => {
+export default ( tile : Tile ) => {
   
   const x = tile.x;
   const y = tile.y;

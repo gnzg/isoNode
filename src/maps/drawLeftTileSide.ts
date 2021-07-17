@@ -36,7 +36,7 @@ export default ( tile : Tile ) => {
       let bottomHalf = tile.c + tile.tileWidth * y - y * tile.tileWidth * 0.5 - tile.tileYoffset + tile.tileWidth * 1.75 + zMultiplier * (tile.tileWidth / 4);
       
       // establish left tile side height based on previous tile's height, if it exists
-      let prevTileZ = map_tiles[y][x-1] ? map_tiles[y][x-1] : 0;
+      let prevTileZ = map_tiles_height[y][x-1] ? map_tiles_height[y][x-1] : 0;
       let prevTileZOffset = prevTileZ * (tile.tileWidth / 4);
 
       // upper left corner of tile

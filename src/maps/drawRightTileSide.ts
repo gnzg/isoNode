@@ -1,6 +1,7 @@
+import Tile from '../objects/tile';
 import state from '../store/state';
 
-export default ( tile ) => {
+export default ( tile : Tile ) => {
 
   const x = tile.x;
   const y = tile.y;

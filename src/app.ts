@@ -27,6 +27,7 @@ window.addEventListener("DOMContentLoaded", e => {
 });
 
 window.addEventListener("mousemove", e => {
-  e.stopImmediatePropagation();
   Store.dispatch("checkCollision", e);
+  //e.stopImmediatePropagation();
+  console.log("x:", e.clientX, "y:", e.clientY);
 });

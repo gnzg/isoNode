@@ -9,7 +9,10 @@ export default interface State {
       map_tiles: number[][];
       map_tiles_height: number[][];
       tileHitBoxes: number[];
-      lastHoveredTile: Object;
+      lastHoveredTile: {
+        x: number;
+        y: number;
+      };
       lastHoveredTileType: number;
       rectColors: Object;
       rectShadowColors: Object;

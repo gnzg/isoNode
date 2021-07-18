@@ -7,9 +7,9 @@ import deleteTile from './deleteTile';
 import tileHovered from './tileHovered';
 import tileNotHovered from './tileNotHovered';
 import saveLastHoveredTile from './saveLastHoveredTile';
-import createTileHitBox from './createTileHitBox';
+import createTileHitBoxes from './createTileHitBoxes';
 import clearTileHitBoxes from './clearTileHitBoxes';
-import checkCollision from './checkCollision';
+import checkCollision from './checkCollision.ts';
 
 export default {
   error(payload) {
@@ -28,7 +28,8 @@ export default {
     return state;
   },
   checkCollision(state, payload) {
-    state.cursor_pos = payload;
+    state.cursor_pos_x = payload.clientX;
+    state.cursor_pos_y = payload.clientY;
     return state;
   },
   // the below mutations implicitly use state as an argument
@@ -41,6 +42,6 @@ export default {
   tileHovered,
   tileNotHovered,
   saveLastHoveredTile,
-  createTileHitBox,
+  createTileHitBoxes,
   clearTileHitBoxes
 };

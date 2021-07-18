@@ -11,7 +11,7 @@ export default function handleKeyUp (state, payload) {
     
     // if all all user input keys have been unregistered, do...
     if (areAllObjectPropsFalse(state.keyMap)) {
-      store.dispatch("createTileHitBox");
+      store.dispatch("createTileHitBoxes");
     }
   }
 }

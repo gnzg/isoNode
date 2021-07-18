@@ -15,8 +15,8 @@
 IsoNode is an HTML5 isometric map engine, originally inspired by jsISO.
 
 ## Features
-* Object-oriented map drawing approach
-* Hitbox logic per tile (work in progress)
+* TypeScript-driven development
+* Hitbox logic per tile
 * Keyboard map movement
 * State store implemented via the publisher-subscriber pattern
 * Debug mode

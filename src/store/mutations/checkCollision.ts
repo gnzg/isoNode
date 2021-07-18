@@ -6,7 +6,7 @@ import store from "../index";
 
 export default (event) => {
   let state = store.state;
-  let tileCoordinates = state.env.tileHitBoxes;
+  let tileCoordinates : Array<any> = state.env.tileHitBoxes;
 
   for (let i = 0; i < tileCoordinates.length; i++) {
     // tileCoordinates[tileN]{x,y}

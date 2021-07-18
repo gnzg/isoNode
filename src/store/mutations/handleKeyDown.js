@@ -23,6 +23,6 @@ export default function handleKeyDown (state, payload) {
     else if (state.keyMap["ArrowDown"] || state.keyMap["s"]) {
       state.env.map_offset_y += state.acceleration;
     }
-    store.dispatch('refreshCanvas');
+    store.dispatch('updateCanvas');
   }
 }

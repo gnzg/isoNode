@@ -1,4 +1,4 @@
-import refreshCanvas from './mutations/refreshCanvas';
+import updateCanvas from './mutations/updateCanvas';
 import handleKeyDown from './mutations/handleKeyDown';
 import handleKeyUp from './mutations/handleKeyUp';
 import rotateMap from './mutations/rotateMap';
@@ -27,7 +27,7 @@ export default {
     return state;
   },
   // the below mutations implicitly use state as an argument
-  refreshCanvas,
+  updateCanvas,
   handleKeyDown,
   handleKeyUp,
   rotateMap,

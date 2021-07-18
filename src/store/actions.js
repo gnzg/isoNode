@@ -14,8 +14,8 @@ export default {
   handleKeyUp(context, payload) {
     context.commit('handleKeyUp', payload);
   },
-  refreshCanvas(context) {
-    context.commit('refreshCanvas');
+  updateCanvas(context) {
+    context.commit('updateCanvas');
   },
   rotateMapAction(context) {
     context.commit('rotateMap');
@@ -34,7 +34,7 @@ export default {
   },
   toggleDebugMode(context) {
     context.commit('toggleDebugMode');
-    context.commit('refreshCanvas');
+    context.commit('updateCanvas');
   },
   createTileHitBox(context) {
     context.commit('createTileHitBox');

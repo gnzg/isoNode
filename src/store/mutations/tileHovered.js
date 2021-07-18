@@ -8,7 +8,7 @@ export default function tileHovered(state, payload) {
 
     // save original tile type
     state.env.lastHoveredTileType = state.env.map_tiles[tile.y][tile.x];
-    
+
     state.env.map_tiles[tile.y][tile.x] = 4;
   } else {
     store.dispatch("error", "state.env.map_tiles is invalid!");

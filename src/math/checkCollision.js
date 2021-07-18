@@ -26,7 +26,7 @@ export default (event) => {
         //write currently hovered tile to global state
         store.dispatch("tileHovered", tilePos);
         store.dispatch("saveLastHoveredTile", tilePos);
-        store.dispatch("refreshCanvas");
+        store.dispatch("updateCanvas");
       }
       // if hovering same tile, do nothing
       else if (
@@ -47,7 +47,7 @@ export default (event) => {
         );
         store.dispatch("tileHovered", tilePos);
         store.dispatch("tileNotHovered", state.env.lastHoveredTile);
-        store.dispatch("refreshCanvas");
+        store.dispatch("updateCanvas");
       }
       // exit for loop
       return true;

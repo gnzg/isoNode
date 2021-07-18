@@ -3,6 +3,7 @@ import Store from './store/index';
 import CanvasWrapper from './store/canvasWrapper';
 import UserInput from './utilities/userInput';
 import Events from './objects/events';
+import store from './store/index';
 
 // ts: Extend the global Window interface
 declare global {
@@ -23,7 +24,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
   let events = new Events();
   events.activateHitBoxes();
-  events.refreshCanvasOnResize();
+  store.dispatch("updateCanvas");
   
   // Access store and state via window object
   window.store = Store;

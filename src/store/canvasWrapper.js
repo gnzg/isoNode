@@ -17,7 +17,7 @@ export default class CanvasWrapper extends StoreComponent {
   }
   initialize() {
     store.dispatch('centerCanvas');
-    store.dispatch('refreshCanvas');
+    store.dispatch('updateCanvas');
     store.dispatch("createTileHitBox");
   }
 }

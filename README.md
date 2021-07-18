@@ -31,7 +31,7 @@ To compile and watch the source code, the preferred method is to run `make watch
 ## Debugging
 Working on the map in debug mode is possible by setting the `debug_mode` property in the global state object to true, or toggling it in the browser console via `window.store.dispatch("toggleDebugMode");`
 
-It is possible to test newly introduced actions via the browser console as they are available via the window object. E.g. `window.store.dispatch('refreshCanvas');`
+It is possible to test newly introduced actions via the browser console as they are available via the window object. E.g. `window.store.dispatch('updateCanvas');`
 
 If running into ambigious compilation errors, first try to rebuuld node-sass via `npm rebuild node-sass`
 

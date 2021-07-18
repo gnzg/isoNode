@@ -6,12 +6,13 @@ import store from "../index";
 // by comparing the position of the cursor with each tile hitbox saved in the global state
 
 export default (state, payload) => {
-  store.dispatch("error", "wtf");
   
   if (state.env.tileHitBoxes.length > 0) {
     let cursor_pos_x = payload.clientX;
     let cursor_pos_y = payload.clientY;
     let tileCoordinates = state.env.tileHitBoxes;
+
+  console.log("x:", cursor_pos_x, "y:", cursor_pos_y);
 
     for (let i = 0; i < tileCoordinates.length; i++) {
       // tileCoordinates[tileN]{x,y}
@@ -69,6 +70,7 @@ export default (state, payload) => {
     }
     */
     }
+    return state;
   } else {
     store.dispatch("error", "tileHitBoxes length is zero!");
   }

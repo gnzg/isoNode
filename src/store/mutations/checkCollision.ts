@@ -6,15 +6,14 @@ import store from "../index";
 
 export default (event) => {
   let state = store.state;
-  let tileCoordinates : Array<any> = state.env.tileHitBoxes;
+  let tileCoordinates: [{ x: number, y: number }] | any = state.env.tileHitBoxes;
 
   for (let i = 0; i < tileCoordinates.length; i++) {
     // tileCoordinates[tileN]{x,y}
-    let rhombus = tileCoordinates[i];
     let tilePos;
 
     // if mouse within constraints of tile
-    if (pointInRhombus(rhombus, { x: event.clientX, y: event.clientY })) {
+    if (pointInRhombus(tileCoordinates[i], { x: event.clientX, y: event.clientY })) {
       tilePos = {
         x: tileCoordinates[i].x,
         y: tileCoordinates[i].y,

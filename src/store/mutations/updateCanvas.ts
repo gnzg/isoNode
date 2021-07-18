@@ -1,4 +1,5 @@
 import store from "../../store/index";
+import StateInterface from "../../interfaces/StateInterface";
 import drawTileLaterals from "../../maps/drawTileLaterals";
 import drawTileTop from "../../maps/drawTileTop";
 import Tile from "../../objects/tile";
@@ -6,17 +7,14 @@ import Tile from "../../objects/tile";
 // import debugOptions from '../../debugOptions';
 
 export default () => {
+
   if (store.state.ctx) {
-    let ctx = store.state.ctx;
+    let ctx : StateInterface["ctx"] = store.state.ctx;
     let { clearArea, map_tiles } = store.state.env;
     
     // clear entire canvas
+    // @ts-ignore
     ctx.clearRect(...clearArea);
-
-    // set new window boundaries
-    store.state.env.winWidth = window.innerWidth;
-    store.state.env.winHeight = window.innerHeight;
-    store.dispatch('centerCanvas');
 
     // draw map
     if (map_tiles !== undefined && Array.isArray(map_tiles)) {

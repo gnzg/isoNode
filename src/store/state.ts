@@ -1,37 +1,13 @@
+import store from '../store/index';
+import StateInterface from '../interfaces/StateInterface';
 import colors from '../helpers/colors';
 import map from '../maps/map0';
 
-interface State {
-  ctx: any;
-  cooldown: boolean;
-  debug_mode: boolean;
-  maxTileHeight: number;
-  acceleration: number;
-  env: {
-    tileWidth: number;
-    map_tiles: number[][];
-    map_tiles_height: number[][];
-    tileHitBoxes: number[];
-    lastHoveredTile: Object;
-    lastHoveredTileType: number;
-    rectColors: Object;
-    rectShadowColors: Object;
-    clearArea: number[];
-    rotationDegree: number;
-    map_offset_x: number;
-    map_offset_y: number;
-    winWidth: number;
-    winHeight: number;
-  };
-  misc: Object[];
-  keyMap: Object;
-  cursorInMap: boolean;
-}
-
 let canvas : HTMLCanvasElement = document.querySelector('#main');
+if (!canvas) store.dispatch("error", "no canvas context found!" );
 
-let state : State = ({
-  ctx: canvas ? canvas.getContext('2d') : () => { console.error('no canvas context found!' ); },
+let state : StateInterface = ({
+  ctx: canvas.getContext('2d'),
   cooldown: false,
   debug_mode: false,
   maxTileHeight: 8,

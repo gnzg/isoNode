@@ -1,14 +1,14 @@
-import updateCanvas from './mutations/updateCanvas';
-import handleKeyDown from './mutations/handleKeyDown';
-import handleKeyUp from './mutations/handleKeyUp';
-import rotateMap from './mutations/rotateMap';
-import centerCanvas from './mutations/centerCanvas';
-import deleteTile from './mutations/deleteTile';
-import tileHovered from './mutations/tileHovered';
-import tileNotHovered from './mutations/tileNotHovered';
-import saveLastHoveredTile from './mutations/saveLastHoveredTile';
-import createTileHitBox from './mutations/createTileHitBox';
-import clearTileHitBoxes from './mutations/clearTileHitBoxes';
+import updateCanvas from './updateCanvas';
+import handleKeyDown from './handleKeyDown';
+import handleKeyUp from './handleKeyUp';
+import rotateMap from './rotateMap';
+import centerCanvas from './centerCanvas';
+import deleteTile from './deleteTile';
+import tileHovered from './tileHovered';
+import tileNotHovered from './tileNotHovered';
+import saveLastHoveredTile from './saveLastHoveredTile';
+import createTileHitBox from './createTileHitBox';
+import clearTileHitBoxes from './clearTileHitBoxes';
 
 export default {
   error(payload) {

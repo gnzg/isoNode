@@ -1,5 +1,5 @@
 import PubSub from "./lib/pubsub";
-import { StoreInterface } from "../interfaces/StoreInterface";
+import StoreInterface from "../interfaces/StoreInterface";
 
 export class Store implements StoreInterface {
   status: StoreInterface["status"];
@@ -42,7 +42,7 @@ export class Store implements StoreInterface {
   }
   dispatch(actionKey: string, payload?: any) {
     let self: this = this;
-
+    
     if (typeof self.actions[actionKey] !== "function") {
       console.error(`Action "${actionKey} doesn't exist.`);
       return false;

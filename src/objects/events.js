@@ -1,4 +1,3 @@
-import store from '../store/index';
 import checkCollision from '../math/checkCollision';
 
 export default class Events {

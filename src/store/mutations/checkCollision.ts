@@ -1,19 +1,27 @@
+import State from "../../interfaces/StateInterface";
 import { pointInRhombus } from "../../math/math";
 import store from "../index";
 
 // checks whether the current mouse coordinates fall within saved hitboxes of non-zero tiles
 // by comparing the position of the cursor with each tile hitbox saved in the global state
 
-export default (event) => {
-  let state = store.state;
-  let tileCoordinates: [{ x: number, y: number }] | any = state.env.tileHitBoxes;
+export default (state : State) => {
+  
+  let cursor_pos_x = state.cursor_pos_x;
+  let cursor_pos_y = state.cursor_pos_y;
+
+  console.log("FOO");
+  let tileCoordinates: [{ x: number; y: number }] | any =
+    state.env.tileHitBoxes;
 
   for (let i = 0; i < tileCoordinates.length; i++) {
     // tileCoordinates[tileN]{x,y}
     let tilePos;
 
     // if mouse within constraints of tile
-    if (pointInRhombus(tileCoordinates[i], { x: event.clientX, y: event.clientY })) {
+    if (
+      pointInRhombus(tileCoordinates[i], { x: cursor_pos_x, y: cursor_pos_y })
+    ) {
       tilePos = {
         x: tileCoordinates[i].x,
         y: tileCoordinates[i].y,

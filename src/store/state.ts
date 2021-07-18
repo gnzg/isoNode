@@ -13,6 +13,8 @@ let state : StateInterface = ({
   maxTileHeight: 8,
   acceleration: 5,
   cursorInMap: undefined,
+  cursor_pos_x: 0,
+  cursor_pos_y: 0,
   env: {
     tileWidth: 24,
     map_tiles: map.tiles,

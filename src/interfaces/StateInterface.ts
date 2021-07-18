@@ -4,6 +4,8 @@ export default interface State {
     debug_mode: boolean;
     maxTileHeight: number;
     acceleration: number;
+    cursor_pos_x: number;
+    cursor_pos_y: number;
     env: {
       tileWidth: number;
       map_tiles: number[][];

@@ -5,14 +5,11 @@ import store from "../index";
 // checks whether the current mouse coordinates fall within saved hitboxes of non-zero tiles
 // by comparing the position of the cursor with each tile hitbox saved in the global state
 
-export default (state : State) => {
-  
-  let cursor_pos_x = state.cursor_pos_x;
-  let cursor_pos_y = state.cursor_pos_y;
+export default (state, payload) => {
+  let cursor_pos_x = payload.clientX;
+  let cursor_pos_y = payload.clientY;
 
-  console.log("FOO");
-  let tileCoordinates: [{ x: number; y: number }] | any =
-    state.env.tileHitBoxes;
+  let tileCoordinates = state.env.tileHitBoxes;
 
   for (let i = 0; i < tileCoordinates.length; i++) {
     // tileCoordinates[tileN]{x,y}

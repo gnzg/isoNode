@@ -9,7 +9,7 @@ import tileNotHovered from './tileNotHovered';
 import saveLastHoveredTile from './saveLastHoveredTile';
 import createTileHitBoxes from './createTileHitBoxes';
 import clearTileHitBoxes from './clearTileHitBoxes';
-import checkCollision from './checkCollision.ts';
+import checkCollision from './checkCollision';
 
 export default {
   error(payload) {
@@ -27,11 +27,6 @@ export default {
     state.debug_mode = !state.debug_mode;
     return state;
   },
-  checkCollision(state, payload) {
-    state.cursor_pos_x = payload.clientX;
-    state.cursor_pos_y = payload.clientY;
-    return state;
-  },
   // the below mutations implicitly use state as an argument
   updateCanvas,
   handleKeyDown,
@@ -43,5 +38,6 @@ export default {
   tileNotHovered,
   saveLastHoveredTile,
   createTileHitBoxes,
-  clearTileHitBoxes
+  clearTileHitBoxes,
+  checkCollision
 };

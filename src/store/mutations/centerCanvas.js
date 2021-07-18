@@ -13,5 +13,5 @@ export default function (state) {
 
     return state;
   }
-  store.dispatchEvent("error", "Invalid state.env.map_tiles value!");
+  store.dispatch("error", "Invalid state.env.map_tiles value!");
 }

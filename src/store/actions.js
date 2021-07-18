@@ -32,6 +32,9 @@ export default {
   saveLastHoveredTile(context, payload) {
     context.commit('saveLastHoveredTile', payload);
   },
+  checkCollision(context, payload) {
+    context.commit('checkCollision', payload);
+  },
   toggleDebugMode(context) {
     context.commit('toggleDebugMode');
     context.commit('updateCanvas');
@@ -45,7 +48,4 @@ export default {
   error(context, payload) {
     context.commit('error', payload);
   },
-  checkCollision(context, payload) {
-    context.commit('checkCollision', payload);
-  }
 }

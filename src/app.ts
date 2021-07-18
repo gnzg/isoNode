@@ -1,5 +1,5 @@
 import './assets/scss/styles.scss';
-import Store from './store/index';
+import store from './store/index';
 import CanvasWrapper from './store/canvasWrapper';
 import UserInput from './utilities/userInput';
 
@@ -21,13 +21,13 @@ window.addEventListener("DOMContentLoaded", e => {
   userInput.activate();
 
   // Access store and state via window object
-  window.store = Store;
-  window.state = Store.state;
+  window.store = store;
+  window.state = store.state;
   e.stopImmediatePropagation();
 });
 
 window.addEventListener("mousemove", e => {
-  Store.dispatch("checkCollision", e);
+  store.dispatch("checkCollision", e);
   //e.stopImmediatePropagation();
   console.log("x:", e.clientX, "y:", e.clientY);
 });

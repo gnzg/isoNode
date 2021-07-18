@@ -20,7 +20,6 @@ export default interface State {
       winWidth: number;
       winHeight: number;
     };
-    misc: Object[];
     keyMap: Object;
     cursorInMap: boolean;
   }

@@ -15,23 +15,15 @@ let state : StateInterface = ({
   cursorInMap: undefined,
   env: {
     tileWidth: 24,
-    // @param Array; main map
     map_tiles: map.tiles,
     map_tiles_height: map.tile_height,
-    // @param Array; every item represents a tile hitboxes 
     // a tile hitbox is an object with the form {pointA, pointB, pointC, pointD}
     tileHitBoxes: [],
     lastHoveredTile: {},
     lastHoveredTileType: 0,
-    
     rectColors: colors.rectColors,
     rectShadowColors: colors.rectShadowColors,
-    /*
-    tileGraphicsToLoad: [
-      "./images/water.png",
-      "./images/land.png"
-    ],
-    */
+
     // @param Array; Area to clear relative to the canvas
     clearArea: [-1000, 0, 4000, 4000],       
     
@@ -44,7 +36,6 @@ let state : StateInterface = ({
     winWidth: window.innerWidth,
     winHeight: window.innerHeight
   },
-  misc: [],
   // save a map of pressed keys to allow key combinations
   keyMap: { 
     w: false,

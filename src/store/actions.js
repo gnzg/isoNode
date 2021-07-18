@@ -44,5 +44,8 @@ export default {
   },
   error(context, payload) {
     context.commit('error', payload);
+  },
+  checkCollision(context, payload) {
+    context.commit('checkCollision', payload);
   }
 }

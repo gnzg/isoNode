@@ -1,12 +1,13 @@
-import { pointInRhombus } from "./math";
-import state from "../store/state";
-import store from "../store/index";
+import { pointInRhombus } from "../../math/math";
+import store from "../index";
 
 // checks whether the current mouse coordinates fall within saved hitboxes of non-zero tiles
 // by comparing the position of the cursor with each tile hitbox saved in the global state
 
 export default (event) => {
+  let state = store.state;
   let tileCoordinates = state.env.tileHitBoxes;
+
   for (let i = 0; i < tileCoordinates.length; i++) {
     // tileCoordinates[tileN]{x,y}
     let rhombus = tileCoordinates[i];
@@ -51,7 +52,7 @@ export default (event) => {
       }
       // exit for loop
       return true;
-    } 
+    }
     /*
     else if (
         // TODO calculate total shape surface to determine if cursor left it

@@ -9,6 +9,7 @@ import tileNotHovered from './tileNotHovered';
 import saveLastHoveredTile from './saveLastHoveredTile';
 import createTileHitBox from './createTileHitBox';
 import clearTileHitBoxes from './clearTileHitBoxes';
+import checkCollision from './checkCollision';
 
 export default {
   error(payload) {
@@ -24,6 +25,10 @@ export default {
   },
   toggleDebugMode(state) {
     state.debug_mode = !state.debug_mode;
+    return state;
+  },
+  checkCollision(state, payload) {
+    state.cursor_pos = payload;
     return state;
   },
   // the below mutations implicitly use state as an argument

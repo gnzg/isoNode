@@ -1,23 +1,22 @@
-import StoreComponent from './lib/storeComponent';
-import store from './index';
+import StoreComponent from "./lib/storeComponent";
+import store from "./index";
 
-// Create an instance of Component, and equipping it with a store instance
+// Create a child of the storeComponent class and assign it the canvas element
 
 export default class CanvasWrapper extends StoreComponent {
   constructor(elementId) {
     super({
       store,
-      element: document.getElementById(elementId)
+      element: document.getElementById(elementId),
     });
   }
-  render() {
+  initialize() {
     this.element.width = window.innerWidth;
     this.element.height = window.innerHeight;
     this.element.innerHTML = `<canvas>Browser does not support canvas.</canvas>`;
-  }
-  initialize() {
-    store.dispatch('centerCanvas');
-    store.dispatch('updateCanvas');
+
+    store.dispatch("centerCanvas");
+    store.dispatch("updateCanvas");
     store.dispatch("createTileHitBox");
   }
 }

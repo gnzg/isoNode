@@ -8,7 +8,6 @@ if (!canvas) store.dispatch("error", "no canvas context found!" );
 
 let state : StateInterface = ({
   ctx: canvas.getContext('2d'),
-  cooldown: false,
   debug_mode: false,
   maxTileHeight: 8,
   acceleration: 5,

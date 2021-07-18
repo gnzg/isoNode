@@ -1,6 +1,5 @@
 export default interface State {
     ctx: CanvasRenderingContext2D;
-    cooldown: boolean;
     debug_mode: boolean;
     maxTileHeight: number;
     acceleration: number;

@@ -1,6 +1,9 @@
 export default {
-  addItem(context, payload) {
-    context.commit('addItem', payload);
+  error(context, payload) {
+    context.commit('error', payload);
+  },
+  info(context, payload) {
+    context.commit('info', payload);
   },
   addEnvProp(context, payload) {
     context.commit('addEnvProp', payload);
@@ -44,8 +47,5 @@ export default {
   },
   clearTileHitBoxes(context) {
     context.commit('clearTileHitBoxes');
-  },
-  error(context, payload) {
-    context.commit('error', payload);
-  },
-}
+  }
+};

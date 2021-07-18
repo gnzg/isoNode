@@ -1,11 +1,10 @@
 import store from "../index";
 
 export default function tileNotHovered(state, payload) {
-  if (state.env.map_tiles !== undefined) {
-    let tile = payload;
+  if (state.env.map_tiles !== undefined && payload.y && payload.x) {
     let tileCoordinates = state.env.tileHitBoxes;
 
-    state.env.map_tiles[tile.y][tile.x] = state.env.lastHoveredTileType;
+    state.env.map_tiles[payload.y][payload.x] = state.env.lastHoveredTileType;
 
     // reset all hovered tiles
     for (let i = 0; i < tileCoordinates.length; i++) {

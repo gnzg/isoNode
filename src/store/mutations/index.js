@@ -6,7 +6,7 @@ import centerCanvas from './centerCanvas';
 import deleteTile from './deleteTile';
 import tileHovered from './tileHovered';
 import tileNotHovered from './tileNotHovered';
-import saveLastHoveredTile from './saveLastHoveredTile';
+import saveLastHoveredTile from './saveLastHoveredTile.ts';
 import createTileHitBoxes from './createTileHitBoxes';
 import clearTileHitBoxes from './clearTileHitBoxes';
 import checkCollision from './checkCollision';
@@ -15,9 +15,8 @@ export default {
   error(payload) {
     console.error("ERROR:", payload.data);
   },
-  addItem(state, payload) {
-    state.misc.push(payload);
-    return state;
+  info(payload) {
+    console.info("INFO:", payload.data);
   },
   addEnvProp(state, payload) {
     state.env[`${payload.label}`] = payload.data;

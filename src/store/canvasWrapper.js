@@ -14,9 +14,5 @@ export default class CanvasWrapper extends StoreComponent {
     this.element.width = window.innerWidth;
     this.element.height = window.innerHeight;
     this.element.innerHTML = `<canvas>Browser does not support canvas.</canvas>`;
-
-    store.dispatch("centerCanvas");
-    store.dispatch("updateCanvas");
-    store.dispatch("createTileHitBoxes");
   }
 }

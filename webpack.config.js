@@ -51,7 +51,6 @@ module.exports = env => {
       watchOptions: {
         ignored: /node_modules/
       },
-      hot: true,
       port: env.PORT
     },
     plugins: [

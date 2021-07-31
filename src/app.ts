@@ -16,6 +16,10 @@ window.addEventListener("DOMContentLoaded", e => {
 
   let canvasWrapper = new CanvasWrapper('main');
   canvasWrapper.initialize();
+
+  store.dispatch("centerCanvas");
+  store.dispatch("updateCanvas");
+  store.dispatch("createTileHitBoxes");
   
   let userInput = new UserInput();
   userInput.activate();
@@ -28,6 +32,5 @@ window.addEventListener("DOMContentLoaded", e => {
 
 window.addEventListener("mousemove", e => {
   store.dispatch("checkCollision", e);
-  //e.stopImmediatePropagation();
   console.log("x:", e.clientX, "y:", e.clientY);
 });

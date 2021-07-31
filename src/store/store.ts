@@ -1,7 +1,7 @@
 import PubSub from "./lib/pubsub";
 import StoreInterface from "../interfaces/StoreInterface";
 
-export class Store implements StoreInterface {
+class Store implements StoreInterface {
   status: StoreInterface["status"];
   events: PubSub;
   actions: StoreInterface["actions"];
@@ -80,3 +80,5 @@ export class Store implements StoreInterface {
     return true;
   }
 }
+
+export default Store;

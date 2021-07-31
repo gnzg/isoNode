@@ -6,7 +6,7 @@ import map from '../maps/map0';
 let canvas : HTMLCanvasElement = document.querySelector('#main');
 if (!canvas) store.dispatch("error", "no canvas context found!" );
 
-let state : StateInterface = ({
+let state : StateInterface = {
   ctx: canvas.getContext('2d'),
   debug_mode: false,
   maxTileHeight: 8,
@@ -26,11 +26,11 @@ let state : StateInterface = ({
     rectShadowColors: colors.rectShadowColors,
 
     // @param Array; Area to clear relative to the canvas
-    clearArea: [-1000, 0, 4000, 4000],       
-    
+    clearArea: [-1000, 0, 4000, 4000],
+
     // @param Integer; the degree of map rotation
     rotationDegree: 0,
-    
+
     // map_offset_x and map_offset_y are offsets to make sure we can position the map as we want.
     map_offset_x: 0,
     map_offset_y: 350,
@@ -38,7 +38,7 @@ let state : StateInterface = ({
     winHeight: window.innerHeight
   },
   // save a map of pressed keys to allow key combinations
-  keyMap: { 
+  keyMap: {
     w: false,
     a: false,
     s: false,
@@ -49,6 +49,6 @@ let state : StateInterface = ({
     ArrowRight: false,
     " ": false
   }
-});
+};
 
 export default state;

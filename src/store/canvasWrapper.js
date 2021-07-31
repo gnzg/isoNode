@@ -1,12 +1,11 @@
 import StoreComponent from "./lib/storeComponent";
-import store from "./index";
+import Store from "./index";
 
 // Create a child of the storeComponent class and assign it the canvas element
-
-export default class CanvasWrapper extends StoreComponent {
+class CanvasWrapper extends StoreComponent {
   constructor(elementId) {
     super({
-      store,
+      Store,
       element: document.getElementById(elementId),
     });
   }
@@ -16,3 +15,5 @@ export default class CanvasWrapper extends StoreComponent {
     this.element.innerHTML = `<canvas>Browser does not support canvas.</canvas>`;
   }
 }
+
+export default CanvasWrapper;

@@ -26,10 +26,12 @@ class Store implements StoreInterface {
       set: function (state, key: string, value) {
         state[key] = value;
 
-        console.log(`stateChange: ${key}: ${value}`);
+        if (state[key] !== params.state[key]) {
+          console.log(`stateChange: ${key}: ${value}`);
+          self.events.publish("stateChange", self.state);
+        }
 
-        self.events.publish("stateChange", self.state);
-
+        // warn if the new state was changed outside of a mutation
         if (self.status !== "mutation") {
           console.warn(`You should use a mutation to set ${key}`);
         }
@@ -42,7 +44,7 @@ class Store implements StoreInterface {
   }
   dispatch(actionKey: string, payload?: any) {
     let self: this = this;
-    
+
     if (typeof self.actions[actionKey] !== "function") {
       console.error(`Action "${actionKey} doesn't exist.`);
       return false;

@@ -17,6 +17,8 @@ window.addEventListener("DOMContentLoaded", e => {
   let canvasWrapper = new CanvasWrapper('main');
   canvasWrapper.initialize();
 
+  console.log(store.state);
+
   store.dispatch("centerCanvas");
   store.dispatch("updateCanvas");
   store.dispatch("createTileHitBoxes");

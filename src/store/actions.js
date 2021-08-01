@@ -17,7 +17,7 @@ export default {
   updateCanvas(context) {
     context.commit('updateCanvas');
   },
-  rotateMapAction(context) {
+  rotateMap(context) {
     context.commit('rotateMap');
   },
   deleteTile(context, payload) {

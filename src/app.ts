@@ -1,5 +1,6 @@
 import './assets/scss/styles.scss';
 import store from './store/index';
+import State from './store/state';
 import CanvasWrapper from './store/canvasWrapper';
 import UserInput from './utilities/userInput';
 
@@ -28,7 +29,7 @@ window.addEventListener("DOMContentLoaded", e => {
 
   // Access store and state via window object
   window.store = store;
-  window.state = store.state;
+  window.state = State;
   e.stopImmediatePropagation();
 });
 

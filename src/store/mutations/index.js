@@ -19,7 +19,7 @@ export default {
     console.info("INFO:", payload.data);
   },
   addEnvProp(state, payload) {
-    state.env[`${payload.label}`] = payload.data;
+    state[`${payload.key}`] = payload.value;
     return state;
   },
   toggleDebugMode(state) {

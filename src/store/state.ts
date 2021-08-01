@@ -6,7 +6,7 @@ import map from '../maps/map0';
 let canvas : HTMLCanvasElement = document.querySelector('#main');
 if (!canvas) store.dispatch("error", "no canvas context found!" );
 
-let state : StateInterface = {
+let State : StateInterface = {
   ctx: canvas.getContext('2d'),
   debug_mode: false,
   maxTileHeight: 8,
@@ -51,4 +51,4 @@ let state : StateInterface = {
   }
 };
 
-export default state;
+export default State;

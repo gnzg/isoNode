@@ -11,7 +11,6 @@ class Store implements StoreInterface {
   constructor(params) {
     // save the current context
     let self: this = this;
-
     self.status = "";
     self.events = new PubSub();
 
@@ -26,19 +25,21 @@ class Store implements StoreInterface {
       set: function (state, key: string, value) {
         state[key] = value;
 
-        if (state[key] !== params.state[key]) {
-          console.log(`stateChange: ${key}: ${value}`);
-          self.events.publish("stateChange", self.state);
-        }
-
+        /*
+        // notify of a state change
+        console.log(`stateChange: ${key}: ${value}`);
+        */
         // warn if the new state was changed outside of a mutation
-        console.log(self.status);
-        if (self.status !== "mutation" ) {
+        if (self.status !== "mutation") {
           console.warn(`You should use a mutation to set ${key}`);
         }
-
+        /*
+        // store the value
+        //self.state[key] = state[key];
+        */
         self.status = "resting";
 
+        // indicate success
         return true;
       },
     });
@@ -79,6 +80,7 @@ class Store implements StoreInterface {
     let newState = self.mutations[mutationKey](self.state, payload);
 
     self.state = Object.assign(self.state, newState);
+    self.events.publish("stateChange", self.state);
 
     return true;
   }

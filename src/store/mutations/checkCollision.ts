@@ -1,11 +1,11 @@
-import State from "../../interfaces/StateInterface";
+import StateInterface from "../../interfaces/StateInterface";
 import { pointInRhombus } from "../../math/math";
 import store from "../index";
 
 // checks whether the current mouse coordinates fall within saved hitboxes of non-zero tiles
 // by comparing the position of the cursor with each tile hitbox saved in the global state
 
-export default (state: State, payload) => {
+export default (state: StateInterface, payload) => {
   // initial check if required hitboxes exist
   if (state.env.tileHitBoxes.length <= 0) {
     store.dispatch("error", "tileHitBoxes length is zero! Recreating...");
@@ -62,6 +62,5 @@ export default (state: State, payload) => {
       // exit for loop
       return true;
     }
-    return state;
   }
 };

@@ -32,5 +32,4 @@ export default (state) => {
   } else {
     console.error("No ctx object found!");
   }
-  return state;
 };

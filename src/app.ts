@@ -1,5 +1,5 @@
 import './assets/scss/styles.scss';
-import store from './store/index';
+import Store from './store/index';
 import State from './store/state';
 import CanvasWrapper from './store/canvasWrapper';
 import UserInput from './utilities/userInput';
@@ -18,22 +18,21 @@ window.addEventListener("DOMContentLoaded", e => {
   let canvasWrapper = new CanvasWrapper('main');
   canvasWrapper.initialize();
 
-  console.log(store.state);
 
-  store.dispatch("centerCanvas");
-  store.dispatch("updateCanvas");
-  store.dispatch("createTileHitBoxes");
+  Store.dispatch("centerCanvas");
+  Store.dispatch("updateCanvas");
+  Store.dispatch("createTileHitBoxes");
   
   let userInput = new UserInput();
   userInput.activate();
 
   // Access store and state via window object
-  window.store = store;
+  window.store = Store;
   window.state = State;
   e.stopImmediatePropagation();
 });
 
 window.addEventListener("mousemove", e => {
-  store.dispatch("checkCollision", e);
+  Store.dispatch("checkCollision", e);
   console.log("x:", e.clientX, "y:", e.clientY);
 });

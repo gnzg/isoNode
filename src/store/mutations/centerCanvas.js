@@ -10,7 +10,6 @@ export default function (state) {
     state.env.map_offset_x = state.env.winWidth / 2 - mapCenter;
     state.env.map_offset_y = state.env.winHeight / 2;
 
-    return state;
   }
   Store.dispatch("error", "Invalid state.env.map_tiles value!");
 }

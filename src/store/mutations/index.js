@@ -15,9 +15,6 @@ export default {
   error(payload) {
     console.error("ERROR:", payload.data);
   },
-  info(payload) {
-    console.info("INFO:", payload.data);
-  },
   addEnvProp(state, payload) {
     state[`${payload.key}`] = payload.value;
     return state;

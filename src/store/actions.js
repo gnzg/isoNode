@@ -2,9 +2,6 @@ export default {
   error(context, payload) {
     context.commit('error', payload);
   },
-  info(context, payload) {
-    context.commit('info', payload);
-  },
   addEnvProp(context, payload) {
     context.commit('addEnvProp', payload);
   },

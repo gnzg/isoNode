@@ -34,5 +34,4 @@ window.addEventListener("DOMContentLoaded", e => {
 
 window.addEventListener("mousemove", e => {
   Store.dispatch("checkCollision", e);
-  console.log("x:", e.clientX, "y:", e.clientY);
 });

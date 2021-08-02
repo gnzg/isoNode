@@ -1,6 +1,6 @@
 import store from "../index";
 
-export default function tileNotHovered(state, payload) {
+export default function tileNotHovered(state, payload : { y: number, x: number } ) {
   if (state.env.map_tiles !== undefined && payload.y && payload.x) {
     let tileCoordinates = state.env.tileHitBoxes;
 

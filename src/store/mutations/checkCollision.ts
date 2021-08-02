@@ -5,7 +5,7 @@ import store from "../index";
 // checks whether the current mouse coordinates fall within saved hitboxes of non-zero tiles
 // by comparing the position of the cursor with each tile hitbox saved in the global state
 
-export default (state: StateInterface, payload) => {
+export default (state: StateInterface, payload : MouseEvent) => {
 
   // initial check if required hitboxes exist
   if (state.env.tileHitBoxes.length <= 0) {

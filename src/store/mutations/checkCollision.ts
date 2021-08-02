@@ -20,32 +20,36 @@ export default (state: StateInterface, payload) => {
   for (let i = 0; i < tileCoordinates.length; i++) {
     let tile_position;
 
-    // if cursor is within tile constraints
+    // if cursor is within a given tile's space
     if (pointInRhombus(tileCoordinates[i], { x: cursor_pos_x, y: cursor_pos_y })) {
       tile_position = {
         x: tileCoordinates[i].x,
         y: tileCoordinates[i].y,
       };
-      console.log("currently hovering tile", tile_position.x, tile_position.y);
 
+      //console.log("currently hovering tile", tile_position.x, tile_position.y);
 
-      // if hovering same tile, or if lastHoveredTile is not yet set
-      if (state.env.lastHoveredTile === undefined || tile_position.x === state.env.lastHoveredTile.x &&
-          tile_position.y === state.env.lastHoveredTile.y) {
-        console.log("Hovering same tile or lastHoveredTile is not set");
-        //store.dispatch("tileHovered", tile_position);
-      }
+      store.dispatch("tileHovered", tile_position);
+      // on initial run, save first hovered tile as lastHoveredTile
+      if (state.env.lastHoveredTile === undefined ) store.dispatch("saveLastHoveredTile", tile_position);
+      store.dispatch("updateCanvas");
+
       // if hovering a new tile
-      else if (
-          tile_position.x !== state.env.lastHoveredTile.x &&
+      if (
+          tile_position.x !== state.env.lastHoveredTile.x ||
           tile_position.y !== state.env.lastHoveredTile.y) {
-        console.log("currently hovering tile", tile_position.x, tile_position.y);
+
         //console.log("UNhovering tile:", state.env.lastHoveredTile.x, state.env.lastHoveredTile.y);
+        store.dispatch("tileNotHovered", state.env.lastHoveredTile);
 
         store.dispatch("tileHovered", tile_position);
         store.dispatch("saveLastHoveredTile", tile_position);
-        store.dispatch("tileNotHovered", state.env.lastHoveredTile);
         store.dispatch("updateCanvas");
+      }
+      // if hovering same tile
+      else if (tile_position.x === state.env.lastHoveredTile.x &&
+               tile_position.y === state.env.lastHoveredTile.y) {
+        //console.log("Hovering same tile");
       }
       // exit for loop
       return true;

@@ -13,5 +13,4 @@ export default function tileHovered(state, payload) {
   } else {
     store.dispatch("error", "state.env.map_tiles is invalid!");
   }
-  return state;
 }

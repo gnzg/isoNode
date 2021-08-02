@@ -1,6 +1,6 @@
 import Tile from "../objects/tile";
 import state from "../store/state";
-import drawAdditionalDetails from "./drawOutlines";
+import drawDebugOutlines from "./drawOutlines";
 import RhombusVertices from "../math/RhombusVertices";
 
 /**
@@ -65,7 +65,7 @@ export default (tile: Tile) => {
     if (state.debug_mode === true) {
       // establish coordinates for the four vertices of each rhombus
       let rhombusVertices = new RhombusVertices({ tile, x, y });
-      drawAdditionalDetails({ ctx, rhombusVertices, x, y });
+      drawDebugOutlines({ ctx, rhombusVertices, x, y });
     }
   }
 };

@@ -11,6 +11,7 @@ export default function hoverTile(state, payload : {x : number, y: number }) {
   // save original tile type
   state.env.lastHoveredTileType = state.env.map_tiles[payload.y][payload.x];
 
+  // set tile type for hovered tile
   state.env.map_tiles[payload.y][payload.x] = 4;
   return state;
 

@@ -58,11 +58,10 @@ export default (state: StateInterface, payload : MouseEvent) => {
       // if hovering same tile
       else if (tile_position.x === state.env.lastHoveredTile.x &&
           tile_position.y === state.env.lastHoveredTile.y) {
-        //console.log("Hovering same tile");
+          console.log("Hovering same tile");
       }
-      // exit for loop
-      return true;
     }
   }
+  payload.stopImmediatePropagation();
   return state;
 };

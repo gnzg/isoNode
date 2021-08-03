@@ -21,7 +21,7 @@ export default class Tile {
     fillColor : string;
     rectColor : string;
 
-    constructor({ x, y, z }) {
+    constructor({ x, y, z = 0 }) {
         // TODO: z parameter
         if (this.areParamsInvalid(x, y)) {
             store.dispatch("error", "The tile object incorrect number of parameters!");

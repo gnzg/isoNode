@@ -4,9 +4,10 @@ import Tile from "../../objects/tile.ts";
 
 export default (state) => {
   let map = state.env.map_tiles;
- 
+
+  // y draws a row across the y axis
   for (let y = 0; y < map.length; y++) {
-    // j draws a row across the x axis
+    // x draws a row across the x axis
     for (let x = 0; x < map[y].length; x++) {
       // only if the tile is non-zero
       if (map[y][x] !== 0) {

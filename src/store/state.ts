@@ -20,7 +20,10 @@ let State : StateInterface = {
     map_tiles_height: map.tile_height,
     // a tile hitbox is an object with the form {pointA, pointB, pointC, pointD}
     tileHitBoxes: [],
-    lastHoveredTile: undefined,
+    lastHoveredTile: {
+      x: undefined,
+      y: undefined
+    },
     lastHoveredTileType: 0,
     rectColors: colors.rectColors,
     rectShadowColors: colors.rectShadowColors,

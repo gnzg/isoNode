@@ -4,8 +4,8 @@ import handleKeyUp from './handleKeyUp';
 import rotateMap from './rotateMap';
 import centerCanvas from './centerCanvas';
 import deleteTile from './deleteTile';
-import tileHovered from './tileHovered';
-import tileNotHovered from './tileNotHovered.ts';
+import hoverTile from './hoverTile.ts';
+import unhoverTile from './unhoverTile.ts';
 import saveLastHoveredTile from './saveLastHoveredTile.ts';
 import createTileHitBoxes from './createTileHitBoxes';
 import clearTileHitBoxes from './clearTileHitBoxes';
@@ -31,8 +31,8 @@ export default {
   rotateMap,
   centerCanvas,
   deleteTile,
-  tileHovered,
-  tileNotHovered,
+  hoverTile,
+  unhoverTile,
   saveLastHoveredTile,
   createTileHitBoxes,
   clearTileHitBoxes,

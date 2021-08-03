@@ -18,8 +18,6 @@ export default class Tile {
     tileYoffset : number;
     topYfactor: number;
     topYsegment: number;
-    rectColors: Object;
-    rectShadowColors: Object;
     fillColor : string;
     rectColor : string;
 

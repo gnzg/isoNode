@@ -19,7 +19,7 @@ export default (state: StateInterface, payload : MouseEvent) => {
 
   for (let i = 0; i < tileCoordinates.length; i++) {
     let tile_position;
-
+    console.log("Hovering tile!");
     // if cursor is within a given tile's space
     if (pointInRhombus(tileCoordinates[i], { x: cursor_pos_x, y: cursor_pos_y })) {
       tile_position = {
@@ -55,4 +55,5 @@ export default (state: StateInterface, payload : MouseEvent) => {
       return true;
     }
   }
+  return state;
 };

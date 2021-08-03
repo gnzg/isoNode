@@ -1,7 +1,11 @@
-export default function saveLastHoveredTile(state, payload) {
-    let tile_position : { x: number; y: number; } = {
+export default function saveLastHoveredTile(state, payload : { x: number; y: number; }) {
+    if (payload.x || payload.y === undefined) {
+        console.log("Error - saveLastHoveredTile payload is empty!");
+        return state;
+    }
+    state.env.lastHoveredTile = {
         x: payload.x,
         y: payload.y
     };
-    state.env.lastHoveredTile = tile_position;
+    return state;
 }

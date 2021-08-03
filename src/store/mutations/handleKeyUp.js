@@ -14,4 +14,5 @@ export default function handleKeyUp (state, payload) {
       store.dispatch("createTileHitBoxes");
     }
   }
+  return state;
 }

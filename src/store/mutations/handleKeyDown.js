@@ -25,4 +25,5 @@ export default function handleKeyDown (state, payload) {
     }
     store.dispatch('updateCanvas');
   }
+  return state;
 }

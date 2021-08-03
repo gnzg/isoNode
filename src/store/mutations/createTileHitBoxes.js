@@ -23,7 +23,6 @@ export default (state) => {
         });
       }
     }
-    // make tileHitBoxes available for the console
-    window.tileHitBoxes = store.state.env.tileHitBoxes;
   }
+  return state;
 };

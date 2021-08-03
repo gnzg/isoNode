@@ -14,6 +14,7 @@ import checkCollision from './checkCollision';
 export default {
   error(payload) {
     console.error("ERROR:", payload.data);
+    return state;
   },
   addEnvProp(state, payload) {
     state[`${payload.key}`] = payload.value;

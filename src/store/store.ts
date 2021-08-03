@@ -11,13 +11,13 @@ class Store implements StoreInterface {
   constructor(params) {
     // save the current context
     let self: this = this;
-    self.status = "";
     self.events = new PubSub();
+    self.status = "resting";
 
-    if (Object.prototype.hasOwnProperty.call(params, "actions")) {
+    if (params.hasOwnProperty("actions")) {
       self.actions = params.actions;
     }
-    if (Object.prototype.hasOwnProperty.call(params, "mutations")) {
+    if (params.hasOwnProperty("mutations")) {
       self.mutations = params.mutations;
     }
 
@@ -25,18 +25,11 @@ class Store implements StoreInterface {
       set: function (state, key: string, value) {
         state[key] = value;
 
-        /*
-        // notify of a state change
-        console.log(`stateChange: ${key}: ${value}`);
-        */
         // warn if the new state was changed outside of a mutation
         if (self.status !== "mutation") {
           console.warn(`You should use a mutation to set ${key}`);
         }
-        /*
-        // store the value
-        //self.state[key] = state[key];
-        */
+
         self.status = "resting";
 
         // indicate success

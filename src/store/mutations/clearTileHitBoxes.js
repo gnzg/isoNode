@@ -3,4 +3,5 @@
  */
 export default (state) => {
   state.env.tileHitBoxes = [];
+  return state;
 };

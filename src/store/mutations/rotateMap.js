@@ -22,4 +22,5 @@ export default function rotateMap(state) {
   if (state.env.rotationDegree < 270) state.env.rotationDegree += 90; else state.env.rotationDegree = 0;
   // re-draw canvas
   store.dispatch('updateCanvas');
+  return state;
 }

@@ -8,4 +8,6 @@ export default function deleteTile(state, payload) {
     let x = payload[2];
     state.env.maps[y][z][x] = 0;
     store.dispatch('updateCanvas');
+
+    return state;
 }

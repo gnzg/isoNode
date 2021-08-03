@@ -20,6 +20,7 @@ export default (state: StateInterface, payload : MouseEvent) => {
   for (let i = 0; i < tileCoordinates.length; i++) {
     let tile_position;
     //console.log("Checking for hitbox overlap...");
+
     // if cursor is within a given tile's space
     if (pointInRhombus(tileCoordinates[i], { x: cursor_pos_x, y: cursor_pos_y })) {
       tile_position = {
@@ -34,8 +35,10 @@ export default (state: StateInterface, payload : MouseEvent) => {
         console.log("initial run - lastHoveredTile is undefined, setting to current tile");
         store.dispatch("saveLastHoveredTile", tile_position);
       }
-
-      store.dispatch("unhoverTile", state.env.lastHoveredTile);
+      // only unhover lastHoveredTile if it was already set
+      else if (state.env.lastHoveredTile.x !== undefined) {
+        store.dispatch("unhoverTile", state.env.lastHoveredTile);
+      }
 
       store.dispatch("hoverTile", tile_position);
 
@@ -45,7 +48,7 @@ export default (state: StateInterface, payload : MouseEvent) => {
       if (
           tile_position.x !== state.env.lastHoveredTile.x ||
           tile_position.y !== state.env.lastHoveredTile.y) {
-
+        console.log("Hovering a new tile!");
         store.dispatch("unhoverTile", state.env.lastHoveredTile);
 
         store.dispatch("hoverTile", tile_position);
@@ -54,7 +57,7 @@ export default (state: StateInterface, payload : MouseEvent) => {
       }
       // if hovering same tile
       else if (tile_position.x === state.env.lastHoveredTile.x &&
-               tile_position.y === state.env.lastHoveredTile.y) {
+          tile_position.y === state.env.lastHoveredTile.y) {
         //console.log("Hovering same tile");
       }
       // exit for loop

@@ -11,7 +11,7 @@ export default function unhoverTile(state, payload : { y: number, x: number } ) 
       state.env.map_tiles[tileCoordinates[i].y][tileCoordinates[i].x] = state.env.lastHoveredTileType;
     }
   } else {
-    store.dispatch("error", "state.env.map_tiles is invalid!");
+    console.log("Error: state.env.map_tiles is invalid!");
   }
   return state;
 }

@@ -27,7 +27,7 @@ class Store implements StoreInterface {
 
         // warn if the new state was changed outside of a mutation
         if (self.status !== "mutation") {
-          console.warn(`You should use a mutation to set ${key}`);
+          //console.warn(`You should use a mutation to set ${key}`);
         }
 
         self.status = "resting";

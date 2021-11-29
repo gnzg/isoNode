@@ -1,14 +1,16 @@
 import PubSub from "./lib/pubsub";
-import StoreInterface from "../interfaces/StoreInterface";
+import StoreInterface from "../interfaces/storeInterface";
 
 class Store implements StoreInterface {
   status: StoreInterface["status"];
-  events: PubSub;
-  actions: StoreInterface["actions"];
-  mutations: StoreInterface["mutations"];
-  state: StoreInterface["state"];
+  events?: PubSub;
+  actions?: StoreInterface["actions"];
+  mutations?: StoreInterface["mutations"];
+  state?: StoreInterface["state"];
 
-  constructor(params) {
+  static events: PubSub;
+
+  constructor (params) {
     // save the current context
     let self: this = this;
     self.events = new PubSub();

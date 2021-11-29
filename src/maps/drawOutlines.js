@@ -1,5 +1,5 @@
 import state from '../store/state';
-import colors from '../helpers/colors';
+import colors from '../utilities/colors';
 
 export default ({ctx, rhombusVertices, x, y}) => {
     let { pointA, pointB, pointC, pointD } = rhombusVertices;

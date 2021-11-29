@@ -1,5 +1,5 @@
 import store from '../index';
-import { areAllObjectPropsFalse } from '../../helpers/utils';
+import areAllObjectPropsFalse from '../../utilities/areAllObjectPropsFalse.ts';
 
 export default function handleKeyUp (state, payload) {
   

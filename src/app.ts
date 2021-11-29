@@ -3,7 +3,6 @@ import Store from './store/index';
 import State from './store/state';
 import CanvasWrapper from './store/canvasWrapper';
 import UserInput from './utilities/userInput';
-import store from "./store";
 
 // ts: Extend the global Window interface
 declare global {

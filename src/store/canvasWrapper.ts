@@ -1,11 +1,12 @@
 import StoreComponent from "./lib/storeComponent";
-import Store from "./index";
+import Store from './store';
 
-// Create a child of the storeComponent class and assign it the canvas element
+
+// Create a child class of the storeComponent class and assign it the canvas element
 class CanvasWrapper extends StoreComponent {
   constructor(elementId) {
     super({
-      Store,
+      store: new Store ({status: "resting"}),
       element: document.getElementById(elementId),
     });
   }

@@ -1,6 +1,6 @@
 import store from '../store/index';
 import StateInterface from '../interfaces/StateInterface';
-import colors from '../helpers/colors';
+import colors from '../utilities/colors';
 import map from '../maps/map0';
 
 let canvas : HTMLCanvasElement = document.querySelector('#main');

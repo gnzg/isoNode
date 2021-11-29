@@ -1,6 +1,6 @@
 import state from '../store/state';
 import store from '../store/index';
-import colors from '../helpers/colors';
+import colors from '../utilities/colors';
 
 /**
 *  Tile object

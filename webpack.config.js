@@ -67,5 +67,5 @@ module.exports = env => {
         filename: 'style.[contenthash].css',
       }),
     ]
-  }
+  };
 };

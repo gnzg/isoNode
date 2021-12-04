@@ -19,10 +19,11 @@ module.exports = env => {
         // All files with a '.ts' or '.tsx' extension will be handled by 'ts-loader'.
         { test: /\.tsx?$/, loader: "ts-loader" },
         {
-          test: /\.(js|jsx)$/,
+          test: /\.js$/,
           exclude: /(node_modules)/,
           use: {
-            loader: 'babel-loader' 
+            loader: 'babel-loader',
+            options: { presets: ["@babel/preset-typescript"]}
           },
         },
         {

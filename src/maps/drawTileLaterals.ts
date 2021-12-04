@@ -1,4 +1,4 @@
-import Tile from "../objects/tile";
+import Tile from "../classes/tile";
 import state from "../store/state";
 import drawLeftTileSide from "./drawLeftTileSide";
 import drawRightTileSide from "./drawRightTileSide";

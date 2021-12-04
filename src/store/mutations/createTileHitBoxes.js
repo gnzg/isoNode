@@ -1,6 +1,6 @@
 import store from "../index";
 import RhombusVertices from "../../math/RhombusVertices";
-import Tile from "../../objects/tile.ts";
+import Tile from "../../classes/tile.ts";
 
 export default (state) => {
   let map = state.env.map_tiles;

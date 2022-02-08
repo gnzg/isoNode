@@ -55,6 +55,9 @@
   "dependencies": {
     "source-map-loader": "^2.0.1"
   },
+  "engines": {
+    "node": "14.x"
+  },
   "keywords": [],
   "author": "Ilya Ginzburg",
   "license": "MIT"

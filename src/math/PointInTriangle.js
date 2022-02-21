@@ -1,6 +1,8 @@
+import vectorDotProduct from './vectorDotProduct'
+
 // receives 3 points [x,y] and an arbitrary point [x,y]
 // returns a boolean
-export let pointInTriangle = (a,b,c,p) => {
+export default (a,b,c,p) => {
     // Compute vectors        
     let v0 =  {x: c.x - a.x, y: c.y - a.y},
     v1 =      {x: b.x - a.x, y: b.y - a.y},

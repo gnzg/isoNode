@@ -1,5 +1,5 @@
 import StateInterface from "../../interfaces/StateInterface";
-import { pointInRhombus } from "../../math/math";
+import pointInRhombus from "../../math/PointInRhombus";
 import store from "../index";
 
 // checks whether the current mouse coordinates fall within saved hitboxes of non-zero tiles

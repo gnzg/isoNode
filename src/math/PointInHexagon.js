@@ -1,6 +1,6 @@
 // receives 2 points [x,y] and an arbitrary point [x,y]
 // returns a boolean
-export let pointInHexagon = (a,b) => {
+export default (a,b) => {
     // calculate center point of bounding box
     let centerPoint = {x: (b.x - a.x)/2, y:(b.y - a.y)/2};
     console.log('centerPoint', centerPoint);

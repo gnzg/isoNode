@@ -1,6 +1,8 @@
-import vectorAddition from './VectorAddition.js'
+import vectorAddition from './VectorAddition'
 import distanceBetweenTwoPoints from './DistanceBetweenTwoPoints'
-
+import vectorDivisionByScalar from './VectorDivisionByScalar'
+import vectorSubtraction from './VectorSubtraction'
+import vectorDotProduct from './VectorDotProduct'
 // receives 4 points [x,y] and an arbitrary point [x,y]
 // returns a boolean
 export default (rhombus, p) => {

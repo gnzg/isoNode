@@ -23,10 +23,18 @@ IsoNode is an HTML5 isometric map engine, originally inspired by jsISO.
 
 ![isoNode](https://github.com/gnzg/isoNode/blob/master/example.png?raw=true)
 
-## Setup
+## Installation
+### UNIX prerequities
 Install all dependencies via `make install`. Yarn is used under the hood.
 
 To compile and watch the source code, the preferred method is to run `make watch PORT=<yourPORT>` from the project root directory. The development server will then be available via `localhost:<yourPORT>`.
+
+### Windows prerequisties
+- Chocolatey
+- GNU make 4.3
+- nvm
+- Node.js v.14.x
+- yarn
 
 ## Debugging
 Working on the map in debug mode is possible by setting the `debug_mode` property in the global state object to true, or toggling it in the browser console via `window.store.dispatch("toggleDebugMode");`

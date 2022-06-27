@@ -1,3 +1,7 @@
+# Make sure npm is installed first. Then, do
+# npm install --global yarn
+# once these prerequisites are in place, you can do use the 'make install' command.
+
 install:
 	yarn install
 

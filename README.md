@@ -4,7 +4,7 @@
 [![GitHub license](https://img.shields.io/github/license/gnzg/isonode)](https://github.com/gnzg/isoNode/blob/master/LICENSE)
 
 ## Table of contents
-* [Generics](#introduction)
+* [Generics](#generics)
 * [Features](#features)
 * [Setup](#setup)
 * [Debugging](#debugging)

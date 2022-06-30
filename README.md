@@ -4,37 +4,39 @@
 [![GitHub license](https://img.shields.io/github/license/gnzg/isonode)](https://github.com/gnzg/isoNode/blob/master/LICENSE)
 
 ## Table of contents
-* [Introduction](#introduction)
+* [Generics](#introduction)
 * [Features](#features)
 * [Setup](#setup)
 * [Debugging](#debugging)
 * [Misc](#misc)
 * [License](#license)
 
-## Introduction
-IsoNode is an HTML5 isometric map engine, originally inspired by jsISO.
+## Generics
+IsoNode is an HTML5 Canvas isometric map engine, originally inspired by jsISO. It is gradually being translated into Typescript to ease maintenance and debugging.
 
 ## Features
-* TypeScript-driven development
 * Hitbox logic per tile
 * Keyboard map movement
-* State store implemented via the publisher-subscriber pattern
+* A state store, based on the publisher-subscriber pattern
 * Debug mode
 
 ![isoNode](https://github.com/gnzg/isoNode/blob/master/example.png?raw=true)
 
 ## Installation
-### UNIX prerequities
+
+### prerequisites
+- nvm
+- node.js v.14.x (Fermium, LTS)
+- yarn
+
+### UNIX specific
 Install all dependencies via `make install`. Yarn is used under the hood.
 
-To compile and watch the source code, the preferred method is to run `make watch PORT=<yourPORT>` from the project root directory. The development server will then be available via `localhost:<yourPORT>`.
-
-### Windows prerequisties
+### Windows specific
 - Chocolatey
 - GNU make 4.3
-- nvm
-- Node.js v.14.x
-- yarn
+
+To compile and watch the source code, the preferred method is to run `make watch PORT=<yourPORT>` from the project root directory. The development server will then be available via `localhost:<yourPORT>`.
 
 ## Debugging
 Working on the map in debug mode is possible by setting the `debug_mode` property in the global state object to true, or toggling it in the browser console via `window.store.dispatch("toggleDebugMode");`

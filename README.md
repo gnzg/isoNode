@@ -24,17 +24,14 @@ IsoNode is an HTML5 Canvas isometric map engine, originally inspired by jsISO. I
 
 ## Installation
 
-### prerequisites
+### Prerequisites
+- GNU make utility
 - nvm
 - node.js v.14.x (Fermium, LTS)
 - yarn
 
-### UNIX specific
-Install all dependencies via `make install`. Yarn is used under the hood.
-
 ### Windows specific
 - Chocolatey
-- GNU make 4.3
 
 To compile and watch the source code, the preferred method is to run `make watch PORT=<yourPORT>` from the project root directory. The development server will then be available via `localhost:<yourPORT>`.
 

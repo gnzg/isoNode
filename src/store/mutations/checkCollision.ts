@@ -28,11 +28,8 @@ export default (state: StateInterface, payload : MouseEvent) => {
         y: tileCoordinates[i].y,
       };
 
-      console.log("currently hovering tile", tile_position.x, tile_position.y);
-
       // on initial run, save first hovered tile as lastHoveredTile
       if (state.env.lastHoveredTile.x === undefined ) {
-        console.log("initial run - lastHoveredTile is undefined, setting to current tile");
         store.dispatch("saveLastHoveredTile", tile_position);
       }
       // only unhover lastHoveredTile if it was already set
@@ -41,14 +38,12 @@ export default (state: StateInterface, payload : MouseEvent) => {
       }
 
       store.dispatch("hoverTile", tile_position);
-
       store.dispatch("updateCanvas");
 
       // if hovering a new tile
       if (
           tile_position.x !== state.env.lastHoveredTile.x ||
           tile_position.y !== state.env.lastHoveredTile.y) {
-        console.log("Hovering a new tile!");
         store.dispatch("unhoverTile", state.env.lastHoveredTile);
 
         store.dispatch("hoverTile", tile_position);
@@ -58,7 +53,6 @@ export default (state: StateInterface, payload : MouseEvent) => {
       // if hovering same tile
       else if (tile_position.x === state.env.lastHoveredTile.x &&
           tile_position.y === state.env.lastHoveredTile.y) {
-          console.log("Hovering same tile");
       }
     }
   }

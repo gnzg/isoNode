@@ -1,6 +1,6 @@
 const DistanceBetweenTwoPoints = require('../src/math/DistanceBetweenTwoPoints');
 
-// trunace an integer without rounding it 
+// truncate an integer without rounding it 
 let trunc = (num, dec) => {
     const pow = 10 ** dec
     return Math.trunc(num * pow) / pow;

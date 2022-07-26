@@ -1,4 +1,4 @@
-const DistanceBetweenTwoPoints = require('../src/math/DistanceBetweenTwoPoints');
+const DistanceBetweenTwoPoints = require('../../src/math/DistanceBetweenTwoPoints');
 
 // truncate an integer without rounding it 
 let trunc = (num, dec) => {
@@ -9,7 +9,6 @@ let trunc = (num, dec) => {
 test('Calculates the hypotenuse between two sides', () => {
     let hypotenuseLength = DistanceBetweenTwoPoints({x:2,y:2},{x:4,y:4});
     let truncatedHypoLength = trunc(hypotenuseLength,4);
-    console.log('truncatedHypoLength', truncatedHypoLength);
 
     expect(truncatedHypoLength).toBe(2.8284);
 });

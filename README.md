@@ -4,14 +4,15 @@
 [![GitHub license](https://img.shields.io/github/license/gnzg/isonode)](https://github.com/gnzg/isoNode/blob/master/LICENSE)
 
 ## Table of contents
-* [Generics](#generics)
+* [Introduction](#introduction)
 * [Features](#features)
-* [Setup](#setup)
-* [Debugging](#debugging)
+* [Installation](#installation)
+* [Source structure](#source-structure)
+* [Troubleshooting](#troubleshooting)
 * [Misc](#misc)
 * [License](#license)
 
-## Generics
+## Introduction
 IsoNode is an HTML5 Canvas isometric map engine, originally inspired by jsISO. It is gradually being translated into Typescript to ease maintenance and debugging.
 
 ## Features
@@ -35,6 +36,9 @@ IsoNode is an HTML5 Canvas isometric map engine, originally inspired by jsISO. I
 - Chocolatey
 
 To compile and watch the source code, the preferred method is to run `make watch PORT=<yourPORT>` from the project root directory. The development server will then be available via `localhost:<yourPORT>`.
+
+## Source structure
+The project source root is `app.ts`
 
 ## Troubleshooting
 

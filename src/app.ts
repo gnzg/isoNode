@@ -25,8 +25,8 @@ window.addEventListener("DOMContentLoaded", e => {
   userInput.activate();
 
   // Access store and state via window object
-  window.store = Store;
-  window.state = State;
+  //window.store = Store;
+  //window.state = State;
   e.stopImmediatePropagation();
 });
 

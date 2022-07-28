@@ -40,7 +40,7 @@
     "tar": "^4.4.19",
     "trim-newlines": "^3.0.1",
     "ts-loader": "^8.0.18",
-    "typescript": "^4.5.2",
+    "typescript": "^4.7.4",
     "webpack": "^5.64.4",
     "webpack-cli": "^4.10.0",
     "webpack-dev-server": "^3.11.3"
@@ -49,7 +49,8 @@
     "dev-server": "webpack serve --mode development --env development --hot",
     "build": "webpack --mode production",
     "lint": "eslint ./src/**/*.js",
-    "test": "jest"
+    "test": "jest",
+    "ts-compile": "tsc src/**/*.ts --skipLibCheck --dry"
   },
   "dependencies": {
     "sass": "^1.53.0",

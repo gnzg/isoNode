@@ -3,11 +3,11 @@ import StateInterface from '../interfaces/StateInterface';
 import colors from '../utilities/colors';
 import map from '../maps/map0';
 
-let canvas : HTMLCanvasElement = document.querySelector('#main');
-if (!canvas) store.dispatch("error", "no canvas context found!" );
+let canvas : HTMLCanvasElement = document ? document.querySelector('#main') : undefined ;
+//if (!canvas) store.dispatch("error", "no canvas context found!" );
 
 let State : StateInterface = {
-  ctx: canvas.getContext('2d'),
+  ctx: canvas ? canvas.getContext('2d') : undefined,
   debug_mode: false,
   maxTileHeight: 8,
   acceleration: 5,

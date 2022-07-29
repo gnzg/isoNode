@@ -4,7 +4,7 @@ import colors from '../utilities/colors';
 import map from '../maps/map0';
 
 let canvas : HTMLCanvasElement = document ? document.querySelector('#main') : undefined ;
-if (!canvas) store.dispatch("error", "no canvas context found!" );
+//if (!canvas) store.dispatch("error", "no canvas context found!" );
 
 let State : StateInterface = {
   ctx: canvas ? canvas.getContext('2d') : undefined,

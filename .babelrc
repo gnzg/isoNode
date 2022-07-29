@@ -2,6 +2,7 @@
     "presets": [
         "@babel/preset-typescript"
     ],
+    // required to make sure Jest can use import/export statements
     "env": {
         "test": {
           "plugins": ["@babel/plugin-transform-modules-commonjs"]

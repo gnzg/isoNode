@@ -1,10 +1,9 @@
 import './assets/scss/styles.scss';
 import Store from './store/index';
-import State from './store/state';
 import CanvasWrapper from './store/canvasWrapper';
 import UserInput from './utilities/userInput';
 
-// ts: Extend the global Window interface
+// Extend the Window interface
 declare global {
   interface Window {
     store: object,

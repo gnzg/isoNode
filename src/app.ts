@@ -1,5 +1,6 @@
 import './assets/scss/styles.scss';
 import Store from './store/index';
+import State from './store/state';
 import CanvasWrapper from './store/canvasWrapper';
 import UserInput from './utilities/userInput';
 
@@ -23,9 +24,9 @@ window.addEventListener("DOMContentLoaded", e => {
   let userInput = new UserInput();
   userInput.activate();
 
-  // Access store and state via window object
-  //window.store = Store;
-  //window.state = State;
+  // Make store and state accessible via window object
+  window.store = Store;
+  window.state = State;
   e.stopImmediatePropagation();
 });
 

@@ -21,7 +21,7 @@ export default (state: StateInterface, payload : MouseEvent) => {
   let cursor_pos_x = payload.clientX;
   let cursor_pos_y = payload.clientY;
   let tileCoordinates = state.env.tileHitBoxes;
-  let lastHoveredTile : MapEntry = undefined;
+  let lastHoveredTile : MapEntry = {x: undefined, y: undefined};
 
   // TODO: re-write; current approach is expensive
   for (let i = 0; i < tileCoordinates.length; i++) {
@@ -61,11 +61,11 @@ export default (state: StateInterface, payload : MouseEvent) => {
       else if (lastHoveredTile.x === state.env.lastHoveredTile.x &&
         lastHoveredTile.y === state.env.lastHoveredTile.y) {
       }
-      // if mouse is outside of map
-      else if (cursor_pos_x && cursor_pos_y) {
-        store.dispatch('error', 'cursor is outside of map!');
-      }
     }
+    // if mouse is outside of map -> calculate map size based on location and tile max length in both x,z axes
+    /*else if (!pointInRhombus(tileCoordinates[i], { x: cursor_pos_x, y: cursor_pos_y })) {
+      store.dispatch('error', 'cursor is outside of map!');
+    }*/
   }
   payload.stopImmediatePropagation();
   return state;

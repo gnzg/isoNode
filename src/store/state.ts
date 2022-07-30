@@ -1,11 +1,12 @@
 import store from '../store/index';
 import StateInterface from '../interfaces/StateInterface';
 import colors from '../utilities/colors';
-import map from '../maps/map0';
+import map from '../assets/maps/map0';
 
 let canvas : HTMLCanvasElement = document ? document.querySelector('#main') : undefined ;
 //if (!canvas) store.dispatch("error", "no canvas context found!" );
 
+// Initial state on first load
 let State : StateInterface = {
   ctx: canvas ? canvas.getContext('2d') : undefined,
   debug_mode: false,
@@ -18,7 +19,6 @@ let State : StateInterface = {
     tileWidth: 24,
     map_tiles: map.tiles,
     map_tiles_height: map.tile_height,
-    // a tile hitbox is an object with the form {pointA, pointB, pointC, pointD}
     tileHitBoxes: [],
     lastHoveredTile: {
       x: undefined,
@@ -40,7 +40,7 @@ let State : StateInterface = {
     winWidth: window.innerWidth,
     winHeight: window.innerHeight
   },
-  // save a map of pressed keys to allow key combinations
+  // keep track of the simultaneously pressed down keys to allow key combinations
   keyMap: {
     w: false,
     a: false,

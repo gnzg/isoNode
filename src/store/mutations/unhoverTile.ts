@@ -1,4 +1,4 @@
-import map from '../../maps/map0';
+import map from '../../assets/maps/map0';
 
 export default function unhoverTile(state, payload : { y: number, x: number } ) {
   if (state.env.map_tiles !== undefined && payload.y !== undefined && payload.x !== undefined) {

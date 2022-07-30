@@ -14,9 +14,9 @@ export default (tile: Tile) => {
   const y = tile.y;
   const z = tile.z;
 
-  let map_tiles = state.env.map_tiles;
-  let map_tiles_height = state.env.map_tiles_height;
-  let map_offset_x = state.env.map_offset_x;
+  let map_tiles = state.map_data.map_tiles;
+  let map_tiles_height = state.map_data.map_tiles_height;
+  let map_offset_x = state.map_data.map_offset_x;
 
   let topYfactor = tile.tileWidth * y * 0.5;
   let topYsegment = tile.c + topYfactor - tile.tileYoffset;

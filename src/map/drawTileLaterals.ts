@@ -8,8 +8,8 @@ export default (tile: Tile) => {
   const y: number = tile.y;
   const z: number = tile.z;
 
-  let map_tiles = state.env.map_tiles;
-  let map_tiles_height = state.env.map_tiles_height;
+  let map_tiles = state.map_data.map_tiles;
+  let map_tiles_height = state.map_data.map_tiles_height;
 
   // if the map is defined and the tile is non-zero, draw it
   if (

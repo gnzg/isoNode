@@ -3,7 +3,7 @@ import RhombusVertices from "../../math/RhombusVertices";
 import Tile from "../../classes/tile.ts";
 
 export default (state) => {
-  let map = state.env.map_tiles;
+  let map = state.map_data.map_tiles;
 
   // y draws a row across the y axis
   for (let y = 0; y < map.length; y++) {
@@ -15,7 +15,7 @@ export default (state) => {
 
         // establish coordinates for the four vertices of each rhombus
         let rhombusVertices = new RhombusVertices({ tile, x, y });
-        state.env.tileHitBoxes.push({
+        state.map_data.tileHitBoxes.push({
           // rhombus vertices
           ...rhombusVertices,
           // coordinates respective to the maps object (for moving the map)

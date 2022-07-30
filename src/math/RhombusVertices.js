@@ -4,7 +4,7 @@ import store from '../store/index';
 // RhombusVertrices constructor
 export default function ({tile, y, x}) {
   if (tile !== undefined && y !==undefined && x !==undefined) {
-    let map_offset_x = state.env.map_offset_x;
+    let map_offset_x = state.map_data.map_offset_x;
     
     // leftmost point
     this.pointA = {

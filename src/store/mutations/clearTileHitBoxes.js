@@ -2,6 +2,6 @@
  * clear tile hitbox array
  */
 export default (state) => {
-  state.env.tileHitBoxes = [];
+  state.map_data.tileHitBoxes = [];
   return state;
 };

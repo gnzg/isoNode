@@ -5,7 +5,7 @@ export default function saveLastHoveredTile(state, payload : { x: number; y: num
         console.debug("Error - saveLastHoveredTile payload is empty!");
         return state;
     }
-    state.env.lastHoveredTile = {
+    state.map_data.lastHoveredTile = {
         x: payload.x,
         y: payload.y
     };

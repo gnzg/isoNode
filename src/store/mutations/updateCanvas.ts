@@ -11,7 +11,7 @@ export default (state) => {
   }
 
   let ctx : StateInterface["ctx"] = state.ctx;
-  let { clearArea, map_tiles } = state.env;
+  let { clearArea, map_tiles } = state.map_data;
 
   // clear entire canvas
   // @ts-ignore

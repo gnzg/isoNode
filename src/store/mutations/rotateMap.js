@@ -1,7 +1,7 @@
 import store from '../index';
 
 export default function rotateMap(state) {
-  let maps = state.env.maps;
+  let maps = state.map_data.maps;
   let rotatedMaps = [];
   
   for (let n = 0; n < maps.length; n++) {
@@ -17,9 +17,9 @@ export default function rotateMap(state) {
     }
     rotatedMaps.push(rotatedMap);
     let currentMapName = Object.keys(maps)[n];
-    state.env.maps[currentMapName] = rotatedMaps[n];
+    state.map_data.maps[currentMapName] = rotatedMaps[n];
   }
-  if (state.env.rotationDegree < 270) state.env.rotationDegree += 90; else state.env.rotationDegree = 0;
+  if (state.map_data.rotationDegree < 270) state.map_data.rotationDegree += 90; else state.map_data.rotationDegree = 0;
   // re-draw canvas
   store.dispatch('updateCanvas');
   return state;

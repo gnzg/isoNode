@@ -26,20 +26,20 @@ export default class Tile {
         if (this.areParamsInvalid(x, y)) {
             store.dispatch("error", "The tile object incorrect number of parameters!");
         } else {
-            this.tileWidth = state.env.tileWidth;
+            this.tileWidth = state.map_data.tileWidth;
             this.x = x;
             this.y = y;
             this.z = z;
-            this.c = state.env.map_offset_y - this.tileWidth * x * 0.5;
+            this.c = state.map_data.map_offset_y - this.tileWidth * x * 0.5;
             this.d = this.tileWidth * 1.5;
             
             // check if tile map and tile height map lengths are the same
-            if (state.env.map_tiles_height.length !== state.env.map_tiles.length) {
+            if (state.map_data.map_tiles_height.length !== state.map_data.map_tiles.length) {
                 store.dispatch("error", "map_tiles_height length is different than map_tiles height!");
             } else {
 
-                this.tileHeight = state.env.map_tiles_height[y][x];
-                this.tileType = state.env.map_tiles[y][x];
+                this.tileHeight = state.map_data.map_tiles_height[y][x];
+                this.tileType = state.map_data.map_tiles[y][x];
 
                 // every height degree is one quarter of the tile's own height
                 this.tileYoffset = this.tileWidth + this.tileHeight * this.tileWidth / 4;

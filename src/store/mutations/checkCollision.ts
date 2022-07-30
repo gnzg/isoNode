@@ -13,14 +13,14 @@ export default (state: StateInterface, payload : MouseEvent) => {
   }
 
   // initial check if required hitboxes exist
-  if (state.env.tileHitBoxes.length <= 0) {
+  if (state.map_data.tileHitBoxes.length <= 0) {
     store.dispatch("error", "tileHitBoxes length is zero! Recreating...");
     store.dispatch("createTileHitBoxes");
   }
 
   let cursor_pos_x = payload.clientX;
   let cursor_pos_y = payload.clientY;
-  let tileCoordinates = state.env.tileHitBoxes;
+  let tileCoordinates = state.map_data.tileHitBoxes;
   let lastHoveredTile : MapEntry = {x: undefined, y: undefined};
 
   // TODO: re-write; current approach is expensive
@@ -36,12 +36,12 @@ export default (state: StateInterface, payload : MouseEvent) => {
       };
       //console.log(lastHoveredTile.x, lastHoveredTile.y);
 
-      if (state.env.lastHoveredTile.x === undefined ) {
+      if (state.map_data.lastHoveredTile.x === undefined ) {
         store.dispatch("saveLastHoveredTile", lastHoveredTile);
       }
       // only unhover lastHoveredTile if it was already set
-      else if (state.env.lastHoveredTile.x !== undefined) {
-        store.dispatch("unhoverTile", state.env.lastHoveredTile);
+      else if (state.map_data.lastHoveredTile.x !== undefined) {
+        store.dispatch("unhoverTile", state.map_data.lastHoveredTile);
       }
 
       store.dispatch("hoverTile", lastHoveredTile);
@@ -49,17 +49,17 @@ export default (state: StateInterface, payload : MouseEvent) => {
 
       // if hovering a new tile
       if (
-        lastHoveredTile.x !== state.env.lastHoveredTile.x ||
-        lastHoveredTile.y !== state.env.lastHoveredTile.y) {
-        store.dispatch("unhoverTile", state.env.lastHoveredTile);
+        lastHoveredTile.x !== state.map_data.lastHoveredTile.x ||
+        lastHoveredTile.y !== state.map_data.lastHoveredTile.y) {
+        store.dispatch("unhoverTile", state.map_data.lastHoveredTile);
 
         store.dispatch("hoverTile", lastHoveredTile);
         store.dispatch("saveLastHoveredTile", lastHoveredTile);
         store.dispatch("updateCanvas");
       }
       // if hovering same tile
-      else if (lastHoveredTile.x === state.env.lastHoveredTile.x &&
-        lastHoveredTile.y === state.env.lastHoveredTile.y) {
+      else if (lastHoveredTile.x === state.map_data.lastHoveredTile.x &&
+        lastHoveredTile.y === state.map_data.lastHoveredTile.y) {
       }
     }
     // if mouse is outside of map -> calculate map size based on location and tile max length in both x,z axes

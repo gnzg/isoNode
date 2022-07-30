@@ -5,7 +5,8 @@ export default interface State {
     acceleration: number;
     cursor_pos_x: number;
     cursor_pos_y: number;
-    env: {
+    map: Array <Array<number>>;
+    map_data: {
       tileWidth: number;
       map_tiles: number[][];
       map_tiles_height: number[][];

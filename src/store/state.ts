@@ -14,7 +14,8 @@ let State : StateInterface = {
   cursorInMap: undefined,
   cursor_pos_x: 0,
   cursor_pos_y: 0,
-  env: {
+  map,
+  map_data: {
     tileWidth: 24,
     map_tiles: map.tiles,
     map_tiles_height: map.tile_height,

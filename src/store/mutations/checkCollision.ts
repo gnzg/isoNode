@@ -7,6 +7,11 @@ import store from "../index";
 
 export default (state: StateInterface, payload : MouseEvent) => {
 
+  type MapEntry = {
+    x: number;
+    y: number;
+  }
+
   // initial check if required hitboxes exist
   if (state.env.tileHitBoxes.length <= 0) {
     store.dispatch("error", "tileHitBoxes length is zero! Recreating...");
@@ -16,7 +21,7 @@ export default (state: StateInterface, payload : MouseEvent) => {
   let cursor_pos_x = payload.clientX;
   let cursor_pos_y = payload.clientY;
   let tileCoordinates = state.env.tileHitBoxes;
-  let lastHoveredTile = undefined;
+  let lastHoveredTile : MapEntry = undefined;
 
   // TODO: re-write; current approach is expensive
   for (let i = 0; i < tileCoordinates.length; i++) {
@@ -29,7 +34,7 @@ export default (state: StateInterface, payload : MouseEvent) => {
         x: tileCoordinates[i].x,
         y: tileCoordinates[i].y,
       };
-      console.log(lastHoveredTile.x, lastHoveredTile.y);
+      //console.log(lastHoveredTile.x, lastHoveredTile.y);
 
       if (state.env.lastHoveredTile.x === undefined ) {
         store.dispatch("saveLastHoveredTile", lastHoveredTile);

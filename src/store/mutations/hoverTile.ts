@@ -1,6 +1,6 @@
 import store from "../index";
 
-export default function hoverTile(state, payload : {x : number, y: number }) {
+export default (state, payload : {x : number, y: number }) => {
   if (state.env.map_tiles === undefined) {
     store.dispatch("error", "state.env.map_tiles is invalid!");
     return state;

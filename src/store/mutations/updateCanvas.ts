@@ -1,6 +1,6 @@
 import StateInterface from "../../interfaces/StateInterface";
-import drawTileLaterals from "../../maps/drawTileLaterals";
-import drawTileTop from "../../maps/drawTileTop";
+import drawTileLaterals from "../../map/drawTileLaterals";
+import drawTileTop from "../../map/drawTileTop";
 import Tile from "../../classes/tile";
 
 export default (state) => {

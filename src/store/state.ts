@@ -1,4 +1,3 @@
-import store from '../store/index';
 import StateInterface from '../interfaces/StateInterface';
 import colors from '../utilities/colors';
 import map from '../assets/maps/map0';

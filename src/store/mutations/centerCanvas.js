@@ -1,5 +1,6 @@
 import Store from "../index";
 
+// Establish center point of map relative to browser window size
 export default function (state) {
   if (state.map_data.map_tiles !== undefined && Array.isArray(state.map_data.map_tiles)) {
 

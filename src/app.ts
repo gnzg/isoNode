@@ -20,6 +20,7 @@ window.addEventListener("DOMContentLoaded", e => {
 
   Store.dispatch("centerCanvas");
   Store.dispatch("updateCanvas");
+  //Store.dispatch("getMapMaxMins"); // TODO: calculate max and min points of map to establish later on if cursor is within map borders
 
   let userInput = new UserInput();
   userInput.activate();

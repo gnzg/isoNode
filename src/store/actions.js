@@ -23,11 +23,11 @@ export default {
   deleteTile(context, payload) {
     context.commit('deleteTile', payload);
   },
-  hoverTile(context, payload) {
-    context.commit('hoverTile', payload);
+  onTileHover(context, payload) {
+    context.commit('onTileHover', payload);
   },
-  unhoverTile(context, payload) {
-    context.commit('unhoverTile', payload);
+  onTileUnhover(context, payload) {
+    context.commit('onTileUnhover', payload);
   },
   saveLastHoveredTile(context, payload) {
     context.commit('saveLastHoveredTile', payload);

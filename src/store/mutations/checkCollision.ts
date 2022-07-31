@@ -41,19 +41,19 @@ export default (state: StateInterface, payload : MouseEvent) => {
       }
       // only unhover lastHoveredTile if it was already set
       else if (state.map_data.lastHoveredTile.x !== undefined) {
-        store.dispatch("unhoverTile", state.map_data.lastHoveredTile);
+        store.dispatch("onTileUnhover", state.map_data.lastHoveredTile);
       }
 
-      store.dispatch("hoverTile", lastHoveredTile);
+      store.dispatch("onTileHover", lastHoveredTile);
       store.dispatch("updateCanvas");
 
       // if hovering a new tile
       if (
         lastHoveredTile.x !== state.map_data.lastHoveredTile.x ||
         lastHoveredTile.y !== state.map_data.lastHoveredTile.y) {
-        store.dispatch("unhoverTile", state.map_data.lastHoveredTile);
+        store.dispatch("onTileUnhover", state.map_data.lastHoveredTile);
 
-        store.dispatch("hoverTile", lastHoveredTile);
+        store.dispatch("onTileHover", lastHoveredTile);
         store.dispatch("saveLastHoveredTile", lastHoveredTile);
         store.dispatch("updateCanvas");
       }

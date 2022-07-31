@@ -7,6 +7,7 @@ export default function unhoverTile(state, payload : { y: number, x: number } ) 
     state.map_data.map_tiles[payload.y][payload.x] = state.map_data.lastHoveredTileType;
 
     // reset all hovered tiles based on original map layout
+    // TODO: re-write; current approach is expensive
     for (let i = 0; i < tileCoordinates.length; i++) {
       state.map_data.map_tiles[tileCoordinates[i].y][tileCoordinates[i].x] = map.tiles[tileCoordinates[i].y][tileCoordinates[i].x];
     }

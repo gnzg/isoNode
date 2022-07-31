@@ -20,6 +20,10 @@ let State : StateInterface = {
     map_tiles: map.tiles,
     map_tiles_height: map.tile_height,
     tileHitBoxes: [],
+    currentlyHoveredTile: {
+      x: undefined,
+      y: undefined
+    },
     lastHoveredTile: {
       x: undefined,
       y: undefined

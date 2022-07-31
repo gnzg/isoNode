@@ -11,6 +11,10 @@ export default interface State {
       map_tiles: number[][];
       map_tiles_height: number[][];
       tileHitBoxes: { x: number; y: number }[];
+      currentlyHoveredTile: {
+        x: number;
+        y: number;
+      },
       lastHoveredTile: {
         x: number;
         y: number;

@@ -34,8 +34,10 @@
     "jsdom": "^20.0.0",
     "jshint": "^2.13.1",
     "mini-css-extract-plugin": "^0.8.0",
+    "onchange": "^7.1.0",
     "postcss": "^7.0.39",
     "postcss-loader": "^3.0.0",
+    "prettier": "^2.7.1",
     "sass-loader": "^10.2.0",
     "ssri": ">=6.0.2",
     "style-loader": "^0.21.0",
@@ -50,9 +52,9 @@
   "scripts": {
     "dev-server": "webpack serve --mode development --env development --hot",
     "build": "webpack --mode production",
-    "lint": "eslint ./src/**/*.js",
     "test": "jest",
-    "ts-compile": "tsc src/**/*.ts --skipLibCheck --dry"
+    "ts-compile": "tsc src/**/*.ts --skipLibCheck --dry",
+    "prettier-watch": "onchange \"**/*\" -- prettier --write --ignore-unknown {{changed}}"
   },
   "dependencies": {
     "sass": "^1.53.0",

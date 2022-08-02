@@ -23,17 +23,19 @@ export default (state: StateInterface, payload: MouseEvent) => {
                 x: tileHitBoxes[i].x,
                 y: tileHitBoxes[i].y,
             };
+
+            console.log("hoveredTile", hoveredTile);
+            store.dispatch("saveCurrentlyHoveredTile", hoveredTile);
+
             if (
                 hoveredTile.x != store.state.map_data.lastHoveredTile.x ||
                 hoveredTile.y != store.state.map_data.lastHoveredTile.y
             ) {
-                console.log("condition #1 met");
                 console.warn("hovering a new tile!");
-                store.dispatch("saveCurrentlyHoveredTile", hoveredTile);
-                store.dispatch("saveLastHoveredTile", hoveredTile);
-                store.dispatch("onTileUnhover", state.map_data.lastHoveredTile);
+                //store.dispatch("onTileUnhover", state.map_data.lastHoveredTile);
                 store.dispatch("onTileHover", hoveredTile);
                 store.dispatch("updateCanvas");
+                store.dispatch("saveLastHoveredTile", hoveredTile);
             }
             /*
             store.dispatch("saveCurrentlyHoveredTile", hoveredTile);

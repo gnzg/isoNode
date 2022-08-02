@@ -1,9 +1,6 @@
-export default function saveCurrentlyHoveredTile(
-    state,
-    payload: { x: number; y: number }
-) {
-    if (payload.x && payload.y === undefined) {
-        console.debug("Error - saveCurrentlyHoveredTile payload is empty!");
+export default function saveCurrentlyHoveredTile(state, payload: { x: number; y: number }) {
+    if (payload.x === undefined || payload.y === undefined) {
+        console.debug("Error - saveCurrentlyHoveredTile payload is invalid!");
         return state;
     }
     state.map_data.currentlyHoveredTile = {

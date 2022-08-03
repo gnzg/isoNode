@@ -14,6 +14,7 @@ export default (state: StateInterface, payload: MouseEvent) => {
     let cursor_pos_x = payload.clientX;
     let cursor_pos_y = payload.clientY;
     let tileHitBoxes = state.map_data.tileHitBoxes;
+    console.log("mouse move event");
 
     // TODO: re-write; current approach is expensive
     for (let i = 0; i < tileHitBoxes.length; i++) {
@@ -24,34 +25,25 @@ export default (state: StateInterface, payload: MouseEvent) => {
                 y: tileHitBoxes[i].y,
             };
 
-            console.log("hoveredTile", hoveredTile);
-            store.dispatch("saveCurrentlyHoveredTile", hoveredTile);
-
-            if (
-                hoveredTile.x != store.state.map_data.lastHoveredTile.x ||
-                hoveredTile.y != store.state.map_data.lastHoveredTile.y
-            ) {
-                console.warn("hovering a new tile!");
-                //store.dispatch("onTileUnhover", state.map_data.lastHoveredTile);
-                store.dispatch("onTileHover", hoveredTile);
-                store.dispatch("saveLastHoveredTile", hoveredTile);
-            }
-            /*
+            // console.log("hoveredTile", hoveredTile);
             store.dispatch("saveCurrentlyHoveredTile", hoveredTile);
             store.dispatch("saveLastHoveredTile", hoveredTile);
-            store.dispatch("onTileHover", hoveredTile);
+
+            /*
+            if (
+                store.state.map_data.currentlyHoveredTile.x != store.state.map_data.lastHoveredTile.x ||
+                store.state.map_data.currentlyHoveredTile.y != store.state.map_data.lastHoveredTile.y
+            ) { */
+            store.dispatch("onTileUnhover", state.map_data.lastHoveredTile);
+            store.dispatch("onTileHover", state.map_data.currentlyHoveredTile);
+            store.dispatch("saveLastHoveredTile", state.map_data.currentlyHoveredTile);
+            //}
+
             store.dispatch("updateCanvas");
-            */
-            // if hovering a new tile
         }
         // if not hovering any tile
         else {
-            if (store.state.map_data.currentlyHoveredTile.x != undefined) {
-                store.dispatch("saveCurrentlyHoveredTile", {
-                    x: undefined,
-                    y: undefined,
-                });
-            }
+            console.warn("not hovering any tile!");
         }
     }
     payload.stopImmediatePropagation();

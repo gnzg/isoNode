@@ -32,5 +32,4 @@ window.addEventListener("DOMContentLoaded", (e) => {
 
 window.addEventListener("mousemove", (e) => {
     Store.dispatch("checkCollision", e);
-    Store.dispatch("updateCanvas");
 });

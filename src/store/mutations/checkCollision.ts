@@ -34,7 +34,6 @@ export default (state: StateInterface, payload: MouseEvent) => {
                 console.warn("hovering a new tile!");
                 //store.dispatch("onTileUnhover", state.map_data.lastHoveredTile);
                 store.dispatch("onTileHover", hoveredTile);
-                store.dispatch("updateCanvas");
                 store.dispatch("saveLastHoveredTile", hoveredTile);
             }
             /*

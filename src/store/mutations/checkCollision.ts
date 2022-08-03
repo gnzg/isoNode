@@ -14,12 +14,13 @@ export default (state: StateInterface, payload: MouseEvent) => {
     let cursor_pos_x = payload.clientX;
     let cursor_pos_y = payload.clientY;
     let tileHitBoxes = state.map_data.tileHitBoxes;
-    console.log("mouse move event");
 
     // TODO: re-write; current approach is expensive
     for (let i = 0; i < tileHitBoxes.length; i++) {
         // if cursor is within a given tile's space
         if (pointInRhombus(tileHitBoxes[i], { x: cursor_pos_x, y: cursor_pos_y })) {
+            console.warn("hovering a tile!");
+
             let hoveredTile = {
                 x: tileHitBoxes[i].x,
                 y: tileHitBoxes[i].y,
@@ -46,6 +47,5 @@ export default (state: StateInterface, payload: MouseEvent) => {
             console.warn("not hovering any tile!");
         }
     }
-    payload.stopImmediatePropagation();
     return state;
 };

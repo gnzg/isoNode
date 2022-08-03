@@ -30,6 +30,15 @@ window.addEventListener("DOMContentLoaded", (e) => {
     e.stopImmediatePropagation();
 });
 
+let checkInterval = undefined;
+
 window.addEventListener("mousemove", (e) => {
-    Store.dispatch("checkCollision", e);
+    // limit Canvas refresh rate
+    if (checkInterval == undefined) {
+        checkInterval = setInterval(() => {
+            Store.dispatch("checkCollision", e);
+            clearInterval(checkInterval);
+            checkInterval = undefined;
+        }, 50);
+    }
 });

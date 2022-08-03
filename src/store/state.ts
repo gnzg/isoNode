@@ -2,14 +2,14 @@ import StateInterface from "../interfaces/StateInterface";
 import colors from "../utilities/colors";
 import map from "../assets/maps/map0";
 
-let canvas: HTMLCanvasElement = document
-    ? document.querySelector("#main")
-    : undefined;
+let canvas: HTMLCanvasElement = document ? document.querySelector("#main") : undefined;
 //if (!canvas) store.dispatch("error", "no canvas context found!" );
 
 // Initial state on first load
 let State: StateInterface = {
     ctx: canvas ? canvas.getContext("2d") : undefined,
+    refreshFlag: undefined,
+    refreshInterval: 50,
     debug_mode: false,
     maxTileHeight: 8,
     acceleration: 5,

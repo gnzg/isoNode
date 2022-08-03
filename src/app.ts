@@ -30,15 +30,13 @@ window.addEventListener("DOMContentLoaded", (e) => {
     e.stopImmediatePropagation();
 });
 
-let checkInterval = undefined;
-
 window.addEventListener("mousemove", (e) => {
     // limit Canvas refresh rate
-    if (checkInterval == undefined) {
-        checkInterval = setInterval(() => {
+    if (Store.state.refreshFlag == undefined) {
+        Store.state.refreshFlag = setInterval(() => {
             Store.dispatch("checkCollision", e);
-            clearInterval(checkInterval);
-            checkInterval = undefined;
-        }, 50);
+            clearInterval(Store.state.refreshFlag);
+            Store.state.refreshFlag = undefined;
+        }, Store.state.refreshInterval);
     }
 });

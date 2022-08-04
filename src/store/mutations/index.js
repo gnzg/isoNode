@@ -5,7 +5,7 @@ import rotateMap from "./rotateMap";
 import centerCanvas from "./centerCanvas";
 import deleteTile from "./deleteTile";
 import onTileHover from "./onTileHover";
-import onTileUnhover from "./onTileUnhover";
+import unhoverTile from "./unhoverTile";
 import saveCurrentlyHoveredTile from "./saveCurrentlyHoveredTile";
 import saveLastHoveredTile from "./saveLastHoveredTile";
 import createTileHitBoxes from "./createTileHitBoxes";
@@ -33,7 +33,7 @@ export default {
     centerCanvas,
     deleteTile,
     onTileHover,
-    onTileUnhover,
+    unhoverTile,
     saveCurrentlyHoveredTile,
     saveLastHoveredTile,
     createTileHitBoxes,

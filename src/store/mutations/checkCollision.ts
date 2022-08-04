@@ -19,32 +19,35 @@ export default (state: StateInterface, payload: MouseEvent) => {
     for (let i = 0; i < tileHitBoxes.length; i++) {
         // if cursor is within a given tile's space
         if (pointInRhombus(tileHitBoxes[i], { x: cursor_pos_x, y: cursor_pos_y })) {
-            console.warn("hovering a tile!");
-
             let hoveredTile = {
                 x: tileHitBoxes[i].x,
                 y: tileHitBoxes[i].y,
             };
 
+            console.warn("hovering a tile!");
+
             // console.log("hoveredTile", hoveredTile);
             store.dispatch("saveCurrentlyHoveredTile", hoveredTile);
             store.dispatch("saveLastHoveredTile", hoveredTile);
 
-            /*
-            if (
-                store.state.map_data.currentlyHoveredTile.x != store.state.map_data.lastHoveredTile.x ||
-                store.state.map_data.currentlyHoveredTile.y != store.state.map_data.lastHoveredTile.y
-            ) { */
-            store.dispatch("onTileUnhover", state.map_data.lastHoveredTile);
             store.dispatch("onTileHover", state.map_data.currentlyHoveredTile);
-            store.dispatch("saveLastHoveredTile", state.map_data.currentlyHoveredTile);
-            //}
-
             store.dispatch("updateCanvas");
+            store.dispatch("saveLastHoveredTile", state.map_data.currentlyHoveredTile);
         }
-        // if not hovering any tile
-        else {
-            console.warn("not hovering any tile!");
+        // if leaving hovered tile
+        else if (!pointInRhombus(tileHitBoxes[i], { x: cursor_pos_x, y: cursor_pos_y })) {
+            let execFlag = false;
+            if (execFlag == false && state.map_data.currentlyHoveredTile.x != undefined) {
+                console.warn("no longer hovering last hovered tile!");
+                store.dispatch("unhoverTile", state.map_data.currentlyHoveredTile);
+                //store.dispatch("saveLastHoveredTile", state.map_data.currentlyHoveredTile);
+                store.dispatch("updateCanvas");
+                execFlag = true;
+            }
+            /*
+            if (store.state.map_data.currentlyHoveredTile.x != undefined) {
+                //store.dispatch("saveCurrentlyHoveredTile", { x: undefined, y: undefined });
+            }*/
         }
     }
     return state;

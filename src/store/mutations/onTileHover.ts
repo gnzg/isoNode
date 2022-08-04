@@ -9,8 +9,7 @@ export default (state, payload: { x: number; y: number }) => {
     state.cursorInMap = true;
 
     // save original tile type
-    state.map_data.lastHoveredTileType =
-        state.map_data.map_tiles[payload.y][payload.x];
+    state.map_data.lastHoveredTileType = state.map_data.map_tiles[payload.y][payload.x];
 
     // set tile type for hovered tile
     state.map_data.map_tiles[payload.y][payload.x] = 4;

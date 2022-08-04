@@ -9,7 +9,7 @@ let canvas: HTMLCanvasElement = document ? document.querySelector("#main") : und
 let State: StateInterface = {
     ctx: canvas ? canvas.getContext("2d") : undefined,
     refreshFlag: undefined,
-    refreshInterval: 50,
+    refreshInterval: 25,
     debug_mode: false,
     maxTileHeight: 8,
     acceleration: 5,

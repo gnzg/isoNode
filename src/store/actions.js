@@ -26,8 +26,8 @@ export default {
     onTileHover(context, payload) {
         context.commit("onTileHover", payload);
     },
-    onTileUnhover(context, payload) {
-        context.commit("onTileUnhover", payload);
+    unhoverTile(context, payload) {
+        context.commit("unhoverTile", payload);
     },
     saveCurrentlyHoveredTile(context, payload) {
         context.commit("saveCurrentlyHoveredTile", payload);

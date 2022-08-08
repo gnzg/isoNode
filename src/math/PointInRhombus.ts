@@ -3,9 +3,17 @@ import distanceBetweenTwoPoints from "./DistanceBetweenTwoPoints";
 import vectorDivisionByScalar from "./VectorDivisionByScalar";
 import vectorSubtraction from "./VectorSubtraction";
 import vectorDotProduct from "./VectorDotProduct";
+
+type Rhombus = {
+    pointA: number;
+    pointB: number;
+    pointC: number;
+    pointD: number;
+};
+
 // receives 4 points [x,y] and an arbitrary point [x,y]
 // returns a boolean
-export default (rhombus, p) => {
+export default (rhombus: Rhombus, p) => {
     let a = rhombus.pointA;
     let b = rhombus.pointB;
     let c = rhombus.pointC;

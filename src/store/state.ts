@@ -40,8 +40,10 @@ let State: StateInterface = {
         // @param Integer; the degree of map rotation
         rotationDegree: 0,
         mapHitBox: {
-            highestPoint: undefined,
-            leftmostPoint: undefined,
+            pointA: undefined,
+            pointB: undefined,
+            pointC: undefined,
+            pointD: undefined,
         },
         // map_offset_x and map_offset_y are offsets to make sure we can position the map as we want.
         map_offset_x: 0,

@@ -1,5 +1,5 @@
-import PointInRhombus from "../math/PointInRhombus";
 import { Point } from "../interfaces/Point";
+import { Rhombus } from "../interfaces/Rhombus";
 
 export default interface State {
     ctx: CanvasRenderingContext2D;
@@ -23,7 +23,7 @@ export default interface State {
         rectShadowColors: Object;
         clearArea: number[];
         rotationDegree: number;
-        mapHitBox: { highestPoint: number; leftmostPoint: number };
+        mapHitBox: Rhombus;
         map_offset_x: number;
         map_offset_y: number;
         winWidth: number;

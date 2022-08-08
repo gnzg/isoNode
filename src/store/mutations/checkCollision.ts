@@ -14,7 +14,9 @@ export default (state: StateInterface, payload: MouseEvent) => {
     if (state.map_data.tileHitBoxes.length <= 0) {
         console.warn("tileHitBoxes length is zero! Recreating...");
         store.dispatch("createTileHitBoxes");
-        state.map_data.mapHitBox = { highestPoint: tileHitBoxes[0].x, leftmostPoint: tileHitBoxes[0].y };
+        state.map_data.mapHitBox  = { // TODO: format to Rhombus type
+            x_max: tileHitBoxes[0].x
+            y_max: tileHitBoxes[0].y };
     } else if (
         state.map_data.tileHitBoxes.length >= 0 &&
         !pointInRhombus(state.map_data.mapHitBox, { x: cursor_pos_x, y: cursor_pos_y })

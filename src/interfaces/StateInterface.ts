@@ -1,4 +1,5 @@
 import PointInRhombus from "../math/PointInRhombus";
+import { Point } from "../interfaces/Point";
 
 export default interface State {
     ctx: CanvasRenderingContext2D;
@@ -14,18 +15,9 @@ export default interface State {
         tileWidth: number;
         map_tiles: number[][];
         map_tiles_height: number[][];
-        tileHitBoxes: Array<{
-            x: number;
-            y: number;
-        }>;
-        currentlyHoveredTile: {
-            x: number;
-            y: number;
-        };
-        lastHoveredTile: {
-            x: number;
-            y: number;
-        };
+        tileHitBoxes: Array<Point>;
+        currentlyHoveredTile: Point;
+        lastHoveredTile: Point;
         lastHoveredTileType: number;
         rectColors: Object;
         rectShadowColors: Object;

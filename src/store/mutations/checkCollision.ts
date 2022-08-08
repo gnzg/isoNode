@@ -1,4 +1,5 @@
 import StateInterface from "../../interfaces/StateInterface";
+import { Point } from "../../interfaces/Point";
 import pointInRhombus from "../../math/PointInRhombus";
 import store from "../index";
 
@@ -7,7 +8,7 @@ import store from "../index";
 export default (state: StateInterface, payload: MouseEvent) => {
     let cursor_pos_x = payload.clientX;
     let cursor_pos_y = payload.clientY;
-    let tileHitBoxes = state.map_data.tileHitBoxes;
+    let tileHitBoxes: Array<Point> = state.map_data.tileHitBoxes;
 
     // check if required hitboxes exist
     if (state.map_data.tileHitBoxes.length <= 0) {

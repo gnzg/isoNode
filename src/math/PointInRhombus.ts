@@ -3,21 +3,15 @@ import distanceBetweenTwoPoints from "./DistanceBetweenTwoPoints";
 import vectorDivisionByScalar from "./VectorDivisionByScalar";
 import vectorSubtraction from "./VectorSubtraction";
 import vectorDotProduct from "./VectorDotProduct";
+import { Rhombus } from "../interfaces/Rhombus";
+import { Point } from "../interfaces/Point";
 
-type Rhombus = {
-    pointA: number;
-    pointB: number;
-    pointC: number;
-    pointD: number;
-};
-
-// receives 4 points [x,y] and an arbitrary point [x,y]
-// returns a boolean
+// @return param: Boolean
 export default (rhombus: Rhombus, p) => {
-    let a = rhombus.pointA;
-    let b = rhombus.pointB;
-    let c = rhombus.pointC;
-    let d = rhombus.pointD;
+    let a: Point = rhombus.pointA;
+    let b: Point = rhombus.pointB;
+    let c: Point = rhombus.pointC;
+    let d: Point = rhombus.pointD;
 
     // center point
     let Q = {

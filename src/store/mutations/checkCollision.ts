@@ -5,15 +5,21 @@ import store from "../index";
 // check whether cursor coordinates fall within saved hitboxes of non-empty tiles
 
 export default (state: StateInterface, payload: MouseEvent) => {
-    // initial check if required hitboxes exist
-    if (state.map_data.tileHitBoxes.length <= 0) {
-        console.warn("tileHitBoxes length is zero! Recreating...");
-        store.dispatch("createTileHitBoxes");
-    }
-
     let cursor_pos_x = payload.clientX;
     let cursor_pos_y = payload.clientY;
     let tileHitBoxes = state.map_data.tileHitBoxes;
+
+    // check if required hitboxes exist
+    if (state.map_data.tileHitBoxes.length <= 0) {
+        console.warn("tileHitBoxes length is zero! Recreating...");
+        store.dispatch("createTileHitBoxes");
+        state.map_data.mapHitBox = { highestPoint: tileHitBoxes[0].x, leftmostPoint: tileHitBoxes[0].y };
+    } else if (
+        state.map_data.tileHitBoxes.length >= 0 &&
+        !pointInRhombus(state.map_data.mapHitBox, { x: cursor_pos_x, y: cursor_pos_y })
+    ) {
+        return false;
+    }
 
     // TODO: re-write; current approach is expensive
     for (let i = 0; i < tileHitBoxes.length; i++) {

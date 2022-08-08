@@ -1,3 +1,5 @@
+import PointInRhombus from "../math/PointInRhombus";
+
 export default interface State {
     ctx: CanvasRenderingContext2D;
     refreshFlag: any;
@@ -12,7 +14,10 @@ export default interface State {
         tileWidth: number;
         map_tiles: number[][];
         map_tiles_height: number[][];
-        tileHitBoxes: { x: number; y: number }[];
+        tileHitBoxes: Array<{
+            x: number;
+            y: number;
+        }>;
         currentlyHoveredTile: {
             x: number;
             y: number;
@@ -26,6 +31,7 @@ export default interface State {
         rectShadowColors: Object;
         clearArea: number[];
         rotationDegree: number;
+        mapHitBox: { highestPoint: number; leftmostPoint: number };
         map_offset_x: number;
         map_offset_y: number;
         winWidth: number;

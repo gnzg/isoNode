@@ -32,11 +32,5 @@ window.addEventListener("DOMContentLoaded", (e) => {
 
 window.addEventListener("mousemove", (e) => {
     // limit Canvas refresh rate
-    if (Store.state.refreshFlag == undefined) {
-        Store.state.refreshFlag = setInterval(() => {
-            Store.dispatch("checkCollision", e);
-            clearInterval(Store.state.refreshFlag);
-            Store.state.refreshFlag = undefined;
-        }, Store.state.refreshInterval);
-    }
+    Store.dispatch("checkCollision", e);
 });

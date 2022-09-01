@@ -4,8 +4,8 @@ import drawDebugOutlines from "./drawOutlines";
 import RhombusVertices from "../classes/RhombusVertices";
 
 /**
- * @param Integer x    iterates across a map array
- * @param Integer y    iterates across a map array child's elements
+ * @param Integer x iterates across a map array
+ * @param Integer y iterates across a map array child's elements
  * @returns Object canvas
  */
 
@@ -54,7 +54,7 @@ export default (tile: Tile) => {
         // debug mode
         if (state.debug_mode === true) {
             // establish coordinates for the four vertices of each rhombus
-            let rhombusVertices = new RhombusVertices(x, y);
+            let rhombusVertices = new RhombusVertices(tile, x, y);
             drawDebugOutlines({ ctx, rhombusVertices, x, y });
         }
     }

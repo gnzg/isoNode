@@ -9,10 +9,9 @@ export default (state: StateInterface, payload: MouseEvent) => {
     let cursor_pos_y = payload.clientY;
     let tileHitBoxes: Point[] = state.map_data.tileHitBoxes;
     let tileWidth = store.state.map_data.tileWidth;
-
     // Mandatory: check if hitboxes exist
     if (state.map_data.tileHitBoxes.length <= 0) {
-        console.warn("tileHitBoxes length is zero! Recreating...");
+        console.warn("tileHitBoxes do not exist yet. Creating 'em...");
         store.dispatch("createTileHitBoxes");
         state.map_data.mapHitBox =
         // TODO: verify if calculated area is correct
@@ -26,14 +25,15 @@ export default (state: StateInterface, payload: MouseEvent) => {
         state.map_data.tileHitBoxes.length >= 0 &&
         !pointInRhombus(state.map_data.mapHitBox, { x: cursor_pos_x, y: cursor_pos_y })
     ) {
-        return false;
-    }
+        console.log("tileHitBoxes already eixst.");
+        //return false;
 
     // TODO: re-write; current approach is expensive
     for (let i = 0; i < tileHitBoxes.length; i++) {
-
+        // console.log("in for block");
         let rhombusToCheck =
         // TODO: verify if calculated area is correct
+        // TODO: missing canvas-specific offset
         {
             pointA: { x: tileHitBoxes[i].x + tileWidth/2, y: tileHitBoxes[i].y - tileWidth/2 },
             pointB: { x: tileHitBoxes[i].x + tileWidth, y: tileHitBoxes[i].y },
@@ -41,8 +41,14 @@ export default (state: StateInterface, payload: MouseEvent) => {
             pointD: { x: tileHitBoxes[i].x, y: tileHitBoxes[i].y },
         }
 
+        //alert(rhombusToCheck.pointA.x + " " + rhombusToCheck.pointA.y);
+
         // if cursor is within a given tile's space
         if (pointInRhombus(rhombusToCheck, { x: cursor_pos_x, y: cursor_pos_y })) {
+
+
+            // alert("IN HITOBX");
+
             // TODO: revise
             let hoveredTile = {
                 x: tileHitBoxes[i].x,
@@ -61,6 +67,9 @@ export default (state: StateInterface, payload: MouseEvent) => {
         }
         // if leaving hovered tile
         else if (!pointInRhombus(rhombusToCheck, { x: cursor_pos_x, y: cursor_pos_y })) {
+            console.log("not in hitbox");
+
+
             let execFlag = false;
             if (execFlag == false && state.map_data.currentlyHoveredTile.x != undefined) {
                 console.warn("no longer hovering last hovered tile!");
@@ -75,5 +84,6 @@ export default (state: StateInterface, payload: MouseEvent) => {
             }*/
         }
     }
+}
     return state;
 };

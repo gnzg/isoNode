@@ -7,6 +7,7 @@ export default (state: StateInterface, payload: MouseEvent) => {
   let cursor = { x: payload.clientX, y: payload.clientY };
   let tileHitBoxes = state.map_data.tileHitBoxes;
   let tileWidth = state.map_data.tileWidth;
+  let map_offset_x = state.map_data.map_offset_x;
 
   // Check if hitboxes already exist
   if (tileHitBoxes.length === 0) {
@@ -16,33 +17,15 @@ export default (state: StateInterface, payload: MouseEvent) => {
     //store.dispatch("createMapHitBox");
     return state;
   } else {
-    console.log("tileHitBoxes already eixst.");
+    console.log("tileHitBoxes already exist.");
     // TODO: current approach is expensive
 
     // checks whether a tile hitbox has been entered by the cursor
     for (let i = 0; i < tileHitBoxes.length; i++) {
-      // TODO: verify if calculated area is correct
-      // TODO: missing canvas-specific offset
-      let rhombusToCheck = {
-        pointA: {
-          x: tileHitBoxes[i].x + tileWidth / 2,
-          y: tileHitBoxes[i].y - tileWidth / 2,
-        },
-        pointB: { x: tileHitBoxes[i].x + tileWidth, y: tileHitBoxes[i].y },
-        pointC: {
-          x: tileHitBoxes[i].x + tileWidth / 2,
-          y: tileHitBoxes[i].y + tileWidth / 2,
-        },
-        pointD: { x: tileHitBoxes[i].x, y: tileHitBoxes[i].y },
-      };
-
-      if (pointInRhombus(rhombusToCheck, { x: cursor.x, y: cursor.y })) {
+      if (pointInRhombus(tileHitBoxes[i], { x: cursor.x, y: cursor.y })) {
         console.warn("hovering a tile!");
 
-        let hoveredTile = {
-          x: tileHitBoxes[i].x,
-          y: tileHitBoxes[i].y,
-        };
+        let hoveredTile = tileHitBoxes[i];
 
         store.dispatch("saveCurrentlyHoveredTile", hoveredTile);
         //store.dispatch("saveLastHoveredTile", hoveredTile);
@@ -52,7 +35,7 @@ export default (state: StateInterface, payload: MouseEvent) => {
         //store.dispatch("saveLastHoveredTile", state.map_data.currentlyHoveredTile);
       }
       // if leaving hovered tile
-      else if (!pointInRhombus(rhombusToCheck, { x: cursor.x, y: cursor.y })) {
+      else if (!pointInRhombus(tileHitBoxes[i], { x: cursor.x, y: cursor.y })) {
         console.log("not in hitbox");
         store.dispatch("updateCanvas");
       }

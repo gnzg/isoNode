@@ -1,6 +1,6 @@
 import { Rhombus } from "../../interfaces/Rhombus";
 import RhombusVertices from "../../classes/RhombusVertices";
-import Tile from "../../classes/tile";
+import Tile from "../../classes/Tile";
 
 export default (state) => {
   let map: Array<Array<number>> = state.map_data.map_tiles;
@@ -14,7 +14,7 @@ export default (state) => {
         let tile: Tile = new Tile({ x, y });
 
         // establish coordinates for the four vertices of each rhombus
-        let rhombusVertices: Rhombus = new RhombusVertices(tile, x, y);
+        let rhombusVertices: Rhombus = new RhombusVertices(x, y);
         state.map_data.tileHitBoxes.push({
           ...rhombusVertices,
           // coordinates respective to the maps object (for moving the map)

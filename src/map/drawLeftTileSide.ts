@@ -1,4 +1,4 @@
-import Tile from "../classes/tile";
+import Tile from "../classes/Tile";
 import state from "../store/state";
 
 export default (tile: Tile) => {

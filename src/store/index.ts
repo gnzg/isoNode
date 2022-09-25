@@ -4,7 +4,7 @@ import state from "./state";
 import Store from "./store";
 
 export default new Store({
-    actions,
-    mutations,
-    state,
+  actions,
+  mutations,
+  state,
 });

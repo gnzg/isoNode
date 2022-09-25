@@ -31,14 +31,13 @@ export default (state: StateInterface, payload: MouseEvent) => {
         //store.dispatch("saveLastHoveredTile", hoveredTile);
 
         store.dispatch("onTileHover", state.map_data.currentlyHoveredTile);
-        store.dispatch("updateCanvas");
         //store.dispatch("saveLastHoveredTile", state.map_data.currentlyHoveredTile);
       }
       // if leaving hovered tile
       else if (!pointInRhombus(tileHitBoxes[i], { x: cursor.x, y: cursor.y })) {
         console.log("not in hitbox");
-        store.dispatch("updateCanvas");
       }
+      store.dispatch("updateCanvas");
     }
   }
 };

@@ -1,13 +1,11 @@
-export default function saveLastHoveredTile(state, payload : { x: number; y: number; }) {
-    //console.log("No longer hovering tile:", payload.x, payload.y);
-
-    if (payload.x && payload.y === undefined) {
-        console.debug("Error - saveLastHoveredTile payload is empty!");
+export default function saveLastHoveredTile(state, payload: { x: number; y: number }) {
+    if (payload.x == undefined || payload.y == undefined) {
+        console.debug("Error - saveLastHoveredTile payload is invalid!");
         return state;
     }
-    state.env.lastHoveredTile = {
+    state.map_data.lastHoveredTile = {
         x: payload.x,
-        y: payload.y
+        y: payload.y,
     };
     return state;
 }

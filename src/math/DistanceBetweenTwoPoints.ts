@@ -5,8 +5,6 @@
  * @param {object} b The second point.
  * @return {number} a scalar value in pixel between the points provided.
  */
-let disntaceBetweenTwoPoints = (a, b) => {
-    return Math.sqrt(Math.pow(a.x-b.x, 2) + Math.pow(a.y-b.y, 2));
+export default (a: { x: number; y: number }, b: { x: number; y: number }) => {
+    return Math.sqrt(Math.pow(a.x - b.x, 2) + Math.pow(a.y - b.y, 2));
 };
-
-module.exports = disntaceBetweenTwoPoints;

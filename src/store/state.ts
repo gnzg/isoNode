@@ -1,28 +1,36 @@
-import store from '../store/index';
-import StateInterface from '../interfaces/StateInterface';
-import colors from '../utilities/colors';
-import map from '../maps/map0';
+import StateInterface from "../interfaces/stateInterface";
+import colors from "../utilities/colors";
+import map from "../assets/maps/map0";
 
-let canvas : HTMLCanvasElement = document ? document.querySelector('#main') : undefined ;
+let canvas: HTMLCanvasElement = document
+  ? document.querySelector("#main")
+  : undefined;
 //if (!canvas) store.dispatch("error", "no canvas context found!" );
 
-let State : StateInterface = {
-  ctx: canvas ? canvas.getContext('2d') : undefined,
+// Initial state on first load
+let State: StateInterface = {
+  ctx: canvas ? canvas.getContext("2d") : undefined,
+  refreshFlag: undefined,
+  refreshInterval: 25,
   debug_mode: false,
   maxTileHeight: 8,
   acceleration: 5,
   cursorInMap: undefined,
   cursor_pos_x: 0,
   cursor_pos_y: 0,
-  env: {
+  map,
+  map_data: {
     tileWidth: 24,
     map_tiles: map.tiles,
     map_tiles_height: map.tile_height,
-    // a tile hitbox is an object with the form {pointA, pointB, pointC, pointD}
     tileHitBoxes: [],
+    currentlyHoveredTile: {
+      x: undefined,
+      y: undefined,
+    },
     lastHoveredTile: {
       x: undefined,
-      y: undefined
+      y: undefined,
     },
     lastHoveredTileType: 0,
     rectColors: colors.rectColors,
@@ -33,14 +41,19 @@ let State : StateInterface = {
 
     // @param Integer; the degree of map rotation
     rotationDegree: 0,
-
+    mapHitBox: {
+      pointA: undefined,
+      pointB: undefined,
+      pointC: undefined,
+      pointD: undefined,
+    },
     // map_offset_x and map_offset_y are offsets to make sure we can position the map as we want.
     map_offset_x: 0,
     map_offset_y: 350,
     winWidth: window.innerWidth,
-    winHeight: window.innerHeight
+    winHeight: window.innerHeight,
   },
-  // save a map of pressed keys to allow key combinations
+  // keep track of the simultaneously pressed down keys to allow key combinations
   keyMap: {
     w: false,
     a: false,
@@ -50,8 +63,8 @@ let State : StateInterface = {
     ArrowDown: false,
     ArrowLeft: false,
     ArrowRight: false,
-    " ": false
-  }
+    r: false,
+  },
 };
 
 export default State;

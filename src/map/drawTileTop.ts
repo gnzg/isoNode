@@ -1,11 +1,11 @@
 import Tile from "../classes/tile";
 import state from "../store/state";
 import drawDebugOutlines from "./drawOutlines";
-import RhombusVertices from "../math/RhombusVertices";
+import RhombusVertices from "../classes/rhombusVertices";
 
 /**
- * @param Integer x    iterates across a map array
- * @param Integer y    iterates across a map array child's elements
+ * @param Integer x iterates across a map array
+ * @param Integer y iterates across a map array child's elements
  * @returns Object canvas
  */
 
@@ -14,9 +14,9 @@ export default (tile: Tile) => {
   const y = tile.y;
   const z = tile.z;
 
-  let map_tiles = state.env.map_tiles;
-  let map_tiles_height = state.env.map_tiles_height;
-  let map_offset_x = state.env.map_offset_x;
+  let map_tiles = state.map_data.map_tiles;
+  let map_tiles_height = state.map_data.map_tiles_height;
+  let map_offset_x = state.map_data.map_offset_x;
 
   let topYfactor = tile.tileWidth * y * 0.5;
   let topYsegment = tile.c + topYfactor - tile.tileYoffset;
@@ -64,7 +64,7 @@ export default (tile: Tile) => {
     // debug mode
     if (state.debug_mode === true) {
       // establish coordinates for the four vertices of each rhombus
-      let rhombusVertices = new RhombusVertices({ tile, x, y });
+      let rhombusVertices = new RhombusVertices(x, y);
       drawDebugOutlines({ ctx, rhombusVertices, x, y });
     }
   }

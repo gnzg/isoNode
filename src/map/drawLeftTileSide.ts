@@ -8,9 +8,9 @@ export default (tile: Tile) => {
 
   let ctx = state.ctx;
 
-  let map_tiles = state.env.map_tiles;
-  let map_tiles_height = state.env.map_tiles_height;
-  let map_offset_x = state.env.map_offset_x;
+  let map_tiles = state.map_data.map_tiles;
+  let map_tiles_height = state.map_data.map_tiles_height;
+  let map_offset_x = state.map_data.map_offset_x;
 
   const debug = state.debug_mode;
 

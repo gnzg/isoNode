@@ -1,61 +1,43 @@
-import StateInterface from "../../interfaces/StateInterface";
+import StateInterface from "../../interfaces/stateInterface";
 import pointInRhombus from "../../math/PointInRhombus";
 import store from "../index";
 
-// checks whether the current mouse coordinates fall within saved hitboxes of non-zero tiles
-// by comparing the position of the cursor with each tile hitbox saved in the global state
+// checks whether cursor coordinates fall within a tile hitbox
+export default (state: StateInterface, payload: MouseEvent) => {
+  let cursor = { x: payload.clientX, y: payload.clientY };
+  let tileHitBoxes = state.map_data.tileHitBoxes;
+  let tileWidth = state.map_data.tileWidth;
+  let map_offset_x = state.map_data.map_offset_x;
 
-export default (state: StateInterface, payload : MouseEvent) => {
+  // Check if hitboxes already exist
+  if (tileHitBoxes.length === 0) {
+    console.warn("tileHitBoxes do not exist yet. Creating 'em...");
 
-  // initial check if required hitboxes exist
-  if (state.env.tileHitBoxes.length <= 0) {
-    store.dispatch("error", "tileHitBoxes length is zero! Recreating...");
     store.dispatch("createTileHitBoxes");
-  }
+    //store.dispatch("createMapHitBox");
+    return state;
+  } else {
+    console.log("tileHitBoxes already exist.");
+    // TODO: current approach is expensive
 
-  let cursor_pos_x = payload.clientX;
-  let cursor_pos_y = payload.clientY;
-  let tileCoordinates = state.env.tileHitBoxes;
+    // checks whether a tile hitbox has been entered by the cursor
+    for (let i = 0; i < tileHitBoxes.length; i++) {
+      if (pointInRhombus(tileHitBoxes[i], { x: cursor.x, y: cursor.y })) {
+        console.warn("hovering a tile!");
 
-  for (let i = 0; i < tileCoordinates.length; i++) {
-    let tile_position;
-    //console.log("Checking for hitbox overlap...");
+        let hoveredTile = tileHitBoxes[i];
 
-    // if cursor is within a given tile's space
-    if (pointInRhombus(tileCoordinates[i], { x: cursor_pos_x, y: cursor_pos_y })) {
-      tile_position = {
-        x: tileCoordinates[i].x,
-        y: tileCoordinates[i].y,
-      };
+        store.dispatch("saveCurrentlyHoveredTile", hoveredTile);
+        //store.dispatch("saveLastHoveredTile", hoveredTile);
 
-      // on initial run, save first hovered tile as lastHoveredTile
-      if (state.env.lastHoveredTile.x === undefined ) {
-        store.dispatch("saveLastHoveredTile", tile_position);
+        store.dispatch("onTileHover", state.map_data.currentlyHoveredTile);
+        //store.dispatch("saveLastHoveredTile", state.map_data.currentlyHoveredTile);
       }
-      // only unhover lastHoveredTile if it was already set
-      else if (state.env.lastHoveredTile.x !== undefined) {
-        store.dispatch("unhoverTile", state.env.lastHoveredTile);
+      // if leaving hovered tile
+      else if (!pointInRhombus(tileHitBoxes[i], { x: cursor.x, y: cursor.y })) {
+        console.log("not in hitbox");
       }
-
-      store.dispatch("hoverTile", tile_position);
       store.dispatch("updateCanvas");
-
-      // if hovering a new tile
-      if (
-          tile_position.x !== state.env.lastHoveredTile.x ||
-          tile_position.y !== state.env.lastHoveredTile.y) {
-        store.dispatch("unhoverTile", state.env.lastHoveredTile);
-
-        store.dispatch("hoverTile", tile_position);
-        store.dispatch("saveLastHoveredTile", tile_position);
-        store.dispatch("updateCanvas");
-      }
-      // if hovering same tile
-      else if (tile_position.x === state.env.lastHoveredTile.x &&
-          tile_position.y === state.env.lastHoveredTile.y) {
-      }
     }
   }
-  payload.stopImmediatePropagation();
-  return state;
 };

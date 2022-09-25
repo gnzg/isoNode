@@ -1,14 +1,15 @@
 import Store from "../index";
 
+// Establish center point of map relative to browser window size
 export default function (state) {
-  if (state.env.map_tiles !== undefined && Array.isArray(state.env.map_tiles)) {
+  if (state.map_data.map_tiles !== undefined && Array.isArray(state.map_data.map_tiles)) {
 
-    let mapCenter = (state.env.map_tiles.length / 2) * state.env.tileWidth * 2.3;
-    state.env.map_offset_x = state.env.winWidth / 2 - mapCenter;
-    state.env.map_offset_y = state.env.winHeight / 2;
+    let mapCenter = (state.map_data.map_tiles.length / 2) * state.map_data.tileWidth * 2.3;
+    state.map_data.map_offset_x = state.map_data.winWidth / 2 - mapCenter;
+    state.map_data.map_offset_y = state.map_data.winHeight / 2;
   }
   else {
-    Store.dispatch("error", "Invalid state.env.map_tiles value!");
+    Store.dispatch("error", "Invalid state.map_data.map_tiles value!");
   }
   return state;
 }

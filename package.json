@@ -47,7 +47,7 @@
     "typescript": "^4.7.4",
     "webpack": "^5.64.4",
     "webpack-cli": "^4.10.0",
-    "webpack-dev-server": "^3.11.3"
+    "webpack-dev-server": "^4.11.1"
   },
   "scripts": {
     "dev-server": "webpack serve --mode development --env development --hot",

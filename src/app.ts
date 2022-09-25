@@ -28,10 +28,10 @@ window.addEventListener("DOMContentLoaded", (e) => {
   window.store = Store;
   window.state = State;
   e.stopImmediatePropagation();
-});
 
-window.addEventListener("mousemove", (e) => {
-  // limit Canvas refresh rate
-  Store.dispatch("checkCollision", e);
-  e.stopImmediatePropagation();
+  window.addEventListener("mousemove", (e) => {
+    // limit Canvas refresh rate
+    Store.dispatch("checkCollision", e);
+    e.stopImmediatePropagation();
+  });
 });

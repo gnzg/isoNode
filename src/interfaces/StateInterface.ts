@@ -1,4 +1,4 @@
-import RhombusVertices from "../classes/RhombusVertices";
+import RhombusVertices from "../classes/rhombusVertices";
 import { Point } from "../interfaces/Point";
 import { Rhombus } from "../interfaces/Rhombus";
 

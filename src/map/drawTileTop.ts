@@ -1,7 +1,7 @@
-import Tile from "../classes/Tile";
+import Tile from "../classes/tile";
 import state from "../store/state";
 import drawDebugOutlines from "./drawOutlines";
-import RhombusVertices from "../classes/RhombusVertices";
+import RhombusVertices from "../classes/rhombusVertices";
 
 /**
  * @param Integer x iterates across a map array

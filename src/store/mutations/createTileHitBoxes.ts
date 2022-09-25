@@ -1,6 +1,6 @@
 import { Rhombus } from "../../interfaces/Rhombus";
-import RhombusVertices from "../../classes/RhombusVertices";
-import Tile from "../../classes/Tile";
+import RhombusVertices from "../../classes/rhombusVertices";
+import Tile from "../../classes/tile";
 
 export default (state) => {
   let map: Array<Array<number>> = state.map_data.map_tiles;

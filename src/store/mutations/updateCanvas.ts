@@ -1,16 +1,15 @@
 import StateInterface from "../../interfaces/StateInterface";
 import drawTileLaterals from "../../map/drawTileLaterals";
 import drawTileTop from "../../map/drawTileTop";
-import Tile from "../../classes/Tile";
+import Tile from "../../classes/tile";
 
 export default (state) => {
-
   if (!state.ctx) {
     console.error("No ctx object found!");
     return state;
   }
 
-  let ctx : StateInterface["ctx"] = state.ctx;
+  let ctx: StateInterface["ctx"] = state.ctx;
   let { clearArea, map_tiles } = state.map_data;
 
   // clear entire canvas
@@ -35,4 +34,4 @@ export default (state) => {
     }
   }
   return state;
-}
+};

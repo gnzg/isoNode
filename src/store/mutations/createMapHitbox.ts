@@ -1,7 +1,7 @@
 import Store from "../index";
 import { Rhombus } from "../../interfaces/Rhombus";
 import StateInterface from "../../interfaces/StateInterface";
-import RhombusVertices from "../../classes/RhombusVertices";
+import RhombusVertices from "../../classes/rhombusVertices";
 
 export default (state: StateInterface) => {
   let mapHitBox = state.map_data.mapHitBox;

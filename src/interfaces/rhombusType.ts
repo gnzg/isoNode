@@ -1,4 +1,4 @@
-import { Point } from "./Point";
+import { Point } from "./pointType";
 
 export type Rhombus = {
     pointA: Point;

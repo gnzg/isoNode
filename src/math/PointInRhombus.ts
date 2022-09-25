@@ -3,8 +3,8 @@ import distanceBetweenTwoPoints from "./DistanceBetweenTwoPoints";
 import vectorDivisionByScalar from "./VectorDivisionByScalar";
 import vectorSubtraction from "./VectorSubtraction";
 import vectorDotProduct from "./VectorDotProduct";
-import { Rhombus } from "../interfaces/Rhombus";
-import { Point } from "../interfaces/Point";
+import { Rhombus } from "../interfaces/rhombusType";
+import { Point } from "../interfaces/pointType";
 
 // @return param: Boolean
 export default (rhombus: Rhombus, p) => {

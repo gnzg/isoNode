@@ -1,4 +1,4 @@
-import { Rhombus } from "../../interfaces/Rhombus";
+import { Rhombus } from "../../interfaces/rhombusType";
 import RhombusVertices from "../../classes/rhombusVertices";
 import Tile from "../../classes/tile";
 

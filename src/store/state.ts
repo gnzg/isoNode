@@ -1,4 +1,4 @@
-import StateInterface from "../interfaces/StateInterface";
+import StateInterface from "../interfaces/stateInterface";
 import colors from "../utilities/colors";
 import map from "../assets/maps/map0";
 
@@ -63,7 +63,7 @@ let State: StateInterface = {
     ArrowDown: false,
     ArrowLeft: false,
     ArrowRight: false,
-    " ": false,
+    r: false,
   },
 };
 

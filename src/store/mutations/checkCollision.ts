@@ -1,4 +1,4 @@
-import StateInterface from "../../interfaces/StateInterface";
+import StateInterface from "../../interfaces/stateInterface";
 import pointInRhombus from "../../math/PointInRhombus";
 import store from "../index";
 

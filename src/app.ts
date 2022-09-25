@@ -2,7 +2,7 @@ import "./assets/scss/styles.scss";
 import Store from "./store/index";
 import State from "./store/state";
 import CanvasWrapper from "./store/canvasWrapper";
-import UserInput from "./utilities/userInput";
+import bindEventListeners from "./utilities/bindEventListeners";
 
 // Extend the Window interface
 declare global {
@@ -21,17 +21,10 @@ window.addEventListener("DOMContentLoaded", (e) => {
   Store.dispatch("updateCanvas");
   //Store.dispatch("getMapMaxMins"); // TODO: calculate max and min points of map to establish later on if cursor is within map borders
 
-  let userInput = new UserInput();
-  userInput.activate();
+  bindEventListeners();
 
   // Make store and state accessible via window object
   window.store = Store;
   window.state = State;
   e.stopImmediatePropagation();
-
-  window.addEventListener("mousemove", (e) => {
-    // limit Canvas refresh rate
-    Store.dispatch("checkCollision", e);
-    e.stopImmediatePropagation();
-  });
 });

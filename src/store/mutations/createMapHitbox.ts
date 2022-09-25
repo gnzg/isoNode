@@ -1,6 +1,6 @@
 import Store from "../index";
-import { Rhombus } from "../../interfaces/Rhombus";
-import StateInterface from "../../interfaces/StateInterface";
+import { Rhombus } from "../../interfaces/rhombusType";
+import StateInterface from "../../interfaces/stateInterface";
 import RhombusVertices from "../../classes/rhombusVertices";
 
 export default (state: StateInterface) => {

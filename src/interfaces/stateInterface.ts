@@ -1,6 +1,6 @@
 import RhombusVertices from "../classes/rhombusVertices";
-import { Point } from "../interfaces/Point";
-import { Rhombus } from "../interfaces/Rhombus";
+import { Point } from "./pointType";
+import { Rhombus } from "./rhombusType";
 
 export default interface State {
   ctx: CanvasRenderingContext2D;

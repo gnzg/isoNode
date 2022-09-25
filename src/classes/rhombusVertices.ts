@@ -1,7 +1,7 @@
 import state from "../store/state";
 import store from "../store/index";
-import { TileType } from "../interfaces/TileType";
-import { Point } from "../interfaces/Point";
+import { TileType } from "../interfaces/tileType";
+import { Point } from "../interfaces/pointType";
 
 export default class RhombusVertices {
   tile: TileType; // the tile in question
